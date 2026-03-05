@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Context Skeleton Studio</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <script src="./js/theme.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <header class="app-header">
+    <div>
+      <h1>Context Skeleton Studio</h1>
+      <p class="sub">Build a structured context package, validate it, and export it.</p>
+    </div>
+    <div class="header-actions">
+      <div class="badge-row" aria-label="Build info">
+        <span id="appVersion" class="badge">v?</span>
+        <span id="appEnv" class="badge">…</span>
+      </div>
+      <div class="header-linkrow" aria-label="Theme and links">
+        <button id="themeToggleBtn" type="button" class="ghost" aria-pressed="false">Theme: Light</button>
+        <a class="link-btn" href="./help.html">Help</a>
+        <a class="link-btn" href="./feedback.html">Feedback</a>
+      </div>
+      <label for="workflowSelect">Workflow</label>
+      <select id="workflowSelect" aria-label="Workflow type"></select>
+    </div>
+  </header>
+
+  <main id="mainContent" class="layout">
+    <section class="panel editor-panel" aria-labelledby="editorTitle">
+      <div class="panel-header">
+        <h2 id="editorTitle">Blocks</h2>
+        <button id="resetOrderBtn" type="button">Reset Order</button>
+      </div>
+
+      <div class="callout">
+        <p><strong>Quick rule:</strong> Put <strong>Role</strong> + <strong>Rules</strong> at the top. Put <strong>User Request</strong> near the end. Use presets or fixtures if you want a fast starting point.</p>
+      </div>
+
+      <div class="callout">
+        <p><strong>Keyboard:</strong> In any block, press <strong>Alt+Shift+↑/↓</strong> to move the block. Press <strong>Ctrl+Enter</strong> to validate.</p>
+      </div>
+
+      <div id="blocksContainer" class="blocks"></div>
+    </section>
+
+    <aside class="panel side-panel" aria-labelledby="toolsTitle">
+      <h2 id="toolsTitle">Validate + Export</h2>
+
+      <div class="box">
+        <h3>Starter Presets</h3>
+        <p class="small-help">Load a starter scenario (Q&A, policy, or incident). This fills the blocks with example text you can edit.</p>
+        <div class="row-grid">
+          <label class="sr-only" for="presetSelect">Preset</label>
+          <select id="presetSelect" aria-label="Starter preset"></select>
+          <button id="loadPresetBtn" type="button">Load Preset</button>
+        </div>
+        <p id="presetDesc" class="small-help" aria-live="polite"></p>
+      </div>
+
+      <div class="box">
+        <h3>Regression Fixtures</h3>
+        <p class="small-help">One-click loads for smoke tests and demos (helps local + GitHub Pages verification).</p>
+        <div class="row-grid">
+          <label class="sr-only" for="fixtureSelect">Fixture</label>
+          <select id="fixtureSelect" aria-label="Regression fixture"></select>
+          <button id="loadFixtureBtn" type="button">Load Fixture</button>
+        </div>
+        <p id="fixtureDesc" class="small-help" aria-live="polite"></p>
+        <div id="fixtureLinks"></div>
+      </div>
+
+      <div class="box">
+        <h3>Validation</h3>
+        <button id="validateBtn" type="button">Validate</button>
+        <ul id="validationList" class="feedback-list"></ul>
+      </div>
+
+      <div class="box">
+        <h3>Length & Token Budget Hint</h3>
+        <p id="budgetSummary" class="budget-line">Chars: 0 · Est. tokens: 0</p>
+        <p id="budgetHint" class="budget-hint">Start small. Add only the blocks you need.</p>
+      </div>
+
+      <div class="box">
+        <h3>Assembled Preview</h3>
+        <label class="inline-check" for="xrayToggle">
+          <input id="xrayToggle" type="checkbox" checked />
+          Context X-Ray labels (show block roles in preview/export)
+        </label>
+        <p class="small-help">X-Ray labels make the final package easier to scan and debug.</p>
+        <textarea id="previewArea" class="preview" readonly aria-label="Assembled context preview"></textarea>
+      </div>
+
+      <div class="box">
+        <h3>Actions</h3>
+        <div class="btn-grid">
+          <button id="copyBtn" type="button">Copy</button>
+          <button id="downloadBtn" type="button">Download .txt</button>
+          <button id="saveBtn" type="button">Save Draft</button>
+          <button id="loadBtn" type="button">Load Draft</button>
+          <button id="exportSnapshotBtn" type="button">Export .json Snapshot</button>
+          <button id="importSnapshotBtn" type="button">Import .json Snapshot</button>
+          <button id="clearBtn" type="button" class="danger">Clear Draft</button>
+        </div>
+        <input id="snapshotFileInput" class="sr-only" type="file" accept=".json,application/json" />
+        <p id="statusMsg" class="status" aria-live="polite"></p>
+      </div>
+
+      <div class="box">
+        <h3>How to Use (Quick)</h3>
+        <ol class="mini-steps">
+          <li>Pick a workflow (or load a preset/fixture).</li>
+          <li>Edit the blocks in plain language.</li>
+          <li>Click <strong>Validate</strong> and fix warnings.</li>
+          <li>Use the length hint to trim non-essential text.</li>
+          <li>Copy/download text or export a JSON snapshot.</li>
+        </ol>
+        <ul class="mini-links" aria-label="More links">
+          <li><a href="./help.html">Help</a></li>
+          <li><a href="./feedback.html">Feedback</a></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+
+  <nav class="mobile-actionbar" aria-label="Quick actions">
+    <button id="mobileToolsBtn" type="button" class="ghost">Tools</button>
+    <button id="mobileValidateBtn" type="button">Validate</button>
+    <button id="mobileCopyBtn" type="button">Copy</button>
+    <button id="mobileDownloadBtn" type="button">Download</button>
+  </nav>
+
+  <footer class="app-footer">
+    <p>
+      Local run on Windows: keep <code>start-server.bat</code> in the same folder as <code>index.html</code>.
+      GitHub Pages publish folder: <code>/docs</code>.
+    </p>
+  </footer>
+
+  <script src="./js/data.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
