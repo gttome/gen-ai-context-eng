@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="RAG Snippet Surgeon — a mobile-first mini-game for practicing precise retrieval snippets for grounding." />
+  <title>RAG Snippet Surgeon</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="app-header">
+    <div class="header-top">
+      <div class="brand">
+        <div class="brand-title">RAG Snippet Surgeon</div>
+        <div class="brand-subtitle">Pick 2–6 surgical excerpts. Avoid document dumping. Prove grounding sufficiency.</div>
+      </div>
+
+      <div class="header-actions" aria-label="Header actions">
+        <div class="status-bar" aria-label="App status">
+          <span class="pill" id="pillVersion" aria-label="App version">v—</span>
+          <span class="pill pill-env" id="pillEnv" aria-label="Runtime environment">Env—</span>
+        </div>
+
+        <div class="action-row">
+          <button class="btn btn-secondary" id="btnTheme" type="button" aria-label="Toggle theme">Theme</button>
+          <a class="btn btn-secondary" href="help.html" role="button">Help</a>
+          <a class="btn btn-secondary" href="feedback.html" role="button">Feedback</a>
+                    <button class="btn btn-secondary" id="btnExportSession" type="button">Export</button>
+          <button class="btn btn-secondary" id="btnImportSession" type="button">Import</button>
+          <input class="sr-only" id="importSessionFile" type="file" accept="application/json" />
+<button class="btn btn-danger" id="btnReset" type="button">Reset</button>
+        </div>
+
+        <span class="sr-only" id="themeStatus" aria-live="polite"></span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="card" aria-labelledby="qTitle">
+      <div class="card-header">
+        <h1 id="qTitle" class="h2">1) Choose a question</h1>
+        <p class="muted">Goal: select the minimum excerpts needed to answer <em>grounded</em>. Your job is retrieval precision.</p>
+      </div>
+
+      <div class="question-grid" id="questionGrid" aria-label="Question cards"></div>
+
+      <div class="row gap">
+        <div class="field">
+          <label for="ruleOnlyProvided" class="checkbox">
+            <input type="checkbox" id="ruleOnlyProvided" checked />
+            <span>Rule: Answer using <strong>only</strong> the provided excerpts</span>
+          </label>
+        </div>
+        <div class="field">
+          <label for="scalpelMode" class="checkbox">
+            <input type="checkbox" id="scalpelMode" />
+            <span>Scalpel Mode: trim excerpts to only the 1–2 sentences that matter</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="eTitle">
+      <div class="card-header">
+        <h2 id="eTitle" class="h2">2) Select 2–6 excerpts</h2>
+        <p class="muted">Pick only what supports the question. Irrelevant excerpts raise the Noise Meter and reduce score.</p>
+      </div>
+
+      <div class="row gap stack-md">
+        <div class="col">
+          <div class="toolbar">
+            <input class="input" id="searchBox" type="search" placeholder="Search excerpts…" aria-label="Search excerpts" />
+            <select class="select" id="tagFilter" aria-label="Filter by tag">
+              <option value="__all__">All tags</option>
+            </select>
+            <select class="select" id="relevanceFilter" aria-label="Filter by relevance">
+              <option value="__all__">All excerpts</option>
+              <option value="relevant">Relevant only</option>
+              <option value="distractor">Distractors only</option>
+            </select>
+          </div>
+          <div class="excerpt-grid" id="excerptGrid" aria-label="Excerpt cards"></div>
+        </div>
+
+        <aside class="col sidebar" aria-label="Selection status">
+          <div class="stat">
+            <div class="stat-label">Selected</div>
+            <div class="stat-value" id="selectedCount">0</div>
+            <div class="stat-help muted">Minimum 2 • Maximum 6</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Token Estimate</div>
+            <div class="stat-value" id="tokenEstimate">—</div>
+            <div class="stat-help muted">Lower is better (avoid dumping)</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Evidence Budget</div>
+            <div class="meter" aria-label="Evidence budget meter">
+              <div class="meter-bar" id="budgetBar" style="width:0%"></div>
+            </div>
+            <div class="stat-help muted" id="budgetLabel">—</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Noise Meter</div>
+            <div class="meter" aria-label="Noise meter">
+              <div class="meter-bar" id="noiseBar" style="width:0%"></div>
+            </div>
+            <div class="stat-help muted" id="noiseLabel">—</div>
+          </div>
+
+          <div class="stat">
+            <button class="btn" id="btnSimulate" type="button">Simulate grounded answer</button>
+            <div class="stat-help muted" id="simulateHint">Choose a question and 2–6 excerpts.</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="oTitle">
+      <div class="card-header">
+        <h2 id="oTitle" class="h2">3) Output</h2>
+        <p class="muted">Copy the “Grounding Knowledge” block into your context skeleton. If evidence is missing, the app will tell you what to retrieve next.</p>
+      </div>
+
+      <div class="row gap stack-md">
+        <div class="col">
+          <div class="result-banner" id="resultBanner" role="status" aria-live="polite">
+            <span class="result-pill" id="resultPill">No run yet</span>
+            <span class="muted" id="resultSummary">Select a question, pick excerpts, then simulate.</span>
+          </div>
+
+          <div class="field">
+            <label class="label" for="groundingBlock">Grounding Knowledge (copy/paste)</label>
+            <textarea class="textarea" id="groundingBlock" rows="10" readonly></textarea>
+            <div class="row gap">
+              <button class="btn btn-secondary" id="btnCopyGrounding" type="button">Copy grounding block</button>
+              <button class="btn btn-secondary" id="btnDownloadTxt" type="button">Download as .txt</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="field">
+            <label class="label" for="answerStub">Grounded response stub</label>
+            <textarea class="textarea" id="answerStub" rows="10" readonly></textarea>
+          </div>
+
+          <div class="score-box" aria-label="Score">
+            <div class="score-line">
+              <span>Precision Score</span>
+              <div class="score-right"><strong id="scoreValue">—</strong><span class="badge" id="scoreBadge" aria-label="Score badge">—</span></div>
+            </div>
+            <div class="score-line muted">
+              <span>Why</span>
+              <span id="scoreWhy">—</span>
+            </div>
+          </div>
+
+          <div class="coverage-box" aria-label="Evidence coverage">
+            <div class="coverage-title">Evidence Coverage</div>
+            <div class="coverage-list" id="coverageList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer muted">
+      <div>Tip: treat the context window like a token budget. Retrieve short excerpts; don’t dump whole docs.</div>
+    </footer>
+  </main>
+
+  <!-- Scalpel modal -->
+  <div class="modal" id="scalpelModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="1"></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="scalpelTitle" aria-describedby="scalpelHint">
+      <div class="modal-header">
+        <h3 class="h3" id="scalpelTitle">Scalpel Mode</h3>
+        <button class="btn btn-secondary" id="btnCloseModal" type="button">Close</button>
+      </div>
+      <p class="muted" id="scalpelHint">Trim to only the 1–2 sentences that matter for grounding.</p>
+      <div class="field">
+        <label class="label" for="scalpelText">Excerpt text (editable)</label>
+        <textarea class="textarea" id="scalpelText" rows="10"></textarea>
+      </div>
+      <div class="row gap">
+        <button class="btn" id="btnSaveTrim" type="button">Save trimmed excerpt</button>
+                <button class="btn btn-secondary" id="btnAutoTrim" type="button">Auto-trim</button>
+        <button class="btn btn-secondary" id="btnResetTrim" type="button">Reset to original</button>
+      </div>
+      <div class="muted small" id="scalpelMeta"></div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
