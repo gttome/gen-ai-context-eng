@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enterprise Scenario Arcade</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="app-header">
+    <div class="header-left">
+      <div class="title-row">
+        <h1 class="app-title">Enterprise Scenario Arcade</h1>
+        <div class="status-bar" aria-label="App status">
+          <span class="pill" id="pillVersion" aria-label="App version">v—</span>
+          <span class="pill pill-env" id="pillEnv" aria-label="Runtime environment">Env—</span>
+                  <span class="pill pill-timer" id="pillTimer" aria-label="Session timer">00:00</span>
+        </div>
+      </div>
+      <p class="app-subtitle muted">Build reliable outputs by engineering the context package—not by “writing the perfect prompt.”</p>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn btn-secondary" id="btnTheme" type="button" aria-label="Toggle theme">Theme</button>
+      <a class="btn btn-secondary" href="help.html" role="button">Help</a>
+      <a class="btn btn-secondary" href="feedback.html" role="button">Feedback</a>
+      <button class="btn btn-danger" id="btnReset" type="button" aria-label="Reset app">Reset</button>
+      <span class="sr-only" id="themeStatus" aria-live="polite"></span>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="card" id="scenePicker" aria-labelledby="pickerTitle">
+      <h2 id="pickerTitle">Pick a station</h2>
+      <p class="muted">Each station gives you minimal enterprise inputs (facts + policy excerpts + constraints). You assemble the context skeleton, generate a review-ready response, then score it.</p>
+
+      <div class="grid" id="scenarioCards" role="list"></div>
+    </section>
+
+    <section class="card hidden" id="workbench" aria-labelledby="workbenchTitle">
+      <div class="workbench-header">
+        <div>
+          <h2 id="workbenchTitle">Workbench</h2>
+          <p class="muted" id="workbenchSubtitle">—</p>
+          <div class="scenario-switcher" id="scenarioSwitcher">
+            <label class="muted small" for="selScenario">Scenario</label>
+            <div class="scenario-row">
+              <select id="selScenario" aria-label="Scenario"></select>
+              <button class="btn btn-secondary" id="btnRandomScenario" type="button">Random</button>
+            </div>
+          </div>
+        </div>
+        <div class="workbench-actions">
+          <button class="btn btn-secondary" id="btnBack" type="button">Back</button>
+          <button class="btn" id="btnGenerate" type="button">Generate Response</button>
+          <button class="btn btn-secondary" id="btnScore" type="button">Score</button>
+          <button class="btn btn-secondary" id="btnAudit" type="button">Audit Mode</button>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <section class="panel">
+          <h3>Context Skeleton Blocks</h3>
+
+          <div class="field">
+            <label for="blkRole">System / Role</label>
+            <textarea id="blkRole" rows="3" spellcheck="false"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="blkRules">Rules / Constraints</label>
+            <textarea id="blkRules" rows="5" spellcheck="false"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="blkFacts">Dynamic Facts</label>
+            <textarea id="blkFacts" rows="6" spellcheck="false"></textarea>
+            <p class="hint muted">Tip: keep “changing values” here, not in the rules.</p>
+          </div>
+
+          <div class="field">
+            <label>Grounding Knowledge (Excerpts)</label>
+            <div id="blkExcerpts" class="stack"></div>
+          </div>
+
+          <div class="field" id="memoryWrap">
+            <label for="blkMemory">Memory (Confirmed facts + open questions)</label>
+            <textarea id="blkMemory" rows="7" spellcheck="false"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="blkFormat">Output Format</label>
+            <textarea id="blkFormat" rows="3" spellcheck="false"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="blkRequest">User Request</label>
+            <textarea id="blkRequest" rows="3" spellcheck="false"></textarea>
+          </div>
+
+          <div class="split-actions">
+            <button class="btn btn-secondary" id="btnCopyContext" type="button">Copy Context Package</button>
+            <button class="btn btn-secondary" id="btnDownloadContext" type="button">Download Context .txt</button>
+            <button class="btn btn-secondary" id="btnSave" type="button">Save</button>
+          </div>
+
+          <div class="muted small">
+            <strong>Reminder:</strong> This app is static and does not call an LLM. You can copy the context package into ChatGPT or your enterprise model.
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="outputTitle">
+          <h3 id="outputTitle">Output</h3>
+
+          <div class="tabs" role="tablist" aria-label="Output views">
+            <button class="tab" id="tabResponse" type="button" role="tab" aria-selected="true">Response</button>
+            <button class="tab" id="tabScore" type="button" role="tab" aria-selected="false">Score</button>
+            <button class="tab" id="tabXray" type="button" role="tab" aria-selected="false">X-Ray</button>
+          </div>
+
+          <div id="viewResponse" class="tabview" role="tabpanel" aria-labelledby="tabResponse">
+            <div class="field">
+              <label for="txtResponse">Generated Response (template-based)</label>
+              <textarea id="txtResponse" rows="18" spellcheck="false"></textarea>
+            </div>
+
+            <div class="split-actions">
+              <button class="btn btn-secondary" id="btnCopyResponse" type="button">Copy Response</button>
+              <button class="btn btn-secondary" id="btnDownloadTxt" type="button">Download Response .txt</button>
+              <button class="btn btn-secondary" id="btnDownloadRunReport" type="button">Download Run Report</button>
+            </div>
+
+            <div class="audit-wrap hidden" id="auditWrap">
+              <h4>Audit Mode</h4>
+              <p class="muted small">Lines are tagged with support: an excerpt reference, “Facts/Memory”, or flagged as unsupported.</p>
+              <div id="auditLines" class="audit-lines" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <div id="viewScore" class="tabview hidden" role="tabpanel" aria-labelledby="tabScore">
+            <div id="scoreSummary" class="score-summary"></div>
+            <div id="scoreDetails" class="stack"></div>
+            <div class="stack" style="margin-top:12px;">
+              <div class="card" style="padding:12px;">
+                <h4 style="margin:0 0 8px 0;">Coach Alerts</h4>
+                <div id="coachAlerts" class="stack"></div>
+              </div>
+              <div class="card" style="padding:12px;">
+                <div style="display:flex; gap:10px; align-items:center; justify-content:space-between;">
+                  <h4 style="margin:0;">Run History</h4>
+                  <button class="btn btn-secondary" id="btnClearHistory" type="button">Clear History</button>
+                </div>
+                <div id="runHistory" class="stack" style="margin-top:10px;"></div>
+              </div>
+              <div class="card" style="padding:12px;">
+                <div style="display:flex; gap:10px; align-items:center; justify-content:space-between;">
+                  <h4 style="margin:0;">Saved Runs</h4>
+                  <button class="btn btn-secondary" id="btnClearSavedRuns" type="button">Clear Saved</button>
+                </div>
+                <div class="saved-run-controls">
+                  <input id="saveRunName" type="text" placeholder="Name this run (e.g., Support attempt 3)" aria-label="Saved run name" />
+                  <button class="btn btn-secondary" id="btnSaveNamedRun" type="button">Save Named Run</button>
+                </div>
+                <div id="savedRuns" class="stack" style="margin-top:10px;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="viewXray" class="tabview hidden" role="tabpanel" aria-labelledby="tabXray">
+            <div id="xraySummary" class="score-summary"></div>
+            <div id="xrayDetails" class="stack"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <footer class="footer muted small">
+      <span>Enterprise Scenario Arcade v0.4.0 • Built for mobile-first use.</span>
+    </footer>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

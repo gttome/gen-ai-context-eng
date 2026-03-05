@@ -1,0 +1,64 @@
+{
+  "app": "Context Skeleton Studio",
+  "appVersion": "v0.6.0",
+  "snapshotVersion": "1.1.0",
+  "exportedAt": "2026-02-25T00:00:00Z",
+  "workflow": {
+    "id": "multi_turn",
+    "label": "Multi-turn Continuity"
+  },
+  "xrayEnabled": true,
+  "order": [
+    "role",
+    "rules",
+    "dynamic",
+    "grounding",
+    "memory",
+    "output",
+    "request"
+  ],
+  "blocks": [
+    {
+      "id": "role",
+      "label": "Role / System Instructions",
+      "xrayTag": "ROLE",
+      "content": "You are a continuity-focused assistant helping the user iterate across multiple turns."
+    },
+    {
+      "id": "rules",
+      "label": "Rules / Constraints",
+      "xrayTag": "RULES",
+      "content": "Keep decisions consistent with Memory. If a new request conflicts, point it out and ask to confirm the change."
+    },
+    {
+      "id": "dynamic",
+      "label": "Dynamic Facts",
+      "xrayTag": "DYNAMIC_FACTS",
+      "content": "Date: 2026-02-25\nProject: Context Skeleton Studio"
+    },
+    {
+      "id": "grounding",
+      "label": "Grounding Knowledge",
+      "xrayTag": "GROUNDING",
+      "content": "Notes:\n- Keep key constraints near the top.\n- Keep the user request near the end."
+    },
+    {
+      "id": "memory",
+      "label": "Memory",
+      "xrayTag": "MEMORY",
+      "content": "Pinned facts:\n- Iteration 2 completed: X-Ray + keyboard + JSON snapshots\n- Next goal: GitHub Pages deployment verification\nRolling summary:\nUser needs a deployment-ready checklist and repeatable smoke tests."
+    },
+    {
+      "id": "output",
+      "label": "Output Format / Schema",
+      "xrayTag": "OUTPUT_SCHEMA",
+      "content": "Return:\n- What we did last time\n- What we will do next\n- Risks and checks\n- A short action list"
+    },
+    {
+      "id": "request",
+      "label": "User Request",
+      "xrayTag": "USER_REQUEST",
+      "content": "Create a short next-step plan for deploying and verifying this app on GitHub Pages."
+    }
+  ]
+}

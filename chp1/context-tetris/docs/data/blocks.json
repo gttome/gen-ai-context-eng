@@ -1,0 +1,82 @@
+[
+  {
+    "id": "role",
+    "label": "System / Role",
+    "tier": 1,
+    "tokenEstimate": 120,
+    "kind": "core",
+    "hint": "Defines who the assistant is and what it must do."
+  },
+  {
+    "id": "rules",
+    "label": "Rules / Constraints",
+    "tier": 1,
+    "tokenEstimate": 160,
+    "kind": "core",
+    "hint": "Non‑negotiables: do/don’t, policy, safety, length, tone."
+  },
+  {
+    "id": "dynamic",
+    "label": "Dynamic Facts",
+    "tier": 2,
+    "tokenEstimate": 60,
+    "kind": "core",
+    "hint": "Today’s date, IDs, current status. Keep separate from rules."
+  },
+  {
+    "id": "grounding",
+    "label": "Grounding Knowledge",
+    "tier": 2,
+    "tokenEstimate": 420,
+    "kind": "core",
+    "hint": "Short, relevant excerpts (avoid dumping whole docs)."
+  },
+  {
+    "id": "memory",
+    "label": "Memory",
+    "tier": 3,
+    "tokenEstimate": 220,
+    "kind": "core",
+    "hint": "Rolling summary / pinned facts — only what’s needed now."
+  },
+  {
+    "id": "examples",
+    "label": "Examples (Few‑shot)",
+    "tier": 4,
+    "tokenEstimate": 240,
+    "kind": "optional",
+    "hint": "1–2 mini examples to demonstrate desired output pattern."
+  },
+  {
+    "id": "checks",
+    "label": "Evaluation / Checks",
+    "tier": 4,
+    "tokenEstimate": 160,
+    "kind": "optional",
+    "hint": "Success criteria, test cases, and self-check steps to validate output."
+  },
+  {
+    "id": "output",
+    "label": "Output Format / Schema",
+    "tier": 4,
+    "tokenEstimate": 140,
+    "kind": "core",
+    "hint": "Forces structure: headings, checklist, JSON-like fields."
+  },
+  {
+    "id": "request",
+    "label": "User Request",
+    "tier": 5,
+    "tokenEstimate": 90,
+    "kind": "core",
+    "hint": "The task/question for this turn. Place last."
+  },
+  {
+    "id": "nice",
+    "label": "Nice‑to‑have Background",
+    "tier": 6,
+    "tokenEstimate": 300,
+    "kind": "noise",
+    "hint": "Extra context that may help but isn’t required."
+  }
+]

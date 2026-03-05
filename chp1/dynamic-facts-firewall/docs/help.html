@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Help</title>
+<link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<main class="container" style="padding-top: 18px;">
+<section class="card section">
+<h1 style="margin:0 0 8px 0; font-size:18px;">Help</h1>
+<p class="muted">This is a placeholder. In later iterations, this page will explain the Dynamic Facts pattern, common mistakes, and scoring.</p>
+<ul class="muted"><li>Tap a card to select it, then tap a bin to place it.</li><li>Use <strong>Time Warp Replay</strong> to change the date and reveal staleness risks.</li><li>Use <strong>Export blocks</strong> to copy a clean context package.</li></ul>
+<p><a class="btn btn-secondary" href="index.html" role="button">Back to App</a></p>
+</section>
+</main>
+<script>
+    (function() {
+      const key = "app_theme";
+      const saved = localStorage.getItem(key);
+      if (saved) document.documentElement.setAttribute("data-theme", saved);
+      else {
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Context Tetris — Help</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="card page">
+    <h1 class="h2">Help</h1>
+    <p class="muted">This is a placeholder help page (Iteration 0). Content will be added later.</p>
+    <h2 class="h3">How to play</h2>
+    <ol>
+      <li>Pick a task card.</li>
+      <li>Add the required blocks into the Context Window.</li>
+      <li>Keep Role + Rules at the top, and keep the pack under budget.</li>
+      <li>Use Quick Fixes if you overload.</li>
+      <li>Score your pack and iterate.</li>
+    </ol>
+    <p><a class="btn btn-secondary" href="index.html">Back to App</a></p>
+  </main>
+
+  <script>
+    (function() {
+      const key = "app_theme";
+      const saved = localStorage.getItem(key);
+      if (saved) document.documentElement.setAttribute("data-theme", saved);
+      else {
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feedback • Iteration Lab</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <h1 class="h2">Feedback</h1>
+      <p class="muted">
+        Placeholder page. In a future iteration, this will capture quick feedback and export it with your run.
+      </p>
+      <p class="muted small">
+        For now, you can copy your Iteration Log from the Log tab and paste it into your notes or a GitHub issue.
+      </p>
+      <p><a class="btn btn-secondary" href="index.html">Back to App</a></p>
+    </section>
+  </main>
+
+  <script>
+    (function() {
+      const key = "app_theme";
+      const saved = localStorage.getItem(key);
+      if (saved) document.documentElement.setAttribute("data-theme", saved);
+      else {
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
+      }
+    })();
+  </script>
+</body>
+</html>

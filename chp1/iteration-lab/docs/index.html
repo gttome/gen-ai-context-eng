@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Iteration Lab</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <div class="app-title">
+        <span class="app-name">Iteration Lab</span>
+        <span class="app-tagline muted">Design → Test → Evaluate → Adjust</span>
+      </div>
+
+      <div class="status-bar" aria-label="App status">
+        <span class="pill" id="pillVersion" aria-label="App version">v—</span>
+        <span class="pill pill-env" id="pillEnv" aria-label="Runtime environment">Env—</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="btn btn-secondary" id="btnTheme" type="button" aria-label="Toggle theme">Theme</button>
+      <a class="btn btn-secondary" href="help.html" role="button">Help</a>
+      <a class="btn btn-secondary" href="feedback.html" role="button">Feedback</a>
+      <span class="sr-only" id="themeStatus" aria-live="polite"></span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="row wrap gap">
+        <div class="col grow">
+          <label class="label" for="scenarioSelect">Scenario</label>
+          <select id="scenarioSelect" class="input" aria-label="Select scenario"></select>
+          <div class="row wrap gap" style="margin-top:8px;">
+            <button class="btn btn-secondary" id="btnNewScenario" type="button">New Scenario</button>
+            <button class="btn btn-secondary" id="btnDeleteScenario" type="button" disabled>Delete Scenario</button>
+          </div>
+        </div>
+
+        <div class="col">
+          <label class="label" for="runName">Run name</label>
+          <input id="runName" class="input" type="text" placeholder="e.g., Support Policy v1" />
+        </div>
+
+        <div class="col">
+          <label class="label" for="btnReset">Reset</label>
+          <button id="btnReset" class="btn danger" type="button">Reset Run</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <nav class="tabs" aria-label="Workflow tabs">
+        <button class="tab" data-tab="design" type="button">1) Design</button>
+        <button class="tab" data-tab="test" type="button">2) Test</button>
+        <button class="tab" data-tab="evaluate" type="button">3) Evaluate</button>
+        <button class="tab" data-tab="compare" type="button">4) Compare</button>
+        <button class="tab" data-tab="adjust" type="button">5) Adjust</button>
+        <button class="tab" data-tab="log" type="button">6) Log</button>
+      </nav>
+
+      <section class="tab-panel" id="panel-design" data-panel="design" aria-label="Design">
+        <h2 class="h2">Design</h2>
+        <p class="muted">
+          Build your context package using the chapter’s Context Skeleton blocks. Keep it selective and structured.
+        </p>
+
+        <div class="notice" id="editNotice" role="status" aria-live="polite"></div>
+
+        <div class="health" id="contextHealth" role="status" aria-live="polite"></div>
+
+        <div class="card inner" id="testSetCard">
+          <h3 class="h3">Test Set</h3>
+          <p class="muted small">
+            Edit the questions used in Test/Evaluate. Keep the set stable across iterations when you want clean trend comparisons.
+          </p>
+
+          <div id="testSetEditor" aria-label="Test set editor"></div>
+
+          <div class="row wrap gap" style="margin-top:10px;">
+            <button class="btn btn-secondary" id="btnAddTestQ" type="button">Add Question</button>
+            <button class="btn btn-secondary" id="btnApplyTestSetCurrent" type="button">Apply to Current Iteration</button>
+            <button class="btn btn-secondary" id="btnApplyTestSetAll" type="button">Apply to All Iterations</button>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="row wrap gap">
+            <div class="col grow">
+              <label class="label" for="testTemplateSelect">Templates</label>
+              <select id="testTemplateSelect" class="input" aria-label="Test templates"></select>
+            </div>
+            <div class="col">
+              <label class="label" for="btnLoadTemplate">Load</label>
+              <button class="btn btn-secondary" id="btnLoadTemplate" type="button">Load Template</button>
+            </div>
+            <div class="col">
+              <label class="label" for="btnSaveTemplate">Save</label>
+              <button class="btn btn-secondary" id="btnSaveTemplate" type="button">Save Template</button>
+            </div>
+          </div>
+
+          <p class="muted small" style="margin-top:10px;">
+            Tip: if you change the test set mid-run, trend lines and regression checks may be less comparable.
+          </p>
+        </div>
+
+        <div class="blocks" id="blocksContainer"></div>
+      </section>
+
+      <section class="tab-panel" id="panel-test" data-panel="test" aria-label="Test">
+        <h2 class="h2">Test</h2>
+        <p class="muted">
+          Use a stable test set for comparability. You can edit the test set in Design; then apply it to the current iteration (or all). For each question, copy the full context package into your LLM, then paste the model output here.
+        </p>
+
+        <div class="row wrap gap">
+          <button class="btn" id="btnCopyBaseline" type="button">Copy Baseline Context (no question)</button>
+          <button class="btn btn-secondary" id="btnClearOutputs" type="button">Clear Pasted Outputs</button>
+        </div>
+
+        <div class="test-list" id="testList"></div>
+      </section>
+
+      <section class="tab-panel" id="panel-evaluate" data-panel="evaluate" aria-label="Evaluate">
+        <h2 class="h2">Evaluate</h2>
+        <p class="muted">
+          Score each output using the checklist: grounded, relevant, consistent, structured, safe/on-policy.
+        </p>
+
+                <div class="score-summary" id="scoreSummary"></div>
+
+        <div class="card inner rubric-card" id="rubricCard">
+          <h3 class="h3">Rubric</h3>
+          <p class="muted small">
+            Adjust weights and thresholds for scoring. Saved into this run export.
+          </p>
+
+          <div class="rubric-grid" id="rubricGrid" aria-label="Rubric weights"></div>
+
+          <div class="row wrap gap">
+            <div class="col grow">
+              <label class="label" for="passThreshold">Pass threshold (0–2)</label>
+              <input id="passThreshold" class="input" type="number" min="0" max="2" step="0.05" />
+            </div>
+            <div class="col grow">
+              <label class="label" for="regressThreshold">Regression alert Δ (e.g., -0.20)</label>
+              <input id="regressThreshold" class="input" type="number" min="-2" max="2" step="0.05" />
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="row wrap gap">
+            <button class="btn btn-secondary" id="btnCopyReport" type="button">Copy Iteration Report</button>
+            <button class="btn btn-secondary" id="btnDownloadReport" type="button">Download Report (.md)</button>
+            <button class="btn btn-secondary" id="btnDownloadBundle" type="button">Download Bundle (.json)</button>
+          </div>
+          <p class="muted small">
+            The report summarizes the current iteration’s scores, deltas, regressions, and suggested fixes.
+          </p>
+        </div>
+
+        <div class="eval-list" id="evalList"></div>
+      </section>
+
+      <section class="tab-panel" id="panel-compare" data-panel="compare" aria-label="Compare">
+        <h2 class="h2">Compare</h2>
+        <p class="muted">
+          Compare two iterations: overall reliability, checklist averages, per-test deltas, and changed blocks.
+        </p>
+
+        <div class="row wrap gap">
+          <div class="col grow">
+            <label class="label" for="cmpA">Iteration A</label>
+            <select id="cmpA" class="input" aria-label="Select iteration A"></select>
+          </div>
+          <div class="col grow">
+            <label class="label" for="cmpB">Iteration B</label>
+            <select id="cmpB" class="input" aria-label="Select iteration B"></select>
+          </div>
+          <div class="col">
+            <label class="label" for="btnSwapCompare">Swap</label>
+            <button class="btn btn-secondary" id="btnSwapCompare" type="button">Swap</button>
+          </div>
+        </div>
+
+        <div class="compare" id="compareSummary"></div>
+        <div class="compare" id="compareTests"></div>
+        <div class="compare" id="compareBlocks"></div>
+      </section>
+
+      <section class="tab-panel" id="panel-adjust" data-panel="adjust" aria-label="Adjust">
+        <h2 class="h2">Adjust</h2>
+        <p class="muted">
+          Create a new iteration by changing <strong>one thing</strong> only. The app will lock editing to a single block for the next iteration.
+        </p>
+
+        <div class="grid2">
+          <div class="card inner">
+            <h3 class="h3">Current iteration</h3>
+            <div id="currentIterationSummary" class="muted"></div>
+            <div class="divider"></div>
+            <div class="row wrap gap">
+              <div class="col grow">
+                <label class="label" for="changeType">Change type</label>
+                <select id="changeType" class="input"></select>
+              </div>
+              <div class="col grow">
+                <label class="label" for="changeBlock">Block to change (only one)</label>
+                <select id="changeBlock" class="input"></select>
+              </div>
+            </div>
+            <label class="label" for="changeNotes">Notes</label>
+            <textarea id="changeNotes" class="textarea" rows="4" placeholder="What are you changing and why? (Keep it specific)"></textarea>
+
+            <div class="divider"></div>
+            <h3 class="h3">Change audit</h3>
+            <div id="changeAudit" class="muted small">Edit blocks (Design) to see what changed vs the previous iteration.</div>
+
+            <div class="divider"></div>
+            <h3 class="h3">Fix palette (suggested)</h3>
+            <div id="fixPalette" class="muted small">Add scores (Evaluate) to see targeted suggestions.</div>
+
+            <div class="divider"></div>
+            <div class="row wrap gap">
+              <button class="btn" id="btnCreateNextIteration" type="button">Create Next Iteration</button>
+              <button class="btn btn-secondary" id="btnUnlockAll" type="button">Unlock All Blocks</button>
+            </div>
+            <p class="muted small">
+              Unlock is for learning / recovery. For disciplined iteration, keep the one-block lock.
+            </p>
+          </div>
+
+          <div class="card inner">
+            <h3 class="h3">Trend</h3>
+            <canvas id="trendCanvas" class="trend-canvas" width="600" height="180" aria-label="Reliability trend"></canvas>
+            <div id="trendNote" class="muted small">Scores appear after you evaluate at least one iteration.</div>
+
+            <div class="divider"></div>
+
+            <h3 class="h3">Regression watch</h3>
+            <div id="regressionPanel" class="muted">Run at least two iterations to see regressions.</div>
+
+            <div class="divider"></div>
+
+            <h3 class="h3">Export</h3>
+            <p class="muted small">Save your run for later or move it between devices.</p>
+            <div class="row wrap gap">
+              <button class="btn btn-secondary" id="btnExport" type="button">Export Run (.json)</button>
+              <label class="btn btn-secondary file-btn" for="importFile">Import Run</label>
+              <input id="importFile" type="file" accept="application/json" class="sr-only" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="panel-log" data-panel="log" aria-label="Log">
+        <h2 class="h2">Log</h2>
+        <p class="muted">
+          Track iteration discipline: change one thing, re-test, and watch score trends and regressions.
+        </p>
+
+        <div class="row wrap gap">
+          <button class="btn btn-secondary" id="btnCopyIterationLog" type="button">Copy Iteration Log (text)</button>
+        </div>
+
+        <div class="log" id="logView"></div>
+      </section>
+    </section>
+
+    <section class="card footer-card">
+      <p class="muted small">
+        Tip: You can copy the context package and run it in your LLM of choice. Then paste the output back here to evaluate.
+      </p>
+    </section>
+  </main>
+
+  <!-- Resume / Start New modal (local-only state helper) -->
+  <div class="modal hidden" id="resumeModal" role="dialog" aria-modal="true" aria-labelledby="resumeTitle">
+    <div class="modal-card">
+      <h2 class="h2" id="resumeTitle">Resume your last run?</h2>
+      <p class="muted" id="resumeSummary"></p>
+      <div class="row wrap gap">
+        <button class="btn" id="btnResumeRun" type="button">Resume</button>
+        <button class="btn btn-secondary" id="btnStartNew" type="button">Start New</button>
+        <button class="btn btn-secondary" id="btnExportOld" type="button">Export Saved Run</button>
+      </div>
+      <p class="muted small">Start New clears the saved run from this browser.</p>
+    </div>
+  </div>
+
+  
+  <!-- Scenario Builder modal (local-only) -->
+  <div class="modal hidden" id="scenarioModal" role="dialog" aria-modal="true" aria-labelledby="scenarioTitle">
+    <div class="modal-card" style="max-width:900px;">
+      <h2 class="h2" id="scenarioTitle">Create a new scenario</h2>
+      <p class="muted small">Scenarios are saved only in this browser (localStorage). Built-in scenarios cannot be edited.</p>
+
+      <div class="row wrap gap">
+        <div class="col grow">
+          <label class="label" for="scName">Scenario name</label>
+          <input id="scName" class="input" type="text" placeholder="e.g., Policy Q&A: Refund exceptions" />
+        </div>
+        <div class="col grow">
+          <label class="label" for="scDesc">Description</label>
+          <input id="scDesc" class="input" type="text" placeholder="1–2 sentence description" />
+        </div>
+      </div>
+
+      <details style="margin-top:10px;">
+        <summary><strong>Baseline blocks</strong> <span class="muted small">(tap to expand)</span></summary>
+        <div class="stack" id="scBlocks" style="display:flex;flex-direction:column;gap:10px;margin-top:10px;"></div>
+      </details>
+
+      <details style="margin-top:10px;">
+        <summary><strong>Test set questions</strong> <span class="muted small">(one per line)</span></summary>
+        <div style="margin-top:10px;">
+          <textarea id="scTests" class="input" rows="8" placeholder="Paste questions here, one per line"></textarea>
+        </div>
+      </details>
+
+      <div class="divider"></div>
+      <div class="row wrap gap">
+        <button class="btn" id="btnSaveScenario" type="button">Save Scenario</button>
+        <button class="btn btn-secondary" id="btnCancelScenario" type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+<script src="js/data.js?v=v0.5.0"></script>
+  <script src="js/app.js?v=v0.5.0"></script>
+</body>
+</html>

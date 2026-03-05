@@ -1,0 +1,242 @@
+[
+  {
+    "id": "C1",
+    "title": "Generic answer (missing grounding)",
+    "badOutput": "Sure — here’s a general overview of your policy question. Policies vary by company, but typically you can carry over some days if you request it before year-end.\n\nNext steps: check your HR handbook or ask your manager.",
+    "symptomTags": [
+      "generic_answer"
+    ],
+    "likelyCauses": [
+      "missing_grounding"
+    ],
+    "recommendedFixes": [
+      "add_grounding_excerpts",
+      "tighten_task_statement",
+      "add_one_example"
+    ],
+    "stethoscope": [
+      {
+        "text": "Policies vary by company",
+        "missingBlock": "Grounding Knowledge"
+      },
+      {
+        "text": "typically you can carry over",
+        "missingBlock": "Grounding Knowledge"
+      }
+    ],
+    "baselineContext": {
+      "role": "You are an HR policy assistant.",
+      "rules": "Be concise.",
+      "grounding": "",
+      "memory": "",
+      "format": "",
+      "request": "Can I carry over unused vacation days into next year?"
+    },
+    "fixSnippets": {
+      "add_grounding_excerpts": "HR Policy Excerpt:\n- [Paste the relevant carryover section here]\n- If policy is silent: escalate to HR contact.",
+      "tighten_task_statement": "Answer using ONLY the provided HR policy excerpt. If the excerpt does not cover carryover, say it’s insufficient and ask for the missing section.",
+      "add_one_example": "Example format:\n- Answer: ...\n- Summary: ...\n- Escalation: ..."
+    },
+    "improvedOutput": "**Answer (grounded):** Based on the HR policy excerpt provided, [quote/point to the carryover rule].\n\n**Summary:** [1 sentence].\n\n**Escalation:** If the excerpt does not address carryover, contact HR to confirm the policy."
+  },
+  {
+    "id": "C2",
+    "title": "Wrong facts / hallucination (no approved sources)",
+    "badOutput": "Your subscription was downgraded because your account was flagged for fraud on 2026-02-01. The system automatically cancels premium access after three warnings.",
+    "symptomTags": [
+      "wrong_facts"
+    ],
+    "likelyCauses": [
+      "no_reliable_reference",
+      "ambiguous_question"
+    ],
+    "recommendedFixes": [
+      "require_use_only_provided_sources",
+      "add_approved_sources",
+      "ask_clarifying_question"
+    ],
+    "stethoscope": [
+      {
+        "text": "flagged for fraud",
+        "missingBlock": "Grounding Knowledge"
+      },
+      {
+        "text": "three warnings",
+        "missingBlock": "Dynamic Facts / Account Data"
+      }
+    ],
+    "baselineContext": {
+      "role": "You are a customer support agent for [Company].",
+      "rules": "Be friendly.",
+      "grounding": "",
+      "memory": "",
+      "format": "Use headings: Explanation / Next Steps / Needed Info.",
+      "request": "Why was my subscription downgraded?"
+    },
+    "fixSnippets": {
+      "require_use_only_provided_sources": "Rules:\n- Use ONLY the provided policy excerpts and account facts.\n- If evidence is missing, say what’s missing and ask for it.\n- Do not speculate.",
+      "add_approved_sources": "Policy Excerpts:\n- [Downgrade trigger rule]\n- [Remediation options]\n\nAccount Facts:\n- Plan: [ ]\n- Status: [ ]\n- Last payment: [ ]",
+      "ask_clarifying_question": "Needed Info:\n- Which plan were you on?\n- What is the account status / last payment date?\n- Can you share the downgrade notice text?"
+    },
+    "improvedOutput": "**Explanation:** Using the provided account facts and policy excerpt, the downgrade occurred because [cite the specific rule + fact].\n\n**Next Steps:** [specific remediation steps from policy].\n\n**Needed Info:** If the provided excerpts don’t cover the trigger, please share [missing account fields / notice text]."
+  },
+  {
+    "id": "C3",
+    "title": "Ignores constraints (constraints buried/conflicting)",
+    "badOutput": "Here’s a detailed, multi-page analysis including legal implications and recommendations, plus a full rewrite of your policy document.",
+    "symptomTags": [
+      "ignores_constraints"
+    ],
+    "likelyCauses": [
+      "constraints_buried",
+      "conflicting_instructions"
+    ],
+    "recommendedFixes": [
+      "move_constraints_higher",
+      "reduce_conflicts",
+      "rewrite_as_short_rules"
+    ],
+    "stethoscope": [
+      {
+        "text": "legal implications",
+        "missingBlock": "Rules / Constraints"
+      },
+      {
+        "text": "full rewrite",
+        "missingBlock": "Rules / Constraints"
+      }
+    ],
+    "baselineContext": {
+      "role": "You are an HR policy assistant.",
+      "rules": "Help the user. Also: be exhaustive.\n\nDo not provide legal advice.",
+      "grounding": "HR Policy Excerpt:\n- [Paste excerpt]",
+      "memory": "",
+      "format": "Provide an answer.",
+      "request": "Can I carry over unused vacation days into next year?"
+    },
+    "fixSnippets": {
+      "move_constraints_higher": "Rules:\n- Do not provide legal advice.\n- Use only the policy excerpt below.\n- If policy is silent, escalate to HR.\n- Keep answer under 150 words.",
+      "reduce_conflicts": "Remove 'be exhaustive' and replace with 'be concise and policy-grounded'.",
+      "rewrite_as_short_rules": "Rules (short):\n- No legal advice.\n- Cite/quote the excerpt.\n- Ask for missing info.\n- Output: bullets + 1-sentence summary + escalation note."
+    },
+    "improvedOutput": "- **Policy answer:** [bullet grounded in excerpt]\n- **Summary:** [1 sentence]\n- **Escalation:** If the excerpt doesn’t address carryover, contact HR for confirmation."
+  },
+  {
+    "id": "C4",
+    "title": "Inconsistent structure (no schema/format requirement)",
+    "badOutput": "The incident seems serious. Maybe the database is down. Someone should check logs.\n\nAlso, consider communicating to stakeholders.",
+    "symptomTags": [
+      "inconsistent_structure"
+    ],
+    "likelyCauses": [
+      "no_schema"
+    ],
+    "recommendedFixes": [
+      "add_explicit_format"
+    ],
+    "stethoscope": [
+      {
+        "text": "Maybe the database is down",
+        "missingBlock": "Rules / Constraints (label assumptions)"
+      },
+      {
+        "text": "consider communicating",
+        "missingBlock": "Output Format"
+      }
+    ],
+    "baselineContext": {
+      "role": "You are an operations incident analyst.",
+      "rules": "Summarize what happened.",
+      "grounding": "",
+      "memory": "Confirmed facts so far:\n- API 500s increased at 10:05\nOpen questions:\n- Root cause?",
+      "format": "",
+      "request": "Summarize the incident based on the notes above."
+    },
+    "fixSnippets": {
+      "add_explicit_format": "Output Format: Timeline / Current Impact / Hypotheses / Next Actions / Owner Requests.\nRules: Do not invent facts. Label assumptions as assumptions."
+    },
+    "improvedOutput": "**Timeline:** 10:05 — API 500s increased.\n\n**Current Impact:** [from confirmed notes].\n\n**Hypotheses (label assumptions):** Assumption: [possible cause].\n\n**Next Actions:** [log check, rollback, etc.]\n\n**Owner Requests:** [what you need from responders]."
+  },
+  {
+    "id": "C5",
+    "title": "Overload / distraction (too much context)",
+    "badOutput": "Because earlier you mentioned three different projects and a marketing plan, I’ll answer your question about token budgeting by focusing on your branding strategy and the org chart.",
+    "symptomTags": [
+      "overload_distraction"
+    ],
+    "likelyCauses": [
+      "too_much_context",
+      "irrelevant_text"
+    ],
+    "recommendedFixes": [
+      "prune",
+      "summarize",
+      "retrieve_only_relevant",
+      "add_structure"
+    ],
+    "stethoscope": [
+      {
+        "text": "marketing plan",
+        "missingBlock": "Prune irrelevant context"
+      },
+      {
+        "text": "org chart",
+        "missingBlock": "Prune irrelevant context"
+      }
+    ],
+    "baselineContext": {
+      "role": "You are a helpful assistant.",
+      "rules": "Answer the user.",
+      "grounding": "(Full 12-page policy pasted here...)\n(Old meeting notes...)\n(Org chart...)\n(Branding plan...)\n",
+      "memory": "A very long history pasted here...",
+      "format": "",
+      "request": "How should I budget tokens in my context package?"
+    },
+    "fixSnippets": {
+      "prune": "Remove anything not required for this turn. Keep only token budgeting ladder + the current request.",
+      "summarize": "Replace long history with a short 'Pinned facts + rolling summary' block.",
+      "retrieve_only_relevant": "Use targeted excerpts only: token budgeting priority ladder + overload quick fixes.",
+      "add_structure": "Add headings: Non‑negotiables / Task / Grounding / Memory / Examples & Schema / Nice‑to‑have."
+    },
+    "improvedOutput": "**Non‑negotiables:** role + critical constraints.\n**Task:** restate the request.\n**Grounding:** minimal excerpts needed.\n**Memory:** only what’s needed.\n**Examples & Schema:** 1–2 examples + output format.\n**Nice‑to‑have:** omit unless it improves the answer."
+  },
+  {
+    "id": "C6",
+    "title": "Forgets prior decisions (no memory block)",
+    "badOutput": "Sure — I’ll change the output format and use a different policy source than before.\n\n(Contradicts earlier decisions.)",
+    "symptomTags": [
+      "forgets_decisions"
+    ],
+    "likelyCauses": [
+      "no_memory_block",
+      "too_much_raw_history"
+    ],
+    "recommendedFixes": [
+      "maintain_pinned_facts_decisions",
+      "use_rolling_summary"
+    ],
+    "stethoscope": [
+      {
+        "text": "change the output format",
+        "missingBlock": "Memory (Pinned Facts + Decisions)"
+      },
+      {
+        "text": "different policy source",
+        "missingBlock": "Memory (Approved sources list)"
+      }
+    ],
+    "baselineContext": {
+      "role": "You are an assistant helping draft policy answers.",
+      "rules": "Be helpful.",
+      "grounding": "Approved references:\n- HR Policy v3.2 (excerpted)\n",
+      "memory": "",
+      "format": "Output: bullets + summary + escalation note.",
+      "request": "Answer the same question again but keep prior decisions."
+    },
+    "fixSnippets": {
+      "maintain_pinned_facts_decisions": "Memory (Pinned Facts + Decisions):\n- Approved source: HR Policy v3.2 only.\n- Output format locked: bullets + 1‑sentence summary + escalation note.\n- Tone: neutral.",
+      "use_rolling_summary": "Memory (Rolling Summary):\nWe are answering HR carryover questions using only HR Policy v3.2 excerpts and a fixed output format."
+    },
+    "improvedOutput": "(Uses the same approved policy excerpt and the same output format as previously decided, without introducing new sources or structures.)"
+  }
+]
