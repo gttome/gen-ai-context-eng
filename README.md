@@ -2,7 +2,7 @@
 
 This repository contains exercises and labs focused on context engineering for Large Language Models.
 
-## 📁 Repository Structure
+## 📁 Repository Structure 
 
 ### [Chapter 1: Fundamentals](./chp1)
 All initial exercises are organized within the `chp1` directory:
