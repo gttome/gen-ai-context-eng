@@ -1,0 +1,464 @@
+{
+  "schemaVersion": 1,
+  "packs": [
+    {
+      "packId": "core",
+      "name": "Core Failures (Chapter 1)",
+      "version": "0.4.0",
+      "author": "Failure Mode Clinic",
+      "description": "18 cases (3 per symptom) grounded in Chapter 1's failure symptom \u2192 cause \u2192 quick fix table.",
+      "cases": [
+        {
+          "id": "case_8972cc2b1341a482_19ca0a79be6",
+          "title": "Generic answer \u2014 Case 01 (light)",
+          "symptom": "Generic answer",
+          "cause": "Missing task-specific facts or examples",
+          "fix": "Add grounding excerpts; add 1 example; tighten the task statement.",
+          "difficulty": 1,
+          "tags": [
+            "core",
+            "light"
+          ],
+          "badOutput": "Here are some general tips that might help. Consider reviewing best practices and trying again.",
+          "expected": "A grounded, task-specific answer using provided facts + one example + tight steps.",
+          "baselineContext": "You are a helpful assistant.\n\nTask: Answer the user's question.",
+          "stethoscope": [
+            "general tips",
+            "might help",
+            "best practices"
+          ],
+          "explanation": {
+            "symptomWhy": "The output is vague and non-specific; it doesn't use task facts or examples.",
+            "causeWhy": "The prompt didn't include grounding excerpts or task-specific facts/examples.",
+            "fixWhy": "Adding grounding + an example + a tighter task statement forces specificity."
+          }
+        },
+        {
+          "id": "case_67eb284fa7d53a70_19ca0a79be6",
+          "title": "Generic answer \u2014 Case 02 (standard)",
+          "symptom": "Generic answer",
+          "cause": "Missing task-specific facts or examples",
+          "fix": "Add grounding excerpts; add 1 example; tighten the task statement.",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "standard"
+          ],
+          "badOutput": "Here are some general tips that might help. Consider reviewing best practices and trying again.",
+          "expected": "A grounded, task-specific answer using provided facts + one example + tight steps.",
+          "baselineContext": "You are a helpful assistant.\n\nTask: Answer the user's question.",
+          "stethoscope": [
+            "general tips",
+            "might help",
+            "best practices"
+          ],
+          "explanation": {
+            "symptomWhy": "The output is vague and non-specific; it doesn't use task facts or examples.",
+            "causeWhy": "The prompt didn't include grounding excerpts or task-specific facts/examples.",
+            "fixWhy": "Adding grounding + an example + a tighter task statement forces specificity."
+          }
+        },
+        {
+          "id": "case_f828a1ba8ec764ff_19ca0a79be6",
+          "title": "Generic answer \u2014 Case 03 (hard)",
+          "symptom": "Generic answer",
+          "cause": "Missing task-specific facts or examples",
+          "fix": "Add grounding excerpts; add 1 example; tighten the task statement.",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "hard"
+          ],
+          "badOutput": "Here are some general tips that might help. Consider reviewing best practices and trying again.",
+          "expected": "A grounded, task-specific answer using provided facts + one example + tight steps.",
+          "baselineContext": "You are a helpful assistant.\n\nTask: Answer the user's question.",
+          "stethoscope": [
+            "general tips",
+            "might help",
+            "best practices"
+          ],
+          "explanation": {
+            "symptomWhy": "The output is vague and non-specific; it doesn't use task facts or examples.",
+            "causeWhy": "The prompt didn't include grounding excerpts or task-specific facts/examples.",
+            "fixWhy": "Adding grounding + an example + a tighter task statement forces specificity."
+          }
+        },
+        {
+          "id": "case_8bdba8605092f219_19ca0a79be6",
+          "title": "Wrong facts / hallucination \u2014 Case 04 (light)",
+          "symptom": "Wrong facts / hallucination",
+          "cause": "No reliable reference content; ambiguous question",
+          "fix": "Add approved sources; require use only provided sources; ask a clarifying question.",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "light"
+          ],
+          "badOutput": "According to the latest 2026 report, the policy was updated yesterday and now allows unlimited carryover.",
+          "expected": "Either cite provided policy text or say sources are missing and ask clarifying questions.",
+          "baselineContext": "You are an HR policy assistant.\nRules: Be helpful.\nTask: Answer the question.",
+          "stethoscope": [
+            "latest 2026 report",
+            "updated yesterday",
+            "unlimited carryover"
+          ],
+          "explanation": {
+            "symptomWhy": "The output asserts specific facts and dates without evidence.",
+            "causeWhy": "No reliable reference content was provided, and the question could be ambiguous.",
+            "fixWhy": "Require 'use only provided sources' + add approved excerpts + ask a clarifying question."
+          }
+        },
+        {
+          "id": "case_85d68501dce459fd_19ca0a79be6",
+          "title": "Wrong facts / hallucination \u2014 Case 05 (standard)",
+          "symptom": "Wrong facts / hallucination",
+          "cause": "No reliable reference content; ambiguous question",
+          "fix": "Add approved sources; require use only provided sources; ask a clarifying question.",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "standard"
+          ],
+          "badOutput": "According to the latest 2026 report, the policy was updated yesterday and now allows unlimited carryover.",
+          "expected": "Either cite provided policy text or say sources are missing and ask clarifying questions.",
+          "baselineContext": "You are an HR policy assistant.\nRules: Be helpful.\nTask: Answer the question.",
+          "stethoscope": [
+            "latest 2026 report",
+            "updated yesterday",
+            "unlimited carryover"
+          ],
+          "explanation": {
+            "symptomWhy": "The output asserts specific facts and dates without evidence.",
+            "causeWhy": "No reliable reference content was provided, and the question could be ambiguous.",
+            "fixWhy": "Require 'use only provided sources' + add approved excerpts + ask a clarifying question."
+          }
+        },
+        {
+          "id": "case_cac7c6d354d2b5d2_19ca0a79be6",
+          "title": "Wrong facts / hallucination \u2014 Case 06 (hard)",
+          "symptom": "Wrong facts / hallucination",
+          "cause": "No reliable reference content; ambiguous question",
+          "fix": "Add approved sources; require use only provided sources; ask a clarifying question.",
+          "difficulty": 3,
+          "tags": [
+            "core",
+            "hard"
+          ],
+          "badOutput": "According to the latest 2026 report, the policy was updated yesterday and now allows unlimited carryover.",
+          "expected": "Either cite provided policy text or say sources are missing and ask clarifying questions.",
+          "baselineContext": "You are an HR policy assistant.\nRules: Be helpful.\nTask: Answer the question.",
+          "stethoscope": [
+            "latest 2026 report",
+            "updated yesterday",
+            "unlimited carryover"
+          ],
+          "explanation": {
+            "symptomWhy": "The output asserts specific facts and dates without evidence.",
+            "causeWhy": "No reliable reference content was provided, and the question could be ambiguous.",
+            "fixWhy": "Require 'use only provided sources' + add approved excerpts + ask a clarifying question."
+          }
+        },
+        {
+          "id": "case_cd00c9ee87431c3a_19ca0a79be6",
+          "title": "Ignores constraints \u2014 Case 07 (light)",
+          "symptom": "Ignores constraints",
+          "cause": "Constraints buried or conflicting",
+          "fix": "Move constraints higher; reduce conflicts; rewrite as short bullet rules.",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "light"
+          ],
+          "badOutput": "Sure\u2014here is a full step-by-step plan with exact numbers and confident recommendations...",
+          "expected": "Follow the constraints (e.g., concise, no speculation, labeled assumptions).",
+          "baselineContext": "You are a support agent.\nTask: Provide an answer.\nConstraints: (not specified clearly)",
+          "stethoscope": [
+            "full step-by-step",
+            "exact numbers",
+            "confident"
+          ],
+          "explanation": {
+            "symptomWhy": "The output violates constraints that should be enforced (speculation/verbosity/confidence).",
+            "causeWhy": "Constraints were missing, buried, or conflicting\u2014so the model prioritized helpfulness.",
+            "fixWhy": "Move constraints to the top as short bullet rules and remove conflicts."
+          }
+        },
+        {
+          "id": "case_60756d9c58c076cb_19ca0a79be6",
+          "title": "Ignores constraints \u2014 Case 08 (standard)",
+          "symptom": "Ignores constraints",
+          "cause": "Constraints buried or conflicting",
+          "fix": "Move constraints higher; reduce conflicts; rewrite as short bullet rules.",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "standard"
+          ],
+          "badOutput": "Sure\u2014here is a full step-by-step plan with exact numbers and confident recommendations...",
+          "expected": "Follow the constraints (e.g., concise, no speculation, labeled assumptions).",
+          "baselineContext": "You are a support agent.\nTask: Provide an answer.\nConstraints: (not specified clearly)",
+          "stethoscope": [
+            "full step-by-step",
+            "exact numbers",
+            "confident"
+          ],
+          "explanation": {
+            "symptomWhy": "The output violates constraints that should be enforced (speculation/verbosity/confidence).",
+            "causeWhy": "Constraints were missing, buried, or conflicting\u2014so the model prioritized helpfulness.",
+            "fixWhy": "Move constraints to the top as short bullet rules and remove conflicts."
+          }
+        },
+        {
+          "id": "case_21bb5a18bcdcc76c_19ca0a79be6",
+          "title": "Ignores constraints \u2014 Case 09 (hard)",
+          "symptom": "Ignores constraints",
+          "cause": "Constraints buried or conflicting",
+          "fix": "Move constraints higher; reduce conflicts; rewrite as short bullet rules.",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "hard"
+          ],
+          "badOutput": "Sure\u2014here is a full step-by-step plan with exact numbers and confident recommendations...",
+          "expected": "Follow the constraints (e.g., concise, no speculation, labeled assumptions).",
+          "baselineContext": "You are a support agent.\nTask: Provide an answer.\nConstraints: (not specified clearly)",
+          "stethoscope": [
+            "full step-by-step",
+            "exact numbers",
+            "confident"
+          ],
+          "explanation": {
+            "symptomWhy": "The output violates constraints that should be enforced (speculation/verbosity/confidence).",
+            "causeWhy": "Constraints were missing, buried, or conflicting\u2014so the model prioritized helpfulness.",
+            "fixWhy": "Move constraints to the top as short bullet rules and remove conflicts."
+          }
+        },
+        {
+          "id": "case_d5aca6ea0c5425ff_19ca0a79be6",
+          "title": "Inconsistent structure \u2014 Case 10 (light)",
+          "symptom": "Inconsistent structure",
+          "cause": "No schema or format requirement",
+          "fix": "Add an explicit format (headings, checklist, fields).",
+          "difficulty": 1,
+          "tags": [
+            "core",
+            "light"
+          ],
+          "badOutput": "Paragraph 1... Paragraph 2... (no headings, no checklist, mixed order).",
+          "expected": "A predictable structure (headings/fields/checklist) that matches the requested schema.",
+          "baselineContext": "You are an assistant.\nTask: Summarize the incident and next steps.",
+          "stethoscope": [
+            "no headings",
+            "no checklist",
+            "mixed order"
+          ],
+          "explanation": {
+            "symptomWhy": "The output is hard to scan/reuse because it lacks a stable structure.",
+            "causeWhy": "No explicit format/schema was required, so the model chose an arbitrary layout.",
+            "fixWhy": "Add an explicit output format with headings/fields (or JSON schema) and a short example."
+          }
+        },
+        {
+          "id": "case_8077ff5c66dd73c2_19ca0a79be6",
+          "title": "Inconsistent structure \u2014 Case 11 (standard)",
+          "symptom": "Inconsistent structure",
+          "cause": "No schema or format requirement",
+          "fix": "Add an explicit format (headings, checklist, fields).",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "standard"
+          ],
+          "badOutput": "Paragraph 1... Paragraph 2... (no headings, no checklist, mixed order).",
+          "expected": "A predictable structure (headings/fields/checklist) that matches the requested schema.",
+          "baselineContext": "You are an assistant.\nTask: Summarize the incident and next steps.",
+          "stethoscope": [
+            "no headings",
+            "no checklist",
+            "mixed order"
+          ],
+          "explanation": {
+            "symptomWhy": "The output is hard to scan/reuse because it lacks a stable structure.",
+            "causeWhy": "No explicit format/schema was required, so the model chose an arbitrary layout.",
+            "fixWhy": "Add an explicit output format with headings/fields (or JSON schema) and a short example."
+          }
+        },
+        {
+          "id": "case_85afb7813b71c556_19ca0a79be6",
+          "title": "Inconsistent structure \u2014 Case 12 (hard)",
+          "symptom": "Inconsistent structure",
+          "cause": "No schema or format requirement",
+          "fix": "Add an explicit format (headings, checklist, fields).",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "hard"
+          ],
+          "badOutput": "Paragraph 1... Paragraph 2... (no headings, no checklist, mixed order).",
+          "expected": "A predictable structure (headings/fields/checklist) that matches the requested schema.",
+          "baselineContext": "You are an assistant.\nTask: Summarize the incident and next steps.",
+          "stethoscope": [
+            "no headings",
+            "no checklist",
+            "mixed order"
+          ],
+          "explanation": {
+            "symptomWhy": "The output is hard to scan/reuse because it lacks a stable structure.",
+            "causeWhy": "No explicit format/schema was required, so the model chose an arbitrary layout.",
+            "fixWhy": "Add an explicit output format with headings/fields (or JSON schema) and a short example."
+          }
+        },
+        {
+          "id": "case_cba4e796d7336679_19ca0a79be6",
+          "title": "Overload / distraction \u2014 Case 13 (light)",
+          "symptom": "Overload / distraction",
+          "cause": "Too much context; irrelevant text",
+          "fix": "Prune; summarize; retrieve only relevant excerpts; shorten examples.",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "light"
+          ],
+          "badOutput": "I will first discuss unrelated background, then list many tangents, then eventually answer partially.",
+          "expected": "Only relevant context and a direct answer; prune irrelevant text and keep it short.",
+          "baselineContext": "You are an assistant.\nContext: [long pasted transcript]\nTask: Answer the question.",
+          "stethoscope": [
+            "unrelated background",
+            "many tangents",
+            "eventually"
+          ],
+          "explanation": {
+            "symptomWhy": "The model meanders instead of directly answering.",
+            "causeWhy": "Too much context (irrelevant text) diluted the signal and increased confusion.",
+            "fixWhy": "Prune/summarize; retrieve only relevant excerpts; shorten examples."
+          }
+        },
+        {
+          "id": "case_7eb8c419b652483f_19ca0a79be6",
+          "title": "Overload / distraction \u2014 Case 14 (standard)",
+          "symptom": "Overload / distraction",
+          "cause": "Too much context; irrelevant text",
+          "fix": "Prune; summarize; retrieve only relevant excerpts; shorten examples.",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "standard"
+          ],
+          "badOutput": "I will first discuss unrelated background, then list many tangents, then eventually answer partially.",
+          "expected": "Only relevant context and a direct answer; prune irrelevant text and keep it short.",
+          "baselineContext": "You are an assistant.\nContext: [long pasted transcript]\nTask: Answer the question.",
+          "stethoscope": [
+            "unrelated background",
+            "many tangents",
+            "eventually"
+          ],
+          "explanation": {
+            "symptomWhy": "The model meanders instead of directly answering.",
+            "causeWhy": "Too much context (irrelevant text) diluted the signal and increased confusion.",
+            "fixWhy": "Prune/summarize; retrieve only relevant excerpts; shorten examples."
+          }
+        },
+        {
+          "id": "case_3d76bae119b75d81_19ca0a79be6",
+          "title": "Overload / distraction \u2014 Case 15 (hard)",
+          "symptom": "Overload / distraction",
+          "cause": "Too much context; irrelevant text",
+          "fix": "Prune; summarize; retrieve only relevant excerpts; shorten examples.",
+          "difficulty": 3,
+          "tags": [
+            "core",
+            "hard"
+          ],
+          "badOutput": "I will first discuss unrelated background, then list many tangents, then eventually answer partially.",
+          "expected": "Only relevant context and a direct answer; prune irrelevant text and keep it short.",
+          "baselineContext": "You are an assistant.\nContext: [long pasted transcript]\nTask: Answer the question.",
+          "stethoscope": [
+            "unrelated background",
+            "many tangents",
+            "eventually"
+          ],
+          "explanation": {
+            "symptomWhy": "The model meanders instead of directly answering.",
+            "causeWhy": "Too much context (irrelevant text) diluted the signal and increased confusion.",
+            "fixWhy": "Prune/summarize; retrieve only relevant excerpts; shorten examples."
+          }
+        },
+        {
+          "id": "case_2bce14946a417d07_19ca0a79be6",
+          "title": "Forgets prior decisions \u2014 Case 16 (light)",
+          "symptom": "Forgets prior decisions",
+          "cause": "No memory block; too much raw history",
+          "fix": "Maintain a Pinned Facts + Decisions memory block and update it.",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "light"
+          ],
+          "badOutput": "Let's decide again from scratch. Option A might be best (ignoring earlier decision to choose Option B).",
+          "expected": "Respect pinned decisions; only update if new evidence justifies it.",
+          "baselineContext": "You are a project assistant.\nTask: Provide the next steps.",
+          "stethoscope": [
+            "decide again",
+            "from scratch",
+            "Option A"
+          ],
+          "explanation": {
+            "symptomWhy": "The output contradicts earlier choices and re-litigates decisions.",
+            "causeWhy": "No pinned memory block captures confirmed facts and decisions.",
+            "fixWhy": "Maintain a 'Pinned Facts + Decisions' memory block and update it each turn."
+          }
+        },
+        {
+          "id": "case_6d978d6b0611f0b2_19ca0a79be6",
+          "title": "Forgets prior decisions \u2014 Case 17 (standard)",
+          "symptom": "Forgets prior decisions",
+          "cause": "No memory block; too much raw history",
+          "fix": "Maintain a Pinned Facts + Decisions memory block and update it.",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "standard"
+          ],
+          "badOutput": "Let's decide again from scratch. Option A might be best (ignoring earlier decision to choose Option B).",
+          "expected": "Respect pinned decisions; only update if new evidence justifies it.",
+          "baselineContext": "You are a project assistant.\nTask: Provide the next steps.",
+          "stethoscope": [
+            "decide again",
+            "from scratch",
+            "Option A"
+          ],
+          "explanation": {
+            "symptomWhy": "The output contradicts earlier choices and re-litigates decisions.",
+            "causeWhy": "No pinned memory block captures confirmed facts and decisions.",
+            "fixWhy": "Maintain a 'Pinned Facts + Decisions' memory block and update it each turn."
+          }
+        },
+        {
+          "id": "case_3d0063dfd27c109f_19ca0a79be6",
+          "title": "Forgets prior decisions \u2014 Case 18 (hard)",
+          "symptom": "Forgets prior decisions",
+          "cause": "No memory block; too much raw history",
+          "fix": "Maintain a Pinned Facts + Decisions memory block and update it.",
+          "difficulty": 2,
+          "tags": [
+            "core",
+            "hard"
+          ],
+          "badOutput": "Let's decide again from scratch. Option A might be best (ignoring earlier decision to choose Option B).",
+          "expected": "Respect pinned decisions; only update if new evidence justifies it.",
+          "baselineContext": "You are a project assistant.\nTask: Provide the next steps.",
+          "stethoscope": [
+            "decide again",
+            "from scratch",
+            "Option A"
+          ],
+          "explanation": {
+            "symptomWhy": "The output contradicts earlier choices and re-litigates decisions.",
+            "causeWhy": "No pinned memory block captures confirmed facts and decisions.",
+            "fixWhy": "Maintain a 'Pinned Facts + Decisions' memory block and update it each turn."
+          }
+        }
+      ]
+    }
+  ]
+}
