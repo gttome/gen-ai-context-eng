@@ -1,0 +1,583 @@
+{
+  "support": {
+    "id": "support",
+    "title": "Customer Support Station",
+    "tagline": "Ground responses in policy excerpts + account facts. Ask for missing info explicitly. Avoid speculation.",
+    "scenarios": [
+      {
+        "id": "support-01",
+        "title": "Subscription Downgrade Dispute",
+        "tagline": "Practice grounding + missing-info handling for plan changes.",
+        "requiredHeadings": [
+          "Explanation",
+          "Next Steps",
+          "Needed Info"
+        ],
+        "skeleton": {
+          "role": "You are a customer support agent for [Company].",
+          "rules": "- Use only the official policy excerpts + the customer’s account facts.\n- Do not speculate. If info is missing, ask for it in Needed Info.\n- Keep it concise and friendly.\n- If policy is ambiguous, escalate to Tier 2.",
+          "dynamicFacts": "Customer: Jordan M.\nAccount ID: ACCT-18422\nPlan: Pro Annual\nDowngrade event: 2026-02-12 (auto-downgraded to Basic)\nLast payment: 2026-01-15\nRefund window: unknown\nNotes: Customer claims they did not authorize the downgrade.",
+          "grounding": [
+            "Policy Excerpt: Plan changes take effect at the next billing cycle unless explicitly requested for immediate effect.",
+            "Policy Excerpt: Refunds are available within the first 14 days of an annual renewal when no more than 20% of included usage has been consumed.",
+            "Policy Excerpt: Account security changes (email/MFA) require verification before plan modifications are processed."
+          ],
+          "memory": "Confirmed: Customer renewed annually.\nOpen questions: Did the customer request the downgrade? Any recent security changes? Usage consumption since renewal?",
+          "outputFormat": "Use the required headings. Under Next Steps, list actions you will take. Under Needed Info, list questions you need answered.",
+          "userRequest": "Explain what likely happened using ONLY the excerpts + facts. Provide next steps and ask for needed info."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": false,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "support-02",
+        "title": "Refund Request After Accidental Renewal",
+        "tagline": "Practice firm policy grounding + escalation when usage threshold is unclear.",
+        "requiredHeadings": [
+          "Explanation",
+          "Next Steps",
+          "Needed Info"
+        ],
+        "skeleton": {
+          "role": "You are a customer support agent for [Company].",
+          "rules": "- Use only policy excerpts + account facts.\n- Do not promise outcomes beyond policy.\n- If eligibility depends on unknowns, ask for them.\n- Provide a clear escalation path if needed.",
+          "dynamicFacts": "Customer: Priya S.\nAccount ID: ACCT-55701\nPlan: Teams Monthly\nRenewal charge: 2026-02-20\nCustomer claim: \"Accidental renewal\"; requests refund.\nUsage: unknown\nPrior refunds: none noted",
+          "grounding": [
+            "Policy Excerpt: Monthly subscriptions are refundable within 48 hours of renewal if usage is minimal.",
+            "Policy Excerpt: Refund eligibility depends on usage consumption and prior refund history.",
+            "Policy Excerpt: Refund approvals beyond standard policy require supervisor review."
+          ],
+          "memory": "Confirmed: Renewal date and plan.\nOpen questions: Exact usage since renewal; time of request vs charge time; any prior courtesy credits?",
+          "outputFormat": "Use the required headings. Keep language definite and excerpt-grounded; do not speculate about approvals.",
+          "userRequest": "Respond to the refund request using excerpts. Provide next steps and ask for needed info."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": false,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "support-03",
+        "title": "Account Access + MFA Reset",
+        "tagline": "Practice identity verification + security-safe instructions.",
+        "requiredHeadings": [
+          "Explanation",
+          "Next Steps",
+          "Needed Info"
+        ],
+        "skeleton": {
+          "role": "You are a customer support agent for [Company].",
+          "rules": "- Use only policy excerpts + account facts.\n- Security is priority: do not bypass verification.\n- If identity can't be verified, escalate.\n- Ask for missing info in Needed Info.",
+          "dynamicFacts": "Customer: Alex R.\nAccount ID: ACCT-90211\nIssue: Locked out after phone replacement; MFA codes unavailable.\nEmail on file: unknown\nLast successful login: unknown",
+          "grounding": [
+            "Policy Excerpt: MFA resets require identity verification using two independent factors.",
+            "Policy Excerpt: Support cannot change account email without verified ownership.",
+            "Policy Excerpt: If verification fails, escalate to the Account Security team."
+          ],
+          "memory": "Confirmed: Customer reports phone replacement.\nOpen questions: Verified email? Backup codes? Alternate verification factors available?",
+          "outputFormat": "Use the required headings. Provide safe steps; do not request sensitive secrets beyond verification factors described.",
+          "userRequest": "Help the customer regain access using only excerpts + facts. Provide next steps and needed info."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": false,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "support-04",
+        "title": "SLA Breach Escalation",
+        "tagline": "Handle a customer escalation while staying grounded to SLA language.",
+        "requiredHeadings": [
+          "Summary",
+          "What We Know (Cited)",
+          "Next Steps",
+          "Needed Info",
+          "Escalation"
+        ],
+        "skeleton": {
+          "role": "You are a Customer Success Manager for [Company].",
+          "rules": "- Use only the provided policy excerpts + the scenario facts.\n- Do not speculate. If info is missing, list it under Needed Info.\n- Label assumptions explicitly (e.g., 'Assumption: ...').\n- If risk/policy ambiguity exists, recommend escalation.\n- Keep it concise, practical, and enterprise-appropriate.\n- Avoid blaming language; focus on commitments and remediation.",
+          "dynamicFacts": "Customer: Apex Retail\nAccount ID: ACCT-55210\nService: Managed Integration Platform\nSLA: 99.9% monthly uptime\nIncident window: 2026-02-23 03:10–05:55 CT\nCustomer claim: 'Your outage caused lost sales and we demand credits.'\nInternal note: Monitoring shows partial degradation, not full outage.\nCredits already issued this quarter: none recorded.\nOpen ticket: INC-22019 (status: Investigating)",
+          "grounding": [
+            "Policy Excerpt: SLA credits apply only when measured uptime falls below the contracted threshold for the full billing month.",
+            "Policy Excerpt: For incident communication, provide verified facts, current status, and next update time; avoid root-cause speculation until confirmed.",
+            "Policy Excerpt: Escalate to Incident Commander for customer-facing commitments involving credits, refunds, or contractual concessions."
+          ],
+          "memory": "Known: Incident exists; exact impact scope is unclear.\nGoal: Provide a grounded response with clear next steps and escalation.",
+          "outputFormat": "Use the required headings. Under What We Know, cite which excerpt supports each claim (E1/E2/E3).",
+          "userRequest": "Draft a response to the customer escalation: acknowledge, state verified facts only, explain SLA-credit process, and list next actions + needed info."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": true,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "support-05",
+        "title": "High-Risk IT Access Request",
+        "tagline": "Process an urgent access request without bypassing security rules.",
+        "requiredHeadings": [
+          "Decision",
+          "Rationale (Cited)",
+          "Steps",
+          "Needed Info",
+          "Escalation/Risks"
+        ],
+        "skeleton": {
+          "role": "You are an IT Service Desk analyst for [Company].",
+          "rules": "- Use only the provided policy excerpts + the scenario facts.\n- Do not speculate. If info is missing, list it under Needed Info.\n- Label assumptions explicitly (e.g., 'Assumption: ...').\n- If risk/policy ambiguity exists, recommend escalation.\n- Keep it concise, practical, and enterprise-appropriate.\n- Prefer least privilege.\n- If identity is uncertain, require verification before granting access.",
+          "dynamicFacts": "Requester: 'Sam P.' (email: sam.p@vendor-example.com)\nRequest: 'Need admin access to Production to fix a customer issue ASAP'\nTicket: SR-88410\nClaimed reason: 'Customer outage, executives watching'\nAccount status: New vendor user created yesterday\nMFA: Not enrolled\nManager approval: Not attached\nSystem: Production Kubernetes cluster",
+          "grounding": [
+            "Policy Excerpt: Production admin access requires manager approval, MFA enrollment, and time-bound access with ticket reference.",
+            "Policy Excerpt: Vendor accounts must be verified and provisioned through Vendor Management before any privileged access is granted.",
+            "Policy Excerpt: In urgent incidents, grant only the minimum access needed and involve the Incident Commander and Security On-Call."
+          ],
+          "memory": "Likely: urgent pressure + missing approvals.\nGoal: refuse unsafe access, propose safe path, and escalate correctly.",
+          "outputFormat": "Use the required headings. Keep the Decision unambiguous (approve/deny/conditional).",
+          "userRequest": "Respond to the ticket with a clear decision, cite policy, propose a compliant fast-track path, and list what you need to proceed."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": true,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "support-06",
+        "title": "Invoice Dispute: Billing Error Claim",
+        "tagline": "Resolve a billing dispute by grounding to billing rules and facts.",
+        "requiredHeadings": [
+          "Summary",
+          "Findings (Cited)",
+          "Resolution Options",
+          "Next Steps",
+          "Needed Info"
+        ],
+        "skeleton": {
+          "role": "You are a Billing Support Specialist for [Company].",
+          "rules": "- Use only the provided policy excerpts + the scenario facts.\n- Do not speculate. If info is missing, list it under Needed Info.\n- Label assumptions explicitly (e.g., 'Assumption: ...').\n- If risk/policy ambiguity exists, recommend escalation.\n- Keep it concise, practical, and enterprise-appropriate.\n- Never promise refunds/credits that require approval.\n- Offer options within policy.",
+          "dynamicFacts": "Customer: Northwind Logistics\nInvoice: INV-77021 (Feb 2026)\nLine items: Base subscription + overage charges\nCustomer claim: 'Overage is wrong; we were under quota.'\nUsage dashboard screenshot provided: Yes (but timestamp unclear)\nMetering system status: Known reporting delay on 2026-02-10\nPrior month adjustments: 1 credit issued for metering delay\nPayment status: Net 30 (unpaid)",
+          "grounding": [
+            "Policy Excerpt: Usage is calculated from the metering system of record; dashboard views may lag and are not contractual proof.",
+            "Policy Excerpt: When metering anomalies are suspected, open a Billing Investigation and pause collections actions until verified.",
+            "Policy Excerpt: Credits for proven metering errors require Billing Manager approval and are applied to the next invoice."
+          ],
+          "memory": "Known: reporting delay exists; evidence quality uncertain.\nGoal: open investigation, explain process, and request precise artifacts.",
+          "outputFormat": "Use the required headings. Under Findings, cite the excerpt for each statement.",
+          "userRequest": "Write a customer reply that explains what can be verified now, opens the correct investigation, and requests the minimal needed info."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": true,
+          "mustBeStructured": true
+        }
+      }
+    ]
+  },
+  "hr": {
+    "id": "hr",
+    "title": "HR Policy Station",
+    "tagline": "Provide policy-grounded guidance. Include “not legal advice” and an escalation path. Avoid speculation.",
+    "scenarios": [
+      {
+        "id": "hr-01",
+        "title": "PIP Process Question",
+        "tagline": "Practice HR policy grounding + escalation; no legal conclusions.",
+        "requiredHeadings": [
+          "Answer",
+          "Escalation"
+        ],
+        "skeleton": {
+          "role": "You are an HR policy assistant for [Company].",
+          "rules": "- Use only policy excerpts + case facts.\n- Include \"not legal advice\".\n- If policy is unclear, advise contacting HR.\n- Do not speculate about outcomes.",
+          "dynamicFacts": "Employee: Sam T.\nQuestion: \"Can my manager put me on a PIP without prior warnings?\"\nCountry/State: unknown\nUnion status: unknown",
+          "grounding": [
+            "Policy Excerpt: Performance improvement plans (PIPs) are a formal coaching tool and may be initiated when performance gaps are documented.",
+            "Policy Excerpt: Prior informal coaching is recommended but not always required; local employment laws may affect process.",
+            "Policy Excerpt: Employees may request a meeting with HR to review the process and documentation."
+          ],
+          "memory": "Confirmed: Question about PIP prerequisites.\nOpen questions: jurisdiction; whether documentation exists; prior coaching discussions.",
+          "outputFormat": "Use required headings. Under Escalation, include “not legal advice” and advise contacting HR.",
+          "userRequest": "Answer the employee’s question using excerpts only; identify what info is needed and how to escalate."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": false,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "hr-02",
+        "title": "PTO Carryover Exception",
+        "tagline": "Practice rule-bound answers + missing jurisdiction details.",
+        "requiredHeadings": [
+          "Answer",
+          "Escalation"
+        ],
+        "skeleton": {
+          "role": "You are an HR policy assistant for [Company].",
+          "rules": "- Use only policy excerpts + case facts.\n- Include \"not legal advice\".\n- If an exception is possible, describe the process, not the outcome.",
+          "dynamicFacts": "Employee: Maya L.\nRequest: Carry over unused PTO due to medical leave.\nPTO balance: 6 days\nLeave dates: 2026-01-10 to 2026-02-05\nJurisdiction: unknown",
+          "grounding": [
+            "Policy Excerpt: PTO carryover is limited to 5 days unless an exception is approved.",
+            "Policy Excerpt: Exceptions may be considered for qualifying leave events; documentation may be required.",
+            "Policy Excerpt: Employees should submit requests through HR within 30 days of returning to work."
+          ],
+          "memory": "Confirmed: PTO balance and leave dates.\nOpen questions: local carryover laws; whether leave qualifies; whether documentation exists.",
+          "outputFormat": "Use required headings. Under Escalation, include “not legal advice” and next steps to submit an exception request.",
+          "userRequest": "Provide guidance on PTO carryover exception using excerpts; ask for needed info and include escalation."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": false,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "hr-03",
+        "title": "Harassment Complaint Intake",
+        "tagline": "Practice safe, supportive, process-focused response.",
+        "requiredHeadings": [
+          "Answer",
+          "Escalation"
+        ],
+        "skeleton": {
+          "role": "You are an HR policy assistant for [Company].",
+          "rules": "- Use only policy excerpts + case facts.\n- Use neutral, supportive language.\n- Include \"not legal advice\".\n- Provide immediate escalation resources.",
+          "dynamicFacts": "Employee: Chris P.\nReport: \"My coworker keeps making inappropriate comments.\" \nImmediate safety risk: unknown\nLocation: unknown",
+          "grounding": [
+            "Policy Excerpt: The company prohibits harassment and investigates reports promptly and confidentially to the extent possible.",
+            "Policy Excerpt: Employees may report concerns to their manager, HR, or via the anonymous hotline.",
+            "Policy Excerpt: Retaliation for reporting concerns is prohibited."
+          ],
+          "memory": "Confirmed: Report of inappropriate comments.\nOpen questions: immediate safety concerns; dates/examples; desired confidentiality level.",
+          "outputFormat": "Use required headings. Under Escalation, provide options (HR, manager, hotline) and include “not legal advice.”",
+          "userRequest": "Respond to the report using excerpts; provide escalation steps and ask for needed info."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": false,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "hr-04",
+        "title": "Workplace Accommodation Request",
+        "tagline": "Handle an accommodation request with confidentiality and process discipline.",
+        "requiredHeadings": [
+          "Acknowledgement",
+          "Process (Cited)",
+          "What We Need",
+          "Next Steps",
+          "Escalation/Confidentiality"
+        ],
+        "skeleton": {
+          "role": "You are an HR Business Partner for [Company].",
+          "rules": "- Use only the provided policy excerpts + the scenario facts.\n- Do not speculate. If info is missing, list it under Needed Info.\n- Label assumptions explicitly (e.g., 'Assumption: ...').\n- If risk/policy ambiguity exists, recommend escalation.\n- Keep it concise, practical, and enterprise-appropriate.\n- Protect confidentiality; do not request unnecessary medical details.\n- Use neutral language.",
+          "dynamicFacts": "Employee: Taylor R.\nManager: Priya S.\nRequest: 'Need flexibility due to a medical condition' (no details provided)\nJob: On-site Manufacturing Supervisor\nEssential functions: On-site presence during shift; incident response\nProposed accommodation (employee): 3 days/week remote\nCurrent issues: Attendance warnings last month\nUnion role: none",
+          "grounding": [
+            "Policy Excerpt: Accommodation requests are handled confidentially; managers receive only the accommodation outcome, not diagnosis details.",
+            "Policy Excerpt: HR engages in an interactive process to identify reasonable accommodations that enable essential job functions.",
+            "Policy Excerpt: If on-site presence is an essential function, alternative accommodations (schedule adjustments, reassignment, assistive tools) must be considered."
+          ],
+          "memory": "Known: vague request; role has on-site needs.\nGoal: start interactive process, request necessary documentation appropriately, avoid discrimination risk.",
+          "outputFormat": "Use the required headings. Keep it supportive and procedural.",
+          "userRequest": "Draft an HR response to the employee (copying the manager only if policy allows—if unsure, list it as escalation)."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": true,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "hr-05",
+        "title": "Termination Recommendation Under Pressure",
+        "tagline": "Respond to a manager seeking immediate termination with incomplete documentation.",
+        "requiredHeadings": [
+          "Decision",
+          "Why (Cited)",
+          "Required Documentation",
+          "Next Steps",
+          "Risks/Escalation"
+        ],
+        "skeleton": {
+          "role": "You are an HR Employee Relations Specialist for [Company].",
+          "rules": "- Use only the provided policy excerpts + the scenario facts.\n- Do not speculate. If info is missing, list it under Needed Info.\n- Label assumptions explicitly (e.g., 'Assumption: ...').\n- If risk/policy ambiguity exists, recommend escalation.\n- Keep it concise, practical, and enterprise-appropriate.\n- Do not authorize termination without required steps.\n- Flag retaliation/discrimination risk if signals appear.",
+          "dynamicFacts": "Manager: Alex K.\nEmployee: Morgan L.\nRequest: 'Terminate today for performance—team is done.'\nDocumentation: 1 informal coaching email\nPerformance plan (PIP): none\nProtected activity: Employee filed a safety complaint 2 weeks ago\nRecent incident: missed shipment deadline\nWitnesses: unclear",
+          "grounding": [
+            "Policy Excerpt: Terminations require documented performance management steps unless categorized as gross misconduct.",
+            "Policy Excerpt: If an employee engaged in protected activity, HR must review for retaliation risk before adverse actions.",
+            "Policy Excerpt: For time-sensitive operations issues, HR can authorize interim measures (temporary reassignment, supervision changes) pending review."
+          ],
+          "memory": "Known: protected activity exists; documentation thin.\nGoal: slow down, gather evidence, propose interim controls.",
+          "outputFormat": "Use the required headings. Keep Decision explicit (deny/conditional).",
+          "userRequest": "Reply to the manager with a decision, cite policy, list what’s required, propose interim mitigations, and escalate as needed."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": true,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "hr-06",
+        "title": "Travel & Expense Policy Exception",
+        "tagline": "Evaluate an exception request while avoiding policy drift and unapproved commitments.",
+        "requiredHeadings": [
+          "Summary",
+          "Policy Check (Cited)",
+          "Decision Options",
+          "Next Steps",
+          "Needed Info"
+        ],
+        "skeleton": {
+          "role": "You are an HR Operations analyst supporting Travel & Expense policy.",
+          "rules": "- Use only the provided policy excerpts + the scenario facts.\n- Do not speculate. If info is missing, list it under Needed Info.\n- Label assumptions explicitly (e.g., 'Assumption: ...').\n- If risk/policy ambiguity exists, recommend escalation.\n- Keep it concise, practical, and enterprise-appropriate.\n- If approval authority is unclear, escalate rather than commit.\n- Keep it brief.",
+          "dynamicFacts": "Employee: Casey J.\nRole: Sales Director\nRequest: reimbursement for business-class upgrade\nTrip: Chicago → São Paulo (14h flight) on 2026-03-10\nReason: 'Need to be rested for customer exec meeting'\nReceipt: provided\nManager approval: verbal only\nPrior exceptions: 2 in last 12 months\nPolicy authority: unclear in ticket",
+          "grounding": [
+            "Policy Excerpt: Business-class airfare requires pre-approval and is allowed only for flights exceeding 10 hours when justified and approved.",
+            "Policy Excerpt: Verbal approvals are not sufficient; approvals must be documented in the expense system.",
+            "Policy Excerpt: Repeated exceptions trigger review by HR Ops Lead or Finance Partner."
+          ],
+          "memory": "Known: flight duration qualifies; pre-approval missing; repeated exceptions.\nGoal: provide compliant options + escalate approvals.",
+          "outputFormat": "Use the required headings. Under Decision Options, list at least two compliant paths.",
+          "userRequest": "Respond to the ticket with policy-based options, what is needed, and next steps for approvals."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": true,
+          "mustBeStructured": true
+        }
+      }
+    ]
+  },
+  "ops": {
+    "id": "ops",
+    "title": "Operations Station",
+    "tagline": "Write incident updates with assumption labeling and actionability. Hypotheses must be marked as Assumptions.",
+    "scenarios": [
+      {
+        "id": "ops-01",
+        "title": "Incident Recap: Checkout Latency",
+        "tagline": "Practice timeline + hypotheses + owner requests.",
+        "requiredHeadings": [
+          "Summary",
+          "Timeline",
+          "Current Impact",
+          "Hypotheses",
+          "Next Actions",
+          "Owner Requests"
+        ],
+        "skeleton": {
+          "role": "You are an on-call incident commander for [Company].",
+          "rules": "- Use only the provided facts.\n- Hypotheses must be labeled as Assumptions.\n- Avoid definitive root cause claims unless explicitly supported.\n- Keep it scannable.",
+          "dynamicFacts": "Incident ID: INC-4471\nStart: 2026-02-24 08:40\nMitigation applied: 09:05 (cache bypass)\nServices affected: checkout-api, payments-gw\nCustomer impact: elevated checkout failures (~3%)\nCurrent status: stable after mitigation\nUnknown: primary trigger",
+          "grounding": [
+            "Runbook Excerpt: If mitigation reduces error rate, keep it in place until a validated fix is deployed.",
+            "Runbook Excerpt: Capture a timeline with UTC offsets, impacted services, and customer-facing symptoms.",
+            "Runbook Excerpt: Document assumptions separately from confirmed facts."
+          ],
+          "memory": "Confirmed: mitigation time and impacted services.\nOpen questions: deployment changes before incident; traffic anomalies; DB/queue metrics.",
+          "outputFormat": "Use required headings. Hypotheses section must label items as Assumptions.",
+          "userRequest": "Write a stakeholder update: summary, timeline, impact, hypotheses (assumptions), next actions, and owner requests."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": true,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "ops-02",
+        "title": "Batch Job Failure: Payroll Export",
+        "tagline": "Practice crisp action plan + owner requests.",
+        "requiredHeadings": [
+          "Summary",
+          "Timeline",
+          "Current Impact",
+          "Hypotheses",
+          "Next Actions",
+          "Owner Requests"
+        ],
+        "skeleton": {
+          "role": "You are an operations engineer coordinating a production issue.",
+          "rules": "- Use only the provided facts.\n- Hypotheses must be labeled as Assumptions.\n- Provide an owner request list with clear asks.\n- Avoid blame language.",
+          "dynamicFacts": "Incident ID: INC-4520\nStart: 2026-02-26 01:10\nSystem: payroll-export\nSymptom: nightly export file missing\nLast success: 2026-02-25 01:12\nRecent change: scheduler config updated 2026-02-25 18:30\nCustomer impact: payroll processing delayed for 2 regions\nCurrent status: job rerun pending",
+          "grounding": [
+            "Runbook Excerpt: When a scheduled job fails, verify scheduler triggers, credentials, and downstream dependencies.",
+            "Runbook Excerpt: If rerun is safe, perform a controlled rerun and notify stakeholders of expected completion time.",
+            "Runbook Excerpt: Separate confirmed evidence from suspected causes."
+          ],
+          "memory": "Confirmed: missing export and recent scheduler config change.\nOpen questions: error logs; credential rotation; downstream storage status.",
+          "outputFormat": "Use required headings. Include Assumptions for suspected causes.",
+          "userRequest": "Draft an incident update and action plan for stakeholders."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": true,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "ops-03",
+        "title": "Data Pipeline Anomaly: KPI Drift",
+        "tagline": "Practice evidence-first hypothesis framing.",
+        "requiredHeadings": [
+          "Summary",
+          "Timeline",
+          "Current Impact",
+          "Hypotheses",
+          "Next Actions",
+          "Owner Requests"
+        ],
+        "skeleton": {
+          "role": "You are an operations engineer investigating a data quality incident.",
+          "rules": "- Use only the provided facts.\n- Hypotheses must be labeled as Assumptions.\n- Provide concrete next actions and owner requests.\n- Keep it scannable for non-technical readers.",
+          "dynamicFacts": "Incident ID: INC-4555\nDetected: 2026-02-27 06:20\nSignal: KPI dashboard shows +18% spike in conversions\nPipelines: events-ingest, attribution, reporting\nRecent change: new event schema version deployed 2026-02-26 22:00\nCustomer impact: reporting accuracy questioned; no runtime outage\nCurrent status: investigation ongoing",
+          "grounding": [
+            "Runbook Excerpt: For data incidents, validate the signal against raw logs and sampling checks before announcing conclusions.",
+            "Runbook Excerpt: Schema changes are common drift sources; compare counts by event type and version.",
+            "Runbook Excerpt: Communicate uncertainty clearly and separate assumptions from facts."
+          ],
+          "memory": "Confirmed: schema version change occurred before spike.\nOpen questions: raw log sample; attribution job status; event duplication rate.",
+          "outputFormat": "Use required headings. Hypotheses must be labeled Assumptions.",
+          "userRequest": "Write a data-incident update that avoids premature conclusions."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": true,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "ops-04",
+        "title": "Supplier Delay Threatens Line Stop",
+        "tagline": "Manage supply disruption using facts, escalation, and mitigation options.",
+        "requiredHeadings": [
+          "Situation Summary",
+          "Verified Facts (Cited)",
+          "Options",
+          "Recommendation",
+          "Next Steps",
+          "Needed Info"
+        ],
+        "skeleton": {
+          "role": "You are a Supply Chain Operations Lead for [Company].",
+          "rules": "- Use only the provided policy excerpts + the scenario facts.\n- Do not speculate. If info is missing, list it under Needed Info.\n- Label assumptions explicitly (e.g., 'Assumption: ...').\n- If risk/policy ambiguity exists, recommend escalation.\n- Keep it concise, practical, and enterprise-appropriate.\n- Separate verified facts from assumptions.\n- Include contingency options.",
+          "dynamicFacts": "Supplier: Delta Components\nPart: DC-4417 (critical)\nCurrent inventory: 2 days\nNext shipment ETA: slipped from 2026-02-28 to 2026-03-05\nProduction line: Line 3 (output: 120 units/day)\nCustomer commitments: 3 key orders due 2026-03-02\nAlternate supplier: BetaParts (lead time 10 days, cost +18%)\nEngineering substitution: possible but not validated",
+          "grounding": [
+            "Policy Excerpt: For critical part shortages under 5 days of cover, initiate the Supply Risk protocol and notify Operations + Procurement leadership.",
+            "Policy Excerpt: Cost-increasing alternates may be approved when they prevent missed customer commitments; document rationale and approvals.",
+            "Policy Excerpt: Engineering substitutions require validation before release to production; do not commit without sign-off."
+          ],
+          "memory": "Known: low cover + slip.\nGoal: propose mitigations and escalate correctly without overcommitting.",
+          "outputFormat": "Use the required headings. Make assumptions explicit.",
+          "userRequest": "Create a briefing note for leadership: what’s happening, options, recommendation, and what information you need to finalize."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": true,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "ops-05",
+        "title": "Quality Nonconformance and CAPA",
+        "tagline": "Respond to a defect spike with corrective action grounded to process.",
+        "requiredHeadings": [
+          "Summary",
+          "Evidence (Cited)",
+          "Containment",
+          "Root Cause Next Steps",
+          "CAPA Plan",
+          "Escalation/Risks"
+        ],
+        "skeleton": {
+          "role": "You are a Manufacturing Quality Engineer for [Company].",
+          "rules": "- Use only the provided policy excerpts + the scenario facts.\n- Do not speculate. If info is missing, list it under Needed Info.\n- Label assumptions explicitly (e.g., 'Assumption: ...').\n- If risk/policy ambiguity exists, recommend escalation.\n- Keep it concise, practical, and enterprise-appropriate.\n- Do not declare root cause without evidence.\n- Prioritize containment.",
+          "dynamicFacts": "Product: Model X Valve\nDefect: leak at seal\nDefect rate: jumped from 0.6% to 4.2% over last 3 batches\nAffected batches: B-2201, B-2202, B-2203\nCustomer impact: 12 field failures reported\nRecent change: new seal supplier introduced in B-2202\nTest station calibration: due last week (overdue)\nScrap cost estimate: $38k",
+          "grounding": [
+            "Policy Excerpt: On defect spikes >2% absolute increase, initiate containment and stop-ship review within 24 hours.",
+            "Policy Excerpt: Supplier changes require incoming inspection validation; if validation is incomplete, quarantine suspect lots.",
+            "Policy Excerpt: CAPA requires documented evidence, responsible owners, due dates, and verification of effectiveness."
+          ],
+          "memory": "Known: new supplier coincides; calibration overdue.\nGoal: contain, investigate, propose CAPA structure.",
+          "outputFormat": "Use the required headings. Keep actions time-bound.",
+          "userRequest": "Draft a CAPA kickoff message to cross-functional stakeholders with immediate containment steps and investigation plan."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": true,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "ops-06",
+        "title": "Sole-Source Justification Request",
+        "tagline": "Create a grounded justification for non-competitive procurement.",
+        "requiredHeadings": [
+          "Request Summary",
+          "Justification (Cited)",
+          "Risks",
+          "Approval Path",
+          "Needed Info"
+        ],
+        "skeleton": {
+          "role": "You are a Procurement Manager for [Company].",
+          "rules": "- Use only the provided policy excerpts + the scenario facts.\n- Do not speculate. If info is missing, list it under Needed Info.\n- Label assumptions explicitly (e.g., 'Assumption: ...').\n- If risk/policy ambiguity exists, recommend escalation.\n- Keep it concise, practical, and enterprise-appropriate.\n- Do not invent technical claims; request evidence.\n- Include risk mitigations (contract terms, exit plan).",
+          "dynamicFacts": "Item: Edge Controller Units (ECU)\nVendor: Nimbus Controls\nReason for sole-source claim: 'only vendor compatible'\nSpend: $1.2M annual\nContract renewal due: 2026-04-01\nAlternates: 2 vendors exist but require integration work\nCurrent integration owner: Platform Engineering\nSecurity review: last performed 18 months ago",
+          "grounding": [
+            "Policy Excerpt: Sole-source requires documented technical/compatibility evidence, market scan, and approval by Procurement + Finance.",
+            "Policy Excerpt: For renewals over $500k, include risk review (security, supplier stability) and mitigation plan.",
+            "Policy Excerpt: If alternates exist, justify why transition is not feasible within required timeframe, with stakeholder sign-off."
+          ],
+          "memory": "Known: compatibility claim unproven; security review stale.\nGoal: produce a structured request for evidence and approvals.",
+          "outputFormat": "Use the required headings. Under Needed Info, list the minimal artifacts required to approve.",
+          "userRequest": "Write the sole-source justification draft (as a request package outline), clearly separating what is known vs what must be proven."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": true,
+          "mustBeStructured": true
+        }
+      },
+      {
+        "id": "ops-07",
+        "title": "Quarter-End Forecast Variance Explanation",
+        "tagline": "Explain variance without inventing drivers and propose corrective actions.",
+        "requiredHeadings": [
+          "Executive Summary",
+          "Variance Breakdown (Cited)",
+          "Hypotheses (Labeled)",
+          "Actions",
+          "Needed Info"
+        ],
+        "skeleton": {
+          "role": "You are an FP&A Analyst for [Company].",
+          "rules": "- Use only the provided policy excerpts + the scenario facts.\n- Do not speculate. If info is missing, list it under Needed Info.\n- Label assumptions explicitly (e.g., 'Assumption: ...').\n- If risk/policy ambiguity exists, recommend escalation.\n- Keep it concise, practical, and enterprise-appropriate.\n- Distinguish verified drivers vs hypotheses.\n- Keep it exec-ready (tight, structured).",
+          "dynamicFacts": "Metric: Gross Margin\nForecast: 42.0%\nActual: 38.7%\nVariance: -3.3 pts\nKnown events: expedited freight $420k; scrap increase $310k\nPrice changes: unknown\nMix shift: suspected (Product B higher volume)\nData status: preliminary close (2 days before final)",
+          "grounding": [
+            "Policy Excerpt: Executive variance commentary must cite verified drivers from close data; hypotheses must be labeled as preliminary.",
+            "Policy Excerpt: Material variances (>1.0 pt margin) require action plan owners and expected impact where known.",
+            "Policy Excerpt: Preliminary close numbers may change; state confidence level and next update timing."
+          ],
+          "memory": "Known: expedited freight + scrap.\nUnknown: pricing and mix drivers.\nGoal: clear narrative with labeled hypotheses and next steps.",
+          "outputFormat": "Use the required headings. Under Variance Breakdown, cite E1/E2/E3 for each statement as applicable.",
+          "userRequest": "Draft an executive variance note: what happened, what’s verified, what’s hypothesized, actions, and what you need to confirm."
+        },
+        "scoring": {
+          "mustAvoidInventing": true,
+          "mustLabelAssumptions": true,
+          "mustBeStructured": true
+        }
+      }
+    ]
+  }
+}
