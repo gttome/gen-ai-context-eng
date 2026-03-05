@@ -1,0 +1,27 @@
+# File Manifest — v0.3.5
+
+- `README.md`
+- `docs/.nojekyll`
+- `docs/css/style.css`
+- `docs/data/blocks.json`
+- `docs/data/tasks.json`
+- `docs/feedback.html`
+- `docs/help.html`
+- `docs/index.html`
+- `docs/js/app.js`
+- `docs/start-server.bat`
+- `project-docs/00_User_Action_Guide_v0.3.5.md`
+- `project-docs/01_Document_Intake_and_App_Selection_v0.3.md`
+- `project-docs/02_One_Page_Workflow_Summary_v0.3.md`
+- `project-docs/03_Keep_Add_Merge_Drop_v0.3.md`
+- `project-docs/04_PRD_Context_Tetris_v0.3.5.md`
+- `project-docs/05_Backlog_Context_Tetris_v0.3.5.md`
+- `project-docs/06_Agile_Iteration_Process_and_Agents_v0.3.md`
+- `project-docs/07_Development_Guardrails_Checklists_v0.3.md`
+- `project-docs/08_Mobile_QA_Scorecard_v0.3.md`
+- `project-docs/09_Prompt_Pack_v0.3.md`
+- `project-docs/10_Handoff_v0.3.5.md`
+- `project-docs/11_Restart_Prompt_v0.3.5.md`
+- `project-docs/13_Release_Notes_v0.3.5.md`
+- `project-docs/27_Starter_Templates_v0.3.md`
+- `project-docs/28_MobAI_Agent_Report_v0.3.5.md`

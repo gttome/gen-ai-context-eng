@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Context Tetris</title>
+<meta content="Pack the right context blocks into a finite window without overload." name="description"/>
+<link href="css/style.css?v=v0.3.5" rel="stylesheet"/>
+</head>
+<body>
+<header class="app-header">
+<div class="brand">
+<div class="brand-title">Context Tetris</div>
+<div class="brand-subtitle">Pack context. Avoid overload. Learn the priority ladder.</div>
+</div>
+<div class="header-right">
+<div aria-label="App status" class="status-bar">
+<span aria-label="App version" class="pill" id="pillVersion">v—</span>
+<span aria-label="Runtime environment" class="pill pill-env" id="pillEnv">Env—</span>
+</div>
+<div class="header-actions">
+<button aria-label="Toggle theme" class="btn btn-secondary" id="btnTheme" type="button">Theme</button><button aria-label="Open tutorial" class="btn btn-secondary" id="btnTutorial" type="button">Tutorial</button>
+<button aria-label="Reset app" class="btn btn-secondary" id="btnResetApp" type="button">Reset App</button>
+<a class="btn btn-secondary" href="help.html" role="button">Help</a>
+<a class="btn btn-secondary" href="feedback.html" role="button">Feedback</a>
+</div>
+<span aria-live="polite" class="sr-only" id="themeStatus"></span>
+</div>
+</header>
+<main class="app-main">
+<section class="card">
+<h1 class="h2">1) Pick a task card</h1>
+<p class="muted">Each task has required context blocks. Your job is to pack them in a finite window, in the right order, without crowding them out.</p>
+<div class="row">
+<label class="label" for="taskSelect">Task</label>
+<select aria-label="Select a task card" class="select" id="taskSelect"></select>
+</div>
+<div aria-live="polite" class="task-details" id="taskDetails"></div>
+</section>
+<section class="layout">
+<section class="card">
+<div class="card-header">
+<h2 class="h2">2) Block Queue</h2>
+<div class="muted small">Tap “Add” to pack a block into the window.</div>
+</div>
+<div aria-label="Block queue" class="list" id="queueList"></div>
+</section>
+<section class="card">
+<div class="card-header">
+<h2 class="h2">3) Context Window</h2>
+<div class="muted small">Budget tokens like a finite working memory.</div>
+</div>
+<div class="window-controls">
+<div class="row">
+<label class="label" for="capacity">Window capacity</label>
+<select aria-label="Select token capacity" class="select" id="capacity">
+<option value="800">800 tokens (training wheels)</option>
+<option selected="" value="1200">1200 tokens (default)</option>
+<option value="1800">1800 tokens</option>
+<option value="2400">2400 tokens</option>
+</select>
+</div>
+<div aria-label="Token usage" class="meter">
+<div class="meter-bar" id="meterBar"></div>
+</div>
+<div class="row spread">
+<div class="small muted"><span id="tokensUsed">0</span> / <span id="tokensCap">1200</span> tokens</div>
+<div class="small" id="overloadLabel"></div>
+</div>
+</div>
+<div aria-live="polite" class="ghost" id="ghostBox" role="status"></div>
+<div aria-label="Context window blocks" class="list" id="windowList"></div>
+<div class="actions">
+<button class="btn" id="btnScore" type="button">Score Pack</button>
+<button class="btn btn-secondary" id="btnQuickFix" type="button">Apply Quick Fixes</button>
+<button class="btn btn-secondary" id="btnReset" type="button">Reset Pack</button>
+</div>
+<div aria-live="polite" class="results" id="results"></div>
+</section>
+<section class="card">
+<h2 class="h2">Priority Ladder (Score Lens)</h2>
+<ol class="ladder" id="ladder">
+<li><strong>Non‑negotiables</strong> — Role + Rules</li>
+<li><strong>Dynamic facts + grounding</strong> — keep it relevant</li>
+<li><strong>Memory</strong> — concise continuity (not raw history)</li>
+<li><strong>Examples + checks + schema</strong> — 1–2 examples, force structure</li>
+<li><strong>User request</strong> — place last so it’s the focus</li>
+<li><strong>Nice‑to‑have</strong> — only if budget remains</li>
+</ol>
+<div class="callout">
+<div class="callout-title">Quick fixes (when you overload)</div>
+<ul class="small">
+<li><strong>Prune</strong> noise</li>
+<li><strong>Summarize</strong> memory</li>
+<li><strong>Retrieve</strong> short excerpts (no doc dumping)</li>
+<li><strong>Structure</strong> with headings/checklists</li>
+</ul>
+</div>
+</section>
+</section>
+<section class="card">
+<h2 class="h2">Run history</h2>
+<p class="muted small">Saved locally in your browser (localStorage). No network calls.</p>
+<div class="list" id="historyList"></div>
+<div class="actions">
+<button class="btn btn-secondary" id="btnClearHistory" type="button">Clear History</button>
+</div>
+</section>
+</main>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<footer class="app-footer">
+<div class="muted small">
+      Built for mobile-first learning. Works locally on Windows and on GitHub Pages.
+    </div>
+</footer>
+
+<div class="tour" hidden="" id="tour">
+<div aria-hidden="true" class="tour-backdrop" data-action="close"></div>
+<div aria-hidden="true" class="tour-spotlight" hidden="" id="tourSpotlight"></div>
+<div aria-describedby="tourBody" aria-labelledby="tourTitle" aria-modal="true" class="tour-panel" role="dialog">
+<button aria-label="Close tutorial" class="tour-close" id="tourClose" type="button">×</button>
+<div class="tour-head">
+<div class="tour-kicker">Tutorial</div>
+<h2 class="tour-title" id="tourTitle">Welcome</h2>
+<div aria-live="polite" class="tour-progress" id="tourProgress"></div>
+</div>
+<div class="tour-body" id="tourBody"></div>
+<div class="tour-footer">
+<button class="btn btn-secondary" id="tourBack" type="button">Back</button>
+<button class="btn btn-secondary" id="tourSkip" type="button">Skip</button>
+<div class="spacer"></div>
+<button class="btn" id="tourNext" type="button">Next</button>
+</div>
+</div>
+</div>
+<script src="js/app.js?v=v0.3.5"></script>
+</body>
+</html>

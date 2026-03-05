@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Context Tetris — Feedback</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="card page">
+    <h1 class="h2">Feedback</h1>
+    <p class="muted">This is a placeholder feedback page (Iteration 0).</p>
+
+    <h2 class="h3">What to capture</h2>
+    <ul>
+      <li>What device you used (phone/tablet/desktop)</li>
+      <li>What felt confusing or slow</li>
+      <li>Any missing task cards or blocks</li>
+      <li>Anything that caused accidental overload</li>
+    </ul>
+
+    <p class="muted small">Tip: paste feedback into a GitHub issue or your notes.</p>
+    <p><a class="btn btn-secondary" href="index.html">Back to App</a></p>
+  </main>
+
+  <script>
+    (function() {
+      const key = "app_theme";
+      const saved = localStorage.getItem(key);
+      if (saved) document.documentElement.setAttribute("data-theme", saved);
+      else {
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
+      }
+    })();
+  </script>
+</body>
+</html>
