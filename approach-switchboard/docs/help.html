@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-mode="simple">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Help • Approach Switchboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <div class="app-title">
+        <h1>Help</h1>
+        <p class="subtitle">How to use Approach Switchboard quickly and confidently.</p>
+      </div>
+
+      <div class="status-bar" aria-label="App status">
+        <span class="pill" id="pillVersion" aria-label="App version">—</span>
+        <span class="pill pill-env" id="pillEnv" aria-label="Runtime environment">—</span>
+      </div>
+    </div>
+
+    <nav class="header-actions" aria-label="Header actions">
+      <a class="btn btn-secondary" href="index.html" role="button">Back</a>
+      <a class="btn btn-secondary" href="feedback.html" role="button">Feedback</a>
+      <button class="btn" id="btnTheme" type="button" aria-label="Toggle theme">Theme</button>
+      <span class="sr-only" id="themeStatus" aria-live="polite"></span>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2 class="card-title">What this app does</h2>
+      <p class="muted">Approach Switchboard helps you decide whether your task needs basic prompting, context engineering, retrieval (RAG), or fine-tuning—based on Chapter 1 concepts.</p>
+
+      <h2 class="card-title">How to use it</h2>
+      <ol class="list">
+        <li>Pick a scenario type.</li>
+        <li>Toggle the signals that match your real situation.</li>
+        <li>Read the recommendation and follow the “What to do next” checklist.</li>
+        <li>Copy or download the recommendation and paste it into your workflow.</li>
+      </ol>
+
+
+      <h2 class="card-title">Quick start (recommended)</h2>
+      <ol class="list">
+        <li>Stay in <strong>Simple</strong> mode if you’re new (it hides advanced tools).</li>
+        <li>Tap a <strong>Demo story</strong> to see a realistic example instantly.</li>
+        <li>Tap <strong>Why?</strong> on a signal to learn what it changes.</li>
+        <li>Use the <strong>Tour</strong> button anytime for a guided walkthrough.</li>
+      </ol>
+
+
+      <h2 class="card-title">Snapshots</h2>
+      <p class="muted">Use Snapshots to save up to 10 decision states locally, then export/import history as JSON for comparison across scenarios.</p>
+
+      <div class="divider"></div>
+      <p><a class="btn btn-secondary" href="index.html">Back to App</a></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="muted">Placeholder Help Page</span>
+  </footer>
+
+  <script src="js/common.js"></script>
+</body>
+</html>
