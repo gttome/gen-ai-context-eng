@@ -15,7 +15,7 @@ All initial exercises are organized within the `chp1` directory:
 * **[Failure Mode Clinic](./chp1/failure-mode-clinic/docs)**: Debugging and edge-case handling.
 * **[Iteration Lab](./chp1/iteration-lab/docs)**: Rapid prototyping and prompt refinement.
 * **[Memory Mixer](./chp1/memory-mixer/docs)**: Long-term context and state management.
-* **[RAG Snippet Surgeon](./chp1/rag-snippet-surgeon/docs)**: Optimizing retrieval-augmented generation.
+* **[RAG Snippet Surgeon](./chp1/rag-snippet-surgeon)**: Optimizing retrieval-augmented generation.
 
 ---
 *Last Updated: 2026*
