@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pattern Orchestrator Lab — Feedback</title>
+  <meta name="description" content="Provide feedback for Pattern Orchestrator Lab.">
+  <link rel="icon" href="assets/media/pol-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div>
+          <div class="brand-title">Pattern Orchestrator Lab</div>
+          <div class="brand-subtitle">Feedback workspace</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="pill"><strong>Version</strong> <span data-version-pill>v1.4.0</span></span>
+        <span class="pill"><strong>Environment</strong> <span data-env-pill>Local</span></span>
+        <a class="btn btn-secondary" href="index.html">Back to lab</a>
+        <a class="btn btn-secondary" href="help.html">Help</a>
+        <button class="btn" data-theme-toggle>Dark theme</button>
+      </div>
+    </header>
+
+    <section class="hero-card page-hero">
+      <div class="section-kicker">Feedback</div>
+      <h1 style="margin-top:10px;">Capture what felt clear, confusing, or worth improving.</h1>
+      <p>This page stores feedback locally in your browser. No backend is used. You can save the note, copy it, or download it as a JSON file for handoff.</p>
+    </section>
+
+    <div class="page-grid">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="section-kicker">Feedback form</div>
+            <h3>Local note capture</h3>
+          </div>
+        </div>
+        <form class="form-grid" id="feedbackForm">
+          <div class="field">
+            <label for="name">Name or role</label>
+            <input id="name" name="name" placeholder="Optional">
+          </div>
+          <div class="field">
+            <label for="mission">Mission discussed</label>
+            <select id="mission" name="mission"></select>
+          </div>
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option>Instructional clarity</option>
+              <option>Mission flow</option>
+              <option>Scoring explanation</option>
+              <option>Visual design</option>
+              <option>Accessibility</option>
+              <option>Bug report</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="rating">Confidence after mission</label>
+            <select id="rating" name="rating">
+              <option>Much lower</option>
+              <option>Lower</option>
+              <option>About the same</option>
+              <option>Higher</option>
+              <option>Much higher</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="note">Feedback note</label>
+            <textarea id="note" name="note" class="light" placeholder="What worked? What felt confusing? What should change next?"></textarea>
+          </div>
+          <div class="button-row">
+            <button type="submit" class="btn btn-primary">Save locally</button>
+            <button type="button" class="btn" id="copyFeedback">Copy note</button>
+            <button type="button" class="btn" id="downloadFeedback">Download JSON</button>
+            <button type="button" class="btn btn-ghost" id="clearFeedback">Clear</button>
+          </div>
+          <div class="status-line" id="feedbackStatus" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="section-kicker">Preview</div>
+            <h3>Saved feedback preview</h3>
+          </div>
+        </div>
+        <div class="readout" id="feedbackPreview">No saved feedback yet.</div>
+        <p class="footer-note">Saved feedback lives in localStorage so you can preserve it during iteration work without a backend.</p>
+      </section>
+    </div>
+  </div>
+
+  <script src="assets/data/config.js"></script>
+  <script src="assets/data/missions.js"></script>
+  <script src="assets/js/core/shell.js"></script>
+  <script src="assets/js/core/utils.js"></script>
+  <script>
+    (function () {
+      const storageKey = window.POLConfig.feedbackStorageKey;
+      const form = document.getElementById('feedbackForm');
+      const status = document.getElementById('feedbackStatus');
+      const preview = document.getElementById('feedbackPreview');
+
+      function getStorage() {
+        try {
+          if (window && window.localStorage) return window.localStorage;
+        } catch (err) {}
+        return null;
+      }
+
+      function readSaved() {
+        try {
+          const storage = getStorage();
+          if (!storage) return null;
+          const raw = storage.getItem(storageKey);
+          return raw ? JSON.parse(raw) : null;
+        } catch (err) { return null; }
+      }
+
+      function writeSaved(value) {
+        const storage = getStorage();
+        if (!storage) return false;
+        storage.setItem(storageKey, JSON.stringify(value));
+        return true;
+      }
+
+      function populateMissions() {
+        const select = document.getElementById('mission');
+        select.innerHTML = window.POLMissionData.missions.map(m => `<option value="${m.title}">${m.title}</option>`).join('');
+      }
+
+      function populateForm(saved) {
+        if (!saved) return;
+        Object.keys(saved).forEach(key => {
+          if (form.elements[key]) form.elements[key].value = saved[key];
+        });
+        preview.textContent = JSON.stringify(saved, null, 2);
+      }
+
+      function buildPayload() {
+        return {
+          name: form.elements.name.value.trim(),
+          mission: form.elements.mission.value,
+          category: form.elements.category.value,
+          rating: form.elements.rating.value,
+          note: form.elements.note.value.trim(),
+          savedAt: new Date().toISOString()
+        };
+      }
+
+      async function copyPayload() {
+        const payload = buildPayload();
+        await window.POLUtils.copyText(JSON.stringify(payload, null, 2));
+        status.textContent = 'Feedback copied to the clipboard.';
+      }
+
+      function downloadPayload() {
+        const payload = buildPayload();
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'pol_feedback.json';
+        link.click();
+        URL.revokeObjectURL(link.href);
+        status.textContent = 'Feedback JSON downloaded.';
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        window.POLShell.init();
+        populateMissions();
+        populateForm(readSaved());
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          const payload = buildPayload();
+          const saved = writeSaved(payload);
+          preview.textContent = JSON.stringify(payload, null, 2);
+          status.textContent = saved ? 'Feedback saved locally.' : 'Feedback preview updated, but localStorage is unavailable in this runtime.';
+        });
+        document.getElementById('copyFeedback').addEventListener('click', copyPayload);
+        document.getElementById('downloadFeedback').addEventListener('click', downloadPayload);
+        document.getElementById('clearFeedback').addEventListener('click', function () {
+          const storage = getStorage();
+          if (storage) storage.removeItem(storageKey);
+          form.reset();
+          populateMissions();
+          preview.textContent = 'No saved feedback yet.';
+          status.textContent = 'Local feedback cleared.';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
