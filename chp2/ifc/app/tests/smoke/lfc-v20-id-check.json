@@ -1,0 +1,24 @@
+{
+  "version": "v20",
+  "html_ids": 21,
+  "js_getElementById_refs": [
+    "advancedStage",
+    "artifactSnapshot",
+    "caseSnapshot",
+    "clinicStage",
+    "environmentPill",
+    "liveModeChip",
+    "liveResultsBox",
+    "missionMap",
+    "notebookBox",
+    "phaseMapChip",
+    "reviewStage",
+    "setupStage",
+    "stageSummaryChip",
+    "stageTabs",
+    "supportSurface",
+    "systemPulseBox",
+    "versionPill"
+  ],
+  "missing_ids": []
+}

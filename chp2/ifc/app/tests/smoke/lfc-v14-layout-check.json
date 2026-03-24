@@ -1,0 +1,11 @@
+{
+  "version": "v14",
+  "checks": {
+    "phaseNavigatorSticky": true,
+    "phaseNavigatorOpaqueSurface": true,
+    "stickyAwareScrollHelper": true,
+    "scrollToIdUsesStickyOffset": true,
+    "openBestPracticeReviewUsesStickyOffset": true
+  },
+  "notes": "v14 fixes the sticky phase-header overlap bug by using sticky-aware scroll offsets for in-clinic jumps and by making the pinned phase shell visually opaque."
+}

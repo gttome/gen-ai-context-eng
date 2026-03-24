@@ -1,0 +1,6 @@
+{
+  "impact_in_right_rail": true,
+  "impact_before_system_pulse": true,
+  "impact_not_in_center_column_card_form": true,
+  "workspace_before_right_rail": true
+}

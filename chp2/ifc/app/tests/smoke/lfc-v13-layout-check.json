@@ -1,0 +1,9 @@
+{
+  "version": "v13",
+  "phaseNavigatorSticky": false,
+  "phaseNavigatorTopOffset": true,
+  "mobileFallbackStatic": true,
+  "centerLiveDeltaRemoved": true,
+  "rightRailLiveResultsPresent": true,
+  "status": "pass"
+}

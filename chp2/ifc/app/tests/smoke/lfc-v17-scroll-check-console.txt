@@ -1,0 +1,46 @@
+{
+  "version": "v17",
+  "passed": true,
+  "results": [
+    {
+      "name": "version updated to v17",
+      "ok": true
+    },
+    {
+      "name": "storage key updated to v17",
+      "ok": true
+    },
+    {
+      "name": "diagnosis panel anchor exists",
+      "ok": true
+    },
+    {
+      "name": "repair panel anchor exists",
+      "ok": true
+    },
+    {
+      "name": "clinic scroll target maps diagnosis list to diagnosis panel",
+      "ok": true
+    },
+    {
+      "name": "clinic scroll target maps repair controls to repair panel",
+      "ok": true
+    },
+    {
+      "name": "diagnosis selection scrolls to repair panel",
+      "ok": true
+    },
+    {
+      "name": "header advance uses diagnosis panel first",
+      "ok": true
+    },
+    {
+      "name": "header advance uses repair panel second",
+      "ok": true
+    },
+    {
+      "name": "right rail guidance is step aware",
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "impact_in_right_rail": true,
+  "impact_before_system_pulse": true,
+  "center_result_has_no_live_delta": true,
+  "repair_step_has_no_jump_to_live_results": true,
+  "case_selection_auto_enters_clinic": true,
+  "setup_copy_mentions_auto_open": true
+}

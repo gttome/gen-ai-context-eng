@@ -1,0 +1,46 @@
+{
+  "versionText": "Version v09",
+  "discussionToggleText": "Discussion mode: on",
+  "setupSnapshot": {
+    "stageTitle": "Case Setup",
+    "welcomeVisible": true,
+    "workspaceHidden": true,
+    "rightRailHidden": true
+  },
+  "clinicSnapshot": {
+    "stageTitle": "Phase Clinic",
+    "workspaceVisible": true,
+    "rightRailVisible": true,
+    "leftRailVisible": true,
+    "phaseTitle": "Phase 1 · Discovery",
+    "nextButtonDisabled": true
+  },
+  "phaseTransition": {
+    "activePhaseIndex": 1,
+    "phaseName": "Phase 2 · Selection",
+    "phaseNavigatorScrolled": true,
+    "repairLockedBeforeDiagnosis": true,
+    "repairGateTextVisible": true,
+    "nextButtonDisabledBeforeRepair": true,
+    "nextButtonEnabledAfterRepair": true
+  },
+  "reviewSnapshot": {
+    "activeStage": "review",
+    "stageTitle": "Run Review",
+    "summaryVisible": true,
+    "benchmarkVisible": true,
+    "driftHidden": true
+  },
+  "advancedSnapshot": {
+    "stageTitle": "Advanced Practice",
+    "driftVisible": true,
+    "facilitatorVisible": true,
+    "replayVisible": true,
+    "driftFinalResolved": true,
+    "driftFinalScore": 83,
+    "driftFinalTitle": "Branch partially contained · 83"
+  },
+  "benchmarkComposite": 97,
+  "facilitatorKickoff": "Open with this question: What makes HR Policy Q&A Incident look deceptively good at first glance, and where is the hidden lifecycle debt?",
+  "alerts": []
+}

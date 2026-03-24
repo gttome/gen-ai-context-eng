@@ -1,0 +1,38 @@
+{
+  "version": "v16",
+  "passed": true,
+  "results": [
+    {
+      "name": "down-only ignores upward target",
+      "ok": true
+    },
+    {
+      "name": "down-only allows lower target",
+      "ok": true
+    },
+    {
+      "name": "hidden target is ignored",
+      "ok": true
+    },
+    {
+      "name": "next-phase preserves clinic floor",
+      "ok": true
+    },
+    {
+      "name": "runRepair flows to result panel",
+      "ok": true
+    },
+    {
+      "name": "diagnosis selection flows to repair list",
+      "ok": true
+    },
+    {
+      "name": "scroll helper enforces down-only guard",
+      "ok": true
+    },
+    {
+      "name": "left and right step guide panels exist",
+      "ok": true
+    }
+  ]
+}

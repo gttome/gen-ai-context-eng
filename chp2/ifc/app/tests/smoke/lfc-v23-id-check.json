@@ -1,0 +1,23 @@
+{
+  "version": "v23",
+  "missingIds": [],
+  "checkedIds": [
+    "advancedStage",
+    "artifactSnapshot",
+    "caseSnapshot",
+    "clinicStage",
+    "environmentPill",
+    "liveModeChip",
+    "liveResultsBox",
+    "missionMap",
+    "notebookBox",
+    "phaseMapChip",
+    "reviewStage",
+    "setupStage",
+    "stageSummaryChip",
+    "stageTabs",
+    "supportSurface",
+    "systemPulseBox",
+    "versionPill"
+  ]
+}
