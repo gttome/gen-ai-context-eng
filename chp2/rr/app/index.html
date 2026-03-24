@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rubric Runner Lab</title>
+  <meta name="description" content="Rubric Runner Lab is a Chapter 2 learning app for evaluation, iteration, and evidence-based AI output review.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header class="shell-header">
+    <div class="shell-header-inner">
+      <div class="branding">
+        <div class="brand-mark" aria-hidden="true">RR</div>
+        <div class="brand-copy">
+          <h1>Rubric Runner Lab</h1>
+          <p>Chapter 2 evaluation and iteration studio for non-developer learners</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="pill" id="version-pill">Version • --</div>
+        <div class="pill" id="environment-pill">Environment • --</div>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">Theme • --</button>
+        <a class="action-link" href="help.html">Help</a>
+        <a class="action-link" href="feedback.html">Feedback</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="hero-card" aria-labelledby="hero-title">
+      <div class="hero-grid">
+        <div>
+          <h2 id="hero-title">Review, score, diagnose, change, compare, decide.</h2>
+          <p id="hero-copy">Rubric Runner Lab turns Chapter 2’s evaluation-and-iteration logic into a short, evidence-based learning loop. Score outputs against a rubric, map the dominant failure pattern, choose one targeted improvement, and compare the same cases before deciding whether to deploy, iterate, or revisit earlier lifecycle work.</p>
+          <div class="tag-row" id="hero-tags"></div>
+        </div>
+        <div class="hero-stats">
+          <div class="info-tile"><strong>5-10 min</strong><span class="muted">Core guided session</span></div>
+          <div class="info-tile"><strong>5 scenarios</strong><span class="muted">Policy, support, executive, rollout, handoff</span></div>
+          <div class="info-tile"><strong>6 metrics</strong><span class="muted">Always visible and consequence-driven</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        This app reinforces Chapter 2’s core rule: <strong>evaluation comes before trustworthy iteration</strong>. Use the same test cases, make one targeted change, and compare the evidence instead of relying on gut feel.
+      </div>
+    </section>
+
+    <section class="panel walkthrough-panel" id="walkthrough-panel" aria-labelledby="walkthrough-title"></section>
+
+    <section class="panel current-task-panel" aria-labelledby="current-task-title">
+      <div class="panel-header">
+        <div>
+          <h2 id="current-task-title">What to do now</h2>
+          <p class="muted" id="current-task-subtitle">Pick a scenario to begin.</p>
+        </div>
+        <button class="button" id="current-task-button" type="button">Go to the current step</button>
+      </div>
+      <div class="current-task-grid">
+        <div>
+          <div class="status-banner" id="app-status" role="status" aria-live="polite">Choose a scenario to begin. The app will guide you one step at a time.</div>
+          <div style="height: 12px"></div>
+          <div class="note-box current-task-message" id="current-task-message">Start with any scenario card. After that, the lab will take you to the next unfinished step automatically.</div>
+        </div>
+        <article class="summary-card">
+          <h3>Simple path</h3>
+          <div class="task-checklist" id="current-task-checklist"></div>
+        </article>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="sidebar" aria-label="Session navigation and metrics">
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Core path</h2>
+              <p class="muted">Visible progress for the current run</p>
+            </div>
+            <button class="small-button" id="restart-button" type="button">Restart run</button>
+          </div>
+          <div class="progress-line" aria-hidden="true"><span id="core-progress-fill" style="width:0%"></span></div>
+          <div class="step-tracker" id="step-tracker"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Live metrics</h2>
+              <p class="muted">Updated from the current scoring, diagnosis, and comparison state</p>
+            </div>
+          </div>
+          <div class="metric-grid" id="metric-grid"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Coach</h2>
+              <p class="muted">Plain-language guidance that changes with the step you are on</p>
+            </div>
+          </div>
+          <div id="coach-box" class="coaching-box">Select a scenario to start the lab.</div>
+        </section>
+      </aside>
+
+      <section class="workspace" aria-label="Primary learning workspace">
+        <div class="workspace-stack">
+          <section class="panel" id="scenario-panel">
+            <div class="panel-header">
+              <div>
+                <h2>1. Choose a scenario</h2>
+                <p class="muted">All scenarios reinforce Chapter 2’s evaluation-and-iteration discipline with prebuilt artifacts.</p>
+              </div>
+            </div>
+            <div class="scenario-grid" id="scenario-grid"></div>
+          </section>
+
+          <section class="panel" id="scenario-summary-panel">
+            <div class="panel-header">
+              <div>
+                <h2>2. Review what good looks like</h2>
+                <p class="muted">Read the goal, rubric, and test cases before you score.</p>
+              </div>
+            </div>
+            <div class="mini-status" id="summary-status">Choose a scenario card, then read this section. The Start Scoring button is waiting at the bottom of this section.</div>
+            <div id="scenario-summary"></div>
+            <div class="section-cta-row">
+              <div class="status-banner cta-helper">When you finish reading this section, press the button below to start the guided scoring run.</div>
+              <button class="button section-cta-button" id="start-session-button" type="button" disabled>Start scoring now</button>
+            </div>
+          </section>
+
+          <section class="panel" id="scoring-panel">
+            <div class="panel-header">
+              <div>
+                <h2>3. Score the baseline outputs</h2>
+                <p class="muted">Use the simple 0-1-2 scale. The app tracks your progress for you.</p>
+              </div>
+            </div>
+            <div class="mini-status" id="scoring-status">0 of 0 scores complete.</div>
+            <div class="status-banner" id="scoring-scale">Scoring scale: <strong>0 = weak</strong>, <strong>1 = partial</strong>, <strong>2 = strong</strong>. Do not overthink it—score the evidence you can see.</div>
+            <div style="height: 12px"></div>
+            <div class="case-grid" id="case-grid"></div>
+            <div class="section-cta-row">
+              <div class="status-banner cta-helper">When you finish all baseline scores, use the button below to move into the best-practice review.</div>
+              <button class="button section-cta-button" id="complete-scoring-button" type="button" disabled>Finish scoring and continue</button>
+            </div>
+          </section>
+
+          <section class="panel" id="review-panel">
+            <div class="panel-header">
+              <div>
+                <h2>4. Best-practice review</h2>
+                <p class="muted">You score first. Then the lab shows where a stronger evaluator would score differently and why.</p>
+              </div>
+            </div>
+            <div id="review-area"></div>
+          </section>
+
+          <section class="panel" id="heatmap-panel">
+            <div class="panel-header">
+              <div>
+                <h2>5. See the score pattern</h2>
+                <p class="muted">This gives you a fast visual read on where the weak spots are.</p>
+              </div>
+            </div>
+            <div id="heatmap"></div>
+            <div class="legend muted" id="heatmap-legend"></div>
+          </section>
+
+          <section class="panel" id="diagnosis-panel">
+            <div class="panel-header">
+              <div>
+                <h2>6. Name the main failure</h2>
+                <p class="muted">Pick the biggest reason each output is risky or weak.</p>
+              </div>
+            </div>
+            <div class="mini-status" id="diagnosis-status">Finish scoring to unlock failure tagging.</div>
+            <div id="diagnosis-grid"></div>
+          </section>
+
+          <section class="panel" id="change-panel">
+            <div class="panel-header">
+              <div>
+                <h2>7. Choose one fix</h2>
+                <p class="muted">Use one targeted change instead of stacking multiple tweaks.</p>
+              </div>
+            </div>
+            <div class="mini-status" id="change-status">Tag the main failure in every case first.</div>
+            <div class="change-grid" id="change-grid"></div>
+          </section>
+
+          <section class="panel" id="comparison-panel">
+            <div class="panel-header">
+              <div>
+                <h2>8. See what changed</h2>
+                <p class="muted">Compare the same cases before and after to see whether the fix actually helped.</p>
+              </div>
+            </div>
+            <div id="comparison-area"></div>
+          </section>
+
+          <section class="panel" id="decision-panel">
+            <div class="panel-header">
+              <div>
+                <h2>9. Choose the next move</h2>
+                <p class="muted">Deploy, iterate again, or revisit earlier lifecycle work.</p>
+              </div>
+            </div>
+            <div id="decision-area"></div>
+          </section>
+
+          <section class="panel" id="takeaway-panel">
+            <div class="panel-header">
+              <div>
+                <h2>10. Session takeaway</h2>
+                <p class="muted">A short learning summary of what this run taught you</p>
+              </div>
+            </div>
+            <div id="takeaway-area"></div>
+          </section>
+
+          <section class="panel" id="explore-panel">
+            <div class="panel-header">
+              <div>
+                <h2>11. Optional learning checks</h2>
+                <p class="muted">The core path is already complete. Use these only if you want one more explanation or a harder check.</p>
+              </div>
+            </div>
+            <div id="explore-area"></div>
+          </section>
+        </div>
+      </section>
+    </div>
+
+    <p class="footer-note">Static browser build • mobile-first • no live model calls • local persistence enabled</p>
+  </main>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+Chromium in this environment blocks both localhost and file:// navigation with an organization policy screen, so true browser click-through validation could not be completed here. Local logic and render-string checks were executed instead.

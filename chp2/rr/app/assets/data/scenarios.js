@@ -1,0 +1,1252 @@
+export const appData = {
+  "app": {
+    "name": "Rubric Runner Lab",
+    "version": "v1.5.0",
+    "stateKey": "rr_lab_state_v1_5",
+    "generatedFrom": [
+      "Chapter 2 Context Engineering Lifecycle v2.docx",
+      "rr_lab_docs_v1.zip"
+    ]
+  },
+  "failureTypes": [
+    {
+      "id": "grounding",
+      "label": "Weak Grounding",
+      "description": "The output adds unsupported claims or misses the source boundary."
+    },
+    {
+      "id": "omission",
+      "label": "Risky Omission",
+      "description": "A required fact, exception, or next step is missing."
+    },
+    {
+      "id": "constraints",
+      "label": "Constraint Drift",
+      "description": "The output ignores tone, policy, format, or scope rules."
+    },
+    {
+      "id": "actionability",
+      "label": "Weak Actionability",
+      "description": "The answer sounds fluent but does not tell the user what to do next."
+    },
+    {
+      "id": "tradeoff",
+      "label": "Tradeoff Risk",
+      "description": "A change helped one dimension but weakened another."
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "policy-answer-reliability",
+      "slug": "policy",
+      "title": "Policy Answer Reliability",
+      "phaseFocus": [
+        "Execution",
+        "Evaluation",
+        "Iteration"
+      ],
+      "estimatedMinutes": "5-8 minutes",
+      "goal": "Score policy-answer outputs for factual grounding, completeness, and boundary adherence, then decide whether the right next move is iterate, deploy, or revisit earlier phase work.",
+      "chapterLinks": [
+        "Evaluation uses explicit rubrics and representative test cases.",
+        "Iteration should target a specific failure mode and re-run the same cases.",
+        "Weak outputs can signal missing shaping or retrieval discipline."
+      ],
+      "promptVersion": "v0.3-baseline",
+      "scenarioBrief": "A workplace policy assistant answers employee questions about travel and reimbursement. The team has a decent demo, but several answers may overclaim policy coverage or skip important exceptions.",
+      "rubric": [
+        {
+          "id": "grounding",
+          "label": "Factual grounding",
+          "description": "Claims stay inside the approved policy excerpts and do not invent rules."
+        },
+        {
+          "id": "completeness",
+          "label": "Completeness",
+          "description": "The answer covers the main rule, exceptions, and next-step guidance."
+        },
+        {
+          "id": "boundary",
+          "label": "Policy boundary adherence",
+          "description": "The answer respects privacy, escalation, and approval boundaries."
+        },
+        {
+          "id": "clarity",
+          "label": "Clarity",
+          "description": "The answer is easy to follow and keeps the action path obvious."
+        }
+      ],
+      "testCases": [
+        {
+          "id": "PA-1",
+          "question": "Can I expense upgraded airfare if my manager verbally approved it?",
+          "baselineOutput": "Yes. Verbal approval is enough, so you can expense the full upgraded fare as long as the trip was work related.",
+          "expectedSignals": [
+            "Needs written approval requirement",
+            "Must note reimbursement cap",
+            "Should avoid absolute approval claim"
+          ],
+          "bestPracticeScores": {
+            "grounding": 0,
+            "completeness": 0,
+            "boundary": 0,
+            "clarity": 1
+          }
+        },
+        {
+          "id": "PA-2",
+          "question": "Can I book a hotel outside the preferred tool if prices are lower on another site?",
+          "baselineOutput": "Book wherever the price is lowest. Preferred booking tools are mainly recommendations and are optional when cheaper rates exist.",
+          "expectedSignals": [
+            "Should mention approved exception path",
+            "Needs boundary around pre-approval",
+            "Must not weaken policy controls"
+          ],
+          "bestPracticeScores": {
+            "grounding": 0,
+            "completeness": 0,
+            "boundary": 0,
+            "clarity": 1
+          }
+        },
+        {
+          "id": "PA-3",
+          "question": "What should I do if the client dinner might exceed the meal cap?",
+          "baselineOutput": "Submit the receipt normally. If it goes over the cap, finance will usually make an exception for client-facing events.",
+          "expectedSignals": [
+            "Needs escalation path",
+            "Should not assume exception approval",
+            "Must preserve policy tone"
+          ],
+          "bestPracticeScores": {
+            "grounding": 0,
+            "completeness": 1,
+            "boundary": 0,
+            "clarity": 1
+          }
+        }
+      ],
+      "changeOptions": [
+        {
+          "id": "policy-c1",
+          "label": "Tighten source-boundary instructions",
+          "summary": "Add a must-use-policy-only instruction plus explicit escalation language when approval evidence is missing.",
+          "rationale": "Best when unsupported claims and overconfident policy language dominate.",
+          "affectedFailure": "grounding",
+          "deltaByCriterion": {
+            "grounding": 1,
+            "completeness": 0,
+            "boundary": 1,
+            "clarity": 0
+          },
+          "caseDeltas": {
+            "PA-1": {
+              "grounding": 1,
+              "completeness": 1,
+              "boundary": 1,
+              "clarity": 0
+            },
+            "PA-2": {
+              "grounding": 1,
+              "completeness": 0,
+              "boundary": 1,
+              "clarity": 0
+            },
+            "PA-3": {
+              "grounding": 1,
+              "completeness": 0,
+              "boundary": 1,
+              "clarity": 0
+            }
+          },
+          "revisedOutputs": {
+            "PA-1": "The travel policy requires documented approval for upgraded airfare. If you only have verbal approval, confirm the written approval requirement before submitting and note the reimbursement cap.",
+            "PA-2": "Use the preferred booking tool unless an approved exception path applies. A lower public price alone is not enough; follow the exception process and capture approval before booking outside the tool.",
+            "PA-3": "Do not assume the cap exception will be granted. If the dinner may exceed the meal cap, escalate through the policy\u2019s approval path before the event and document the client-facing reason."
+          }
+        },
+        {
+          "id": "policy-c2",
+          "label": "Add exception checklist",
+          "summary": "Inject a short checklist of exception triggers and required next actions before answering.",
+          "rationale": "Best when outputs miss key exceptions, but it may slightly reduce brevity and elegance.",
+          "affectedFailure": "omission",
+          "deltaByCriterion": {
+            "grounding": 0,
+            "completeness": 1,
+            "boundary": 0,
+            "clarity": -1
+          },
+          "caseDeltas": {
+            "PA-1": {
+              "grounding": 0,
+              "completeness": 1,
+              "boundary": 0,
+              "clarity": -1
+            },
+            "PA-2": {
+              "grounding": 0,
+              "completeness": 1,
+              "boundary": 0,
+              "clarity": 0
+            },
+            "PA-3": {
+              "grounding": 0,
+              "completeness": 1,
+              "boundary": 1,
+              "clarity": -1
+            }
+          },
+          "revisedOutputs": {
+            "PA-1": "Check three things before expensing upgraded airfare: written approval, reimbursement cap, and booking justification. If written approval is missing, do not state that the full upgrade is automatically reimbursable.",
+            "PA-2": "Before booking outside the preferred tool, confirm whether an exception is allowed, whether approval is needed, and how the lower rate must be documented.",
+            "PA-3": "Use an exception checklist: meal cap threshold, client-facing justification, pre-event approval path, and receipt documentation."
+          }
+        }
+      ],
+      "exploreMore": {
+        "title": "Optional learning checks",
+        "options": [
+          {
+            "id": "strict",
+            "label": "Apply stricter deploy threshold",
+            "description": "Require no criterion score below 1 and an average of 1.7+ before the lab recommends deployment."
+          },
+          {
+            "id": "why",
+            "label": "Why this fix helped",
+            "description": "Explain what the selected fix was trying to improve and where a tradeoff might still appear."
+          },
+          {
+            "id": "skip",
+            "label": "What if you skipped evaluation?",
+            "description": "Show the risk of trusting a fluent answer before scoring the same cases against a rubric."
+          }
+        ]
+      },
+      "startingRecommendations": [
+        "Do not trust a fluent policy answer without checking the boundary conditions.",
+        "Representative tests matter more than one impressive demo answer."
+      ],
+      "coaching": {
+        "failureGuidance": {
+          "grounding": {
+            "title": "Why weak grounding matters in policy work",
+            "why": "In this scenario, the biggest risk is sounding certain when the policy evidence does not support that certainty.",
+            "notice": "Watch for automatic approval language, unsupported exceptions, or rules that were never stated in the policy source.",
+            "upstreamPhase": "Selection or Shaping",
+            "phaseWhy": "The team may have omitted critical policy lines or failed to force source-bounded wording in the context."
+          },
+          "omission": {
+            "title": "Why omission is risky here",
+            "why": "Policy answers fail when they leave out the exception path, approval requirement, or next step the employee actually needs.",
+            "notice": "Check whether the answer covers the rule, the exception, and what the employee should do next.",
+            "upstreamPhase": "Discovery or Shaping",
+            "phaseWhy": "The success criteria may not have defined complete policy-safe answers clearly enough."
+          },
+          "constraints": {
+            "title": "Why constraint drift matters here",
+            "why": "This scenario has hard policy boundaries. A friendly answer that ignores those boundaries is still unreliable.",
+            "notice": "Look for missing approval boundaries, missing escalation language, or privacy/authority rules being softened.",
+            "upstreamPhase": "Shaping",
+            "phaseWhy": "The context likely did not make the approval and escalation boundaries explicit enough."
+          }
+        },
+        "changeGuidance": {
+          "policy-c1": {
+            "title": "Why this fix fits the policy scenario",
+            "why": "This change directly attacks the main risk in policy answers: unsupported certainty.",
+            "notice": "In the comparison, check whether the revised answer now stays inside the source and tells the user when to escalate instead of promising approval.",
+            "phaseLink": "This is mostly a Shaping-strengthening move because it tells the model how to behave when approval evidence is missing."
+          },
+          "policy-c2": {
+            "title": "Why this fix fits the policy scenario",
+            "why": "This change helps when the answer leaves out the exception path or next step even if the tone still sounds confident.",
+            "notice": "In the comparison, check whether the revised answer now includes the missing checkpoints without becoming vague.",
+            "phaseLink": "This often reveals whether Discovery defined a complete answer clearly enough before the team started iterating."
+          }
+        },
+        "exploreGuidance": {
+          "strict": {
+            "title": "Why the stricter rule changes the decision",
+            "body": "Policy use cases often need a higher deployment bar because one weak boundary answer can create real workflow or compliance risk."
+          },
+          "why": {
+            "title": "How to read the selected fix in this scenario",
+            "body": "Use this check to see whether the fix reduced unsupported certainty, closed missing exception paths, or simply made the wording sound safer without improving substance."
+          },
+          "skip": {
+            "title": "Why skipping evaluation is dangerous here",
+            "body": "A fluent policy answer can sound ready even when it invents approval rules. The rubric exposes that gap before deployment."
+          }
+        }
+      }
+    },
+    {
+      "id": "support-triage-summary",
+      "slug": "support",
+      "title": "Support Case Triage Summary",
+      "phaseFocus": [
+        "Execution",
+        "Evaluation",
+        "Iteration"
+      ],
+      "estimatedMinutes": "5-8 minutes",
+      "goal": "Judge whether support summaries preserve the right facts, escalation triggers, and next steps, then compare whether a targeted change improves completeness without causing noisy verbosity.",
+      "chapterLinks": [
+        "Evaluation should score against a rubric instead of gut feel.",
+        "Iteration should compare the same cases before and after a targeted change.",
+        "A fluent answer can still be operationally weak if it misses escalation details."
+      ],
+      "promptVersion": "v0.4-baseline",
+      "scenarioBrief": "A support operations team uses an LLM to summarize incoming cases for a triage queue. The summaries sound polished, but leadership worries that critical escalation triggers may be dropped.",
+      "rubric": [
+        {
+          "id": "facts",
+          "label": "Fact capture",
+          "description": "The summary preserves the essential case facts without distortion."
+        },
+        {
+          "id": "actions",
+          "label": "Actionability",
+          "description": "The summary tells the next reviewer what they should do next."
+        },
+        {
+          "id": "escalation",
+          "label": "Escalation triggers",
+          "description": "The summary preserves urgency markers, SLA risk, and escalation conditions."
+        },
+        {
+          "id": "brevity",
+          "label": "Brevity discipline",
+          "description": "The summary stays concise enough for queue use without losing critical detail."
+        }
+      ],
+      "testCases": [
+        {
+          "id": "ST-1",
+          "question": "Payment failures spike after a regional release; two enterprise accounts mention contract penalties.",
+          "baselineOutput": "Customers are reporting payment trouble after the release. The issue looks widespread, so the team should review it soon.",
+          "expectedSignals": [
+            "Needs enterprise/penalty signal",
+            "Should flag release correlation",
+            "Must preserve urgency"
+          ],
+          "bestPracticeScores": {
+            "facts": 1,
+            "actions": 1,
+            "escalation": 0,
+            "brevity": 2
+          }
+        },
+        {
+          "id": "ST-2",
+          "question": "A hospital customer reports export corruption but has a temporary workaround.",
+          "baselineOutput": "Customer found a workaround for an export problem. No immediate action is needed while engineering investigates.",
+          "expectedSignals": [
+            "Should preserve healthcare account criticality",
+            "Workaround does not erase risk",
+            "Needs clear next step"
+          ],
+          "bestPracticeScores": {
+            "facts": 1,
+            "actions": 0,
+            "escalation": 0,
+            "brevity": 2
+          }
+        },
+        {
+          "id": "ST-3",
+          "question": "A new admin cannot complete SSO setup and their renewal call is tomorrow.",
+          "baselineOutput": "The admin is having SSO trouble and needs help before a meeting tomorrow.",
+          "expectedSignals": [
+            "Must preserve renewal timing",
+            "Should recommend ownership path",
+            "Needs queue priority context"
+          ],
+          "bestPracticeScores": {
+            "facts": 1,
+            "actions": 0,
+            "escalation": 1,
+            "brevity": 2
+          }
+        }
+      ],
+      "changeOptions": [
+        {
+          "id": "support-c1",
+          "label": "Add escalation trigger checklist",
+          "summary": "Force the summary template to capture urgency, account criticality, and next-owner recommendations.",
+          "rationale": "Best when the summaries sound fine but hide operational risk.",
+          "affectedFailure": "actionability",
+          "deltaByCriterion": {
+            "facts": 0,
+            "actions": 1,
+            "escalation": 1,
+            "brevity": 0
+          },
+          "caseDeltas": {
+            "ST-1": {
+              "facts": 1,
+              "actions": 1,
+              "escalation": 1,
+              "brevity": 0
+            },
+            "ST-2": {
+              "facts": 0,
+              "actions": 1,
+              "escalation": 1,
+              "brevity": -1
+            },
+            "ST-3": {
+              "facts": 0,
+              "actions": 1,
+              "escalation": 1,
+              "brevity": 0
+            }
+          },
+          "revisedOutputs": {
+            "ST-1": "Regional release likely triggered widespread payment failures. Enterprise accounts report contract-penalty risk. Route to high-priority release triage now and preserve the release-correlation note.",
+            "ST-2": "Hospital customer reports export corruption. A workaround exists, but account criticality remains high. Route to engineering and account owner with data-integrity risk explicitly noted.",
+            "ST-3": "New admin blocked on SSO before a renewal call tomorrow. Queue as time-sensitive onboarding risk and assign ownership now."
+          }
+        },
+        {
+          "id": "support-c2",
+          "label": "Condense into one-line triage headline",
+          "summary": "Push the prompt toward shorter summaries to protect queue speed.",
+          "rationale": "Best when operations complains about verbosity, but it may hide nuance.",
+          "affectedFailure": "tradeoff",
+          "deltaByCriterion": {
+            "facts": -1,
+            "actions": 0,
+            "escalation": -1,
+            "brevity": 1
+          },
+          "caseDeltas": {
+            "ST-1": {
+              "facts": -1,
+              "actions": 0,
+              "escalation": -1,
+              "brevity": 1
+            },
+            "ST-2": {
+              "facts": 0,
+              "actions": 0,
+              "escalation": -1,
+              "brevity": 1
+            },
+            "ST-3": {
+              "facts": 0,
+              "actions": 0,
+              "escalation": -1,
+              "brevity": 1
+            }
+          },
+          "revisedOutputs": {
+            "ST-1": "Release-linked payment failures affecting major accounts; fast triage needed.",
+            "ST-2": "Hospital export issue with workaround; engineering follow-up needed.",
+            "ST-3": "SSO setup blocked ahead of renewal meeting tomorrow."
+          }
+        }
+      ],
+      "exploreMore": {
+        "title": "Optional extra check: queue pressure",
+        "options": [
+          {
+            "id": "strict",
+            "label": "Raise the escalation bar",
+            "description": "Require every case to preserve urgency and ownership markers before deploy readiness turns positive."
+          },
+          {
+            "id": "tradeoff",
+            "label": "Compare speed vs completeness",
+            "description": "Visualize how brevity gains can still damage queue quality when escalation markers disappear."
+          }
+        ]
+      },
+      "startingRecommendations": [
+        "Operationally incomplete summaries are a reliability issue even when the prose looks polished.",
+        "Do not optimize for queue speed without measuring what gets lost."
+      ],
+      "coaching": {
+        "failureGuidance": {
+          "omission": {
+            "title": "Why omission is risky in triage work",
+            "why": "A support summary can look polished but still fail if it drops the escalation trigger, owner, or next action.",
+            "notice": "Look for what the next queue owner would need immediately: urgency, impact, escalation path, and ownership.",
+            "upstreamPhase": "Discovery or Shaping",
+            "phaseWhy": "The team may not have defined the triage-ready output contract clearly enough."
+          },
+          "actionability": {
+            "title": "Why weak actionability matters here",
+            "why": "If the next reviewer still does not know what to do, the summary is operationally weak no matter how clear it sounds.",
+            "notice": "Check for owner, priority, escalation route, and immediate next step.",
+            "upstreamPhase": "Shaping",
+            "phaseWhy": "The prompt likely failed to force task ownership and queue action language."
+          },
+          "tradeoff": {
+            "title": "Why tradeoff risk appears in support summaries",
+            "why": "Teams often shorten summaries to move faster, but that speed gain can hide the escalation details that make triage reliable.",
+            "notice": "Watch whether brevity improved while urgency or ownership got weaker.",
+            "upstreamPhase": "Iteration discipline",
+            "phaseWhy": "The team may be optimizing for speed without checking the same cases for operational loss."
+          }
+        },
+        "changeGuidance": {
+          "support-c1": {
+            "title": "Why this fix fits support triage",
+            "why": "This change forces the model to preserve the operational details that queue routing actually depends on.",
+            "notice": "In the comparison, check whether urgency, owner, and escalation path become explicit instead of implied.",
+            "phaseLink": "This is a Shaping and output-contract improvement because it clarifies the structure of a triage-ready summary."
+          },
+          "support-c2": {
+            "title": "Why this fix is risky in support triage",
+            "why": "This change protects queue speed, but it can strip away the detail that tells the next person what to do.",
+            "notice": "In the comparison, check whether the summary got shorter at the cost of urgency, ownership, or escalation clarity.",
+            "phaseLink": "This is the kind of iteration tradeoff Chapter 2 says you should validate against the same test set."
+          }
+        },
+        "exploreGuidance": {
+          "strict": {
+            "title": "Why the stricter rule matters in support work",
+            "body": "Support teams often need a higher bar because missing one escalation signal can route a case incorrectly even when the wording feels efficient."
+          },
+          "tradeoff": {
+            "title": "How to read the speed versus completeness tradeoff",
+            "body": "Use this check to see whether the shorter summary protected queue speed but weakened routing quality."
+          }
+        }
+      }
+    },
+    {
+      "id": "executive-briefing-draft",
+      "slug": "executive",
+      "title": "Executive Briefing Draft",
+      "phaseFocus": [
+        "Execution",
+        "Evaluation",
+        "Iteration"
+      ],
+      "estimatedMinutes": "6-10 minutes",
+      "goal": "Evaluate concise executive communication under business constraints and decide whether a targeted change improves strategic usefulness or creates a tradeoff between brevity and completeness.",
+      "chapterLinks": [
+        "Strong evaluation needs explicit criteria and representative tests.",
+        "A single good demo does not prove readiness across the test set.",
+        "Iteration should reveal broad improvement, narrow improvement, or mixed tradeoff behavior."
+      ],
+      "promptVersion": "v0.2-baseline",
+      "scenarioBrief": "A leadership team wants a one-minute AI-generated executive brief about an operations initiative. The current draft sounds polished but may miss decision-relevant detail or flatten risk.",
+      "rubric": [
+        {
+          "id": "relevance",
+          "label": "Strategic relevance",
+          "description": "The brief highlights the decisions and risks leaders actually need."
+        },
+        {
+          "id": "completeness",
+          "label": "Completeness",
+          "description": "The brief covers progress, risk, and next action without hiding critical nuance."
+        },
+        {
+          "id": "tone",
+          "label": "Executive tone",
+          "description": "The brief sounds disciplined, credible, and decision-oriented."
+        },
+        {
+          "id": "concision",
+          "label": "Concision",
+          "description": "The brief stays tight enough for executive reading time."
+        }
+      ],
+      "testCases": [
+        {
+          "id": "EB-1",
+          "question": "Summarize the pilot status after a week with mixed adoption and one compliance question unresolved.",
+          "baselineOutput": "The pilot is progressing and teams are engaged. Adoption is growing, and the team is working through a compliance question.",
+          "expectedSignals": [
+            "Needs mixed-adoption nuance",
+            "Must surface unresolved compliance risk",
+            "Should state next decision"
+          ],
+          "bestPracticeScores": {
+            "relevance": 1,
+            "completeness": 1,
+            "tone": 1,
+            "concision": 2
+          }
+        },
+        {
+          "id": "EB-2",
+          "question": "Draft a brief for leaders after a successful demo but incomplete training readiness.",
+          "baselineOutput": "The recent demo went well and showed strong momentum. Training is still underway and should improve soon.",
+          "expectedSignals": [
+            "Should distinguish demo success from readiness",
+            "Needs recommendation",
+            "Must avoid overconfidence"
+          ],
+          "bestPracticeScores": {
+            "relevance": 1,
+            "completeness": 0,
+            "tone": 0,
+            "concision": 2
+          }
+        },
+        {
+          "id": "EB-3",
+          "question": "Create a short update when cost looks good but usage quality varies across teams.",
+          "baselineOutput": "Costs are favorable and teams continue using the solution. Some quality differences exist, but overall progress remains positive.",
+          "expectedSignals": [
+            "Needs usage-quality variability detail",
+            "Should frame rollout risk",
+            "Must not flatten the tradeoff"
+          ],
+          "bestPracticeScores": {
+            "relevance": 1,
+            "completeness": 1,
+            "tone": 0,
+            "concision": 2
+          }
+        }
+      ],
+      "changeOptions": [
+        {
+          "id": "exec-c1",
+          "label": "Force decision-oriented ending",
+          "summary": "Require each brief to end with a single next decision or ask for leadership.",
+          "rationale": "Best when outputs sound polished but fail to guide action.",
+          "affectedFailure": "actionability",
+          "deltaByCriterion": {
+            "relevance": 1,
+            "completeness": 1,
+            "tone": 0,
+            "concision": 0
+          },
+          "caseDeltas": {
+            "EB-1": {
+              "relevance": 1,
+              "completeness": 1,
+              "tone": 0,
+              "concision": 0
+            },
+            "EB-2": {
+              "relevance": 1,
+              "completeness": 1,
+              "tone": 1,
+              "concision": 0
+            },
+            "EB-3": {
+              "relevance": 1,
+              "completeness": 0,
+              "tone": 0,
+              "concision": 0
+            }
+          },
+          "revisedOutputs": {
+            "EB-1": "Adoption is mixed after week one, and one compliance question remains unresolved. Keep the pilot active, but ask leadership to decide whether rollout should pause until the compliance answer is closed.",
+            "EB-2": "The demo succeeded, but training readiness is incomplete. Momentum is real, yet broad launch is not ready. Leadership should decide whether to hold expansion until training coverage reaches the agreed threshold.",
+            "EB-3": "Costs are favorable, but usage quality varies by team. The near-term decision is whether to expand now or stabilize team-level quality first."
+          }
+        },
+        {
+          "id": "exec-c2",
+          "label": "Compress to one-paragraph snapshot",
+          "summary": "Tighten the brief aggressively to protect executive reading time.",
+          "rationale": "Best when leaders demand shorter briefs, but it can flatten nuance.",
+          "affectedFailure": "tradeoff",
+          "deltaByCriterion": {
+            "relevance": 0,
+            "completeness": -1,
+            "tone": 0,
+            "concision": 1
+          },
+          "caseDeltas": {
+            "EB-1": {
+              "relevance": 0,
+              "completeness": -1,
+              "tone": 0,
+              "concision": 1
+            },
+            "EB-2": {
+              "relevance": 0,
+              "completeness": -1,
+              "tone": 0,
+              "concision": 1
+            },
+            "EB-3": {
+              "relevance": 0,
+              "completeness": -1,
+              "tone": 0,
+              "concision": 1
+            }
+          },
+          "revisedOutputs": {
+            "EB-1": "Pilot momentum is positive, but one compliance issue remains unresolved.",
+            "EB-2": "Demo success is strong, though training readiness still trails launch needs.",
+            "EB-3": "Costs are favorable, but uneven usage quality continues to limit scale confidence."
+          }
+        }
+      ],
+      "exploreMore": {
+        "title": "Optional extra check: brevity versus clarity",
+        "options": [
+          {
+            "id": "strict",
+            "label": "Use a stricter deploy check",
+            "description": "Raise the final deploy bar so polished tone alone is not enough to pass."
+          },
+          {
+            "id": "tradeoff",
+            "label": "Explain the brevity tradeoff",
+            "description": "Explain when a shorter executive brief may hide risk, completeness gaps, or rollout uncertainty."
+          }
+        ]
+      },
+      "startingRecommendations": [
+        "A polished executive tone does not prove decision-readiness.",
+        "Use the same test cases to see whether brevity improvements introduce hidden tradeoffs."
+      ],
+      "coaching": {
+        "failureGuidance": {
+          "actionability": {
+            "title": "Why weak actionability matters in executive briefs",
+            "why": "Leaders do not just need a polished update. They need the decision, ask, or risk that deserves attention now.",
+            "notice": "Check whether the brief names the next decision instead of only describing momentum.",
+            "upstreamPhase": "Discovery or Shaping",
+            "phaseWhy": "The team may not have defined the executive-useful output contract before prompting."
+          },
+          "tradeoff": {
+            "title": "Why tradeoff risk is common here",
+            "why": "Executive writing often improves concision by flattening nuance, which can hide the real rollout risk.",
+            "notice": "Watch whether the update got shorter while the decision-relevant detail became weaker.",
+            "upstreamPhase": "Iteration discipline",
+            "phaseWhy": "The team may be optimizing for brevity without retesting whether leaders still get the needed risk picture."
+          },
+          "omission": {
+            "title": "Why omission matters in executive communication",
+            "why": "A brief can sound credible and still fail if it leaves out the unresolved blocker, the decision, or the scale risk.",
+            "notice": "Check whether the draft surfaces what a leader would need before approving the next move.",
+            "upstreamPhase": "Discovery",
+            "phaseWhy": "The success criteria may not have made decision readiness explicit enough."
+          }
+        },
+        "changeGuidance": {
+          "exec-c1": {
+            "title": "Why this fix fits executive briefs",
+            "why": "This change turns a polished update into a decision-oriented brief by forcing a clear ask or next move.",
+            "notice": "In the comparison, check whether the revised brief now tells leaders what decision is pending and why.",
+            "phaseLink": "This strengthens Shaping because it gives the model a clearer executive-output pattern to follow."
+          },
+          "exec-c2": {
+            "title": "Why this fix can backfire in executive briefs",
+            "why": "A shorter brief may feel more executive-friendly, but it can hide the exact risk leaders need to see.",
+            "notice": "In the comparison, check whether readability improved while completeness or risk framing slipped.",
+            "phaseLink": "This is a deliberate tradeoff test: faster reading time versus decision-ready substance."
+          }
+        },
+        "exploreGuidance": {
+          "strict": {
+            "title": "Why the stricter rule matters in executive communication",
+            "body": "Leadership-facing summaries often need a stronger bar because a polished but incomplete brief can drive a bad rollout decision."
+          },
+          "tradeoff": {
+            "title": "How to read the brevity tradeoff",
+            "body": "Use this check to see whether the shorter brief really improved executive usefulness or merely removed the uncomfortable details."
+          }
+        }
+      }
+    },
+    {
+      "id": "change-rollout-notice",
+      "slug": "rollout",
+      "title": "Change Rollout Notice",
+      "phaseFocus": [
+        "Execution",
+        "Evaluation",
+        "Iteration"
+      ],
+      "estimatedMinutes": "5-8 minutes",
+      "goal": "Evaluate internal rollout notices for action clarity, scope boundaries, timing, and support guidance so learners can see whether a change announcement is truly deployment-ready.",
+      "chapterLinks": [
+        "Evaluation should check whether the output preserves who, what, when, and next-step details.",
+        "Iteration should improve the same cases instead of making cosmetic wording tweaks only.",
+        "Weak rollout messages often signal missing Discovery criteria about audience, scope, and success conditions."
+      ],
+      "promptVersion": "v0.1-baseline",
+      "scenarioBrief": "An internal enablement team uses an LLM to draft rollout notices for policy and process changes. The messages sound friendly, but employees may still be unclear about who is affected, what changes when, and where to get help.",
+      "rubric": [
+        {
+          "id": "action",
+          "label": "Action clarity",
+          "description": "The notice tells the reader exactly what to do next."
+        },
+        {
+          "id": "completeness",
+          "label": "Completeness",
+          "description": "The notice covers timing, scope, and support details without leaving critical gaps."
+        },
+        {
+          "id": "constraints",
+          "label": "Scope and constraint fit",
+          "description": "The notice preserves who is affected and any important boundaries or exceptions."
+        },
+        {
+          "id": "tone",
+          "label": "Professional tone",
+          "description": "The message stays clear, calm, and workplace-appropriate."
+        }
+      ],
+      "testCases": [
+        {
+          "id": "RN-1",
+          "question": "Announce a new approval workflow that begins Monday for managers only.",
+          "baselineOutput": "We are updating the approval workflow next week. Please begin using the new process soon so the transition goes smoothly.",
+          "expectedSignals": [
+            "Needs exact start date",
+            "Must limit scope to managers only",
+            "Should give a support or question path"
+          ],
+          "bestPracticeScores": {
+            "action": 0,
+            "completeness": 0,
+            "constraints": 0,
+            "tone": 1
+          }
+        },
+        {
+          "id": "RN-2",
+          "question": "Notify employees that VPN re-authentication is required before Friday for audit readiness.",
+          "baselineOutput": "Please review your VPN settings when you have time this week. We are improving security readiness across the company.",
+          "expectedSignals": [
+            "Needs deadline before Friday",
+            "Must state required action clearly",
+            "Should explain where to get help if blocked"
+          ],
+          "bestPracticeScores": {
+            "action": 0,
+            "completeness": 0,
+            "constraints": 1,
+            "tone": 1
+          }
+        },
+        {
+          "id": "RN-3",
+          "question": "Tell finance analysts that a new monthly close template is optional for this cycle but required next month.",
+          "baselineOutput": "Finance teams can start using the new monthly close template right away, and it will help standardize reporting.",
+          "expectedSignals": [
+            "Needs optional-now required-next-month boundary",
+            "Must name affected audience",
+            "Should state what happens this cycle versus next"
+          ],
+          "bestPracticeScores": {
+            "action": 1,
+            "completeness": 0,
+            "constraints": 0,
+            "tone": 1
+          }
+        }
+      ],
+      "changeOptions": [
+        {
+          "id": "rollout-c1",
+          "label": "Force who-when-what-support structure",
+          "summary": "Require each notice to state who is affected, when the change takes effect, what action is required, and where to get help.",
+          "rationale": "Best when the message sounds friendly but still leaves readers unsure about scope or timing.",
+          "affectedFailure": "actionability",
+          "deltaByCriterion": {
+            "action": 1,
+            "completeness": 1,
+            "constraints": 1,
+            "tone": 0
+          },
+          "caseDeltas": {
+            "RN-1": {
+              "action": 1,
+              "completeness": 1,
+              "constraints": 1,
+              "tone": 0
+            },
+            "RN-2": {
+              "action": 1,
+              "completeness": 1,
+              "constraints": 0,
+              "tone": 0
+            },
+            "RN-3": {
+              "action": 1,
+              "completeness": 1,
+              "constraints": 1,
+              "tone": 0
+            }
+          },
+          "revisedOutputs": {
+            "RN-1": "Managers must begin using the new approval workflow on Monday. Other employees are not affected in this rollout. If you need help before go-live, contact the enablement desk today.",
+            "RN-2": "Complete VPN re-authentication before Friday to stay compliant for the audit window. If you cannot finish the reset, contact IT support immediately so your access issue is logged before the deadline.",
+            "RN-3": "Finance analysts may use the new monthly close template this cycle, but it becomes required next month. Review the template now and send questions to the finance operations mailbox before month-end."
+          }
+        },
+        {
+          "id": "rollout-c2",
+          "label": "Lead with a short friendly announcement",
+          "summary": "Optimize for a lighter message that feels easier to read quickly.",
+          "rationale": "Best when communication teams want a softer tone, but it can weaken boundaries and deadlines.",
+          "affectedFailure": "tradeoff",
+          "deltaByCriterion": {
+            "action": 0,
+            "completeness": -1,
+            "constraints": -1,
+            "tone": 1
+          },
+          "caseDeltas": {
+            "RN-1": {
+              "action": 0,
+              "completeness": -1,
+              "constraints": -1,
+              "tone": 1
+            },
+            "RN-2": {
+              "action": 0,
+              "completeness": -1,
+              "constraints": 0,
+              "tone": 1
+            },
+            "RN-3": {
+              "action": 0,
+              "completeness": -1,
+              "constraints": -1,
+              "tone": 1
+            }
+          },
+          "revisedOutputs": {
+            "RN-1": "A smoother approval workflow is arriving next week. Please watch for the updated process and reach out if you need help.",
+            "RN-2": "We are taking another step toward stronger security this week. Please review your VPN setup and contact support if needed.",
+            "RN-3": "A new close template is available to help standardize reporting. You are welcome to begin using it now as the team transitions."
+          }
+        }
+      ],
+      "exploreMore": {
+        "title": "Optional extra check: clarity versus friendliness",
+        "options": [
+          {
+            "id": "strict",
+            "label": "Use a stricter deploy check",
+            "description": "Raise the bar so a rollout notice must preserve deadline, scope, and support path before deployment looks safe."
+          },
+          {
+            "id": "why",
+            "label": "Explain why the selected fix helped",
+            "description": "Show how the selected fix improved clarity, timing, or scope control in this scenario."
+          },
+          {
+            "id": "skip",
+            "label": "What if you skipped evaluation?",
+            "description": "Show what a polished rollout notice can still hide if nobody scores it against the rubric."
+          }
+        ]
+      },
+      "startingRecommendations": [
+        "Friendly rollout language is not enough if the reader still cannot tell what to do.",
+        "Change notices should be scored for action clarity and scope, not just tone."
+      ],
+      "coaching": {
+        "failureGuidance": {
+          "actionability": {
+            "title": "Why weak actionability matters in rollout notices",
+            "why": "A rollout message fails if employees still do not know what action is required or when it starts.",
+            "notice": "Check for exact action, deadline, and help path.",
+            "upstreamPhase": "Discovery or Shaping",
+            "phaseWhy": "The team may not have defined a rollout-ready output contract clearly enough."
+          },
+          "constraints": {
+            "title": "Why scope drift matters in rollout notices",
+            "why": "These messages become risky when they blur who is affected, what is optional, and what is required.",
+            "notice": "Look for audience boundaries, effective dates, and exception language.",
+            "upstreamPhase": "Discovery",
+            "phaseWhy": "The business rules about audience and timing may not have been captured clearly before prompting."
+          },
+          "tradeoff": {
+            "title": "Why friendliness can create tradeoff risk",
+            "why": "A softer message may feel better, but it can hide the exact instruction employees need.",
+            "notice": "Watch whether tone improved while deadlines or scope got weaker.",
+            "upstreamPhase": "Iteration discipline",
+            "phaseWhy": "The team may be optimizing tone without retesting clarity on the same cases."
+          }
+        },
+        "changeGuidance": {
+          "rollout-c1": {
+            "title": "Why this fix fits rollout communication",
+            "why": "This structure makes the message operational: who is affected, when the change starts, what to do, and where to get help.",
+            "notice": "In the comparison, check whether the revised notice now removes ambiguity instead of just sounding more polished.",
+            "phaseLink": "This is a Shaping improvement because it gives the model a clearer rollout template."
+          },
+          "rollout-c2": {
+            "title": "Why this fix can backfire in rollout communication",
+            "why": "It protects friendliness, but it can blur the exact requirement and effective date.",
+            "notice": "In the comparison, check whether the message got easier to read while becoming less usable.",
+            "phaseLink": "This is a tradeoff test between tone and operational clarity."
+          }
+        },
+        "exploreGuidance": {
+          "strict": {
+            "title": "Why the stricter rule matters here",
+            "body": "Rollout notices often need a higher threshold because confusion spreads quickly once the message is deployed broadly."
+          },
+          "why": {
+            "title": "How to read the selected fix in this scenario",
+            "body": "Use this check to see whether the fix improved action clarity and scope control or only improved the tone."
+          },
+          "skip": {
+            "title": "Why skipping evaluation is risky here",
+            "body": "A friendly rollout note can still fail if employees leave with the wrong audience, wrong date, or no support path."
+          }
+        }
+      }
+    },
+    {
+      "id": "cross-team-handoff-summary",
+      "slug": "handoff",
+      "title": "Cross-Team Handoff Summary",
+      "phaseFocus": [
+        "Execution",
+        "Evaluation",
+        "Iteration"
+      ],
+      "estimatedMinutes": "5-8 minutes",
+      "goal": "Evaluate handoff summaries for preserved facts, clear ownership, dependency visibility, and readiness so learners can judge whether a handoff artifact is truly usable by the next team.",
+      "chapterLinks": [
+        "Chapter 2 treats deliverables and handoffs as tangible artifacts, not vague conversations.",
+        "Evaluation should check whether the handoff preserves what the next team needs to act safely.",
+        "Weak execution output can signal missing shaping rules about owner, date, and dependency structure."
+      ],
+      "promptVersion": "v0.1-baseline",
+      "scenarioBrief": "A program team uses an LLM to draft short handoff summaries for downstream partners. The summaries read smoothly, but the receiving team may still be unclear about ownership, dependencies, or whether the work is actually ready.",
+      "rubric": [
+        {
+          "id": "facts",
+          "label": "Fact preservation",
+          "description": "The handoff preserves the critical facts and current state without flattening risk."
+        },
+        {
+          "id": "owners",
+          "label": "Owner and next-step clarity",
+          "description": "The receiving team can see who owns the next action and what happens next."
+        },
+        {
+          "id": "dependencies",
+          "label": "Dependency visibility",
+          "description": "The handoff surfaces blockers, pending inputs, and readiness conditions."
+        },
+        {
+          "id": "readiness",
+          "label": "Readiness signal",
+          "description": "The handoff makes it clear whether the work is ready, partial, or blocked."
+        }
+      ],
+      "testCases": [
+        {
+          "id": "HT-1",
+          "question": "Hand off a training launch package with content complete but legal review still pending.",
+          "baselineOutput": "The training package is mostly complete and ready to move forward. The next team can begin working with it and finish the last few details soon.",
+          "expectedSignals": [
+            "Needs legal review blocker",
+            "Must show partial readiness clearly",
+            "Should name the next owner or next step"
+          ],
+          "bestPracticeScores": {
+            "facts": 1,
+            "owners": 0,
+            "dependencies": 0,
+            "readiness": 0
+          }
+        },
+        {
+          "id": "HT-2",
+          "question": "Summarize a dashboard handoff when the build is done but source-data validation has not finished.",
+          "baselineOutput": "The dashboard build is complete and should be ready for the analytics team to use. Only a small validation step remains.",
+          "expectedSignals": [
+            "Needs source-data validation dependency",
+            "Must avoid calling it fully ready",
+            "Should state who closes validation"
+          ],
+          "bestPracticeScores": {
+            "facts": 1,
+            "owners": 0,
+            "dependencies": 0,
+            "readiness": 0
+          }
+        },
+        {
+          "id": "HT-3",
+          "question": "Hand off a customer migration checklist when engineering is done but customer scheduling is still open.",
+          "baselineOutput": "The migration checklist is prepared and the project is moving well. The customer team can take it from here and coordinate the remaining items.",
+          "expectedSignals": [
+            "Needs open customer scheduling dependency",
+            "Must state who owns the next coordination step",
+            "Should make readiness conditional"
+          ],
+          "bestPracticeScores": {
+            "facts": 1,
+            "owners": 0,
+            "dependencies": 0,
+            "readiness": 0
+          }
+        }
+      ],
+      "changeOptions": [
+        {
+          "id": "handoff-c1",
+          "label": "Force owner-blocker-next-step structure",
+          "summary": "Require each handoff to state current status, blocker or dependency, next owner, and exact next action.",
+          "rationale": "Best when the summary sounds smooth but the receiving team still cannot act confidently.",
+          "affectedFailure": "actionability",
+          "deltaByCriterion": {
+            "facts": 0,
+            "owners": 1,
+            "dependencies": 1,
+            "readiness": 1
+          },
+          "caseDeltas": {
+            "HT-1": {
+              "facts": 0,
+              "owners": 1,
+              "dependencies": 1,
+              "readiness": 1
+            },
+            "HT-2": {
+              "facts": 0,
+              "owners": 1,
+              "dependencies": 1,
+              "readiness": 1
+            },
+            "HT-3": {
+              "facts": 0,
+              "owners": 1,
+              "dependencies": 1,
+              "readiness": 1
+            }
+          },
+          "revisedOutputs": {
+            "HT-1": "Content is complete, but legal review is still pending, so the package is not fully ready for launch. Legal owns the next approval step. The enablement team should hold release until legal clears the final content.",
+            "HT-2": "The dashboard build is complete, but source-data validation remains open, so the handoff is not production-ready yet. Analytics owns the validation closeout and should confirm data quality before adoption.",
+            "HT-3": "Engineering has completed the migration checklist, but customer scheduling is still open. The customer success team owns the next coordination step, and migration readiness stays conditional until scheduling is confirmed."
+          }
+        },
+        {
+          "id": "handoff-c2",
+          "label": "Condense to a status snapshot",
+          "summary": "Reduce the handoff to a shorter headline-style summary for quick reading.",
+          "rationale": "Best when teams want faster scanning, but it can hide dependency nuance and readiness conditions.",
+          "affectedFailure": "tradeoff",
+          "deltaByCriterion": {
+            "facts": 0,
+            "owners": -1,
+            "dependencies": -1,
+            "readiness": -1
+          },
+          "caseDeltas": {
+            "HT-1": {
+              "facts": 0,
+              "owners": -1,
+              "dependencies": -1,
+              "readiness": -1
+            },
+            "HT-2": {
+              "facts": 0,
+              "owners": -1,
+              "dependencies": -1,
+              "readiness": -1
+            },
+            "HT-3": {
+              "facts": 0,
+              "owners": -1,
+              "dependencies": -1,
+              "readiness": -1
+            }
+          },
+          "revisedOutputs": {
+            "HT-1": "Training package nearly ready, with final review still in progress.",
+            "HT-2": "Dashboard build finished, pending one final validation step.",
+            "HT-3": "Migration checklist prepared, with final coordination still underway."
+          }
+        }
+      ],
+      "exploreMore": {
+        "title": "Optional extra check: readiness versus brevity",
+        "options": [
+          {
+            "id": "strict",
+            "label": "Use a stricter deploy check",
+            "description": "Raise the bar so a handoff must preserve blocker and owner details before the app recommends moving forward."
+          },
+          {
+            "id": "why",
+            "label": "Explain why the selected fix helped",
+            "description": "Show how the selected fix improved actionability and readiness in this handoff scenario."
+          },
+          {
+            "id": "skip",
+            "label": "What if you skipped evaluation?",
+            "description": "Show what gets missed when a smooth handoff summary is trusted without scoring the artifact."
+          }
+        ]
+      },
+      "startingRecommendations": [
+        "A smooth handoff is not the same thing as a usable handoff.",
+        "Treat ownership and dependency visibility as part of quality, not as optional detail."
+      ],
+      "coaching": {
+        "failureGuidance": {
+          "actionability": {
+            "title": "Why weak actionability matters in handoffs",
+            "why": "A handoff fails if the receiving team still cannot tell who acts next or what to do next.",
+            "notice": "Check for clear owner, next action, and timing.",
+            "upstreamPhase": "Shaping",
+            "phaseWhy": "The prompt likely did not force owner-and-next-step structure."
+          },
+          "omission": {
+            "title": "Why omission matters in handoffs",
+            "why": "Missing one blocker or dependency can make the handoff look ready when it is not.",
+            "notice": "Look for hidden dependencies, pending approvals, and readiness conditions.",
+            "upstreamPhase": "Discovery",
+            "phaseWhy": "The handoff acceptance criteria may not have defined required fields clearly enough."
+          },
+          "tradeoff": {
+            "title": "Why brevity can create handoff tradeoff risk",
+            "why": "A shorter handoff may scan well, but it can remove the very readiness detail the next team needs.",
+            "notice": "Watch whether the summary got shorter while owner or blocker detail disappeared.",
+            "upstreamPhase": "Iteration discipline",
+            "phaseWhy": "The team may be optimizing speed without testing whether usability held up."
+          }
+        },
+        "changeGuidance": {
+          "handoff-c1": {
+            "title": "Why this fix fits handoff work",
+            "why": "This structure turns a smooth status note into a usable artifact for the next team.",
+            "notice": "In the comparison, check whether ownership, blocker visibility, and readiness conditions are now explicit.",
+            "phaseLink": "This is a Shaping improvement because it clarifies the artifact structure the model must produce."
+          },
+          "handoff-c2": {
+            "title": "Why this fix can backfire in handoffs",
+            "why": "It speeds scanning, but it can flatten the dependency or owner detail that makes the handoff actionable.",
+            "notice": "In the comparison, check whether the shorter summary still supports a real handoff decision.",
+            "phaseLink": "This is a tradeoff test between speed and artifact usability."
+          }
+        },
+        "exploreGuidance": {
+          "strict": {
+            "title": "Why the stricter rule matters here",
+            "body": "Handoff artifacts often need a higher bar because downstream teams act on them directly."
+          },
+          "why": {
+            "title": "How to read the selected fix in this scenario",
+            "body": "Use this check to see whether the fix improved owner clarity and dependency visibility or only shortened the artifact."
+          },
+          "skip": {
+            "title": "Why skipping evaluation is risky here",
+            "body": "A smooth handoff summary can hide blockers, making the next team think work is ready when it is not."
+          }
+        }
+      }
+    }
+  ]
+};

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rubric Runner Lab Help</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header class="shell-header">
+    <div class="shell-header-inner">
+      <div class="branding">
+        <div class="brand-mark" aria-hidden="true">RR</div>
+        <div class="brand-copy">
+          <h1>Rubric Runner Lab Help</h1>
+          <p>How to use the lab, the first-run walkthrough, and how the expanded scenario set aligns to Chapter 2</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="pill" id="version-pill">Version • --</div>
+        <div class="pill" id="environment-pill">Environment • --</div>
+        <button class="theme-toggle" id="theme-toggle" type="button">Theme • --</button>
+        <a class="action-link" href="index.html">Back to Lab</a>
+        <a class="action-link" href="feedback.html">Feedback</a>
+      </div>
+    </div>
+  </header>
+  <main id="main" class="shell">
+    <section class="hero-card">
+      <h2>What this app teaches now</h2>
+      <p>Rubric Runner Lab reinforces Chapter 2’s view that context engineering is a lifecycle, and that reliable outputs depend on explicit evaluation artifacts. This app focuses deeply on the chapter’s middle reliability loop: <strong>Execution → Evaluation → Iteration</strong>.</p>
+      <div class="inline-list">
+        <span>Rubrics before iteration</span>
+        <span>Representative tests</span>
+        <span>One change at a time</span>
+        <span>Same-case comparison</span>
+        <span>Deploy vs iterate decisions</span>
+      </div>
+    </section>
+
+    <div class="workspace-stack">
+      <section class="panel">
+        <h2>How to complete the core path</h2>
+        <p class="muted">Start with the <strong>First-run walkthrough</strong>, then use the <strong>What to do now</strong> panel whenever you are unsure where to go next.</p>
+        <div class="kv-list">
+          <div class="kv-item"><strong>1. Choose a scenario.</strong><span class="muted">Each scenario is pre-authored so you can focus on judgment, not document authoring.</span></div>
+          <div class="kv-item"><strong>2. Review the artifact pack.</strong><span class="muted">Read the rubric, prompt version, test questions, and success signals before scoring.</span></div>
+          <div class="kv-item"><strong>3. Score every case.</strong><span class="muted">Use the 0-2 controls for each criterion. The lab keeps the scoring simple and fast.</span></div>
+          <div class="kv-item"><strong>4. Submit scoring and read the best-practice review.</strong><span class="muted">After you score first, the app reveals only the biggest score gaps and explains why a stronger evaluator would score them differently.</span></div>
+          <div class="kv-item"><strong>5. Tag the dominant failure.</strong><span class="muted">Choose the most important failure type per case. The lab clusters them so you can see whether the issue is isolated or recurring.</span></div>
+          <div class="kv-item"><strong>6. Pick one targeted change.</strong><span class="muted">This reflects the chapter’s recommendation to avoid random tweaking and make one focused adjustment where possible.</span></div>
+          <div class="kv-item"><strong>7. Compare before and after.</strong><span class="muted">The same test cases are reused so improvement, regression, and tradeoff behavior stay visible.</span></div>
+          <div class="kv-item"><strong>8. Read the recommendation.</strong><span class="muted">The app recommends deploy, iterate again, or revisit earlier phase work based on your scoring and the selected change profile.</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>What the six live metrics mean</h2>
+        <div class="kv-list">
+          <div class="kv-item"><strong>Pass Rate</strong><span class="muted">Share of cases that meet the app’s pass rule based on your rubric scores.</span></div>
+          <div class="kv-item"><strong>Criterion Coverage</strong><span class="muted">How much of the rubric has actually been scored. This helps stop premature conclusions.</span></div>
+          <div class="kv-item"><strong>Failure Concentration</strong><span class="muted">How concentrated the dominant failure pattern is across the case set.</span></div>
+          <div class="kv-item"><strong>Improvement Delta</strong><span class="muted">How much the selected change improves or harms the overall score profile.</span></div>
+          <div class="kv-item"><strong>Regression Stability</strong><span class="muted">Whether the chosen change improved the same cases without hurting others.</span></div>
+          <div class="kv-item"><strong>Deploy Readiness</strong><span class="muted">A recommendation state, not a decorative badge. It combines quality, stability, and governance expectations.</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Optional learning checks</h2>
+        <p>The core path is complete when you reach the decision summary. Optional learning checks do one of two clear things: they either raise the final deploy bar, explain why the selected fix helped, or show why skipping evaluation would be risky. They are intentionally separated so first-time learners do not feel penalized for stopping after the main lesson.</p>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="assets/js/platform/static-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "scenarioCount": 5,
+  "rollout": {
+    "title": "Change Rollout Notice",
+    "coach": "Why this fix fits rollout communication. In the comparison, check whether the revised notice now removes ambiguity instead of just sounding more polished. Then use the takeaway to decide whether the evidence is strong enough to move forward.",
+    "diagnosisHasCoach": true,
+    "changeHasCoach": true,
+    "takeawayHasTeachingPoint": true,
+    "exploreHasScenarioDetail": true,
+    "deployReadiness": "Deploy"
+  },
+  "handoff": {
+    "title": "Cross-Team Handoff Summary",
+    "coach": "Why this fix fits handoff work. In the comparison, check whether ownership, blocker visibility, and readiness conditions are now explicit. Then use the takeaway to decide whether the evidence is strong enough to move forward.",
+    "diagnosisHasCoach": true,
+    "changeHasCoach": true,
+    "takeawayHasTeachingPoint": true,
+    "exploreHasScenarioDetail": true,
+    "deployReadiness": "Deploy"
+  },
+  "policy": {
+    "title": "Policy Answer Reliability",
+    "coach": "Why this fix fits the policy scenario. In the comparison, check whether the revised answer now stays inside the source and tells the user when to escalate instead of promising approval. Then use the takeaway to decide whether the evidence is strong enough to move forward.",
+    "diagnosisHasCoach": true,
+    "changeHasCoach": true,
+    "takeawayHasTeachingPoint": true,
+    "exploreHasScenarioDetail": true,
+    "deployReadiness": "Deploy"
+  }
+}
