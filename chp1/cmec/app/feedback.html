@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Context Engineering Mission Control - Feedback</title>
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/charts.css" />
+  <link rel="stylesheet" href="assets/css/themes.css" />
+  <link rel="stylesheet" href="assets/css/accessibility.css" />
+</head>
+<body data-page="feedback">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <main id="main-content" class="standalone-page">
+    <header class="standalone-header">
+      <div>
+        <p class="eyebrow">Support</p>
+        <h1>Feedback & Iteration Notes</h1>
+        <p class="lede">Capture what felt strong, confusing, or worth improving in the next iteration.</p>
+      </div>
+      <div class="header-actions">
+        <button id="theme-toggle" class="ghost-btn" type="button" aria-pressed="false">Toggle theme</button>
+        <a class="primary-btn" href="index.html">Back to Mission Control</a>
+      </div>
+    </header>
+
+    <section class="standalone-grid">
+      <article class="panel">
+        <h2>Suggested feedback prompts</h2>
+        <ul class="plain-list">
+          <li>Which mission taught the Chapter 1 concept most clearly?</li>
+          <li>Which metric moved in a way that felt most helpful or most confusing?</li>
+          <li>Did the app feel learner-first, or did any part feel like too much building work?</li>
+          <li>Which optional Explore More lens would you want expanded next?</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h2>Write your notes</h2>
+        <label class="stack-field" for="feedback-notes">
+          <span>Your notes</span>
+          <textarea id="feedback-notes" rows="10" placeholder="Capture strengths, friction points, and next ideas..."></textarea>
+        </label>
+        <div class="button-row">
+          <button id="copy-feedback" type="button" class="primary-btn">Copy notes</button>
+          <button id="clear-feedback" type="button" class="ghost-btn">Clear</button>
+        </div>
+        <p id="feedback-status" class="muted-note">Notes stay in this browser only unless you copy them.</p>
+      </article>
+    </section>
+  </main>
+  <script type="module">
+    const root = document.documentElement;
+    const key = 'app_theme';
+    const btn = document.getElementById('theme-toggle');
+    const status = document.getElementById('feedback-status');
+    const notes = document.getElementById('feedback-notes');
+    const storedTheme = localStorage.getItem(key);
+    root.dataset.theme = storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    btn.setAttribute('aria-pressed', root.dataset.theme === 'dark' ? 'true' : 'false');
+    btn.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      localStorage.setItem(key, next);
+      btn.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+    });
+
+    const feedbackKey = 'cemc_feedback_notes';
+    notes.value = localStorage.getItem(feedbackKey) || '';
+    notes.addEventListener('input', () => localStorage.setItem(feedbackKey, notes.value));
+    document.getElementById('copy-feedback').addEventListener('click', async () => {
+      await navigator.clipboard.writeText(notes.value);
+      status.textContent = 'Feedback copied to the clipboard.';
+    });
+    document.getElementById('clear-feedback').addEventListener('click', () => {
+      notes.value = '';
+      localStorage.removeItem(feedbackKey);
+      status.textContent = 'Feedback cleared.';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+:root[data-theme="light"] {
+  --bg: #edf4fb;
+  --bg-elevated: #ffffff;
+  --bg-soft: #e8f0fb;
+  --surface: rgba(10, 35, 63, 0.04);
+  --surface-strong: rgba(10, 35, 63, 0.07);
+  --text: #10233a;
+  --text-soft: #334e6d;
+  --muted: #5f7692;
+  --border: rgba(16, 35, 58, 0.12);
+  --accent: #1478a8;
+  --accent-2: #2db8b5;
+  --success: #188c57;
+  --warning: #af6d00;
+  --danger: #c54c4c;
+  --shadow: 0 18px 40px rgba(33, 67, 112, 0.12);
+}
+
+:root[data-theme="light"] html,
+:root[data-theme="light"] body {
+  background: radial-gradient(circle at top, rgba(45, 184, 181, 0.1), transparent 30%), var(--bg);
+}
+
+:root[data-theme="light"] .primary-btn {
+  color: white;
+}
+
+
+:root[data-theme="light"] .panel,
+:root[data-theme="light"] .scenario-card,
+:root[data-theme="light"] .component-card,
+:root[data-theme="light"] .metric-card,
+:root[data-theme="light"] .compare-card,
+:root[data-theme="light"] .hint-card,
+:root[data-theme="light"] .snapshot-card,
+:root[data-theme="light"] .inspection-card,
+:root[data-theme="light"] .summary-callout,
+:root[data-theme="light"] details {
+  background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(245,249,253,0.9));
+}
+
+:root[data-theme="light"] .hero-card {
+  background: linear-gradient(160deg, rgba(12, 47, 83, 0.98), rgba(8, 27, 49, 0.98));
+}
+
+:root[data-theme="light"] textarea,
+:root[data-theme="light"] input[type="text"] {
+  background: rgba(255,255,255,0.94);
+}
+
+:root[data-theme="light"] .inspection-intro {
+  background: linear-gradient(135deg, rgba(20, 120, 168, 0.09), rgba(45, 184, 181, 0.06));
+}
+
+:root[data-theme="light"] .inspection-stat,
+:root[data-theme="light"] .inspection-chip,
+:root[data-theme="light"] .status-pill,
+:root[data-theme="light"] .tag,
+:root[data-theme="light"] .metric-tag,
+:root[data-theme="light"] .token-badge {
+  background: rgba(255,255,255,0.9);
+}
+
+
+:root[data-theme="light"] .hero-card .hero-status-pill {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #f6fbff;
+}
+
+:root[data-theme="light"] .hero-card .hero-status-pill strong {
+  color: #ffffff;
+}
+
+
+
+:root[data-theme="light"] .hero-resume-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(244,248,252,0.92));
+  border-color: rgba(71, 208, 140, 0.32);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.22);
+}
+
+:root[data-theme="light"] .hero-resume-card,
+:root[data-theme="light"] .hero-resume-card strong,
+:root[data-theme="light"] .hero-resume-card h2,
+:root[data-theme="light"] .hero-resume-card h3 {
+  color: var(--text);
+}
+
+:root[data-theme="light"] .hero-resume-card p,
+:root[data-theme="light"] .hero-resume-card li,
+:root[data-theme="light"] .hero-resume-card .small-muted,
+:root[data-theme="light"] .hero-resume-card .footer-note {
+  color: var(--text-soft);
+}
+
+:root[data-theme="light"] .hero-resume-card .ghost-btn {
+  color: var(--text);
+  background: rgba(255,255,255,0.72);
+  border-color: rgba(16, 35, 58, 0.14);
+}
+
+:root[data-theme="light"] .hero-resume-card .primary-btn {
+  box-shadow: 0 10px 24px rgba(20, 120, 168, 0.18);
+}
+
+:root[data-theme="light"] .mission-metrics-dock {
+  background: linear-gradient(180deg, rgba(250,252,255,0.97), rgba(236,243,250,0.98));
+  box-shadow: 0 18px 45px rgba(33, 67, 112, 0.18);
+}
+
+:root[data-theme="light"] .mission-metrics-dock .eyebrow {
+  color: var(--accent);
+}
+
+:root[data-theme="light"] .dock-metric-card {
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(16, 35, 58, 0.1);
+}
+
+:root[data-theme="light"] .resume-detail-card,
+:root[data-theme="light"] .drill-card,
+:root[data-theme="light"] .compare-output-card,
+:root[data-theme="light"] .component-coach-strip,
+:root[data-theme="light"] .trace-card,
+:root[data-theme="light"] .debrief-starter-list,
+:root[data-theme="light"] .explore-preview-card {
+  background: rgba(255,255,255,0.92);
+}
