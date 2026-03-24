@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pattern Orchestrator Lab</title>
+  <meta name="description" content="A guided wizard that teaches Chapter 1 context-pattern judgment without guesswork.">
+  <link rel="icon" href="assets/media/pol-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div>
+          <div class="brand-title">Pattern Orchestrator Lab</div>
+          <div class="brand-subtitle">A step-by-step Chapter 1 learning lab for choosing the right context mechanism</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="pill"><strong>Version</strong> <span data-version-pill>v1.5.2</span></span>
+        <span class="pill"><strong>Environment</strong> <span data-env-pill>Local</span></span>
+        <a class="btn btn-secondary" href="help.html">Help</a>
+        <a class="btn btn-secondary" href="feedback.html">Feedback</a>
+        <button class="btn btn-secondary" data-show-walkthrough>Walkthrough</button>
+        <button class="btn" data-theme-toggle>Dark theme</button>
+      </div>
+    </header>
+
+    <section class="hero-card page-hero">
+      <div class="section-kicker">Guided educational experience</div>
+      <h1>Learn how to choose the right context before you ask the model to answer.</h1>
+      <p>
+        Pattern Orchestrator Lab walks you through one mission at a time so you can see
+        why an answer improved, what kind of context made the difference, and what to try next.
+      </p>
+    </section>
+
+    <section class="panel quickstart-panel">
+      <div class="panel-header">
+        <div>
+          <div class="section-kicker">Start here</div>
+          <h3>Best first run</h3>
+          <p>Choose <strong>Support Downgrade</strong>, follow the wizard, and use <strong>Load sample output</strong> on Step 5 if you want to learn the scoring flow before using an external LLM.</p>
+        </div>
+      </div>
+      <div class="notice info"><strong>How this works:</strong> the app creates one combined block for ChatGPT. You copy that block, run it externally, paste only ChatGPT’s answer back here, and the lab coaches you on what improved and what to change next.</div>
+    </section>
+
+    <section class="wizard-shell">
+      <aside class="panel wizard-sidebar">
+        <div class="section-kicker">What to do now</div>
+        <h3 id="coachTitle">Step 1</h3>
+        <p id="coachText">Choose a mission to begin.</p>
+        <div id="coachChecklist" class="coach-checklist"></div>
+        <div class="summary-card" style="margin-top:16px;">
+          <strong>Mission progress</strong>
+          <div class="muted" id="missionProgressText">0 of 4 missions completed</div>
+        </div>
+        <div class="summary-card" style="margin-top:12px;">
+          <strong>Current mission</strong>
+          <div class="muted" id="sidebarMissionName">Support Downgrade</div>
+          <div class="muted small" id="sidebarMissionSignal">Policy-grounded explanation</div>
+        </div>
+        <div class="summary-card" style="margin-top:12px;" id="sessionSummaryRoot"></div>
+      </aside>
+
+      <main class="panel wizard-main">
+        <div class="wizard-progress" id="wizardProgress"></div>
+        <div id="wizardContent"></div>
+        <div class="wizard-nav">
+          <button class="btn" data-wizard-back>Back</button>
+          <button class="btn btn-primary" data-wizard-next>Next step</button>
+        </div>
+      </main>
+    </section>
+  </div>
+
+  <div id="walkthroughRoot"></div>
+
+  <script src="assets/data/config.js"></script>
+  <script src="assets/data/missions.js"></script>
+  <script src="assets/data/glossary.js"></script>
+  <script src="assets/js/core/shell.js"></script>
+  <script src="assets/js/core/utils.js"></script>
+  <script src="assets/js/core/store.js"></script>
+  <script src="assets/js/domain/package-composer.js"></script>
+  <script src="assets/js/metrics/scoring.js"></script>
+  <script src="assets/js/ui/render.js"></script>
+  <script src="assets/js/core/app.js"></script>
+</body>
+</html>
