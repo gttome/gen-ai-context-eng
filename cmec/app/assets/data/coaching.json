@@ -1,0 +1,7 @@
+{
+  "highOverload": "The package is still carrying too much noise for the budget. Trim generic background before adding more detail.",
+  "lowGrounding": "The answer is still exposed to guessing because approved facts are missing or too weak.",
+  "lowStructure": "The package still lacks a strong output pattern, so even a correct answer may arrive in an inconsistent format.",
+  "lowContinuity": "This mission depends on prior-turn memory. Add only the memory that matters so the model can stay aligned without dragging in noise.",
+  "missionReady": "This package now gives the model clear instructions, useful facts, and manageable token pressure. Review the compare view and debrief to lock in the lesson."
+}
