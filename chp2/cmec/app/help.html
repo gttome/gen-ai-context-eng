@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Context Engineering Mission Control - Help</title>
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/charts.css" />
+  <link rel="stylesheet" href="assets/css/themes.css" />
+  <link rel="stylesheet" href="assets/css/accessibility.css" />
+</head>
+<body data-page="help">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <main id="main-content" class="standalone-page">
+    <header class="standalone-header">
+      <div>
+        <p class="eyebrow">Support</p>
+        <h1>Help & Mission Guide</h1>
+        <p class="lede">Use this page when you want a plain-language explanation of the learner flow and the mission shell.</p>
+      </div>
+      <div class="header-actions">
+        <button id="theme-toggle" class="ghost-btn" type="button" aria-pressed="false">Toggle theme</button>
+        <a class="primary-btn" href="index.html">Back to Mission Control</a>
+      </div>
+    </header>
+
+    <section class="standalone-grid">
+      <article class="panel">
+        <h2>How the core mission works</h2>
+        <ol class="number-list">
+          <li>Choose a scenario family on the launcher.</li>
+          <li>Read the mission brief, concept focus, and “Why this matters” note.</li>
+          <li>Inspect the visible weak package first so you can see what the model actually gets and what is missing.</li>
+          <li>Use the coaching hints to predict the most likely failure mode.</li>
+          <li>Apply one or more guided repairs or toggle package components directly.</li>
+          <li>Watch the live metrics, compare view, and coaching update.</li>
+          <li>Optionally copy the current package into an external LLM and paste the result back.</li>
+          <li>Finish the debrief, then replay or open Explore More.</li>
+        </ol>
+      </article>
+
+      <article class="panel">
+        <h2>What each metric means</h2>
+        <ul class="plain-list">
+          <li><strong>Signal Quality</strong>: Are the included components specific and relevant?</li>
+          <li><strong>Grounding</strong>: Did you give the model approved facts instead of forcing it to guess?</li>
+          <li><strong>Structure</strong>: Will the model return a reusable answer shape?</li>
+          <li><strong>Continuity</strong>: Did you carry forward the right prior-turn context?</li>
+          <li><strong>Overload Risk</strong>: Is the context package too noisy or too large for the mission budget?</li>
+          <li><strong>Mission Readiness</strong>: Is the package reliable enough for a stronger run?</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h2>Mission design intent</h2>
+        <p>This app is deliberately learner-first. You are not building documents from scratch. You are repairing prepared weak packages so you can see cause-and-effect quickly.</p>
+        <p>That means the weak package should be visible before prediction, and small changes should create visible changes in metrics, coaching, and compare surfaces. If you are not seeing movement, make sure at least one meaningful repair was applied.</p>
+      </article>
+
+      <article class="panel">
+        <h2>Troubleshooting</h2>
+        <ul class="plain-list">
+          <li>If the app looks blank, run <code>start-server.bat</code> and open the local URL instead of double-clicking <code>index.html</code>.</li>
+          <li>If progress seems stale, use the mission reset control on the launcher.</li>
+          <li>If theme does not persist, confirm browser storage is enabled.</li>
+          <li>If you want to continue in a new chat, upload the app ZIP and start with <code>project-documents/handoff-startup-prompt.md</code>.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+  <script type="module">
+    const root = document.documentElement;
+    const key = 'app_theme';
+    const btn = document.getElementById('theme-toggle');
+    const stored = localStorage.getItem(key);
+    const theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    root.dataset.theme = theme;
+    btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+    btn.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      localStorage.setItem(key, next);
+      btn.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+    });
+  </script>
+</body>
+</html>
