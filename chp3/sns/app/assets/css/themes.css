@@ -1,0 +1,12 @@
+.theme-toggle, .link-button, .primary-button, .ghost-button, .restart-fresh-button {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+.primary-button {
+  background: linear-gradient(180deg, rgba(75, 155, 255, .32), rgba(56, 129, 255, .18));
+  border-color: rgba(136, 188, 255, .5);
+}
+.link-button {
+  background: transparent;
+}

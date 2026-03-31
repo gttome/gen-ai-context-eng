@@ -1,0 +1,562 @@
+{
+  "id": "policy-exceptions",
+  "title": "Policy and Exceptions",
+  "summary": "Separate source-of-record policy text from tempting secondary notes and stale fragments.",
+  "learnerGoal": "Build the smallest sufficient package for an HR policy explanation request.",
+  "difficulty": "Core",
+  "estimatedMinutes": "6\u20138 min",
+  "budgetLimit": 120,
+  "bonusBudgetLimit": 95,
+  "taskAudience": "Employee asking about vacation carryover in plain language",
+  "whyMatters": "A polished answer is not enough if it uses stale policy or misses the approved exception path.",
+  "taskBrief": "Answer whether the employee can carry over unused vacation hours. Use only approved HR evidence, explain any applicable exception, avoid legal advice, and say when HR review is required.",
+  "successCriteria": [
+    "Uses current HR policy as the source of record.",
+    "Handles the approved exception correctly if it applies.",
+    "Avoids relying on old email summaries or training slides.",
+    "Keeps the package reviewable and within budget."
+  ],
+  "quickPredictionPrompt": "Which two cards feel most tempting to include first, and why?",
+  "dynamicFacts": [
+    "Request date: March 2026",
+    "Employee has 24 unused vacation hours.",
+    "Manager-approved leave request was submitted before year-end."
+  ],
+  "outputContract": [
+    "Return sections: Explanation / Next Steps / What We Know",
+    "Use plain language for an employee audience",
+    "State uncertainty instead of guessing"
+  ],
+  "cards": [
+    {
+      "id": "pe1",
+      "title": "HR Policy 2026 \u00a74.2 Carryover Rule",
+      "sourceType": "Policy excerpt",
+      "recency": "Current",
+      "authority": "High",
+      "tokenCost": 28,
+      "excerpt": "Unused vacation may not be carried over unless an approved exception applies. Approved exceptions require documented manager approval before year-end and HR confirmation.",
+      "idealAction": "include",
+      "essential": true,
+      "summaryText": "Current source-of-record carryover rule with exception conditions.",
+      "duplicateGroup": "policy",
+      "teaches": "authority"
+    },
+    {
+      "id": "pe2",
+      "title": "HR Exception Memo \u2014 Approved Leave Already Filed",
+      "sourceType": "Exception memo",
+      "recency": "Current",
+      "authority": "High",
+      "tokenCost": 18,
+      "excerpt": "If a leave request was approved before year-end and could not be taken, carryover may be permitted after HR confirmation.",
+      "idealAction": "include",
+      "essential": true,
+      "summaryText": "Current approved exception path for pre-filed leave requests.",
+      "duplicateGroup": "exception",
+      "teaches": "coverage"
+    },
+    {
+      "id": "pe3",
+      "title": "Benefits FAQ Summary",
+      "sourceType": "FAQ summary",
+      "recency": "Current",
+      "authority": "Medium",
+      "tokenCost": 20,
+      "excerpt": "Employees often ask whether unused vacation automatically carries over. The FAQ restates the policy in simpler language but omits the full exception logic.",
+      "idealAction": "summarize",
+      "essential": false,
+      "summaryText": "Useful plain-language restatement, but redundant as direct evidence.",
+      "duplicateGroup": "policy",
+      "teaches": "signal"
+    },
+    {
+      "id": "pe4",
+      "title": "2024 Manager Email About Carryover",
+      "sourceType": "Email summary",
+      "recency": "Stale",
+      "authority": "Low",
+      "tokenCost": 22,
+      "excerpt": "A manager wrote that teams were informally allowed to carry over unused hours last year while staffing was tight.",
+      "idealAction": "omit",
+      "essential": false,
+      "summaryText": "Outdated and not authoritative.",
+      "duplicateGroup": "email",
+      "teaches": "freshness"
+    },
+    {
+      "id": "pe5",
+      "title": "HR Training Deck Slide",
+      "sourceType": "Training slide",
+      "recency": "Aging",
+      "authority": "Medium",
+      "tokenCost": 24,
+      "excerpt": "Slide says carryover is usually not allowed, with bullets that mirror older training language but not the newest exception wording.",
+      "idealAction": "summarize",
+      "essential": false,
+      "summaryText": "Background-only training language; not needed verbatim.",
+      "duplicateGroup": "training",
+      "teaches": "authority"
+    },
+    {
+      "id": "pe6",
+      "title": "Union Exception Appendix",
+      "sourceType": "Appendix",
+      "recency": "Current",
+      "authority": "High",
+      "tokenCost": 26,
+      "excerpt": "Separate rules apply for union-covered employees in a narrow bargaining unit. This employee is not marked as union-covered in the request facts.",
+      "idealAction": "retrieveLater",
+      "essential": false,
+      "summaryText": "Keep available for conditional follow-up, not core inclusion.",
+      "duplicateGroup": "union",
+      "teaches": "retrieve"
+    },
+    {
+      "id": "pe7",
+      "title": "Employee Record Snippet",
+      "sourceType": "Dynamic fact record",
+      "recency": "Current",
+      "authority": "High",
+      "tokenCost": 12,
+      "excerpt": "Employee has 24 unused hours and an approved leave request filed before year-end.",
+      "idealAction": "include",
+      "essential": true,
+      "summaryText": "Current case-specific facts needed to apply the exception.",
+      "duplicateGroup": "facts",
+      "teaches": "coverage"
+    },
+    {
+      "id": "pe8",
+      "title": "General Benefits Brochure",
+      "sourceType": "Brochure",
+      "recency": "Current",
+      "authority": "Low",
+      "tokenCost": 16,
+      "excerpt": "Broad overview of PTO, wellness, and family benefits. Vacation carryover is mentioned only at a high level.",
+      "idealAction": "omit",
+      "essential": false,
+      "summaryText": "Background brochure not needed for this answer.",
+      "duplicateGroup": "brochure",
+      "teaches": "signal"
+    },
+    {
+      "id": "pe9",
+      "title": "HR Escalation Guidance",
+      "sourceType": "Process note",
+      "recency": "Current",
+      "authority": "High",
+      "tokenCost": 14,
+      "excerpt": "If policy language is silent or a case falls outside the approved exception path, instruct the employee to contact HR for review.",
+      "idealAction": "retrieveLater",
+      "essential": false,
+      "summaryText": "Useful fallback instruction, but can stay deferred unless uncertainty appears.",
+      "duplicateGroup": "escalation",
+      "teaches": "retrieve"
+    }
+  ],
+  "strongestPractice": {
+    "actions": {
+      "pe1": "include",
+      "pe2": "include",
+      "pe3": "summarize",
+      "pe4": "omit",
+      "pe5": "summarize",
+      "pe6": "retrieveLater",
+      "pe7": "include",
+      "pe8": "omit",
+      "pe9": "retrieveLater"
+    },
+    "commentary": [
+      "Directly include the source-of-record policy, the applicable exception memo, and the case facts.",
+      "Summarize helpful restatements instead of pasting them verbatim.",
+      "Keep narrow edge-case material available through Retrieve Later rather than crowding the main package.",
+      "Omit stale or brochure-style background that does not materially improve the answer."
+    ]
+  },
+  "antiPatterns": {
+    "bloated": [
+      "pe1",
+      "pe2",
+      "pe3",
+      "pe4",
+      "pe5",
+      "pe6",
+      "pe7",
+      "pe9"
+    ],
+    "underSupported": [
+      "pe3",
+      "pe5",
+      "pe8"
+    ]
+  },
+  "bonusBranches": [
+    {
+      "id": "strict-budget",
+      "title": "Stricter Budget Replay",
+      "description": "Replay the same mission with a tighter budget to expose what really deserves entry.",
+      "type": "budget_reduction",
+      "budgetLimit": 86,
+      "coachNote": "Protect the policy rule, approved exception, and employee record first. Everything else must justify its footprint.",
+      "suppressedCardIds": [
+        "pe5"
+      ],
+      "overlayCards": [
+        {
+          "id": "pe_sb1",
+          "title": "Case Header \u2014 Exception Review Intake",
+          "sourceType": "Case header",
+          "authority": "High",
+          "recency": "Current",
+          "essential": false,
+          "idealAction": "summarize",
+          "tokenCost": 8,
+          "excerpt": "Reviewer needs a short answer grounded in the current carryover rule, the documented exception path, and the employee record only.",
+          "summaryText": "Compact case frame for the tighter-budget replay.",
+          "teaches": "Tighter-budget replay card"
+        }
+      ],
+      "strongestPracticeOverride": {
+        "commentary": [
+          "The stricter-budget replay should protect only the few cards that directly change the answer.",
+          "Compact replay-only constraint cards can shape the answer without demanding another full direct include.",
+          "Older background and follow-up material should move into Summarize, Retrieve Later, or Omit much earlier than in the core run."
+        ]
+      }
+    },
+    {
+      "id": "authority-freshness",
+      "title": "Authority vs Freshness Drill",
+      "description": "Re-run the case while explicitly resisting stale manager guidance when current HR policy and exception records are available.",
+      "type": "authority_freshness",
+      "budgetLimit": 96,
+      "coachNote": "Treat current HR policy and current exception evidence as the spine. Do not let stale manager email guidance outrank source-of-record material.",
+      "suppressedCardIds": [
+        "pe4",
+        "pe5"
+      ],
+      "overlayCards": [
+        {
+          "id": "pe_af1",
+          "title": "HR Queue Snapshot \u2014 Today",
+          "sourceType": "Queue snapshot",
+          "authority": "High",
+          "recency": "Current",
+          "essential": true,
+          "idealAction": "include",
+          "tokenCost": 10,
+          "excerpt": "Current HR queue notes show the case is being reviewed through the approved-exception path. Stale manager guidance should not determine the answer.",
+          "summaryText": "Fresh source-of-record note for the authority-versus-freshness replay.",
+          "teaches": "Branch-only current evidence"
+        }
+      ],
+      "strongestPracticeOverride": {
+        "commentary": [
+          "The authority-versus-freshness replay should make current source-of-record evidence visibly lead the answer.",
+          "Branch-only fresh evidence should change what the best package looks like, not just how the coaching sounds.",
+          "Comfortable but aging summaries can support the answer, but they should not steer it."
+        ]
+      }
+    }
+  ],
+  "pastebackChecks": [
+    {
+      "id": "explanation",
+      "label": "Explains the carryover decision",
+      "keywords": [
+        "carryover",
+        "exception",
+        "approved leave",
+        "decision"
+      ]
+    },
+    {
+      "id": "nextstep",
+      "label": "Gives a practical next step",
+      "keywords": [
+        "next step",
+        "confirm with hr",
+        "escalate",
+        "follow up"
+      ]
+    },
+    {
+      "id": "record",
+      "label": "Uses record or policy language",
+      "keywords": [
+        "policy",
+        "hr policy",
+        "employee record",
+        "source of record"
+      ]
+    }
+  ],
+  "pastebackWordLimit": 180,
+  "pastebackAssertions": [
+    {
+      "id": "policy-exception-required",
+      "label": "Carryover depends on an approved exception path",
+      "cues": [
+        "carryover",
+        "approved exception",
+        "manager approval",
+        "hr confirmation"
+      ],
+      "positivePhrases": [
+        "approved exception",
+        "manager approval before year-end",
+        "hr confirmation",
+        "carryover may be permitted"
+      ],
+      "contradictionPhrases": [
+        "automatic carryover",
+        "automatically carries over",
+        "all unused hours carry over",
+        "carryover is guaranteed"
+      ],
+      "critical": true,
+      "supportCueGroups": [
+        [
+          "approved exception",
+          "exception path",
+          "exception applies"
+        ],
+        [
+          "hr confirmation",
+          "hr review",
+          "confirm with hr"
+        ]
+      ]
+    },
+    {
+      "id": "leave-request-supports-exception",
+      "label": "Approved leave request before year-end supports the exception",
+      "cues": [
+        "approved leave request",
+        "before year-end",
+        "could not be taken"
+      ],
+      "positivePhrases": [
+        "approved leave request filed before year-end",
+        "approved before year-end",
+        "could not be taken"
+      ],
+      "contradictionPhrases": [
+        "no approved leave request",
+        "leave was not approved",
+        "after year-end approval"
+      ],
+      "critical": true,
+      "supportCueGroups": [
+        [
+          "approved leave request",
+          "leave request was approved"
+        ],
+        [
+          "before year-end",
+          "pre year end",
+          "prior to year end"
+        ]
+      ]
+    },
+    {
+      "id": "unused-hours-fact",
+      "label": "The answer should preserve the 24 unused hours fact when summarizing the case",
+      "cues": [
+        "24",
+        "unused hours"
+      ],
+      "positivePhrases": [
+        "24 unused hours",
+        "24 hours unused"
+      ],
+      "contradictionPhrases": [
+        "0 unused hours",
+        "no unused hours",
+        "8 unused hours",
+        "40 unused hours"
+      ],
+      "critical": false
+    }
+  ],
+  "factChecks": [
+    {
+      "id": "unused-hours-24",
+      "label": "The case still involves 24 unused vacation hours",
+      "type": "number",
+      "subjectCues": [
+        "unused",
+        "hours",
+        "vacation"
+      ],
+      "expectedValues": [
+        "24"
+      ],
+      "expectedUnits": [
+        "hours"
+      ],
+      "contradictionValues": [
+        "0",
+        "8",
+        "40"
+      ],
+      "critical": false
+    },
+    {
+      "id": "approval-before-year-end",
+      "label": "The approved leave request happened before year-end",
+      "type": "date",
+      "subjectCues": [
+        "leave request",
+        "approval",
+        "year-end"
+      ],
+      "expectedPhrases": [
+        "before year-end",
+        "approved before year-end"
+      ],
+      "contradictionPhrases": [
+        "after year-end",
+        "approved after year-end",
+        "year-end approval was missing"
+      ],
+      "critical": true
+    },
+    {
+      "id": "request-date-march-2026",
+      "label": "The case timing remains in March 2026 when summarizing the request context",
+      "type": "date",
+      "subjectCues": [
+        "request date",
+        "request",
+        "case timing"
+      ],
+      "expectedPhrases": [
+        "march 2026"
+      ],
+      "contradictionPhrases": [
+        "january 2026",
+        "2025 request",
+        "last year"
+      ],
+      "critical": false
+    }
+  ],
+  "requiredCaveats": [
+    {
+      "id": "hr-review-required",
+      "label": "The answer should make HR review or confirmation explicit",
+      "subjectCues": [
+        "hr",
+        "review",
+        "confirmation"
+      ],
+      "requiredPhrases": [
+        "confirm with hr",
+        "hr review is required",
+        "requires hr review",
+        "needs hr confirmation"
+      ],
+      "contradictionPhrases": [
+        "no hr review needed",
+        "no need to contact hr",
+        "manager can finalize it alone"
+      ],
+      "critical": true,
+      "supportCueGroups": [
+        [
+          "confirm with hr",
+          "hr review is required",
+          "requires hr review",
+          "needs hr confirmation"
+        ]
+      ]
+    }
+  ],
+  "compoundChecks": [
+    {
+      "id": "exception-path-stays-bounded",
+      "label": "Exception path stays bounded by before-year-end approval, 24 unused hours, and HR confirmation",
+      "subjectCues": [
+        "carryover",
+        "exception",
+        "hr",
+        "leave request"
+      ],
+      "groups": [
+        {
+          "label": "24 unused hours",
+          "phrases": [
+            "24 unused hours",
+            "24 hours unused"
+          ],
+          "cues": [
+            "24",
+            "unused",
+            "hours"
+          ]
+        },
+        {
+          "label": "before year-end approval",
+          "phrases": [
+            "before year-end",
+            "approved before year-end"
+          ],
+          "cues": [
+            "before year-end",
+            "approval"
+          ]
+        },
+        {
+          "label": "HR confirmation",
+          "phrases": [
+            "confirm with hr",
+            "hr confirmation",
+            "hr review is required",
+            "requires hr review"
+          ],
+          "cues": [
+            "hr",
+            "confirmation",
+            "review"
+          ]
+        }
+      ],
+      "contradictionPhrases": [
+        "automatic carryover",
+        "carryover is guaranteed",
+        "no hr review needed",
+        "manager can finalize it alone",
+        "after year-end approval"
+      ],
+      "minGroups": 3,
+      "critical": true,
+      "teachingNote": "This case is only safe when the approval timing, the case facts, and the HR-confirmation caveat stay connected in the same answer region.",
+      "contradictionCueGroups": [
+        [
+          "automatic carryover",
+          "carryover is guaranteed"
+        ],
+        [
+          "manager can finalize it alone",
+          "no hr review needed"
+        ]
+      ]
+    }
+  ],
+  "reviewCoaching": [
+    {
+      "when": "assertion-miss",
+      "message": "Do not turn a bounded HR exception into automatic carryover. Keep the exception path explicit."
+    },
+    {
+      "when": "caveat-miss",
+      "message": "HR confirmation is part of the answer logic here, not optional follow-up decoration."
+    },
+    {
+      "when": "compound-miss",
+      "message": "Approval timing, the 24-hour case fact, and HR confirmation should stay connected in the same answer region."
+    }
+  ]
+}

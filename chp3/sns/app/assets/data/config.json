@@ -1,0 +1,25 @@
+{
+  "appName": "Signal-to-Noise Studio",
+  "version": "v2.4.0",
+  "buildId": "sns-v2.4.0",
+  "storageKeys": {
+    "theme": "app_theme",
+    "session": "sns_session_v15",
+    "feedback": "sns_feedback_v15"
+  },
+  "defaultStage": "launch",
+  "coreStages": [
+    "launch",
+    "brief",
+    "workspace",
+    "export",
+    "comparison",
+    "summary"
+  ],
+  "environmentNames": {
+    "file": "File",
+    "local": "Local",
+    "github": "GitHub Pages",
+    "web": "Web"
+  }
+}

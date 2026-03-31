@@ -1,0 +1,60 @@
+{
+  "categories": [
+    {
+      "id": "signal",
+      "label": "Signal Quality",
+      "weight": 30,
+      "good": "Lean and relevant.",
+      "bad": "Noise is crowding the job."
+    },
+    {
+      "id": "authority",
+      "label": "Authority Handling",
+      "weight": 20,
+      "good": "Sources of record lead.",
+      "bad": "Weak or secondary sources are displacing stronger evidence."
+    },
+    {
+      "id": "freshness",
+      "label": "Freshness Discipline",
+      "weight": 20,
+      "good": "Current information is winning.",
+      "bad": "Stale material risks silent drift."
+    },
+    {
+      "id": "budget",
+      "label": "Budget Use",
+      "weight": 15,
+      "good": "Capacity is being spent carefully.",
+      "bad": "The package is under-supported or overloaded."
+    },
+    {
+      "id": "explainability",
+      "label": "Selection Explainability",
+      "weight": 15,
+      "good": "Choices are reviewable.",
+      "bad": "The package is harder to defend or reuse."
+    }
+  ],
+  "riskCues": [
+    {
+      "id": "missingEssential",
+      "label": "Missing essential evidence"
+    },
+    {
+      "id": "staleIncluded",
+      "label": "Stale-source risk"
+    },
+    {
+      "id": "duplicatePressure",
+      "label": "Duplicate pressure"
+    }
+  ],
+  "progress": [
+    "not-started",
+    "in-progress",
+    "review-ready",
+    "core-complete",
+    "bonus-active"
+  ]
+}

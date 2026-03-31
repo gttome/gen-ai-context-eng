@@ -1,0 +1,16 @@
+:focus-visible {
+  outline: 2px solid rgba(132, 194, 255, .95);
+  outline-offset: 2px;
+}
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: .8rem 1rem;
+  background: var(--panel);
+  border-radius: 12px;
+}
+.skip-link:focus {
+  top: 1rem;
+}

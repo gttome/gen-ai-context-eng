@@ -1,0 +1,30 @@
+[
+  {
+    "term": "Context package",
+    "short": "The full operating input for a task: task, rules, evidence, dynamic facts, and output expectations."
+  },
+  {
+    "term": "Token budget",
+    "short": "The practical limit on how much text can be included before focus and reliability degrade."
+  },
+  {
+    "term": "Signal-to-noise ratio",
+    "short": "A judgment about whether included text materially helps the answer or merely competes for attention."
+  },
+  {
+    "term": "Authority",
+    "short": "How trustworthy a source is relative to other available sources."
+  },
+  {
+    "term": "Freshness",
+    "short": "Whether a source is current enough for the task being performed."
+  },
+  {
+    "term": "Retrieve Later",
+    "short": "Keep the material available for conditional follow-up instead of loading it into the core package now."
+  },
+  {
+    "term": "Strongest-practice package",
+    "short": "A disciplined, reviewable package that illustrates better selection choices for the same task."
+  }
+]
