@@ -1,0 +1,578 @@
+{
+  "id": "status-freshness",
+  "title": "Status and Freshness",
+  "summary": "Choose current status evidence over obsolete summaries and low-value background.",
+  "learnerGoal": "Curate a reviewable status package for an executive update.",
+  "difficulty": "Core",
+  "estimatedMinutes": "6\u20138 min",
+  "budgetLimit": 105,
+  "bonusBudgetLimit": 82,
+  "taskAudience": "VP reviewing a cross-functional project update",
+  "whyMatters": "Status packages fail quietly when stale summaries look plausible and current facts are buried.",
+  "taskBrief": "Prepare a concise AI-ready package that will help generate an executive status summary for Project Atlas. Prioritize the most current facts, preserve one key risk, and avoid background that does not change the summary.",
+  "successCriteria": [
+    "Privileges current tracker evidence over stale summaries.",
+    "Keeps one material customer-impact risk visible.",
+    "Avoids duplicated or obsolete project background.",
+    "Stays compact and reviewable."
+  ],
+  "quickPredictionPrompt": "What makes a status note feel current enough to trust?",
+  "dynamicFacts": [
+    "Today's date: March 26, 2026",
+    "Executive wants: one-paragraph status + risks + next step",
+    "Project Atlas is entering pilot rollout"
+  ],
+  "outputContract": [
+    "Return sections: Current Status / Key Risk / Immediate Next Step",
+    "Use current evidence first",
+    "Note uncertainty instead of smoothing it over"
+  ],
+  "cards": [
+    {
+      "id": "sf1",
+      "title": "Live Tracker Update \u2014 Today 9:15 AM",
+      "sourceType": "Tracker update",
+      "recency": "Current",
+      "authority": "High",
+      "tokenCost": 22,
+      "excerpt": "Pilot rollout is at 82%. One blocking issue remains in identity sync for a subset of users.",
+      "idealAction": "include",
+      "essential": true,
+      "summaryText": "Most current delivery status and blocker.",
+      "duplicateGroup": "status",
+      "teaches": "freshness"
+    },
+    {
+      "id": "sf2",
+      "title": "Customer Escalation Note \u2014 Yesterday",
+      "sourceType": "Escalation note",
+      "recency": "Current",
+      "authority": "High",
+      "tokenCost": 16,
+      "excerpt": "Two pilot users were delayed by the identity sync issue. Customer success requested a risk mention in the next executive update.",
+      "idealAction": "include",
+      "essential": true,
+      "summaryText": "Current customer-impact signal tied to the blocker.",
+      "duplicateGroup": "risk",
+      "teaches": "coverage"
+    },
+    {
+      "id": "sf3",
+      "title": "Project Manager Weekly Summary",
+      "sourceType": "Weekly summary",
+      "recency": "Aging",
+      "authority": "Medium",
+      "tokenCost": 24,
+      "excerpt": "States rollout is on track and lists several completed workstreams. Written before the new blocker appeared.",
+      "idealAction": "summarize",
+      "essential": false,
+      "summaryText": "Useful background summary, but no longer current enough to lead.",
+      "duplicateGroup": "summary",
+      "teaches": "freshness"
+    },
+    {
+      "id": "sf4",
+      "title": "Launch Plan v1.1",
+      "sourceType": "Plan document",
+      "recency": "Stale",
+      "authority": "Medium",
+      "tokenCost": 26,
+      "excerpt": "Old launch assumptions and milestone dates from before pilot scope changed.",
+      "idealAction": "omit",
+      "essential": false,
+      "summaryText": "Obsolete plan artifact.",
+      "duplicateGroup": "plan",
+      "teaches": "omit"
+    },
+    {
+      "id": "sf5",
+      "title": "Standup Notes Clip",
+      "sourceType": "Meeting notes",
+      "recency": "Current",
+      "authority": "Low",
+      "tokenCost": 18,
+      "excerpt": "Notes mirror the live tracker and mention the same blocker in less precise language.",
+      "idealAction": "summarize",
+      "essential": false,
+      "summaryText": "Mostly duplicate of the stronger tracker source.",
+      "duplicateGroup": "status",
+      "teaches": "duplicate"
+    },
+    {
+      "id": "sf6",
+      "title": "Architecture Overview",
+      "sourceType": "Reference brief",
+      "recency": "Current",
+      "authority": "Medium",
+      "tokenCost": 20,
+      "excerpt": "System context explaining identity sync dependencies. Helpful only if a reviewer needs deeper follow-up.",
+      "idealAction": "retrieveLater",
+      "essential": false,
+      "summaryText": "Useful for follow-up, not core status inclusion.",
+      "duplicateGroup": "reference",
+      "teaches": "retrieve"
+    },
+    {
+      "id": "sf7",
+      "title": "Old Dashboard Export",
+      "sourceType": "Dashboard export",
+      "recency": "Stale",
+      "authority": "Low",
+      "tokenCost": 21,
+      "excerpt": "Shows rollout at 67% from three weeks ago.",
+      "idealAction": "omit",
+      "essential": false,
+      "summaryText": "Visibly stale metric snapshot.",
+      "duplicateGroup": "dashboard",
+      "teaches": "freshness"
+    },
+    {
+      "id": "sf8",
+      "title": "Next-Step Owner Note",
+      "sourceType": "Owner note",
+      "recency": "Current",
+      "authority": "High",
+      "tokenCost": 12,
+      "excerpt": "Identity team will release a fix candidate by tomorrow afternoon and validate with two pilot accounts.",
+      "idealAction": "include",
+      "essential": true,
+      "summaryText": "Concrete immediate next step for the executive update.",
+      "duplicateGroup": "next",
+      "teaches": "coverage"
+    },
+    {
+      "id": "sf9",
+      "title": "RCA Draft",
+      "sourceType": "Draft analysis",
+      "recency": "Current",
+      "authority": "Medium",
+      "tokenCost": 28,
+      "excerpt": "Early root-cause detail for the identity sync issue. Too detailed for the core executive summary, but useful if asked how the blocker emerged.",
+      "idealAction": "retrieveLater",
+      "essential": false,
+      "summaryText": "Keep for conditional follow-up, not core summary.",
+      "duplicateGroup": "rca",
+      "teaches": "retrieve"
+    }
+  ],
+  "strongestPractice": {
+    "actions": {
+      "sf1": "include",
+      "sf2": "include",
+      "sf3": "summarize",
+      "sf4": "omit",
+      "sf5": "summarize",
+      "sf6": "retrieveLater",
+      "sf7": "omit",
+      "sf8": "include",
+      "sf9": "retrieveLater"
+    },
+    "commentary": [
+      "Include the live tracker, current risk note, and immediate next step.",
+      "Summarize aging or duplicate context that helps but should not outrank current evidence.",
+      "Omit visibly stale exports and obsolete plans.",
+      "Retrieve deeper technical detail only if follow-up requires it."
+    ]
+  },
+  "antiPatterns": {
+    "bloated": [
+      "sf1",
+      "sf2",
+      "sf3",
+      "sf4",
+      "sf5",
+      "sf6",
+      "sf8",
+      "sf9"
+    ],
+    "underSupported": [
+      "sf3",
+      "sf4",
+      "sf5"
+    ]
+  },
+  "bonusBranches": [
+    {
+      "id": "strict-budget",
+      "title": "Stricter Budget Replay",
+      "description": "Tighten the budget and see whether your current package still protects the key status story.",
+      "type": "budget_reduction",
+      "budgetLimit": 82,
+      "coachNote": "Protect current status, current risk, and immediate next step. Everything else must earn a much smaller footprint.",
+      "suppressedCardIds": [
+        "sf3"
+      ],
+      "overlayCards": [
+        {
+          "id": "sf_sb1",
+          "title": "Executive Channel Constraint",
+          "sourceType": "Comms constraint",
+          "authority": "High",
+          "recency": "Current",
+          "essential": false,
+          "idealAction": "summarize",
+          "tokenCost": 8,
+          "excerpt": "Executive update must stay to one tight paragraph: current status, main risk, and immediate next step only.",
+          "summaryText": "Compact output constraint for the strict-budget replay.",
+          "teaches": "Branch-only constraint card"
+        }
+      ],
+      "strongestPracticeOverride": {
+        "commentary": [
+          "The stricter-budget replay should protect only the few cards that directly change the answer.",
+          "Compact replay-only constraint cards can shape the answer without demanding another full direct include.",
+          "Older background and follow-up material should move into Summarize, Retrieve Later, or Omit much earlier than in the core run."
+        ]
+      }
+    },
+    {
+      "id": "authority-freshness",
+      "title": "Authority vs Freshness Drill",
+      "description": "Re-run the mission while explicitly favoring the freshest evidence over aging summaries that feel comfortable but no longer lead.",
+      "type": "authority_freshness",
+      "budgetLimit": 92,
+      "coachNote": "Let the live tracker and yesterday's escalation note lead. Aging summaries can help, but they should never override the current blocker story.",
+      "suppressedCardIds": [
+        "sf3",
+        "sf7"
+      ],
+      "overlayCards": [
+        {
+          "id": "sf_af1",
+          "title": "Ops Monitor Snapshot \u2014 Today 10:05 AM",
+          "sourceType": "Ops snapshot",
+          "authority": "High",
+          "recency": "Current",
+          "essential": true,
+          "idealAction": "include",
+          "tokenCost": 10,
+          "excerpt": "The identity sync blocker is still open. No newer signal outranks it in the pilot rollout right now.",
+          "summaryText": "Fresh monitoring evidence for the authority-versus-freshness replay.",
+          "teaches": "Branch-only current evidence"
+        }
+      ],
+      "strongestPracticeOverride": {
+        "commentary": [
+          "The authority-versus-freshness replay should make current source-of-record evidence visibly lead the answer.",
+          "Branch-only fresh evidence should change what the best package looks like, not just how the coaching sounds.",
+          "Comfortable but aging summaries can support the answer, but they should not steer it."
+        ]
+      }
+    }
+  ],
+  "pastebackChecks": [
+    {
+      "id": "status",
+      "label": "States the current status clearly",
+      "keywords": [
+        "current status",
+        "pilot rollout",
+        "82%",
+        "status"
+      ]
+    },
+    {
+      "id": "risk",
+      "label": "Mentions the blocker or key risk",
+      "keywords": [
+        "risk",
+        "blocker",
+        "identity sync"
+      ]
+    },
+    {
+      "id": "nextstep",
+      "label": "Includes the immediate next step",
+      "keywords": [
+        "next step",
+        "fix candidate",
+        "tomorrow",
+        "validate"
+      ]
+    }
+  ],
+  "pastebackWordLimit": 160,
+  "pastebackAssertions": [
+    {
+      "id": "current-rollout-status",
+      "label": "The answer should preserve the current 82% rollout status",
+      "cues": [
+        "82",
+        "pilot rollout"
+      ],
+      "positivePhrases": [
+        "82%",
+        "pilot rollout is at 82%",
+        "rollout is at 82%"
+      ],
+      "contradictionPhrases": [
+        "67%",
+        "rollout complete",
+        "100%",
+        "pilot rollout finished"
+      ],
+      "critical": true,
+      "supportCueGroups": [
+        [
+          "82%",
+          "82 percent"
+        ],
+        [
+          "rollout in progress",
+          "rollout is at 82%"
+        ]
+      ]
+    },
+    {
+      "id": "identity-sync-blocker",
+      "label": "Identity sync remains the main blocker and risk",
+      "cues": [
+        "identity sync",
+        "blocker",
+        "pilot users delayed"
+      ],
+      "positivePhrases": [
+        "identity sync issue",
+        "identity sync blocker",
+        "two pilot users were delayed",
+        "main risk"
+      ],
+      "contradictionPhrases": [
+        "no blocker",
+        "no risk",
+        "identity sync is resolved",
+        "all users unblocked"
+      ],
+      "critical": true,
+      "supportCueGroups": [
+        [
+          "identity sync",
+          "identity synchronization"
+        ],
+        [
+          "main blocker",
+          "main risk",
+          "primary blocker"
+        ]
+      ]
+    },
+    {
+      "id": "next-step-fix-candidate",
+      "label": "The next step is a fix candidate by tomorrow afternoon with validation on two pilot accounts",
+      "cues": [
+        "fix candidate",
+        "tomorrow afternoon",
+        "two pilot accounts"
+      ],
+      "positivePhrases": [
+        "fix candidate by tomorrow afternoon",
+        "validate with two pilot accounts",
+        "tomorrow afternoon"
+      ],
+      "contradictionPhrases": [
+        "next week",
+        "no validation needed",
+        "already fully validated"
+      ],
+      "critical": true
+    }
+  ],
+  "factChecks": [
+    {
+      "id": "rollout-82-percent",
+      "label": "The current rollout remains at 82%",
+      "type": "number",
+      "subjectCues": [
+        "rollout",
+        "pilot rollout",
+        "status"
+      ],
+      "expectedValues": [
+        "82",
+        "82%"
+      ],
+      "expectedUnits": [
+        "%"
+      ],
+      "contradictionValues": [
+        "67",
+        "100"
+      ],
+      "critical": true
+    },
+    {
+      "id": "two-pilot-accounts",
+      "label": "Validation still involves two pilot accounts",
+      "type": "number",
+      "subjectCues": [
+        "pilot accounts",
+        "validation",
+        "accounts"
+      ],
+      "expectedValues": [
+        "2",
+        "two"
+      ],
+      "contradictionValues": [
+        "1",
+        "one",
+        "3",
+        "three"
+      ],
+      "critical": true
+    },
+    {
+      "id": "fix-candidate-tomorrow-afternoon",
+      "label": "The next step timing is tomorrow afternoon rather than a later window",
+      "type": "date",
+      "subjectCues": [
+        "fix candidate",
+        "next step",
+        "validation"
+      ],
+      "expectedPhrases": [
+        "tomorrow afternoon"
+      ],
+      "contradictionPhrases": [
+        "next week",
+        "later this month",
+        "already shipped"
+      ],
+      "critical": true
+    },
+    {
+      "id": "rollout-still-in-progress",
+      "label": "The rollout is still in progress rather than fully complete",
+      "type": "direction",
+      "subjectCues": [
+        "rollout",
+        "status",
+        "pilot"
+      ],
+      "expectedPhrases": [
+        "pilot rollout is at 82%",
+        "rollout is at 82%",
+        "pilot rollout is in progress"
+      ],
+      "contradictionPhrases": [
+        "rollout complete",
+        "pilot rollout finished",
+        "already fully rolled out"
+      ],
+      "critical": true
+    }
+  ],
+  "requiredCaveats": [
+    {
+      "id": "validation-still-pending",
+      "label": "The answer should preserve that the next step is still pending validation rather than fully complete",
+      "subjectCues": [
+        "validation",
+        "pilot accounts",
+        "next step"
+      ],
+      "requiredPhrases": [
+        "validate with two pilot accounts",
+        "pending validation",
+        "still needs validation"
+      ],
+      "contradictionPhrases": [
+        "already fully validated",
+        "no validation needed"
+      ],
+      "critical": true,
+      "supportCueGroups": [
+        [
+          "pending validation",
+          "still needs validation",
+          "validate with two pilot accounts"
+        ]
+      ]
+    }
+  ],
+  "compoundChecks": [
+    {
+      "id": "status-window-stays-current",
+      "label": "Current status stays bounded by 82% rollout, in-progress validation, and tomorrow-afternoon fix timing",
+      "subjectCues": [
+        "rollout",
+        "validation",
+        "fix candidate",
+        "pilot"
+      ],
+      "groups": [
+        {
+          "label": "82% rollout",
+          "phrases": [
+            "82%",
+            "82 %",
+            "pilot rollout is at 82%",
+            "rollout is at 82%"
+          ],
+          "cues": [
+            "82",
+            "rollout"
+          ]
+        },
+        {
+          "label": "validation still pending",
+          "phrases": [
+            "validate it with two pilot accounts",
+            "pending validation",
+            "still needs validation"
+          ],
+          "cues": [
+            "validation",
+            "two pilot accounts"
+          ]
+        },
+        {
+          "label": "tomorrow afternoon fix timing",
+          "phrases": [
+            "tomorrow afternoon",
+            "fix candidate tomorrow afternoon"
+          ],
+          "cues": [
+            "tomorrow afternoon",
+            "fix candidate"
+          ]
+        }
+      ],
+      "contradictionPhrases": [
+        "100% complete",
+        "rollout complete",
+        "already fully validated",
+        "already shipped",
+        "next week"
+      ],
+      "minGroups": 3,
+      "critical": true,
+      "teachingNote": "Status answers fail when timing, completion state, and validation drift apart inside one polished summary.",
+      "contradictionCueGroups": [
+        [
+          "rollout complete",
+          "100% complete"
+        ],
+        [
+          "already fully validated",
+          "already shipped",
+          "next week"
+        ]
+      ]
+    }
+  ],
+  "reviewCoaching": [
+    {
+      "when": "assertion-miss",
+      "message": "Status answers should preserve current state, the live blocker, and the next-step timing instead of collapsing them into a finished story."
+    },
+    {
+      "when": "fact-miss",
+      "message": "Percent complete, account count, and timing are the highest-risk status facts; preserve them exactly."
+    },
+    {
+      "when": "compound-miss",
+      "message": "The rollout is still in progress, validation is still pending, and the fix candidate is still tomorrow afternoon. Keep those together."
+    }
+  ]
+}

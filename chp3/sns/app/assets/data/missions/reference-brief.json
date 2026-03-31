@@ -1,0 +1,561 @@
+{
+  "id": "reference-brief",
+  "title": "Reference Brief",
+  "summary": "Keep only the evidence that materially changes the answer or required format.",
+  "learnerGoal": "Build a compact package for a vendor recommendation brief.",
+  "difficulty": "Core",
+  "estimatedMinutes": "6\u20138 min",
+  "budgetLimit": 115,
+  "bonusBudgetLimit": 88,
+  "taskAudience": "Procurement lead choosing a short-listed vendor",
+  "whyMatters": "Reference-heavy work often fails because useful-looking background crowds out the few excerpts that actually drive the recommendation.",
+  "taskBrief": "Prepare an AI-ready package to draft a vendor recommendation brief. The brief must compare security fit, price band, and service commitments for a final shortlist memo.",
+  "successCriteria": [
+    "Includes evidence that directly affects the recommendation.",
+    "Summarizes long but relevant background instead of pasting it whole.",
+    "Keeps conditional legal detail retrievable rather than bloating the package.",
+    "Omits history and marketing copy that do not change the recommendation."
+  ],
+  "quickPredictionPrompt": "What makes a reference excerpt worth paying for in your token budget?",
+  "dynamicFacts": [
+    "Decision window closes this week",
+    "Procurement needs a shortlist memo, not a full technical evaluation",
+    "Security fit is slightly more important than price"
+  ],
+  "outputContract": [
+    "Return sections: Recommendation / Why It Fits / What Needs Follow-up",
+    "Base the memo on provided evidence only",
+    "Call out any remaining conditional questions"
+  ],
+  "cards": [
+    {
+      "id": "rb1",
+      "title": "Security Certification Summary",
+      "sourceType": "Security summary",
+      "recency": "Current",
+      "authority": "High",
+      "tokenCost": 20,
+      "excerpt": "Vendor A completed the required identity and data-handling certification checks. Vendor B still has one open control exception.",
+      "idealAction": "include",
+      "essential": true,
+      "summaryText": "Directly affects security fit for the shortlist.",
+      "duplicateGroup": "security",
+      "teaches": "authority"
+    },
+    {
+      "id": "rb2",
+      "title": "Pricing Comparison Table",
+      "sourceType": "Pricing table",
+      "recency": "Current",
+      "authority": "High",
+      "tokenCost": 18,
+      "excerpt": "Vendor A is mid-band pricing. Vendor B is lower priced but adds support fees beyond pilot volume.",
+      "idealAction": "include",
+      "essential": true,
+      "summaryText": "Directly affects price-band comparison.",
+      "duplicateGroup": "price",
+      "teaches": "coverage"
+    },
+    {
+      "id": "rb3",
+      "title": "Customer Support SLA Excerpt",
+      "sourceType": "SLA excerpt",
+      "recency": "Current",
+      "authority": "High",
+      "tokenCost": 17,
+      "excerpt": "Vendor A commits to named response times and escalation paths for pilot incidents.",
+      "idealAction": "include",
+      "essential": true,
+      "summaryText": "Service commitment affects recommendation confidence.",
+      "duplicateGroup": "sla",
+      "teaches": "coverage"
+    },
+    {
+      "id": "rb4",
+      "title": "Feature Brochure",
+      "sourceType": "Marketing brochure",
+      "recency": "Current",
+      "authority": "Low",
+      "tokenCost": 24,
+      "excerpt": "Long marketing language covering every product capability, many of which are out of scope for the shortlist memo.",
+      "idealAction": "omit",
+      "essential": false,
+      "summaryText": "Broad marketing copy is not decision-driving.",
+      "duplicateGroup": "marketing",
+      "teaches": "signal"
+    },
+    {
+      "id": "rb5",
+      "title": "Analyst Review Digest",
+      "sourceType": "External review",
+      "recency": "Aging",
+      "authority": "Medium",
+      "tokenCost": 20,
+      "excerpt": "Analyst notes are directionally helpful but do not outweigh direct certification, pricing, and SLA evidence.",
+      "idealAction": "summarize",
+      "essential": false,
+      "summaryText": "Helpful context, but not core evidence.",
+      "duplicateGroup": "review",
+      "teaches": "signal"
+    },
+    {
+      "id": "rb6",
+      "title": "Legal Terms Appendix",
+      "sourceType": "Legal appendix",
+      "recency": "Current",
+      "authority": "High",
+      "tokenCost": 27,
+      "excerpt": "Detailed contractual fallback terms that matter only if the team proceeds to contract drafting.",
+      "idealAction": "retrieveLater",
+      "essential": false,
+      "summaryText": "Valuable later, not needed in the core recommendation package.",
+      "duplicateGroup": "legal",
+      "teaches": "retrieve"
+    },
+    {
+      "id": "rb7",
+      "title": "Company History Sheet",
+      "sourceType": "Background sheet",
+      "recency": "Current",
+      "authority": "Low",
+      "tokenCost": 16,
+      "excerpt": "Founding story, office count, and partnership timeline.",
+      "idealAction": "omit",
+      "essential": false,
+      "summaryText": "Interesting background, low decision value.",
+      "duplicateGroup": "history",
+      "teaches": "omit"
+    },
+    {
+      "id": "rb8",
+      "title": "Implementation Note",
+      "sourceType": "Implementation note",
+      "recency": "Current",
+      "authority": "Medium",
+      "tokenCost": 18,
+      "excerpt": "Pilot setup for Vendor A is simpler because SSO mapping is pre-validated for the existing environment.",
+      "idealAction": "summarize",
+      "essential": false,
+      "summaryText": "Useful implementation context, but summary is enough.",
+      "duplicateGroup": "implementation",
+      "teaches": "summary"
+    },
+    {
+      "id": "rb9",
+      "title": "Old Pricing Email",
+      "sourceType": "Email summary",
+      "recency": "Stale",
+      "authority": "Low",
+      "tokenCost": 14,
+      "excerpt": "Quotes an earlier price that predates current support-fee structure.",
+      "idealAction": "omit",
+      "essential": false,
+      "summaryText": "Stale and superseded pricing signal.",
+      "duplicateGroup": "price",
+      "teaches": "freshness"
+    }
+  ],
+  "strongestPractice": {
+    "actions": {
+      "rb1": "include",
+      "rb2": "include",
+      "rb3": "include",
+      "rb4": "omit",
+      "rb5": "summarize",
+      "rb6": "retrieveLater",
+      "rb7": "omit",
+      "rb8": "summarize",
+      "rb9": "omit"
+    },
+    "commentary": [
+      "Keep the brief anchored on security fit, pricing, and SLA commitments.",
+      "Summarize useful context that helps explain the recommendation but does not need verbatim inclusion.",
+      "Defer legal detail to follow-up instead of spending core budget on it now.",
+      "Exclude stale and background-heavy material that does not change the shortlist decision."
+    ]
+  },
+  "antiPatterns": {
+    "bloated": [
+      "rb1",
+      "rb2",
+      "rb3",
+      "rb4",
+      "rb5",
+      "rb6",
+      "rb7",
+      "rb8"
+    ],
+    "underSupported": [
+      "rb4",
+      "rb5",
+      "rb7"
+    ]
+  },
+  "bonusBranches": [
+    {
+      "id": "strict-budget",
+      "title": "Stricter Budget Replay",
+      "description": "Re-run the vendor brief with a tighter budget and force harder selection discipline.",
+      "type": "budget_reduction",
+      "budgetLimit": 88,
+      "coachNote": "Protect the certification, pricing, and SLA evidence first. Supporting material should shrink or move out.",
+      "suppressedCardIds": [
+        "rb5"
+      ],
+      "overlayCards": [
+        {
+          "id": "rb_sb1",
+          "title": "Procurement Memo Template",
+          "sourceType": "Memo template",
+          "authority": "High",
+          "recency": "Current",
+          "essential": false,
+          "idealAction": "summarize",
+          "tokenCost": 8,
+          "excerpt": "Shortlist memo should focus on security fit, price band, and pilot support readiness. Leave marketing breadth out.",
+          "summaryText": "Compact memo framing for the strict-budget replay.",
+          "teaches": "Branch-only output constraint"
+        }
+      ],
+      "strongestPracticeOverride": {
+        "commentary": [
+          "The stricter-budget replay should protect only the few cards that directly change the answer.",
+          "Compact replay-only constraint cards can shape the answer without demanding another full direct include.",
+          "Older background and follow-up material should move into Summarize, Retrieve Later, or Omit much earlier than in the core run."
+        ]
+      }
+    },
+    {
+      "id": "authority-freshness",
+      "title": "Authority vs Freshness Drill",
+      "description": "Re-run the brief while resisting polished but weaker secondary commentary when current source materials are already available.",
+      "type": "authority_freshness",
+      "budgetLimit": 96,
+      "coachNote": "Keep source documents in front. Secondary analyst or implementation commentary can support the brief, but it should not lead it.",
+      "suppressedCardIds": [
+        "rb5",
+        "rb9"
+      ],
+      "overlayCards": [
+        {
+          "id": "rb_af1",
+          "title": "Security Review Ticket \u2014 Today",
+          "sourceType": "Security ticket",
+          "authority": "High",
+          "recency": "Current",
+          "essential": true,
+          "idealAction": "include",
+          "tokenCost": 12,
+          "excerpt": "Vendor B still has one open control exception. The shortlist memo should not present its security posture as fully cleared.",
+          "summaryText": "Fresh security evidence for the authority-versus-freshness replay.",
+          "teaches": "Branch-only current evidence"
+        }
+      ],
+      "strongestPracticeOverride": {
+        "commentary": [
+          "The authority-versus-freshness replay should make current source-of-record evidence visibly lead the answer.",
+          "Branch-only fresh evidence should change what the best package looks like, not just how the coaching sounds.",
+          "Comfortable but aging summaries can support the answer, but they should not steer it."
+        ]
+      }
+    }
+  ],
+  "pastebackChecks": [
+    {
+      "id": "evidence",
+      "label": "Uses the decisive comparison evidence",
+      "keywords": [
+        "certification",
+        "pricing",
+        "sla",
+        "support"
+      ]
+    },
+    {
+      "id": "recommendation",
+      "label": "Makes or supports a recommendation",
+      "keywords": [
+        "recommend",
+        "preferred",
+        "best fit",
+        "vendor"
+      ]
+    },
+    {
+      "id": "scope",
+      "label": "Keeps the brief concise and decision-oriented",
+      "keywords": [
+        "decision",
+        "brief",
+        "summary",
+        "next step"
+      ]
+    }
+  ],
+  "pastebackWordLimit": 180,
+  "pastebackAssertions": [
+    {
+      "id": "security-fit-leads",
+      "label": "Security fit should lead the shortlist judgment",
+      "cues": [
+        "security",
+        "control exception",
+        "certification"
+      ],
+      "positivePhrases": [
+        "security fit",
+        "required certification checks",
+        "open control exception"
+      ],
+      "contradictionPhrases": [
+        "security does not matter",
+        "vendor b is fully cleared",
+        "no control exception"
+      ],
+      "critical": true,
+      "supportCueGroups": [
+        [
+          "security fit",
+          "security posture",
+          "security controls"
+        ],
+        [
+          "control exception",
+          "certification",
+          "cleared"
+        ]
+      ]
+    },
+    {
+      "id": "pricing-needs-caveat",
+      "label": "Vendor B is cheaper up front but adds support fees",
+      "cues": [
+        "lower priced",
+        "support fees",
+        "pilot volume"
+      ],
+      "positivePhrases": [
+        "lower priced but adds support fees",
+        "support fees beyond pilot volume",
+        "mid-band pricing"
+      ],
+      "contradictionPhrases": [
+        "vendor b is simply cheapest with no caveat",
+        "no support fees",
+        "vendor a is the lowest price"
+      ],
+      "critical": true,
+      "supportCueGroups": [
+        [
+          "support fees",
+          "support costs"
+        ],
+        [
+          "pilot volume",
+          "pilot scope"
+        ],
+        [
+          "lower priced",
+          "cheaper up front",
+          "lower upfront price"
+        ]
+      ]
+    },
+    {
+      "id": "sla-support",
+      "label": "Vendor A provides named response times and escalation paths for pilot incidents",
+      "cues": [
+        "named response times",
+        "escalation paths",
+        "pilot incidents"
+      ],
+      "positivePhrases": [
+        "named response times",
+        "escalation paths",
+        "pilot incidents"
+      ],
+      "contradictionPhrases": [
+        "no incident response commitment",
+        "sla missing"
+      ],
+      "critical": false
+    }
+  ],
+  "factChecks": [
+    {
+      "id": "vendor-b-support-fees",
+      "label": "Vendor B still adds support fees beyond pilot volume",
+      "type": "date",
+      "subjectCues": [
+        "vendor b",
+        "support fees",
+        "pilot volume"
+      ],
+      "expectedPhrases": [
+        "support fees beyond pilot volume",
+        "adds support fees"
+      ],
+      "contradictionPhrases": [
+        "no support fees",
+        "flat price with no caveat"
+      ],
+      "critical": true
+    },
+    {
+      "id": "vendor-b-open-control-exception",
+      "label": "Vendor B still has an open control exception",
+      "type": "date",
+      "subjectCues": [
+        "vendor b",
+        "control exception",
+        "security"
+      ],
+      "expectedPhrases": [
+        "open control exception",
+        "not fully cleared"
+      ],
+      "contradictionPhrases": [
+        "fully cleared",
+        "no control exception"
+      ],
+      "critical": true
+    },
+    {
+      "id": "security-fit-still-leads",
+      "label": "Security fit should still outrank price in the recommendation logic",
+      "type": "direction",
+      "subjectCues": [
+        "security",
+        "price",
+        "fit"
+      ],
+      "expectedPhrases": [
+        "security fit is slightly more important than price",
+        "security fit should lead",
+        "security fit leads"
+      ],
+      "contradictionPhrases": [
+        "price matters more than security",
+        "lowest price should lead",
+        "security fit is secondary"
+      ],
+      "critical": true
+    }
+  ],
+  "requiredCaveats": [
+    {
+      "id": "follow-up-still-needed",
+      "label": "The brief should preserve that follow-up is still needed before a final commitment",
+      "subjectCues": [
+        "follow-up",
+        "remaining",
+        "question"
+      ],
+      "requiredPhrases": [
+        "what needs follow-up",
+        "needs follow-up",
+        "remaining conditional questions",
+        "follow-up before final commitment"
+      ],
+      "contradictionPhrases": [
+        "no follow-up needed",
+        "fully cleared for commitment",
+        "nothing remains open"
+      ],
+      "critical": true,
+      "supportCueGroups": [
+        [
+          "needs follow-up",
+          "follow-up before final commitment",
+          "remaining conditional questions"
+        ]
+      ]
+    }
+  ],
+  "compoundChecks": [
+    {
+      "id": "recommendation-stays-bounded",
+      "label": "Recommendation stays bounded by security-first logic, Vendor B caveats, and explicit follow-up",
+      "subjectCues": [
+        "vendor",
+        "security",
+        "price",
+        "follow-up"
+      ],
+      "groups": [
+        {
+          "label": "security fit leads",
+          "phrases": [
+            "security fit is slightly more important than price",
+            "security fit should lead",
+            "security fit leads"
+          ],
+          "cues": [
+            "security",
+            "price",
+            "lead"
+          ]
+        },
+        {
+          "label": "Vendor B caveat remains visible",
+          "phrases": [
+            "open control exception",
+            "support fees beyond pilot volume",
+            "adds support fees"
+          ],
+          "cues": [
+            "vendor b",
+            "exception",
+            "support fees"
+          ]
+        },
+        {
+          "label": "follow-up still needed",
+          "phrases": [
+            "needs follow-up",
+            "what needs follow-up",
+            "follow-up before final commitment"
+          ],
+          "cues": [
+            "follow-up",
+            "final commitment"
+          ]
+        }
+      ],
+      "contradictionPhrases": [
+        "lowest price should lead",
+        "fully cleared for commitment",
+        "nothing remains open",
+        "no support fees",
+        "no control exception"
+      ],
+      "minGroups": 3,
+      "critical": true,
+      "teachingNote": "A good shortlist memo keeps recommendation logic, caveats, and remaining follow-up obligations together instead of smoothing any one of them away.",
+      "contradictionCueGroups": [
+        [
+          "lowest price should lead",
+          "price matters more than security"
+        ],
+        [
+          "fully cleared for commitment",
+          "nothing remains open"
+        ]
+      ]
+    }
+  ],
+  "reviewCoaching": [
+    {
+      "when": "assertion-miss",
+      "message": "Do not let the cheaper-looking vendor erase the security and support-fee caveats that still shape the recommendation."
+    },
+    {
+      "when": "caveat-miss",
+      "message": "A shortlist memo is incomplete if it sounds final while real follow-up is still required."
+    },
+    {
+      "when": "compound-miss",
+      "message": "Security-first logic, Vendor B caveats, and explicit follow-up should stay together instead of being smoothed apart."
+    }
+  ]
+}

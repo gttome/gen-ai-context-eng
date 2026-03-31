@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Signal-to-Noise Studio — Help</title>
+  <link rel="stylesheet" href="./assets/css/base.css" />
+  <link rel="stylesheet" href="./assets/css/layout.css" />
+  <link rel="stylesheet" href="./assets/css/components.css" />
+  <link rel="stylesheet" href="./assets/css/themes.css" />
+  <link rel="stylesheet" href="./assets/css/accessibility.css" />
+</head>
+<body data-page="help">
+  <main class="support-shell">
+    <div class="panel stack">
+      <div class="screen-actions">
+        <div class="stack" style="gap:.2rem;">
+          <span class="pill">Help</span>
+          <h1>How to use Signal-to-Noise Studio</h1>
+          <p>This version adds mixed-signal paste-back review, clearer contradiction guidance, stronger replay comparisons, and the same support-page behavior across Help and Feedback.</p>
+        </div>
+        <div class="inline-actions">
+          <button data-theme-toggle="true">Theme</button>
+          <a class="link-button" href="./index.html">Back to app</a>
+          <a class="link-button" href="./feedback.html">Feedback</a>
+        </div>
+      </div>
+
+      <div class="hero-grid">
+        <section class="panel stack">
+          <h2>Core mission flow</h2>
+          <ol>
+            <li>Choose a validation pack from the launch screen.</li>
+            <li>Read the brief and capture a quick prediction about what feels important.</li>
+            <li>Classify each card into Include, Summarize, Retrieve Later, or Omit.</li>
+            <li>Watch the package preview, budget state, charts, and coaching update in real time.</li>
+            <li>Build the package, move to the export screen, copy it into an external LLM, then paste the answer back into the in-app review box.</li>
+            <li>Use the strongest-practice comparison and summary to understand what improved or weakened.</li>
+          </ol>
+        </section>
+
+        <section class="panel stack">
+          <h2>What the four actions mean</h2>
+          <div class="success-box"><strong>Include</strong><p>Use this when the card materially changes the answer or required format and deserves direct space in the core package.</p></div>
+          <div class="note-box"><strong>Summarize</strong><p>Use this when the information matters but does not need full verbatim inclusion.</p></div>
+          <div class="warning-box"><strong>Retrieve Later</strong><p>Use this for edge cases, follow-up detail, or conditional material that should stay accessible without crowding the package.</p></div>
+          <div class="note-box"><strong>Omit</strong><p>Use this when the card is stale, duplicated, background-heavy, or simply not worth the budget.</p></div>
+        </section>
+      </div>
+
+      <section class="panel stack">
+        <h2>New iteration features</h2>
+        <ul>
+          <li><strong>Glossary:</strong> Open the glossary from the metrics panel when you want Chapter 3 terminology visible.</li>
+          <li><strong>Metric explainers:</strong> Use the “?” buttons beside each metric to understand what improves or weakens it.</li>
+          <li><strong>Richer comparison reasoning:</strong> The comparison screen now explains why the stronger action is stronger for each mismatched card.</li>
+          <li><strong>Paste-back review:</strong> After pasting an external model answer, inspect the rubric breakdown for structure, evidence coverage, grounding discipline, uncertainty handling, concision, and mixed-signal contradiction detection.</li>
+          <li><strong>Bonus drills:</strong> Summary now offers more than one replay path so you can practice a tighter budget or an authority-vs-freshness challenge.</li>
+        </ul>
+      </section>
+
+
+      <section class="panel stack">
+        <h2>Where the paste-back step lives</h2>
+        <div class="note-box"><strong>It is not a separate app mode.</strong><p>Paste-back lives on the Export screen after you press <em>Build package → export workflow</em> in the workspace.</p></div>
+        <ol>
+          <li>Classify every card in the workspace.</li>
+          <li>Press <strong>Build package → export workflow</strong>.</li>
+          <li>Use <strong>Copy package for external LLM</strong>.</li>
+          <li>Run the package in another LLM window or tab.</li>
+          <li>Paste the observed answer into <strong>Paste the external answer back here</strong>.</li>
+        </ol>
+      </section>
+
+      <section class="panel stack">
+        <h2>Touch and accessibility notes</h2>
+        <ul>
+          <li>Every primary card action has a button and does not require drag and drop.</li>
+          <li>The lane lists are easier to read on mobile in this version, so the recommended touch pattern is still tap-to-classify.</li>
+          <li>Use the step labels, charts, and coaching together. Charts are never the only explanation surface.</li>
+          <li>The app remembers your mission state locally so you can leave for the external LLM step and return without losing work.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+<script type="module" src="./assets/js/ui/shell/supportPages.js"></script>
+
+
+
+</body>
+</html>
