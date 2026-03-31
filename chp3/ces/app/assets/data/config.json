@@ -1,0 +1,38 @@
+{
+  "appName": "Context Envelope Studio",
+  "shortName": "CES",
+  "version": "v1.7.0",
+  "buildId": "ces-v1.7.0-innovation-labs",
+  "storageKeys": {
+    "theme": "app_theme",
+    "runState": "ces_run_state_v6",
+    "history": "ces_history_v6",
+    "feedback": "ces_feedback_v6"
+  },
+  "sectionOrder": [
+    "ROLE",
+    "RULES",
+    "REFERENCE",
+    "DYNAMIC FACTS",
+    "TASK",
+    "OUTPUT",
+    "CHECKS"
+  ],
+  "lifecyclePhases": [
+    "Discovery",
+    "Selection",
+    "Shaping",
+    "Execution",
+    "Evaluation",
+    "Iteration",
+    "Deployment"
+  ],
+  "weights": {
+    "structureClarity": 0.25,
+    "orderingQuality": 0.2,
+    "precedenceExplicitness": 0.2,
+    "outputUsability": 0.15,
+    "handlingReadiness": 0.1,
+    "operationalReadiness": 0.1
+  }
+}

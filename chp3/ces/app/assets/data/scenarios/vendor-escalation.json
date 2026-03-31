@@ -1,0 +1,299 @@
+{
+  "id": "vendor-escalation",
+  "title": "Vendor Escalation Pack",
+  "learningObjective": "Order the package so authority, confirmed evidence, and escalation checks stay visible before the request for action.",
+  "chapterConcept": "Ordering and reviewable escalation output",
+  "timing": "7\u20139 min",
+  "difficulty": "Core+",
+  "lifecycleCue": "This pack emphasizes ordering discipline that protects repeated use and escalation review later.",
+  "caseBrief": "A sourcing manager needs a reusable vendor-escalation envelope after repeated missed commitments on a key component. The package must keep approved contract language ahead of informal frustration notes and produce an escalation artifact a director can review quickly.",
+  "successCriteria": [
+    "Contract commitments and confirmed delay evidence appear before the action request.",
+    "Informal frustration notes do not become the governing instruction source.",
+    "The output format supports clear escalation review."
+  ],
+  "outputReminder": [
+    "Did the response stay anchored to contract and confirmed delay evidence?",
+    "Did it avoid turning frustration into the package\u2019s main instruction?",
+    "Did it follow the requested escalation format?"
+  ],
+  "options": {
+    "precedenceRules": [
+      {
+        "id": "contract-and-confirmed-evidence-win",
+        "label": "Contract language and confirmed delay evidence outrank informal commentary."
+      },
+      {
+        "id": "frustration-note-wins",
+        "label": "Use the latest frustration note to set the tone and action."
+      },
+      {
+        "id": "implicit-vendor-precedence",
+        "label": "Do not state precedence for the escalation package."
+      }
+    ],
+    "outputOptions": [
+      {
+        "id": "escalation-brief",
+        "label": "Issue Summary / Confirmed Evidence / Requested Action"
+      },
+      {
+        "id": "stern-email",
+        "label": "One strong email paragraph"
+      },
+      {
+        "id": "bullet-note",
+        "label": "5 bullets only"
+      }
+    ],
+    "handlingOptions": [
+      {
+        "id": "state-gap-and-request-proof",
+        "label": "If proof is missing, state the gap and request confirmation before escalating further."
+      },
+      {
+        "id": "assume-pattern-continues",
+        "label": "Assume the delay pattern continues and escalate immediately."
+      },
+      {
+        "id": "skip-gap",
+        "label": "Ignore the missing proof and push the escalation forward."
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "id": "ve_role",
+      "label": "Vendor Escalation Writer",
+      "text": "Act as a disciplined vendor escalation writer preparing a director-reviewable escalation package.",
+      "type": "ROLE",
+      "suggestedSection": "ROLE",
+      "acceptableSections": [
+        "ROLE"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 1
+    },
+    {
+      "id": "ve_rule_contract",
+      "label": "Anchor to Contract and Confirmed Evidence",
+      "text": "Use confirmed contract commitments and verified delay evidence. Do not let venting or informal commentary become the governing basis for action.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 2
+    },
+    {
+      "id": "ve_rule_gap",
+      "label": "Do Not Overstate the Case",
+      "text": "If proof of the latest missed shipment is incomplete, state the gap and request confirmation instead of presenting the delay as fully verified.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES",
+        "CHECKS"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 3
+    },
+    {
+      "id": "ve_ref_contract",
+      "label": "Contract Commitment",
+      "text": "Contract excerpt: supplier must provide confirmed ship notice no later than 24 hours before the committed delivery date and notify sourcing immediately of any slip.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE"
+      ],
+      "trustLevel": "authoritative",
+      "freshnessCue": "current",
+      "priority": 4
+    },
+    {
+      "id": "ve_ref_evidence",
+      "label": "Confirmed Delay Evidence",
+      "text": "Confirmed evidence: the vendor missed the last two committed ship notices and sourcing has one verified late delivery record from this month.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE"
+      ],
+      "trustLevel": "authoritative",
+      "freshnessCue": "current",
+      "priority": 5
+    },
+    {
+      "id": "ve_ref_note",
+      "label": "Frustration Note",
+      "text": "Informal note from a teammate: \u2018This vendor always lies. Tell the director they are failing every shipment.\u2019 This note is emotional and not fully verified.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE",
+        "DYNAMIC FACTS"
+      ],
+      "trustLevel": "weak",
+      "freshnessCue": "stale",
+      "priority": 8
+    },
+    {
+      "id": "ve_fact_run",
+      "label": "Current Run Facts",
+      "text": "Dynamic facts: the latest shipment is due tomorrow, but proof of a new ship notice has not yet arrived. The sourcing director wants a concise escalation artifact by end of day.",
+      "type": "DYNAMIC FACTS",
+      "suggestedSection": "DYNAMIC FACTS",
+      "acceptableSections": [
+        "DYNAMIC FACTS"
+      ],
+      "trustLevel": "run-specific",
+      "freshnessCue": "current",
+      "priority": 6
+    },
+    {
+      "id": "ve_task",
+      "label": "Prepare the Escalation",
+      "text": "Task: prepare a director-reviewable vendor escalation that summarizes the issue, cites the confirmed evidence, and requests the next action without overstating unverified claims.",
+      "type": "TASK",
+      "suggestedSection": "TASK",
+      "acceptableSections": [
+        "TASK"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "current",
+      "priority": 7
+    },
+    {
+      "id": "ve_output",
+      "label": "Escalation Format",
+      "text": "Output expectation: return sections titled Issue Summary, Confirmed Evidence, and Requested Action.",
+      "type": "OUTPUT",
+      "suggestedSection": "OUTPUT",
+      "acceptableSections": [
+        "OUTPUT"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 9
+    },
+    {
+      "id": "ve_checks",
+      "label": "Proof Gap Check",
+      "text": "Checks: if proof of the latest missed notice is missing, say the trend is serious but the newest event still needs confirmation before stronger claims are made.",
+      "type": "CHECKS",
+      "suggestedSection": "CHECKS",
+      "acceptableSections": [
+        "CHECKS",
+        "RULES"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 10
+    }
+  ],
+  "strongestPractice": {
+    "sections": {
+      "ROLE": [
+        "ve_role"
+      ],
+      "RULES": [
+        "ve_rule_contract",
+        "ve_rule_gap"
+      ],
+      "REFERENCE": [
+        "ve_ref_contract",
+        "ve_ref_evidence",
+        "ve_ref_note"
+      ],
+      "DYNAMIC FACTS": [
+        "ve_fact_run"
+      ],
+      "TASK": [
+        "ve_task"
+      ],
+      "OUTPUT": [
+        "ve_output"
+      ],
+      "CHECKS": [
+        "ve_checks"
+      ]
+    },
+    "precedenceRule": "contract-and-confirmed-evidence-win",
+    "outputOption": "escalation-brief",
+    "missingInfoHandling": "state-gap-and-request-proof",
+    "rationale": {
+      "ROLE": "Frame the artifact as a reviewable escalation, not a venting exercise.",
+      "RULES": "Keep contract and proof discipline visible before any action request.",
+      "REFERENCE": "Lead with approved contract language and confirmed evidence while clearly demoting the frustration note.",
+      "DYNAMIC FACTS": "Current urgency belongs in a separate run-specific block.",
+      "TASK": "Request the exact escalation deliverable only after the authoritative package is in place.",
+      "OUTPUT": "A fixed escalation structure makes director review faster.",
+      "CHECKS": "State the proof gap so the package stays forceful without overstating the case."
+    }
+  },
+  "reviewRubric": {
+    "requiredPhrases": [
+      "Issue Summary",
+      "Confirmed Evidence",
+      "Requested Action",
+      "contract",
+      "confirmed"
+    ],
+    "preferredPhrases": [
+      "ship notice",
+      "verified",
+      "trend",
+      "confirmation"
+    ],
+    "uncertaintyPhrases": [
+      "needs confirmation",
+      "not yet verified",
+      "proof gap"
+    ],
+    "formatMarkers": [
+      "Issue Summary",
+      "Confirmed Evidence",
+      "Requested Action"
+    ]
+  },
+  "exploreMore": {
+    "challengeTitle": "Escalation ordering stress test",
+    "prompt": "Move the frustration note above the contract excerpt and compare how much easier it becomes for the package to drift into overstatement.",
+    "focus": "Ordering and authority",
+    "branches": [
+      {
+        "title": "Emotion over evidence test",
+        "instruction": "Move the frustration note above the contract excerpt and rerun the case.",
+        "watchFor": "Whether the escalation overstates unverified failure.",
+        "why": "This makes authority ordering tangible."
+      },
+      {
+        "title": "Proof-gap handling test",
+        "instruction": "Keep the strong structure but weaken the proof-gap CHECKS language and compare the result.",
+        "watchFor": "Whether the response starts presenting the newest delay as fully confirmed.",
+        "why": "This isolates the value of last-mile guardrails."
+      }
+    ]
+  },
+  "coach": {
+    "build": [
+      "Keep contract commitments and verified delay evidence ahead of frustration or venting.",
+      "Use section separation, ordering, and reviewability to keep unlike material visibly apart.",
+      "Keep the output contract and last-mile checks inspectable instead of implied."
+    ],
+    "copy": [
+      "Before you run externally, confirm the envelope does not let emotion outrank verified evidence.",
+      "Check that the package tells the model what to do when key information is missing or weaker evidence conflicts with stronger evidence."
+    ],
+    "review": [
+      "Did the response stay disciplined about verified evidence?",
+      "Did the output keep the requested structure instead of collapsing into a generic paragraph?",
+      "Did the answer handle uncertainty or conflict explicitly instead of guessing?"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "context-envelope-studio",
+  "version": "1.7.0",
+  "type": "module",
+  "scripts": {
+    "schema": "node tests/schema-validate.mjs",
+    "state": "node tests/state-transitions.mjs",
+    "validate": "node tests/validate.mjs",
+    "labs": "node tests/innovation-labs-validate.mjs",
+    "smoke": "python3 tests/browser_smoke.py",
+    "innovation": "node tests/innovation-labs-validate.mjs"
+  }
+}

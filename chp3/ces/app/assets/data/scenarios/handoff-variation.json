@@ -1,0 +1,300 @@
+{
+  "id": "handoff-variation",
+  "title": "Cross-Team Handoff Variation Pack",
+  "learningObjective": "Shape a package that another team member could run safely, with Day 1 readiness controlled by current workflow definitions rather than old habits.",
+  "chapterConcept": "Operational readiness, handoff clarity, and strongest-practice comparison",
+  "timing": "7\u20139 min",
+  "difficulty": "Core+",
+  "lifecycleCue": "This pack assumes Discovery and Selection are already complete. The run focuses on Shaping, then review and iteration.",
+  "caseBrief": "An onboarding team wants a reusable context envelope another coordinator can run without the original designer present. The package must prevent an old shortcut from making the employee look Day 1 ready before essential access is actually confirmed.",
+  "successCriteria": [
+    "Keep instructions, evidence, dynamic facts, and checks visibly distinct.",
+    "Make precedence and missing-information handling explicit instead of implied.",
+    "Use a reviewable output contract that another reviewer could inspect quickly.",
+    "Make the package reliable enough to hand off without hidden assumptions."
+  ],
+  "outputReminder": [
+    "Did the response follow the current source of record instead of weaker notes?",
+    "Did it keep the required format rather than collapsing into a generic paragraph?",
+    "Did it state uncertainty or escalation when facts were missing?"
+  ],
+  "options": {
+    "precedenceRules": [
+      {
+        "id": "current-readiness-definition-wins",
+        "label": "Current readiness definition outranks old team habits and assumptions."
+      },
+      {
+        "id": "manager-assignment-implies-ready",
+        "label": "Manager assignment is enough to imply Day 1 readiness."
+      },
+      {
+        "id": "leave-precedence-implicit",
+        "label": "Leave the winning source unstated."
+      }
+    ],
+    "outputOptions": [
+      {
+        "id": "readiness-missing-handoff",
+        "label": "Readiness / What Is Missing / Handoff Note"
+      },
+      {
+        "id": "single-note",
+        "label": "One short handoff paragraph"
+      },
+      {
+        "id": "bullet-handoff",
+        "label": "Three bullets only"
+      }
+    ],
+    "handlingOptions": [
+      {
+        "id": "state-gap-and-route",
+        "label": "State the missing access step and route to the onboarding lead."
+      },
+      {
+        "id": "ask-before-answering",
+        "label": "Ask for the missing access state before giving the readiness answer."
+      },
+      {
+        "id": "assume-cleanup-later",
+        "label": "Assume access can be cleaned up after Day 1."
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "id": "hv_role",
+      "label": "Workflow Handoff Writer",
+      "text": "Act as a careful workflow handoff writer. Build a package another team can use without hidden assumptions or buried rules.",
+      "type": "ROLE",
+      "suggestedSection": "ROLE",
+      "acceptableSections": [
+        "ROLE"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 1
+    },
+    {
+      "id": "hv_rule_scope",
+      "label": "Use Only Approved Workflow Materials",
+      "text": "Use only the approved onboarding workflow notes and current system-state details provided in this package. Do not fill gaps with generic onboarding advice.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 2
+    },
+    {
+      "id": "hv_rule_escalate",
+      "label": "Escalate When Access Evidence Is Missing",
+      "text": "If the access state is incomplete or contradictory, say what is unknown and route the issue to the onboarding lead instead of guessing completion.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES",
+        "CHECKS"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 3
+    },
+    {
+      "id": "hv_ref_flow",
+      "label": "Approved Onboarding Flow",
+      "text": "Approved onboarding sequence: confirm signed offer, create HR record, request system access, verify manager assignment, then send Day 1 readiness note.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE"
+      ],
+      "trustLevel": "authoritative",
+      "freshnessCue": "current",
+      "priority": 4
+    },
+    {
+      "id": "hv_ref_ready",
+      "label": "Day 1 Readiness Definition",
+      "text": "Current readiness definition: a Day 1 note can be sent only after HR record, manager assignment, and essential system access are all confirmed.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE"
+      ],
+      "trustLevel": "authoritative",
+      "freshnessCue": "current",
+      "priority": 5
+    },
+    {
+      "id": "hv_ref_oldhabit",
+      "label": "Old Team Habit",
+      "text": "Old team habit: send the Day 1 note once the manager assignment appears, then clean up access later. This predates the current readiness definition.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE",
+        "DYNAMIC FACTS"
+      ],
+      "trustLevel": "weak",
+      "freshnessCue": "stale",
+      "priority": 8
+    },
+    {
+      "id": "hv_fact_case",
+      "label": "Current Case Facts",
+      "text": "Dynamic facts for this run: the offer is signed, the HR record is complete, the manager assignment is confirmed, but the essential analytics-system access ticket is still pending.",
+      "type": "DYNAMIC FACTS",
+      "suggestedSection": "DYNAMIC FACTS",
+      "acceptableSections": [
+        "DYNAMIC FACTS"
+      ],
+      "trustLevel": "run-specific",
+      "freshnessCue": "current",
+      "priority": 6
+    },
+    {
+      "id": "hv_task",
+      "label": "Cross-Team Handoff Request",
+      "text": "Task: prepare the package another coordinator will use to answer whether the employee is Day 1 ready and what should happen next.",
+      "type": "TASK",
+      "suggestedSection": "TASK",
+      "acceptableSections": [
+        "TASK"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "current",
+      "priority": 7
+    },
+    {
+      "id": "hv_output",
+      "label": "Handoff Output Contract",
+      "text": "Output expectation: return sections titled Readiness, What Is Missing, and Handoff Note. Keep the language crisp and handoff-ready.",
+      "type": "OUTPUT",
+      "suggestedSection": "OUTPUT",
+      "acceptableSections": [
+        "OUTPUT"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 9
+    },
+    {
+      "id": "hv_checks",
+      "label": "Readiness Integrity Check",
+      "text": "Checks: if essential access is still pending, do not label the case Day 1 ready. Name the missing item and the routing action explicitly.",
+      "type": "CHECKS",
+      "suggestedSection": "CHECKS",
+      "acceptableSections": [
+        "CHECKS",
+        "RULES"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 10
+    }
+  ],
+  "strongestPractice": {
+    "sections": {
+      "ROLE": [
+        "hv_role"
+      ],
+      "RULES": [
+        "hv_rule_scope",
+        "hv_rule_escalate"
+      ],
+      "REFERENCE": [
+        "hv_ref_flow",
+        "hv_ref_ready",
+        "hv_ref_oldhabit"
+      ],
+      "DYNAMIC FACTS": [
+        "hv_fact_case"
+      ],
+      "TASK": [
+        "hv_task"
+      ],
+      "OUTPUT": [
+        "hv_output"
+      ],
+      "CHECKS": [
+        "hv_checks"
+      ]
+    },
+    "precedenceRule": "current-readiness-definition-wins",
+    "outputOption": "readiness-missing-handoff",
+    "missingInfoHandling": "state-gap-and-route",
+    "rationale": {
+      "ROLE": "Clarify that the package is for safe handoff, not just a one-off answer.",
+      "RULES": "Set source limits and escalation behavior before the evidence and task appear.",
+      "REFERENCE": "Keep the current readiness definition stronger than the old team habit.",
+      "DYNAMIC FACTS": "Separate the current access gap from the stable workflow rules.",
+      "TASK": "State the cross-team handoff job after the governing materials are visible.",
+      "OUTPUT": "Use a durable, reviewable format that another coordinator can scan quickly.",
+      "CHECKS": "Make the readiness stop-rule explicit so the model does not guess completion."
+    }
+  },
+  "reviewRubric": {
+    "requiredPhrases": [
+      "Readiness",
+      "What Is Missing",
+      "Handoff Note",
+      "access",
+      "ready"
+    ],
+    "preferredPhrases": [
+      "essential analytics-system access is still pending",
+      "current readiness definition",
+      "not Day 1 ready yet"
+    ],
+    "uncertaintyPhrases": [
+      "unknown",
+      "pending",
+      "not enough information",
+      "route to onboarding lead"
+    ],
+    "formatMarkers": [
+      "Readiness",
+      "What Is Missing",
+      "Handoff Note"
+    ]
+  },
+  "exploreMore": {
+    "challengeTitle": "Handoff durability challenge",
+    "prompt": "Compare two envelopes that are both plausible: one prioritizes speed, the other prioritizes handoff safety. Which tradeoff is more reviewable?",
+    "focus": "How output contract and checks support repeatable handoff use",
+    "branches": [
+      {
+        "title": "Speed-first version",
+        "instruction": "Collapse the output into one short handoff note and compare what becomes easier to miss.",
+        "watchFor": "Whether the missing access step stops being prominent.",
+        "why": "This shows why concise does not always mean reviewable."
+      },
+      {
+        "title": "Safety-first version",
+        "instruction": "Keep the sectioned output and make the stop-rule explicit. Compare how easy it is for another person to continue the work.",
+        "watchFor": "Whether the missing step and route path stay obvious.",
+        "why": "This shows why handoff quality is a shaping decision, not just a content decision."
+      }
+    ]
+  },
+  "coach": {
+    "build": [
+      "Keep the current readiness definition stronger than the old shortcut habit.",
+      "Shape the package so another coordinator could see the missing access step immediately.",
+      "Use the output contract and checks to make handoff quality visible."
+    ],
+    "copy": [
+      "In the external run, watch whether the answer quietly treats manager assignment as enough for Day 1 readiness.",
+      "Check whether the output is still easy for another person to act on."
+    ],
+    "review": [
+      "Did the answer block Day 1 readiness until essential access is confirmed?",
+      "Did it name the missing step and route path clearly?",
+      "Did the output stay in the requested handoff-ready format?"
+    ]
+  }
+}

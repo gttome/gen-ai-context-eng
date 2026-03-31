@@ -1,0 +1,300 @@
+{
+  "id": "process-handoff",
+  "title": "Process Handoff Pack",
+  "learningObjective": "Shape a package another analyst could reuse tomorrow without inheriting hidden assumptions.",
+  "chapterConcept": "Operational readiness and CHECKS",
+  "timing": "6\u20138 min",
+  "difficulty": "Core",
+  "lifecycleCue": "This pack highlights how Shaping supports Deployment and repeatable use.",
+  "caseBrief": "A finance operations manager wants a reusable monthly close handoff package for another analyst. The package must separate the official procedure from informal notes, keep the current due date visible, and define what to do if a required source is missing.",
+  "successCriteria": [
+    "The official procedure remains easy to find and reuse.",
+    "The package explicitly distinguishes current run facts from general procedure.",
+    "The CHECKS make the artifact safe for handoff and repeated use."
+  ],
+  "outputReminder": [
+    "Did the response produce a reusable handoff artifact instead of a vague summary?",
+    "Did it keep informal notes from overriding the official procedure?",
+    "Did it say what to do if a required source was missing?"
+  ],
+  "options": {
+    "precedenceRules": [
+      {
+        "id": "official-procedure-wins",
+        "label": "Official procedure and exception rules outrank informal notes."
+      },
+      {
+        "id": "tribal-knowledge-wins",
+        "label": "Recent informal notes from the prior analyst win."
+      },
+      {
+        "id": "unstated",
+        "label": "Do not declare precedence."
+      }
+    ],
+    "outputOptions": [
+      {
+        "id": "handoff-checklist",
+        "label": "Objective / Required Inputs / Steps / Checks"
+      },
+      {
+        "id": "short-summary",
+        "label": "One short summary paragraph"
+      },
+      {
+        "id": "bullet-points",
+        "label": "5 bullet points"
+      }
+    ],
+    "handlingOptions": [
+      {
+        "id": "flag-missing-source-and-stop",
+        "label": "Flag the missing source and stop for review."
+      },
+      {
+        "id": "work-around",
+        "label": "Work around the missing source with best judgment."
+      },
+      {
+        "id": "guess-and-continue",
+        "label": "Guess the missing source and continue."
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "id": "ph_role",
+      "label": "Process Handoff Designer",
+      "text": "Act as a process handoff designer creating a package another analyst can reuse. Optimize for legibility, repeatability, and reviewability.",
+      "type": "ROLE",
+      "suggestedSection": "ROLE",
+      "acceptableSections": [
+        "ROLE"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 1
+    },
+    {
+      "id": "ph_rule_reuse",
+      "label": "Make It Reusable",
+      "text": "Write for a different analyst, not just for yourself. Keep steps, sources, and checks explicit enough that another person can run the workflow without hidden assumptions.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 2
+    },
+    {
+      "id": "ph_rule_separate",
+      "label": "Separate Procedure from Notes",
+      "text": "Treat informal notes as context, not authority. The official procedure and exception rules remain the governing sources.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES",
+        "CHECKS"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 3
+    },
+    {
+      "id": "ph_ref_procedure",
+      "label": "Official Monthly Close Procedure",
+      "text": "Official procedure excerpt: reconcile exception queue, validate late invoices, post approved adjustments, and publish the close summary after the checklist is complete.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE"
+      ],
+      "trustLevel": "authoritative",
+      "freshnessCue": "current",
+      "priority": 4
+    },
+    {
+      "id": "ph_ref_exceptions",
+      "label": "Exception Rule Note",
+      "text": "Official exception rule: if a late invoice source file is missing, the analyst must pause the close summary and notify the finance manager before posting adjustments.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE"
+      ],
+      "trustLevel": "authoritative",
+      "freshnessCue": "current",
+      "priority": 5
+    },
+    {
+      "id": "ph_ref_notes",
+      "label": "Informal Prior-Analyst Notes",
+      "text": "Informal note: 'If the queue looks normal, I usually skip the manager message and post anyway.' This note is not an approved rule.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE",
+        "DYNAMIC FACTS"
+      ],
+      "trustLevel": "weak",
+      "freshnessCue": "stale",
+      "priority": 8
+    },
+    {
+      "id": "ph_fact_due",
+      "label": "Current Run Facts",
+      "text": "Dynamic facts: the monthly close summary is due tomorrow at 11:00 AM. The late-invoice source file has not arrived yet.",
+      "type": "DYNAMIC FACTS",
+      "suggestedSection": "DYNAMIC FACTS",
+      "acceptableSections": [
+        "DYNAMIC FACTS"
+      ],
+      "trustLevel": "run-specific",
+      "freshnessCue": "current",
+      "priority": 6
+    },
+    {
+      "id": "ph_task",
+      "label": "Create the Handoff Envelope",
+      "text": "Task: prepare a reusable handoff package for the next analyst that explains the work, the approved inputs, the sequence, and what to do if the missing source still does not arrive.",
+      "type": "TASK",
+      "suggestedSection": "TASK",
+      "acceptableSections": [
+        "TASK"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "current",
+      "priority": 7
+    },
+    {
+      "id": "ph_output",
+      "label": "Handoff Artifact Format",
+      "text": "Output expectation: return sections titled Objective, Required Inputs, Steps, and Checks.",
+      "type": "OUTPUT",
+      "suggestedSection": "OUTPUT",
+      "acceptableSections": [
+        "OUTPUT"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 9
+    },
+    {
+      "id": "ph_checks",
+      "label": "Missing-Source Stop Rule",
+      "text": "Checks: if the source file is still missing, say the handoff cannot continue to posting and must pause for manager review.",
+      "type": "CHECKS",
+      "suggestedSection": "CHECKS",
+      "acceptableSections": [
+        "CHECKS",
+        "RULES"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 10
+    }
+  ],
+  "strongestPractice": {
+    "sections": {
+      "ROLE": [
+        "ph_role"
+      ],
+      "RULES": [
+        "ph_rule_reuse",
+        "ph_rule_separate"
+      ],
+      "REFERENCE": [
+        "ph_ref_procedure",
+        "ph_ref_exceptions",
+        "ph_ref_notes"
+      ],
+      "DYNAMIC FACTS": [
+        "ph_fact_due"
+      ],
+      "TASK": [
+        "ph_task"
+      ],
+      "OUTPUT": [
+        "ph_output"
+      ],
+      "CHECKS": [
+        "ph_checks"
+      ]
+    },
+    "precedenceRule": "official-procedure-wins",
+    "outputOption": "handoff-checklist",
+    "missingInfoHandling": "flag-missing-source-and-stop",
+    "rationale": {
+      "ROLE": "Frame the package as a handoff artifact, not a one-off answer.",
+      "RULES": "Make reuse and authority explicit before the procedure appears.",
+      "REFERENCE": "Keep official procedure visible and demote the informal shortcut note.",
+      "DYNAMIC FACTS": "Current due date and missing-file status belong in a run-specific block.",
+      "TASK": "Name the deliverable clearly for the next analyst.",
+      "OUTPUT": "Use a reusable structure another person can review fast.",
+      "CHECKS": "Protect repeatable use with a pause condition."
+    }
+  },
+  "reviewRubric": {
+    "requiredPhrases": [
+      "Objective",
+      "Required Inputs",
+      "Steps",
+      "Checks",
+      "missing"
+    ],
+    "preferredPhrases": [
+      "official procedure",
+      "finance manager",
+      "pause",
+      "late-invoice source file"
+    ],
+    "uncertaintyPhrases": [
+      "cannot continue",
+      "pause for review",
+      "missing source"
+    ],
+    "formatMarkers": [
+      "Objective",
+      "Required Inputs",
+      "Steps",
+      "Checks"
+    ]
+  },
+  "exploreMore": {
+    "challengeTitle": "Handoff durability check",
+    "prompt": "Remove the CHECKS block and compare the package. What risk becomes invisible?",
+    "focus": "Operational reliability",
+    "branches": [
+      {
+        "title": "No-CHECKS comparison",
+        "instruction": "Delete CHECKS, rerun, and compare what reviewers can no longer inspect quickly.",
+        "watchFor": "Whether verification and refresh duties become vague.",
+        "why": "This isolates why CHECKS matter for repeated use."
+      },
+      {
+        "title": "Compress for a busy teammate",
+        "instruction": "Trim one block without losing handoff readiness, then explain the tradeoff.",
+        "watchFor": "Whether the package stays reusable by someone else.",
+        "why": "This forces clarity under time pressure."
+      }
+    ]
+  },
+  "coach": {
+    "build": [
+      "Shape the package so another person could pick it up without hidden assumptions.",
+      "Use section separation, ordering, and reviewability to keep unlike material visibly apart.",
+      "Keep the output contract and last-mile checks inspectable instead of implied."
+    ],
+    "copy": [
+      "Before running externally, ask whether a teammate who did not design the package would still know what must be verified next.",
+      "Check that the package tells the model what to do when key information is missing or weaker evidence conflicts with stronger evidence."
+    ],
+    "review": [
+      "Did the result read like a reusable handoff artifact instead of a personal note?",
+      "Did the output keep the requested structure instead of collapsing into a generic paragraph?",
+      "Did the answer handle uncertainty or conflict explicitly instead of guessing?"
+    ]
+  }
+}

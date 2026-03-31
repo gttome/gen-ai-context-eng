@@ -1,0 +1,53 @@
+{
+  "scenarios": [
+    {
+      "id": "policy-answer",
+      "title": "Policy Answer Pack",
+      "timing": "6\u20138 min",
+      "difficulty": "Core",
+      "chapterConcept": "Section separation and output contract"
+    },
+    {
+      "id": "escalation-response",
+      "title": "Escalation Response Pack",
+      "timing": "7\u20139 min",
+      "difficulty": "Core+",
+      "chapterConcept": "Precedence and missing-information handling"
+    },
+    {
+      "id": "process-handoff",
+      "title": "Process Handoff Pack",
+      "timing": "6\u20138 min",
+      "difficulty": "Core",
+      "chapterConcept": "Operational readiness and CHECKS"
+    },
+    {
+      "id": "status-brief",
+      "title": "Status Brief Pack",
+      "timing": "6\u20138 min",
+      "difficulty": "Core",
+      "chapterConcept": "Dynamic facts and stale-context control"
+    },
+    {
+      "id": "vendor-escalation",
+      "title": "Vendor Escalation Pack",
+      "timing": "7\u20139 min",
+      "difficulty": "Core+",
+      "chapterConcept": "Ordering and reviewable escalation output"
+    },
+    {
+      "id": "audit-exception",
+      "title": "Audit Exception Pack",
+      "timing": "7\u20139 min",
+      "difficulty": "Core+",
+      "chapterConcept": "Precedence, stale-context control, and missing-information handling"
+    },
+    {
+      "id": "handoff-variation",
+      "title": "Cross-Team Handoff Variation Pack",
+      "timing": "7\u20139 min",
+      "difficulty": "Core+",
+      "chapterConcept": "Operational readiness, handoff clarity, and strongest-practice comparison"
+    }
+  ]
+}

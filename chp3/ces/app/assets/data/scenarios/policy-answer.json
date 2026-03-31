@@ -1,0 +1,301 @@
+{
+  "id": "policy-answer",
+  "title": "Policy Answer Pack",
+  "learningObjective": "Separate stable rules from evidence, state what source wins, and produce a reviewable answer shape.",
+  "chapterConcept": "Section separation and output contract",
+  "timing": "6\u20138 min",
+  "difficulty": "Core",
+  "lifecycleCue": "Shaping depends on earlier Discovery and Selection decisions. This pack assumes the task and evidence set already exist.",
+  "caseBrief": "An operations analyst wants a reusable envelope for answering an employee question about vacation carryover. The package must explain the policy in plain language, rely only on approved HR material, and avoid silent guesswork when older notes conflict with current policy.",
+  "successCriteria": [
+    "Use approved HR policy excerpts instead of generic knowledge.",
+    "Keep rules, references, facts, and the task visibly separate.",
+    "State what source wins when an older manager note conflicts with current policy.",
+    "Define a concise, reviewable answer shape with next steps."
+  ],
+  "outputReminder": [
+    "Did the model follow the current policy instead of the stale note?",
+    "Did it explain uncertainty or silence instead of guessing?",
+    "Did it use the requested short answer format?"
+  ],
+  "options": {
+    "precedenceRules": [
+      {
+        "id": "current-policy-wins",
+        "label": "Current approved HR policy outranks older manager notes and memory."
+      },
+      {
+        "id": "most-recent-note-wins",
+        "label": "Most recent note in the package wins, even if it is informal."
+      },
+      {
+        "id": "no-precedence-stated",
+        "label": "Leave precedence implicit and let the model infer it."
+      }
+    ],
+    "outputOptions": [
+      {
+        "id": "three-part-answer",
+        "label": "Explanation / Next Steps / What We Know"
+      },
+      {
+        "id": "single-paragraph",
+        "label": "One short paragraph only"
+      },
+      {
+        "id": "bullet-summary",
+        "label": "3 bullet points only"
+      }
+    ],
+    "handlingOptions": [
+      {
+        "id": "state-uncertainty-and-escalate",
+        "label": "State uncertainty and escalate to HR when policy is silent."
+      },
+      {
+        "id": "ask-for-missing-facts-first",
+        "label": "Ask for the missing fact before answering."
+      },
+      {
+        "id": "infer-best-answer",
+        "label": "Infer the most likely answer from the package."
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "id": "pa_role",
+      "label": "HR Policy Explainer",
+      "text": "Act as a careful HR policy explainer for employees. Translate approved policy into plain language without adding legal advice or invented rules.",
+      "type": "ROLE",
+      "suggestedSection": "ROLE",
+      "acceptableSections": [
+        "ROLE"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 1
+    },
+    {
+      "id": "pa_rule_sources",
+      "label": "Approved Sources Only",
+      "text": "Use only the approved HR policy excerpts in REFERENCE. Do not rely on generic HR knowledge or remembered past answers.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 2
+    },
+    {
+      "id": "pa_rule_legal",
+      "label": "No Legal Advice / Escalate When Silent",
+      "text": "Do not give legal advice. If the policy text is silent or contradictory, say so plainly and direct the employee to HR.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES",
+        "CHECKS"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 3
+    },
+    {
+      "id": "pa_ref_policy",
+      "label": "Current Carryover Rule",
+      "text": "Approved HR policy excerpt (2026): employees may carry over up to 16 unused vacation hours into the next calendar year. Anything above 16 hours expires unless an HR-approved exception is documented.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE"
+      ],
+      "trustLevel": "authoritative",
+      "freshnessCue": "current",
+      "priority": 4
+    },
+    {
+      "id": "pa_ref_exception",
+      "label": "Exception Window",
+      "text": "Approved HR policy excerpt (2026): approved exceptions must be documented in the HR system no later than January 10 of the new year. Manager email alone does not create an exception.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE"
+      ],
+      "trustLevel": "authoritative",
+      "freshnessCue": "current",
+      "priority": 5
+    },
+    {
+      "id": "pa_ref_oldnote",
+      "label": "Old Manager Email",
+      "text": "Manager email from last year: 'All unused hours transfer automatically for our team.' This note is older than the current HR policy update.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE",
+        "DYNAMIC FACTS"
+      ],
+      "trustLevel": "weak",
+      "freshnessCue": "stale",
+      "priority": 8
+    },
+    {
+      "id": "pa_fact_case",
+      "label": "Current Employee Facts",
+      "text": "Dynamic facts for this run: Jordan has 24 unused vacation hours. Today is January 4, 2026. No HR exception is recorded in the case notes.",
+      "type": "DYNAMIC FACTS",
+      "suggestedSection": "DYNAMIC FACTS",
+      "acceptableSections": [
+        "DYNAMIC FACTS"
+      ],
+      "trustLevel": "run-specific",
+      "freshnessCue": "current",
+      "priority": 6
+    },
+    {
+      "id": "pa_task",
+      "label": "Employee Question",
+      "text": "Task: answer Jordan's question, 'Can I carry all 24 hours into this year?' Use plain language, stay inside approved policy, and explain the practical next step.",
+      "type": "TASK",
+      "suggestedSection": "TASK",
+      "acceptableSections": [
+        "TASK"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "current",
+      "priority": 7
+    },
+    {
+      "id": "pa_output",
+      "label": "Reviewable Answer Shape",
+      "text": "Output expectation: return sections titled Explanation, Next Steps, and What We Know. Keep the answer concise and avoid speculation.",
+      "type": "OUTPUT",
+      "suggestedSection": "OUTPUT",
+      "acceptableSections": [
+        "OUTPUT"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 9
+    },
+    {
+      "id": "pa_checks",
+      "label": "Conflict / Silence Check",
+      "text": "Checks: if an older note conflicts with current policy, say the current approved policy wins. If required evidence is missing, say what is unknown instead of guessing.",
+      "type": "CHECKS",
+      "suggestedSection": "CHECKS",
+      "acceptableSections": [
+        "CHECKS",
+        "RULES"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 10
+    }
+  ],
+  "strongestPractice": {
+    "sections": {
+      "ROLE": [
+        "pa_role"
+      ],
+      "RULES": [
+        "pa_rule_sources",
+        "pa_rule_legal"
+      ],
+      "REFERENCE": [
+        "pa_ref_policy",
+        "pa_ref_exception",
+        "pa_ref_oldnote"
+      ],
+      "DYNAMIC FACTS": [
+        "pa_fact_case"
+      ],
+      "TASK": [
+        "pa_task"
+      ],
+      "OUTPUT": [
+        "pa_output"
+      ],
+      "CHECKS": [
+        "pa_checks"
+      ]
+    },
+    "precedenceRule": "current-policy-wins",
+    "outputOption": "three-part-answer",
+    "missingInfoHandling": "state-uncertainty-and-escalate",
+    "rationale": {
+      "ROLE": "Set the operating job before exposing evidence.",
+      "RULES": "Define source limits and silence behavior before the task.",
+      "REFERENCE": "Keep current policy visible and keep the stale note explicitly weaker.",
+      "DYNAMIC FACTS": "State the current run facts separately so the model can see what changes this answer.",
+      "TASK": "Ask the concrete question after the governing materials are visible.",
+      "OUTPUT": "Make the deliverable reviewable and consistent across runs.",
+      "CHECKS": "Declare conflict handling and unknown-handling instead of forcing model guesswork."
+    }
+  },
+  "reviewRubric": {
+    "requiredPhrases": [
+      "16 unused vacation hours",
+      "hr",
+      "policy",
+      "Explanation",
+      "Next Steps",
+      "What We Know"
+    ],
+    "preferredPhrases": [
+      "older manager email does not override",
+      "no HR exception",
+      "current approved policy"
+    ],
+    "uncertaintyPhrases": [
+      "unknown",
+      "not enough information",
+      "policy is silent",
+      "check with HR"
+    ],
+    "formatMarkers": [
+      "Explanation",
+      "Next Steps",
+      "What We Know"
+    ]
+  },
+  "exploreMore": {
+    "challengeTitle": "Tighter token budget challenge",
+    "prompt": "Can you remove exactly one block and still keep the package operationally safe? Compare the resulting tradeoff.",
+    "focus": "Signal-to-noise under pressure",
+    "branches": [
+      {
+        "title": "Trim without breaking safety",
+        "instruction": "Remove one block, rerun the same case, and defend why the package is still safe or no longer safe.",
+        "watchFor": "Whether the current policy cap and conflict rule stay visible.",
+        "why": "This tests smallest-sufficient evidence discipline."
+      },
+      {
+        "title": "Make the stale note louder on purpose",
+        "instruction": "Move the older manager email earlier and watch what becomes easier for the model to over-trust.",
+        "watchFor": "Whether the answer starts implying all hours transfer automatically.",
+        "why": "This makes precedence drift concrete."
+      }
+    ]
+  },
+  "coach": {
+    "build": [
+      "Keep the approved 2026 policy visible as evidence and stop the older manager email from behaving like a current fact.",
+      "Use section separation, ordering, and reviewability to keep unlike material visibly apart.",
+      "Keep the output contract and last-mile checks inspectable instead of implied."
+    ],
+    "copy": [
+      "Before you run externally, ask whether the envelope makes the 16-hour cap and the no-exception fact impossible to miss.",
+      "Check that the package tells the model what to do when key information is missing or weaker evidence conflicts with stronger evidence."
+    ],
+    "review": [
+      "Did the answer cap carryover at 16 hours instead of drifting toward the stale manager email?",
+      "Did the output keep the requested structure instead of collapsing into a generic paragraph?",
+      "Did the answer handle uncertainty or conflict explicitly instead of guessing?"
+    ]
+  }
+}

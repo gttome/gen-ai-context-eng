@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Context Envelope Studio — Help</title>
+  <link rel="stylesheet" href="./assets/css/app.css" />
+</head>
+<body data-static-page="help">
+  <div class="static-page">
+    <div class="page-top">
+      <a class="link-pill" href="./index.html">Return to the studio</a>
+      <a class="link-pill" href="./authoring.html">Authoring workspace</a>
+      <button class="theme-toggle" data-action="toggle-theme">Toggle theme</button>
+    </div>
+    <article class="panel">
+      <h1>Help guide</h1>
+      <p class="muted">Context Envelope Studio teaches Chapter 3 shaping discipline through short, artifact-producing runs. You are not writing a flashy prompt from scratch. You are turning already selected material into a legible operating package another person or run could review.</p>
+      <section>
+        <h2>Core flow</h2>
+        <ol>
+          <li>Choose a scenario pack and review the mission brief.</li>
+          <li>Predict where the package could fail if shaped poorly.</li>
+          <li>Place authored blocks into ROLE, RULES, REFERENCE, DYNAMIC FACTS, TASK, OUTPUT, and CHECKS by reasoning from purpose, trust, freshness, and reviewability.</li>
+          <li>Set the precedence rule, output mode, and missing-information behavior.</li>
+          <li>Copy the envelope into an external LLM and observe the result.</li>
+          <li>Paste the observed output back into the app and review what the structure caused.</li>
+          <li>Finish the run, compare with your prior attempt, and export a learner artifact if needed.</li>
+        </ol>
+      </section>
+      <section>
+        <h2>What changed in this iteration</h2>
+        <ul>
+          <li>Stage changes now return you to the top of the active workflow step instead of leaving you at the bottom of the page.</li>
+          <li><strong>Coach this card</strong> now opens inline coaching on the selected card and keeps the next move visible.</li>
+          <li>The app now shows an always-visible <strong>Do this next</strong> coach strip near the top of the workflow so you <strong>Always know the next move</strong>.
+          <li><strong>Adaptive Mission Director</strong> now uses local-only progress to recommend the next scenario and skill focus.</li>
+          <li><strong>Counterfactual Studio</strong> now compares your current envelope, strongest practice, and a plausible-but-weaker version so shaping consequences are visible.</li></li>
+          <li>Printable learner artifacts now open from a generated print view instead of an empty print window.</li>
+          <li>The authoring workspace now includes scaffold generators for starter blocks, rationale, rubric, coaching, mission tags, and counterfactual patterns.</li>
+          <li>Browser QA now includes stage-scroll checks, printable artifact checks, and a narrow-screen smoke flow.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Keyboard-only build path</h2>
+        <ul>
+          <li>Each unplaced block includes a destination dropdown, a <strong>Place</strong> button, and a <strong>Coach this card</strong> action that explains the shaping decision.</li>
+          <li>Each placed block includes <strong>Move up</strong>, <strong>Move down</strong>, and <strong>Move to section</strong> controls.</li>
+          <li>You never have to rely on drag-and-drop to finish the core activity.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Copy, compare, and print</h2>
+        <ul>
+          <li>The app includes a clipboard fallback for browsers that restrict <code>navigator.clipboard</code>.</li>
+          <li>After a completed run, the summary screen can compare the current attempt with the previous completed attempt for the same scenario.</li>
+          <li>You can copy or print a learner artifact for review, coaching, or class discussion.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Authoring workspace</h2>
+        <p class="muted">The authoring workspace gives non-developer contributors a safe static pattern: choose a starter scenario, edit JSON transparently, generate missing scaffolds, validate against the scenario schema, preview the compiled scenario engine, and export a local JSON file for review.</p>
+      </section>
+    </article>
+  </div>
+  <script type="module" src="./assets/js/static-page.js"></script>
+</body>
+</html>

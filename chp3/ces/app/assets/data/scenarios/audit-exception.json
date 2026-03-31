@@ -1,0 +1,300 @@
+{
+  "id": "audit-exception",
+  "title": "Audit Exception Pack",
+  "learningObjective": "Use shaping decisions to keep current policy stronger than stale shortcuts and to make missing exception facts impossible to miss.",
+  "chapterConcept": "Precedence, stale-context control, and missing-information handling",
+  "timing": "7\u20139 min",
+  "difficulty": "Core+",
+  "lifecycleCue": "This pack assumes Discovery and Selection are already complete. The run focuses on Shaping, then review and iteration.",
+  "caseBrief": "A finance coordinator wants a reusable envelope for a travel-meal exception review. The package must separate current policy from old shortcut notes, make missing facts obvious, and produce a route-ready recommendation without silently approving the exception.",
+  "successCriteria": [
+    "Keep instructions, evidence, dynamic facts, and checks visibly distinct.",
+    "Make precedence and missing-information handling explicit instead of implied.",
+    "Use a reviewable output contract that another reviewer could inspect quickly.",
+    "Make the package reliable enough to hand off without hidden assumptions."
+  ],
+  "outputReminder": [
+    "Did the response follow the current source of record instead of weaker notes?",
+    "Did it keep the required format rather than collapsing into a generic paragraph?",
+    "Did it state uncertainty or escalation when facts were missing?"
+  ],
+  "options": {
+    "precedenceRules": [
+      {
+        "id": "current-finance-policy-wins",
+        "label": "Current finance policy outranks old team shortcuts and verbal memory."
+      },
+      {
+        "id": "recent-note-wins",
+        "label": "Most recent note in the package wins, even if it is informal."
+      },
+      {
+        "id": "leave-precedence-implicit",
+        "label": "Leave precedence unstated and let the model infer it."
+      }
+    ],
+    "outputOptions": [
+      {
+        "id": "assessment-missing-next",
+        "label": "Assessment / Missing Information / Next Step"
+      },
+      {
+        "id": "single-paragraph",
+        "label": "One short paragraph only"
+      },
+      {
+        "id": "bullets-only",
+        "label": "Three bullet points only"
+      }
+    ],
+    "handlingOptions": [
+      {
+        "id": "state-missing-and-route",
+        "label": "State what is missing and route only after the required details are captured."
+      },
+      {
+        "id": "ask-first",
+        "label": "Ask for the missing details before giving the routing answer."
+      },
+      {
+        "id": "infer-likely-approval",
+        "label": "Infer the likely approval path from the available facts."
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "id": "ae_role",
+      "label": "Travel Audit Analyst",
+      "text": "Act as a careful travel audit analyst. Explain the rule clearly, stay inside approved policy, and avoid inventing approvals or exceptions.",
+      "type": "ROLE",
+      "suggestedSection": "ROLE",
+      "acceptableSections": [
+        "ROLE"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 1
+    },
+    {
+      "id": "ae_rule_sources",
+      "label": "Approved Finance Sources Only",
+      "text": "Use only the approved travel policy excerpt and the current exception procedure in REFERENCE. Do not rely on memory or informal team shortcuts.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 2
+    },
+    {
+      "id": "ae_rule_scope",
+      "label": "Do Not Auto-Approve",
+      "text": "Do not approve the exception yourself. State whether the request appears policy-compliant and identify the required next step.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES",
+        "CHECKS"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 3
+    },
+    {
+      "id": "ae_ref_policy",
+      "label": "Meals Cap Policy",
+      "text": "Approved finance policy (2026): same-day travel meals above $75 require a documented exception reason and director approval before reimbursement is finalized.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE"
+      ],
+      "trustLevel": "authoritative",
+      "freshnessCue": "current",
+      "priority": 4
+    },
+    {
+      "id": "ae_ref_form",
+      "label": "Exception Procedure",
+      "text": "Approved procedure: the exception request must include business purpose, attendee count, and the approver name. Missing items require follow-up before routing.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE"
+      ],
+      "trustLevel": "authoritative",
+      "freshnessCue": "current",
+      "priority": 5
+    },
+    {
+      "id": "ae_ref_oldpractice",
+      "label": "Old Team Shortcut",
+      "text": "Old team note: overages under $20 usually get waved through after the trip. This note predates the 2026 finance update.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE",
+        "DYNAMIC FACTS"
+      ],
+      "trustLevel": "weak",
+      "freshnessCue": "stale",
+      "priority": 8
+    },
+    {
+      "id": "ae_fact_case",
+      "label": "Current Expense Facts",
+      "text": "Dynamic facts for this run: the meal receipt is $92 for same-day travel, attendee count is missing, and the employee says the director verbally approved it.",
+      "type": "DYNAMIC FACTS",
+      "suggestedSection": "DYNAMIC FACTS",
+      "acceptableSections": [
+        "DYNAMIC FACTS"
+      ],
+      "trustLevel": "run-specific",
+      "freshnessCue": "current",
+      "priority": 6
+    },
+    {
+      "id": "ae_task",
+      "label": "Audit Question",
+      "text": "Task: tell the finance coordinator whether the package is ready to route and what must happen next.",
+      "type": "TASK",
+      "suggestedSection": "TASK",
+      "acceptableSections": [
+        "TASK"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "current",
+      "priority": 7
+    },
+    {
+      "id": "ae_output",
+      "label": "Audit Output Contract",
+      "text": "Output expectation: return sections titled Assessment, Missing Information, and Next Step. Keep the answer concise and reviewable.",
+      "type": "OUTPUT",
+      "suggestedSection": "OUTPUT",
+      "acceptableSections": [
+        "OUTPUT"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 9
+    },
+    {
+      "id": "ae_checks",
+      "label": "Missing-Facts Check",
+      "text": "Checks: if required exception facts are missing, say what is missing and stop short of implying approval. If a stale shortcut conflicts with current policy, the policy wins.",
+      "type": "CHECKS",
+      "suggestedSection": "CHECKS",
+      "acceptableSections": [
+        "CHECKS",
+        "RULES"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 10
+    }
+  ],
+  "strongestPractice": {
+    "sections": {
+      "ROLE": [
+        "ae_role"
+      ],
+      "RULES": [
+        "ae_rule_sources",
+        "ae_rule_scope"
+      ],
+      "REFERENCE": [
+        "ae_ref_policy",
+        "ae_ref_form",
+        "ae_ref_oldpractice"
+      ],
+      "DYNAMIC FACTS": [
+        "ae_fact_case"
+      ],
+      "TASK": [
+        "ae_task"
+      ],
+      "OUTPUT": [
+        "ae_output"
+      ],
+      "CHECKS": [
+        "ae_checks"
+      ]
+    },
+    "precedenceRule": "current-finance-policy-wins",
+    "outputOption": "assessment-missing-next",
+    "missingInfoHandling": "state-missing-and-route",
+    "rationale": {
+      "ROLE": "Set the operating job before the package sees policy or facts.",
+      "RULES": "Lock source limits and no-auto-approval behavior before the task appears.",
+      "REFERENCE": "Keep the current source-of-record visible and isolate the stale shortcut as weaker evidence.",
+      "DYNAMIC FACTS": "Separate run-specific facts so the missing attendee count is highly visible.",
+      "TASK": "Ask the concrete audit question only after the governing materials are visible.",
+      "OUTPUT": "Require a reviewable structure that another coordinator could scan quickly.",
+      "CHECKS": "Declare the missing-information stop rule and the policy-vs-shortcut precedence rule explicitly."
+    }
+  },
+  "reviewRubric": {
+    "requiredPhrases": [
+      "Assessment",
+      "Missing Information",
+      "Next Step",
+      "policy",
+      "approval"
+    ],
+    "preferredPhrases": [
+      "current finance policy",
+      "attendee count is missing",
+      "verbal approval is not enough"
+    ],
+    "uncertaintyPhrases": [
+      "missing",
+      "unknown",
+      "not enough information",
+      "needs follow-up"
+    ],
+    "formatMarkers": [
+      "Assessment",
+      "Missing Information",
+      "Next Step"
+    ]
+  },
+  "exploreMore": {
+    "challengeTitle": "Exception edge-case challenge",
+    "prompt": "Replay the pack with a tighter fact pattern: the attendee count is present, but the approver name is still missing. What should stay the same, and what changes?",
+    "focus": "How shaping surfaces partial completeness without inventing approval",
+    "branches": [
+      {
+        "title": "Make the stale shortcut louder",
+        "instruction": "Move the old team shortcut earlier and watch how easily it starts to behave like permission.",
+        "watchFor": "Whether the response starts sounding like routine approval instead of controlled routing.",
+        "why": "This makes precedence drift visible."
+      },
+      {
+        "title": "Tighten the output contract",
+        "instruction": "Switch from a paragraph to the sectioned output and compare which version is easier to review.",
+        "watchFor": "Whether missing details and next action become easier to spot.",
+        "why": "This shows how output structure supports downstream audit review."
+      }
+    ]
+  },
+  "coach": {
+    "build": [
+      "Keep current finance policy stronger than the stale shortcut note.",
+      "Make the missing attendee count and no-auto-approval rule easy to find.",
+      "Use a reviewable output contract so the routing recommendation can be checked quickly."
+    ],
+    "copy": [
+      "In the external run, watch whether the response quietly upgrades verbal approval into real approval.",
+      "Check whether the output names the missing information instead of burying it."
+    ],
+    "review": [
+      "Did the answer stop short of approval?",
+      "Did it state the missing attendee count clearly?",
+      "Did the output stay in the requested sectioned format?"
+    ]
+  }
+}

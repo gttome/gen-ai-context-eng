@@ -1,0 +1,286 @@
+{
+  "id": "status-brief",
+  "title": "Status Brief Pack",
+  "learningObjective": "Keep current run facts visible, demote stale notes, and shape a status brief another stakeholder can review quickly.",
+  "chapterConcept": "Dynamic facts and stale-context control",
+  "timing": "6\u20138 min",
+  "difficulty": "Core",
+  "lifecycleCue": "This pack reinforces how Shaping keeps current state visible for Execution and Evaluation.",
+  "caseBrief": "A program manager needs a reusable status-brief envelope for a steering committee update. The package must show what is confirmed this week, keep older assumptions from quietly taking over, and produce a tightly structured brief.",
+  "successCriteria": [
+    "Current milestone facts remain separate from older planning notes.",
+    "The package names what is confirmed, what is at risk, and what decision is needed next.",
+    "The output format is easy for a reviewer to inspect quickly."
+  ],
+  "outputReminder": [
+    "Did the response distinguish this week\u2019s facts from older planning assumptions?",
+    "Did it avoid treating stale notes as current truth?",
+    "Did it follow the requested status-brief structure?"
+  ],
+  "options": {
+    "precedenceRules": [
+      {
+        "id": "current-facts-win",
+        "label": "Current run facts and approved status source win over older planning notes."
+      },
+      {
+        "id": "planning-notes-win",
+        "label": "Older planning notes can stand unless directly contradicted."
+      },
+      {
+        "id": "implicit-status-precedence",
+        "label": "Leave status precedence unstated."
+      }
+    ],
+    "outputOptions": [
+      {
+        "id": "status-brief-3part",
+        "label": "Current State / Risks / Decision Needed"
+      },
+      {
+        "id": "single-status-paragraph",
+        "label": "One short paragraph"
+      },
+      {
+        "id": "bullets-only",
+        "label": "4 bullets only"
+      }
+    ],
+    "handlingOptions": [
+      {
+        "id": "state-open-item-clearly",
+        "label": "State the open item clearly and avoid filling the gap with assumptions."
+      },
+      {
+        "id": "infer-likely-status",
+        "label": "Infer the likely status from older notes."
+      },
+      {
+        "id": "ignore-open-item",
+        "label": "Ignore the open item and summarize only the known positives."
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "id": "sb_role",
+      "label": "Status Brief Writer",
+      "text": "Act as a disciplined status brief writer preparing a steering-committee update. Keep the brief factual, concise, and reviewable.",
+      "type": "ROLE",
+      "suggestedSection": "ROLE",
+      "acceptableSections": [
+        "ROLE"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 1
+    },
+    {
+      "id": "sb_rule_separate",
+      "label": "Separate Current State from Older Notes",
+      "text": "Do not let older planning assumptions override this week\u2019s confirmed status source. Make current facts easy to locate.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES",
+        "CHECKS"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 2
+    },
+    {
+      "id": "sb_rule_concise",
+      "label": "Keep the Brief Reviewable",
+      "text": "Use a compact, inspectable status format rather than a narrative dump. Name risks and needed decisions explicitly.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES",
+        "OUTPUT"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 3
+    },
+    {
+      "id": "sb_ref_source",
+      "label": "Approved Weekly Status Source",
+      "text": "Approved weekly source: integration testing completed for stream A; stream B remains blocked on vendor credentials; launch date is still under review and has not been re-baselined.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE"
+      ],
+      "trustLevel": "authoritative",
+      "freshnessCue": "current",
+      "priority": 4
+    },
+    {
+      "id": "sb_ref_old",
+      "label": "Older Planning Note",
+      "text": "Older planning note: \u2018All streams should be complete this week and launch is locked.\u2019 This note predates the latest status source.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE",
+        "DYNAMIC FACTS"
+      ],
+      "trustLevel": "weak",
+      "freshnessCue": "stale",
+      "priority": 7
+    },
+    {
+      "id": "sb_fact_run",
+      "label": "Current Run Facts",
+      "text": "Dynamic facts: the steering committee meets tomorrow at 9 AM. The sponsor wants a short update that clearly states the open credential blocker and whether a date decision is needed.",
+      "type": "DYNAMIC FACTS",
+      "suggestedSection": "DYNAMIC FACTS",
+      "acceptableSections": [
+        "DYNAMIC FACTS"
+      ],
+      "trustLevel": "run-specific",
+      "freshnessCue": "current",
+      "priority": 5
+    },
+    {
+      "id": "sb_task",
+      "label": "Build the Status Brief",
+      "text": "Task: prepare a steering-committee status brief that states the current state, risks, and the next decision needed without hiding the open blocker.",
+      "type": "TASK",
+      "suggestedSection": "TASK",
+      "acceptableSections": [
+        "TASK"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "current",
+      "priority": 6
+    },
+    {
+      "id": "sb_output",
+      "label": "Status Brief Format",
+      "text": "Output expectation: return sections titled Current State, Risks, and Decision Needed.",
+      "type": "OUTPUT",
+      "suggestedSection": "OUTPUT",
+      "acceptableSections": [
+        "OUTPUT"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 8
+    },
+    {
+      "id": "sb_checks",
+      "label": "Open-Item Check",
+      "text": "Checks: if launch timing is not confirmed, say it remains under review rather than treating the older launch note as current truth.",
+      "type": "CHECKS",
+      "suggestedSection": "CHECKS",
+      "acceptableSections": [
+        "CHECKS",
+        "RULES"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 9
+    }
+  ],
+  "strongestPractice": {
+    "sections": {
+      "ROLE": [
+        "sb_role"
+      ],
+      "RULES": [
+        "sb_rule_separate",
+        "sb_rule_concise"
+      ],
+      "REFERENCE": [
+        "sb_ref_source",
+        "sb_ref_old"
+      ],
+      "DYNAMIC FACTS": [
+        "sb_fact_run"
+      ],
+      "TASK": [
+        "sb_task"
+      ],
+      "OUTPUT": [
+        "sb_output"
+      ],
+      "CHECKS": [
+        "sb_checks"
+      ]
+    },
+    "precedenceRule": "current-facts-win",
+    "outputOption": "status-brief-3part",
+    "missingInfoHandling": "state-open-item-clearly",
+    "rationale": {
+      "ROLE": "Frame the artifact as a short status brief before evidence arrives.",
+      "RULES": "Make current-state discipline and reviewable brevity explicit.",
+      "REFERENCE": "Keep the approved weekly source visible while clearly demoting the stale planning note.",
+      "DYNAMIC FACTS": "Expose current meeting and sponsor context as run-specific facts.",
+      "TASK": "State the exact deliverable once the package is already grounded.",
+      "OUTPUT": "A fixed three-part brief makes evaluation fast.",
+      "CHECKS": "Protect the brief from silently treating a stale launch assumption as current truth."
+    }
+  },
+  "reviewRubric": {
+    "requiredPhrases": [
+      "Current State",
+      "Risks",
+      "Decision Needed",
+      "under review",
+      "credentials"
+    ],
+    "preferredPhrases": [
+      "weekly status source",
+      "blocked",
+      "vendor credentials",
+      "launch date"
+    ],
+    "uncertaintyPhrases": [
+      "under review",
+      "not confirmed",
+      "open blocker"
+    ],
+    "formatMarkers": [
+      "Current State",
+      "Risks",
+      "Decision Needed"
+    ]
+  },
+  "exploreMore": {
+    "challengeTitle": "Status drift comparison",
+    "prompt": "Move the stale planning note earlier in the package and compare how much easier it becomes for the model to overstate confidence.",
+    "focus": "Freshness and reviewability",
+    "branches": [
+      {
+        "title": "Optimism drift test",
+        "instruction": "Move the stale planning note earlier and rerun the same status brief.",
+        "watchFor": "Whether the brief sounds more confident than the current source supports.",
+        "why": "This makes stale-context risk visible."
+      },
+      {
+        "title": "Decision-needed stress test",
+        "instruction": "Remove the output contract and compare how much harder the brief becomes to review.",
+        "watchFor": "Whether the needed decision gets blurred or omitted.",
+        "why": "This shows why shaping influences downstream evaluation."
+      }
+    ]
+  },
+  "coach": {
+    "build": [
+      "Keep this week's approved status source separate from older planning optimism.",
+      "Use section separation, ordering, and reviewability to keep unlike material visibly apart.",
+      "Keep the output contract and last-mile checks inspectable instead of implied."
+    ],
+    "copy": [
+      "Before you run externally, check whether the envelope makes the open blocker and unconfirmed launch date impossible to miss.",
+      "Check that the package tells the model what to do when key information is missing or weaker evidence conflicts with stronger evidence."
+    ],
+    "review": [
+      "Did the answer report the blocker plainly instead of smoothing it away?",
+      "Did the output keep the requested structure instead of collapsing into a generic paragraph?",
+      "Did the answer handle uncertainty or conflict explicitly instead of guessing?"
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Context Envelope Studio — Feedback</title>
+  <link rel="stylesheet" href="./assets/css/app.css" />
+</head>
+<body data-static-page="feedback">
+  <div class="static-page">
+    <div class="page-top">
+      <a class="link-pill" href="./index.html">Return to the studio</a>
+      <a class="link-pill" href="./authoring.html">Authoring workspace</a>
+      <button class="theme-toggle" data-action="toggle-theme">Toggle theme</button>
+    </div>
+    <article class="panel">
+      <h1>Feedback</h1>
+      <p class="muted">This static GitHub Pages–ready build stores feedback locally in your browser so you can capture what worked, what confused you, and what to improve in the next iteration.</p>
+      <form id="feedback-form" class="option-grid">
+        <label><span class="small muted">What should improve next?</span><textarea id="feedback-text" placeholder="Example: Add more guidance when a stale note is placed too early in REFERENCE."></textarea></label>
+        <div class="card-actions"><button class="primary-btn" type="submit">Save locally</button><span id="feedback-status" class="muted small" aria-live="polite"></span></div>
+      </form>
+      <section class="callout" style="margin-top:1rem">
+        <h2>Saved feedback in this browser</h2>
+        <div id="feedback-history" class="muted small">No local feedback saved in this browser yet.</div>
+      </section>
+    </article>
+  </div>
+  <script type="module" src="./assets/js/static-page.js"></script>
+</body>
+</html>

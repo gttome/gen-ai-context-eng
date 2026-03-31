@@ -1,0 +1,30 @@
+[
+  {
+    "term": "Context package",
+    "definition": "The full operating input for a task: role, rules, evidence, dynamic facts, output requirements, and the current request."
+  },
+  {
+    "term": "Context envelope",
+    "definition": "A deliberate structure that separates ROLE, RULES, REFERENCE, DYNAMIC FACTS, TASK, OUTPUT, and CHECKS."
+  },
+  {
+    "term": "Signal-to-noise ratio",
+    "definition": "A judgment about whether included text materially helps the answer or merely competes for attention."
+  },
+  {
+    "term": "Precedence",
+    "definition": "The explicit statement of what should win if sources, rules, or facts conflict."
+  },
+  {
+    "term": "Stale context",
+    "definition": "Old information that stays in the package and quietly overrides newer facts or requirements."
+  },
+  {
+    "term": "Operational reliability",
+    "definition": "The ability of a workflow to produce acceptable outputs repeatedly, not just once in a demo."
+  },
+  {
+    "term": "Representative test case",
+    "definition": "A realistic input used to evaluate whether the current package works on normal, edge, and failure-prone cases."
+  }
+]

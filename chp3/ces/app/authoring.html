@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Context Envelope Studio — Authoring Workspace</title>
+  <link rel="stylesheet" href="./assets/css/app.css" />
+</head>
+<body>
+  <div class="static-page">
+    <div class="page-top">
+      <a class="link-pill" href="./index.html">Return to the studio</a>
+      <a class="link-pill" href="./help.html">Help</a>
+      <button class="theme-toggle" data-action="toggle-theme">Toggle theme</button>
+    </div>
+    <article class="panel">
+      <h1>Scenario authoring workspace</h1>
+      <p class="muted">This workspace is intentionally static-safe. It gives non-developer contributors a starter template, plain-language validation, scaffold generation, and a JSON export path without adding any server dependency or direct model integration.</p>
+      <div class="two-col">
+        <section class="callout cue">
+          <h2>1. Choose a starter</h2>
+          <label><span class="small muted">Starter scenario</span><select id="starter-select" class="inline-select"></select></label>
+          <div class="card-actions" style="margin-top:1rem">
+            <button class="primary-btn" id="load-starter">Load starter</button>
+            <button class="secondary-btn" id="load-blank">Load blank scaffold</button>
+          </div>
+          <h3 style="margin-top:1rem">Authoring pattern</h3>
+          <ul class="check-list">
+            <li>Start from a proven scenario or the blank scaffold.</li>
+            <li>Edit plain-language fields, lists, and block text directly in the draft JSON.</li>
+            <li>Generate scaffolds when you need a fast starting point for blocks, rationale, rubric, or coaching.</li>
+            <li>Validate before downloading so schema problems are explained in plain language.</li>
+            <li>Keep the app static: scenarios live as local JSON files, not in a database or server.</li>
+          </ul>
+          <label style="margin-top:1rem; display:block"><span class="small muted">Load a local draft JSON</span><input type="file" id="draft-file" accept="application/json,.json" /></label>
+        </section>
+        <section class="callout">
+          <h2>2. Generate, validate, and export</h2>
+          <div class="card-actions">
+            <button class="secondary-btn" id="generate-blocks">Generate block starter set</button>
+            <button class="secondary-btn" id="generate-support">Generate rubric + coaching + mission starters</button>
+          </div>
+          <div class="card-actions" style="margin-top:0.75rem">
+            <button class="primary-btn" id="validate-draft">Validate draft</button>
+            <button class="secondary-btn" id="download-draft">Download JSON</button>
+          </div>
+          <div id="authoring-status" class="authoring-status" aria-live="polite"></div>
+          <div class="comparison-grid" id="validation-panels">
+            <div class="comparison-card"><h3>Validation summary</h3><div id="validation-summary" class="muted small">No validation run yet.</div></div>
+            <div class="comparison-card"><h3>Draft insights</h3><div id="draft-insights" class="muted small">Load or edit a draft to see summary insights.</div></div>
+            <div class="comparison-card"><h3>Authoring checklist</h3><ul class="check-list"><li>Keep ROLE, RULES, REFERENCE, DYNAMIC FACTS, TASK, OUTPUT, and CHECKS visibly distinct.</li><li>Make strongest-practice sections, precedence, output, and handling explicit.</li><li>Add at least one plausible-but-weaker counterfactual for compare-and-contrast training.</li><li>Write coaching in plain language so learners understand why the stronger structure wins.</li><li>Keep scenarios completable in 5–10 minutes.</li></ul></div><div class="comparison-card"><h3>Engine preview</h3><div id="engine-preview" class="muted small">The scenario engine will compile mission tags and counterfactuals here.</div></div>
+          </div>
+        </section>
+      </div>
+      <section class="callout" style="margin-top:1rem">
+        <h2>3. Draft JSON</h2>
+        <p class="muted">The export format stays transparent so it can be versioned with the rest of the static app. New contributors can edit text values directly, validate, then save a JSON file for review.</p>
+        <textarea id="draft-json" style="min-height: 520px; font-family: monospace; width:100%"></textarea>
+      </section>
+    </article>
+  </div>
+  <script type="module" src="./assets/js/authoring.js"></script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+{
+  "id": "escalation-response",
+  "title": "Escalation Response Pack",
+  "learningObjective": "Make conflict handling explicit, keep dynamic facts visible, and tell the model what to do when key evidence is missing.",
+  "chapterConcept": "Precedence and missing-information handling",
+  "timing": "7\u20139 min",
+  "difficulty": "Core+",
+  "lifecycleCue": "This pack emphasizes Shaping decisions that protect Execution and Evaluation later.",
+  "caseBrief": "A customer success lead needs a reusable response envelope for a delayed refrigeration unit shipment. The package must stay factual, respect the refund policy, and avoid promising remedies before the current shipment status is confirmed.",
+  "successCriteria": [
+    "Current ticket facts and official policy outrank older macros.",
+    "The package states what to do if shipment status is still missing.",
+    "The output format helps a reviewer inspect empathy, facts, and next action separately."
+  ],
+  "outputReminder": [
+    "Did the model avoid promising a refund automatically?",
+    "Did it separate what is known from what still needs confirmation?",
+    "Did it follow the requested response structure?"
+  ],
+  "options": {
+    "precedenceRules": [
+      {
+        "id": "current-ticket-and-policy-win",
+        "label": "Current ticket facts and official policy outrank old macros."
+      },
+      {
+        "id": "macro-wins",
+        "label": "Use the saved response macro whenever it sounds faster."
+      },
+      {
+        "id": "implicit-precedence",
+        "label": "Do not state precedence explicitly."
+      }
+    ],
+    "outputOptions": [
+      {
+        "id": "customer-reply-checklist",
+        "label": "Customer Reply / Confirmed Facts / Next Action"
+      },
+      {
+        "id": "short-email",
+        "label": "One short email paragraph"
+      },
+      {
+        "id": "issue-note",
+        "label": "Internal issue note only"
+      }
+    ],
+    "handlingOptions": [
+      {
+        "id": "ask-or-escalate",
+        "label": "Ask for the missing shipment fact or escalate before promising the outcome."
+      },
+      {
+        "id": "best-guess",
+        "label": "Use the most likely interpretation and move fast."
+      },
+      {
+        "id": "policy-only",
+        "label": "Quote policy only and avoid addressing the current case."
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "id": "er_role",
+      "label": "Customer Escalation Responder",
+      "text": "Act as a careful customer escalation responder. Be empathetic, specific, and disciplined about what is confirmed versus unconfirmed.",
+      "type": "ROLE",
+      "suggestedSection": "ROLE",
+      "acceptableSections": [
+        "ROLE"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 1
+    },
+    {
+      "id": "er_rule_facts",
+      "label": "Use Confirmed Facts Only",
+      "text": "Use only the confirmed ticket facts and official policy excerpts. Do not invent shipment status, refund approval, or warehouse decisions.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 2
+    },
+    {
+      "id": "er_rule_escalate",
+      "label": "Escalate if Remedy Depends on Missing Status",
+      "text": "If the promised remedy depends on a shipment status that is not yet confirmed, ask for the missing fact or route the case for human review.",
+      "type": "RULES",
+      "suggestedSection": "RULES",
+      "acceptableSections": [
+        "RULES",
+        "CHECKS"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 3
+    },
+    {
+      "id": "er_ref_policy",
+      "label": "Refund Policy Excerpt",
+      "text": "Official policy: full refunds for delayed refrigeration units require either a verified no-ship status after the committed ship date or director approval.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE"
+      ],
+      "trustLevel": "authoritative",
+      "freshnessCue": "current",
+      "priority": 5
+    },
+    {
+      "id": "er_ref_playbook",
+      "label": "Service Recovery Playbook",
+      "text": "Official playbook: acknowledge the customer's frustration, summarize confirmed facts, state the next action, and avoid overpromising before verification.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE",
+        "RULES"
+      ],
+      "trustLevel": "authoritative",
+      "freshnessCue": "current",
+      "priority": 4
+    },
+    {
+      "id": "er_ref_macro",
+      "label": "Old Saved Macro",
+      "text": "Saved macro from a prior issue: 'We are issuing your refund immediately and replacing the unit.' This template predates the latest refund rule.",
+      "type": "REFERENCE",
+      "suggestedSection": "REFERENCE",
+      "acceptableSections": [
+        "REFERENCE"
+      ],
+      "trustLevel": "weak",
+      "freshnessCue": "stale",
+      "priority": 8
+    },
+    {
+      "id": "er_fact_ticket",
+      "label": "Current Ticket Facts",
+      "text": "Dynamic facts: order 4472 was due to ship yesterday. The ticket says the warehouse has not yet confirmed whether the unit actually left the dock. Customer requested an immediate full refund.",
+      "type": "DYNAMIC FACTS",
+      "suggestedSection": "DYNAMIC FACTS",
+      "acceptableSections": [
+        "DYNAMIC FACTS"
+      ],
+      "trustLevel": "run-specific",
+      "freshnessCue": "current",
+      "priority": 6
+    },
+    {
+      "id": "er_task",
+      "label": "Draft the Response",
+      "text": "Task: draft a concise customer-facing response that is empathetic, factual, and clear about the next action. Do not promise a remedy that the package does not support.",
+      "type": "TASK",
+      "suggestedSection": "TASK",
+      "acceptableSections": [
+        "TASK"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "current",
+      "priority": 7
+    },
+    {
+      "id": "er_output",
+      "label": "Inspectable Reply Format",
+      "text": "Output expectation: return sections titled Customer Reply, Confirmed Facts, and Next Action.",
+      "type": "OUTPUT",
+      "suggestedSection": "OUTPUT",
+      "acceptableSections": [
+        "OUTPUT"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 9
+    },
+    {
+      "id": "er_checks",
+      "label": "Missing-Status Check",
+      "text": "Checks: if the shipment status is still unconfirmed, do not promise the refund. Ask for confirmation or escalate according to the rule.",
+      "type": "CHECKS",
+      "suggestedSection": "CHECKS",
+      "acceptableSections": [
+        "CHECKS",
+        "RULES"
+      ],
+      "trustLevel": "trusted",
+      "freshnessCue": "stable",
+      "priority": 10
+    }
+  ],
+  "strongestPractice": {
+    "sections": {
+      "ROLE": [
+        "er_role"
+      ],
+      "RULES": [
+        "er_rule_facts",
+        "er_rule_escalate"
+      ],
+      "REFERENCE": [
+        "er_ref_playbook",
+        "er_ref_policy",
+        "er_ref_macro"
+      ],
+      "DYNAMIC FACTS": [
+        "er_fact_ticket"
+      ],
+      "TASK": [
+        "er_task"
+      ],
+      "OUTPUT": [
+        "er_output"
+      ],
+      "CHECKS": [
+        "er_checks"
+      ]
+    },
+    "precedenceRule": "current-ticket-and-policy-win",
+    "outputOption": "customer-reply-checklist",
+    "missingInfoHandling": "ask-or-escalate",
+    "rationale": {
+      "ROLE": "The response stance should be known before facts and policy arrive.",
+      "RULES": "Keep the no-invention and escalation rules prominent.",
+      "REFERENCE": "Use official playbook and policy, while explicitly demoting the old macro.",
+      "DYNAMIC FACTS": "Keep live case facts separate so stale templates do not masquerade as current truth.",
+      "TASK": "The ask is concrete and downstream from trusted context.",
+      "OUTPUT": "A three-part structure makes empathy, facts, and next action reviewable.",
+      "CHECKS": "Make the missing-status branch explicit."
+    }
+  },
+  "reviewRubric": {
+    "requiredPhrases": [
+      "Customer Reply",
+      "Confirmed Facts",
+      "Next Action",
+      "refund",
+      "confirm"
+    ],
+    "preferredPhrases": [
+      "shipment status",
+      "not yet confirmed",
+      "official policy",
+      "director approval"
+    ],
+    "uncertaintyPhrases": [
+      "unconfirmed",
+      "need confirmation",
+      "cannot promise",
+      "escalate"
+    ],
+    "formatMarkers": [
+      "Customer Reply",
+      "Confirmed Facts",
+      "Next Action"
+    ]
+  },
+  "exploreMore": {
+    "challengeTitle": "Conflict stress test",
+    "prompt": "Try moving the old macro earlier in the envelope. Watch how that changes risk and explain why.",
+    "focus": "Precedence drift",
+    "branches": [
+      {
+        "title": "Macro-first failure mode",
+        "instruction": "Move the older macro above the current policy and ticket facts, then rerun.",
+        "watchFor": "Whether the answer begins to over-promise remedies.",
+        "why": "This shows how weak precedent creates silent drift."
+      },
+      {
+        "title": "Missing-status branch check",
+        "instruction": "Keep the strong structure but weaken the missing-information rule and compare the response.",
+        "watchFor": "Whether the model fills the gap instead of asking or escalating.",
+        "why": "This reveals whether the package protects incomplete live work."
+      }
+    ]
+  },
+  "coach": {
+    "build": [
+      "Separate refund policy, current ticket facts, and older support macros so the package does not promise remedies too early.",
+      "Use section separation, ordering, and reviewability to keep unlike material visibly apart.",
+      "Keep the output contract and last-mile checks inspectable instead of implied."
+    ],
+    "copy": [
+      "Before running externally, confirm the package does not silently upgrade a delay concern into an automatic refund promise.",
+      "Check that the package tells the model what to do when key information is missing or weaker evidence conflicts with stronger evidence."
+    ],
+    "review": [
+      "Did the answer stay factual about what is known now versus what still needs confirmation?",
+      "Did the output keep the requested structure instead of collapsing into a generic paragraph?",
+      "Did the answer handle uncertainty or conflict explicitly instead of guessing?"
+    ]
+  }
+}
