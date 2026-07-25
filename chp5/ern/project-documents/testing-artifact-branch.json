@@ -1,0 +1,20 @@
+[
+  {
+    "scenarioId": "hr",
+    "completed": true,
+    "readiness": 99,
+    "steps": 4
+  },
+  {
+    "scenarioId": "support",
+    "completed": true,
+    "readiness": 99,
+    "steps": 4
+  },
+  {
+    "scenarioId": "finance",
+    "completed": true,
+    "readiness": 97,
+    "steps": 4
+  }
+]

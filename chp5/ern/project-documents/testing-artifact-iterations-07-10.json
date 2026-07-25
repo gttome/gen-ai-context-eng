@@ -1,0 +1,91 @@
+{
+  "iteration07": [
+    {
+      "scenarioId": "hr",
+      "coachSelector": true,
+      "microChallenge": true,
+      "coachingPrompts": true
+    },
+    {
+      "scenarioId": "support",
+      "coachSelector": true,
+      "microChallenge": true,
+      "coachingPrompts": true
+    },
+    {
+      "scenarioId": "finance",
+      "coachSelector": true,
+      "microChallenge": true,
+      "coachingPrompts": true
+    }
+  ],
+  "iteration08": [
+    {
+      "scenarioId": "hr",
+      "challengeFeedback": true,
+      "stakeholderMoment": true,
+      "protectedExposed": true
+    },
+    {
+      "scenarioId": "support",
+      "challengeFeedback": true,
+      "stakeholderMoment": true,
+      "protectedExposed": true
+    },
+    {
+      "scenarioId": "finance",
+      "challengeFeedback": true,
+      "stakeholderMoment": true,
+      "protectedExposed": true
+    }
+  ],
+  "iteration09": [
+    {
+      "scenarioId": "hr",
+      "rankTitle": "Enterprise Launch Lead",
+      "masteryBadges": 5,
+      "reportSections": true,
+      "replayPath": true
+    },
+    {
+      "scenarioId": "support",
+      "rankTitle": "Enterprise Launch Lead",
+      "masteryBadges": 5,
+      "reportSections": true,
+      "replayPath": true
+    },
+    {
+      "scenarioId": "finance",
+      "rankTitle": "Enterprise Launch Lead",
+      "masteryBadges": 5,
+      "reportSections": true,
+      "replayPath": true
+    }
+  ],
+  "iteration10": [
+    {
+      "scenarioId": "hr",
+      "disciplinedReadiness": 93,
+      "fragileReadiness": 2,
+      "analyticsTrend": "Up 91 vs previous run.",
+      "reviewHotspots": true,
+      "finalReportReplay": true
+    },
+    {
+      "scenarioId": "support",
+      "disciplinedReadiness": 95,
+      "fragileReadiness": 4,
+      "analyticsTrend": "Up 91 vs previous run.",
+      "reviewHotspots": true,
+      "finalReportReplay": true
+    },
+    {
+      "scenarioId": "finance",
+      "disciplinedReadiness": 95,
+      "fragileReadiness": 9,
+      "analyticsTrend": "Up 86 vs previous run.",
+      "reviewHotspots": true,
+      "finalReportReplay": true
+    }
+  ]
+}

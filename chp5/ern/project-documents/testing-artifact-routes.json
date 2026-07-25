@@ -1,0 +1,38 @@
+[
+  {
+    "path": "index.html",
+    "http_status": 200
+  },
+  {
+    "path": "help.html",
+    "http_status": 200
+  },
+  {
+    "path": "feedback.html",
+    "http_status": 200
+  },
+  {
+    "path": "assets/js/app.js",
+    "http_status": 200
+  },
+  {
+    "path": "assets/js/ui/render.js",
+    "http_status": 200
+  },
+  {
+    "path": "assets/js/domain/engine.js",
+    "http_status": 200
+  },
+  {
+    "path": "assets/data/content.js",
+    "http_status": 200
+  },
+  {
+    "path": "assets/data/extensions.js",
+    "http_status": 200
+  },
+  {
+    "path": "assets/css/styles.css",
+    "http_status": 200
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "version": "Iteration 13 \u00b7 v0.3.0",
+  "buildId": "ern-i13-v13",
+  "scenarioIds": [
+    "hr",
+    "support",
+    "finance",
+    "executive",
+    "compliance"
+  ],
+  "packLabels": [
+    "Core scenarios",
+    "Premium scenario packs"
+  ],
+  "defaultCoachMode": "learn",
+  "executiveMissionComplete": true,
+  "executiveRecommendation": "Ready for pilot with monitored launch discipline",
+  "reviewRoomRoles": 5,
+  "replayBeats": 5,
+  "journeyRecommended": "hr",
+  "consequenceItems": 3,
+  "reportHasReplayTheater": true,
+  "reportHasMasteryJourney": true,
+  "execScreenHasDebrief": true,
+  "launchHasPremiumPacks": true,
+  "launchHasExecutiveScenario": true
+}

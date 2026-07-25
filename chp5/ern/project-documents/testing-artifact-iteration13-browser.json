@@ -1,0 +1,7 @@
+{
+  "attempted": true,
+  "tool": "python playwright with system chromium",
+  "status": "blocked",
+  "error": "Page.goto returned net::ERR_BLOCKED_BY_ADMINISTRATOR for http://127.0.0.1 local navigation in this environment.",
+  "impact": "Real browser interaction validation could not be completed inside the container. Deterministic module/render tests were completed instead."
+}

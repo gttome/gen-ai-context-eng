@@ -1,0 +1,353 @@
+[
+  {
+    "scenarioId": "hr",
+    "disciplined": {
+      "readiness": 93,
+      "label": "Ready to Pilot"
+    },
+    "fragile": {
+      "readiness": 2,
+      "label": "Prototype Only"
+    },
+    "extension": {
+      "readiness": 99,
+      "label": "Ready to Pilot",
+      "completed": true,
+      "steps": 4
+    },
+    "replay": {
+      "runCount": 2,
+      "bestReadiness": 93,
+      "averageReadiness": 48,
+      "latestReadiness": 93,
+      "latestDelta": 91,
+      "readinessTrend": "Up 91 vs previous run.",
+      "latestLabel": "Ready to Pilot",
+      "bestLabel": "Ready to Pilot",
+      "laneChanges": [
+        {
+          "laneId": "data_handling",
+          "title": "Data Handling",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Use a redacted need-to-know packet",
+          "priorLabel": "Keep the full copied message available",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "policy_refusal",
+          "title": "Policy & Refusal",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Add a clear policy/refusal block",
+          "priorLabel": "Keep responses flexible and highly helpful",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "safety_moderation",
+          "title": "Safety & Moderation",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Use staged moderation controls",
+          "priorLabel": "Keep a single prompt-only safety rule",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "trust_security",
+          "title": "Trust Boundaries & Security",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Keep trusted instructions separate from pasted content",
+          "priorLabel": "Assemble everything into one mixed context block",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "performance_routing",
+          "title": "Performance & Routing",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Use lean evidence with a routine-draft path",
+          "priorLabel": "Send the full policy and full history every time",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "governed_releases",
+          "title": "Governed Releases",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Version changes and require regression checks",
+          "priorLabel": "Keep live-editing the shared prompt",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "monitoring_governance",
+          "title": "Monitoring & Governance",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Define thresholds, sampling, and owners",
+          "priorLabel": "Review only when complaints appear",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "fail_safe_behavior",
+          "title": "Fail-safe Behavior",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Use human escalation plus retrieval-only fallback",
+          "priorLabel": "Always generate a best-effort draft",
+          "shift": "Improved"
+        }
+      ],
+      "masterySignals": [
+        "Leaner Evidence Handling",
+        "Strong Boundary Judgment",
+        "Clearer Governance Design",
+        "Stronger Maintenance Discipline",
+        "Pilot-Ready Release Discipline"
+      ],
+      "improvementNarrative": "Latest replay tightened 8 lane(s) and weakened 0. The system is moving in a more governed direction.",
+      "latestTimestampLabel": "Run 2",
+      "latestStrongestChoices": [],
+      "latestWeaknesses": []
+    },
+    "renderChecks": {
+      "reviewContainsAuditHotspots": true,
+      "reportContainsReplayLaneChanges": true,
+      "exploreContainsPresets": true
+    }
+  },
+  {
+    "scenarioId": "support",
+    "disciplined": {
+      "readiness": 95,
+      "label": "Ready to Pilot"
+    },
+    "fragile": {
+      "readiness": 4,
+      "label": "Prototype Only"
+    },
+    "extension": {
+      "readiness": 99,
+      "label": "Ready to Pilot",
+      "completed": true,
+      "steps": 4
+    },
+    "replay": {
+      "runCount": 2,
+      "bestReadiness": 95,
+      "averageReadiness": 50,
+      "latestReadiness": 95,
+      "latestDelta": 91,
+      "readinessTrend": "Up 91 vs previous run.",
+      "latestLabel": "Ready to Pilot",
+      "bestLabel": "Ready to Pilot",
+      "laneChanges": [
+        {
+          "laneId": "data_handling",
+          "title": "Data Handling",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Use minimal pre-verification context",
+          "priorLabel": "Load broad account history immediately",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "policy_refusal",
+          "title": "Policy & Refusal",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Use explicit authorization-first refusal guidance",
+          "priorLabel": "Keep a soft, highly empathetic refusal",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "safety_moderation",
+          "title": "Safety & Moderation",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Add high-pressure moderation controls",
+          "priorLabel": "Use the same response flow for every case",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "trust_security",
+          "title": "Trust Boundaries & Security",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Separate untrusted customer text from trusted rules",
+          "priorLabel": "Mix customer text and trusted rules together",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "performance_routing",
+          "title": "Performance & Routing",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Route by complexity and consequence",
+          "priorLabel": "Keep one heavy path for all support work",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "governed_releases",
+          "title": "Governed Releases",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Stage policy updates with regressions and rollback",
+          "priorLabel": "Patch live wording whenever complaints rise",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "monitoring_governance",
+          "title": "Monitoring & Governance",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Monitor refusal quality, dissatisfaction, and escalation volume",
+          "priorLabel": "Review only on major customer complaints",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "fail_safe_behavior",
+          "title": "Fail-safe Behavior",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Escalate sensitive disputes and use conservative fallback",
+          "priorLabel": "Always answer with a best-effort resolution",
+          "shift": "Improved"
+        }
+      ],
+      "masterySignals": [
+        "Leaner Evidence Handling",
+        "Strong Boundary Judgment",
+        "Clearer Governance Design",
+        "Stronger Maintenance Discipline",
+        "Pilot-Ready Release Discipline"
+      ],
+      "improvementNarrative": "Latest replay tightened 8 lane(s) and weakened 0. The system is moving in a more governed direction.",
+      "latestTimestampLabel": "Run 2",
+      "latestStrongestChoices": [],
+      "latestWeaknesses": []
+    },
+    "renderChecks": {
+      "reviewContainsAuditHotspots": true,
+      "reportContainsReplayLaneChanges": true,
+      "exploreContainsPresets": true
+    }
+  },
+  {
+    "scenarioId": "finance",
+    "disciplined": {
+      "readiness": 95,
+      "label": "Ready to Pilot"
+    },
+    "fragile": {
+      "readiness": 9,
+      "label": "Prototype Only"
+    },
+    "extension": {
+      "readiness": 97,
+      "label": "Ready to Pilot",
+      "completed": true,
+      "steps": 4
+    },
+    "replay": {
+      "runCount": 2,
+      "bestReadiness": 95,
+      "averageReadiness": 52,
+      "latestReadiness": 95,
+      "latestDelta": 86,
+      "readinessTrend": "Up 86 vs previous run.",
+      "latestLabel": "Ready to Pilot",
+      "bestLabel": "Ready to Pilot",
+      "laneChanges": [
+        {
+          "laneId": "data_handling",
+          "title": "Data Handling",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Use narrow approved excerpts and redacted references",
+          "priorLabel": "Load full policy files and raw reimbursement detail",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "policy_refusal",
+          "title": "Policy & Refusal",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Clarify policy guidance without weakening approval boundaries",
+          "priorLabel": "Make the assistant more flexible about likely exceptions",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "safety_moderation",
+          "title": "Safety & Moderation",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Validate outputs for unsupported exception guidance",
+          "priorLabel": "Release any answer that sounds policy-consistent",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "trust_security",
+          "title": "Trust Boundaries & Security",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Separate trusted finance rules from uploaded evidence",
+          "priorLabel": "Treat internal uploaded files as trusted by default",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "performance_routing",
+          "title": "Performance & Routing",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Trim the packet and route only complex cases to the heavy path",
+          "priorLabel": "Solve rigidity by adding more examples and policy text",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "governed_releases",
+          "title": "Governed Releases",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Define regressions, stage rollout, and name rollback ownership",
+          "priorLabel": "Ship broadly without regression or rollback ownership",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "monitoring_governance",
+          "title": "Monitoring & Governance",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Set drift thresholds and reviewer ownership",
+          "priorLabel": "Use informal reviewer impressions only",
+          "shift": "Improved"
+        },
+        {
+          "laneId": "fail_safe_behavior",
+          "title": "Fail-safe Behavior",
+          "currentOutcome": "Disciplined",
+          "priorOutcome": "Fragile",
+          "currentLabel": "Escalate edge cases and use retrieval-only fallback",
+          "priorLabel": "Always provide a best guess on edge cases",
+          "shift": "Improved"
+        }
+      ],
+      "masterySignals": [
+        "Leaner Evidence Handling",
+        "Strong Boundary Judgment",
+        "Clearer Governance Design",
+        "Stronger Maintenance Discipline",
+        "Pilot-Ready Release Discipline"
+      ],
+      "improvementNarrative": "Latest replay tightened 8 lane(s) and weakened 0. The system is moving in a more governed direction.",
+      "latestTimestampLabel": "Run 2",
+      "latestStrongestChoices": [],
+      "latestWeaknesses": []
+    },
+    "renderChecks": {
+      "reviewContainsAuditHotspots": true,
+      "reportContainsReplayLaneChanges": true,
+      "exploreContainsPresets": true
+    }
+  }
+]

@@ -1,0 +1,9 @@
+Application name: Enterprise Readiness Navigator
+Base application description: Enterprise_Readiness_Navigator_Application_Description.docx
+Chapter manuscript: chp5_enterprise_operationalization.docx
+Document pack: ern_docs_v2.zip
+Startup batch file: start-server.bat
+Final build: ern-i6-v06
+Additional handoff convenience files added at package root:
+- START_HERE.md
+- START_NEW_CHAT_PROMPT.md
