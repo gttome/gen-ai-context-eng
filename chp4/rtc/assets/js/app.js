@@ -1,0 +1,237 @@
+import { scenarioPack } from "../data/scenarios.js";
+import { APP_VERSION } from "./config.js";
+import { applyThemeOnLoad, toggleTheme } from "./ui/theme.js";
+import { renderApp } from "./ui/render.js";
+import { getScenario, toggleEvidenceReview, nextStepId, previousStepId, canAdvance, markCompletedNow } from "./domain/triage-rules.js";
+import { getState, setState, updateAnswer, subscribe, resetCurrentStep, replayMission, switchScenario, recordMissionAttempt, hardResetApp } from "./state/store.js";
+import { computeMetrics } from "./metrics/scoring.js";
+import { buildTriageRecord } from "./domain/record.js";
+
+const root = document.getElementById("app-root");
+let previousMetrics = null;
+let previousStepKey = "";
+let hasHydrated = false;
+let pendingInputRestore = null;
+
+let dockResizeObserver = null;
+function syncDockClearance() {
+  const dock = document.querySelector('.coach-dock');
+  const rootEl = document.documentElement;
+  if (!dock || !rootEl) return;
+  const measured = Math.ceil(dock.getBoundingClientRect().height || 0);
+  if (measured) rootEl.style.setProperty('--dock-height', `${measured + 28}px`);
+}
+function ensureDockObserver() {
+  if (dockResizeObserver) {
+    try { dockResizeObserver.disconnect(); } catch {}
+    dockResizeObserver = null;
+  }
+  const dock = document.querySelector('.coach-dock');
+  if (!dock || typeof ResizeObserver === 'undefined') return;
+  dockResizeObserver = new ResizeObserver(() => syncDockClearance());
+  dockResizeObserver.observe(dock);
+}
+const currentScenario = () => getScenario(scenarioPack, getState().scenarioId);
+const currentMetrics = () => computeMetrics(getState(), currentScenario());
+const exportRecordText = () => buildTriageRecord(getState(), currentScenario(), currentMetrics());
+
+function downloadText(filename, content) {
+  const blob = new Blob([content], { type: "text/markdown;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url; link.download = filename; document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+}
+function firstActionableForStep(stepId) {
+  const anchor = document.querySelector(`[data-step-anchor="${stepId}"]`);
+  if (!anchor) return null;
+  const selectors = [
+    '[data-step-entry="true"]',
+    'button.option-card:not([disabled])',
+    'button.primary-btn:not([disabled])',
+    'button.secondary-btn:not([disabled])',
+    'textarea:not([disabled])',
+    'input:not([disabled])',
+    'button:not([disabled])'
+  ];
+  for (const selector of selectors) {
+    const match = anchor.querySelector(selector);
+    if (match) return match;
+  }
+  return anchor;
+}
+function alignViewportToStepTarget(target, behavior = "smooth") {
+  const workspacePane = document.querySelector('.workspace-pane');
+  if (workspacePane) workspacePane.scrollTo({ top: 0, behavior: behavior === 'auto' ? 'auto' : 'smooth' });
+  const topOffset = 104;
+  const rect = target.getBoundingClientRect();
+  const desiredTop = Math.max(window.scrollY + rect.top - topOffset, 0);
+  window.scrollTo({ top: desiredTop, behavior });
+}
+function placeUserAtStepStart(state, behavior = "smooth") {
+  const target = firstActionableForStep(state.activeStep);
+  if (!target) return;
+  alignViewportToStepTarget(target, behavior);
+  if (typeof target.focus === 'function') {
+    try { target.focus({ preventScroll: true }); }
+    catch { target.focus(); }
+  }
+}
+function syncStepStartPlacement(state, force = false) {
+  const stepKey = `${state.scenarioId}:${state.activeStep}`;
+  const changed = stepKey !== previousStepKey;
+  previousStepKey = stepKey;
+  if (!hasHydrated) {
+    hasHydrated = true;
+    return;
+  }
+  if (!changed && !force) return;
+  requestAnimationFrame(() => requestAnimationFrame(() => placeUserAtStepStart(state, force ? 'auto' : 'smooth')));
+}
+function buildImpact(previous, current) {
+  if (!previous) return null;
+  return { compositeDelta: current.compositeScore - previous.compositeScore, categoryDeltas: current.categories.map((item, i) => ({ key: item.key, delta: item.score - previous.categories[i].score })) };
+}
+function capturePendingInputRestore() {
+  const active = document.activeElement;
+  if (!(active instanceof HTMLTextAreaElement || active instanceof HTMLInputElement)) return null;
+  const inputKey = active.getAttribute('data-input');
+  if (!inputKey) return null;
+  const workspacePane = document.querySelector('.workspace-pane');
+  return {
+    inputKey,
+    value: active.value,
+    selectionStart: typeof active.selectionStart === 'number' ? active.selectionStart : null,
+    selectionEnd: typeof active.selectionEnd === 'number' ? active.selectionEnd : null,
+    scrollY: window.scrollY,
+    workspaceScrollTop: workspacePane ? workspacePane.scrollTop : 0
+  };
+}
+function restorePendingInputSession() {
+  if (!pendingInputRestore) return false;
+  const session = pendingInputRestore;
+  pendingInputRestore = null;
+  const target = document.querySelector(`[data-input="${session.inputKey}"]`);
+  if (!(target instanceof HTMLTextAreaElement || target instanceof HTMLInputElement)) return false;
+  const workspacePane = document.querySelector('.workspace-pane');
+  if (workspacePane) workspacePane.scrollTop = session.workspaceScrollTop || 0;
+  window.scrollTo({ top: session.scrollY || 0, behavior: 'auto' });
+  try { target.focus({ preventScroll: true }); } catch { target.focus(); }
+  if ((target.value || '') === (session.value || '') && session.selectionStart !== null && session.selectionEnd !== null) {
+    try { target.setSelectionRange(session.selectionStart, session.selectionEnd); } catch {}
+  }
+  return true;
+}
+function render() {
+  const state = getState();
+  const scenario = currentScenario();
+  const metrics = computeMetrics(state, scenario);
+  const impact = buildImpact(previousMetrics, metrics);
+  renderApp(root, state, scenarioPack, { impact });
+  previousMetrics = metrics;
+  syncDockClearance();
+  requestAnimationFrame(syncDockClearance);
+  ensureDockObserver();
+  const toggle = document.getElementById("theme-toggle");
+  if (toggle) toggle.addEventListener("click", () => toggleTheme());
+  const restoredInput = restorePendingInputSession();
+  if (!restoredInput) syncStepStartPlacement(state);
+}
+function selectAnswer(payload) { const [key, value] = payload.split("::"); updateAnswer(key, value); }
+async function copyText(text, promptLabel) { if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text); else window.prompt(promptLabel, text); }
+function completeMissionToSummary(state, scenario) {
+  const completedAt = markCompletedNow();
+  const metrics = currentMetrics();
+  recordMissionAttempt({
+    scenarioId: scenario.id,
+    scenarioTitle: scenario.title,
+    compositeScore: metrics.compositeScore,
+    tier: metrics.tier,
+    mitigation: scenario.mitigations.find(item => item.id === state.mitigation)?.label || "No mitigation selected",
+    categories: metrics.categories,
+    completedAt
+  });
+  setState({ activeStep: "summary", completedAt, activeModal: "" });
+}
+
+function handleAction(action, value) {
+  const state = getState(); const scenario = currentScenario();
+  switch (action) {
+    case "toggle-evidence": setState({ reviewedEvidence: toggleEvidenceReview(state, value) }); break;
+    case "select-answer": selectAnswer(value); break;
+    case "select-failure": setState({ failureMode: value }); break;
+    case "select-root": setState({ rootCause: value }); break;
+    case "select-mitigation": setState({ mitigation: value }); break;
+    case "select-regression": setState({ regressionChoice: value }); break;
+    case "select-scenario": previousMetrics = null; switchScenario(value); break;
+    case "copy-packet": copyText(scenario.externalValidation.packetTemplate, "Copy the validation packet below:"); break;
+    case "copy-record": if (state.activeStep === "summary") copyText(exportRecordText(), "Copy the triage record below:"); break;
+    case "download-record": if (state.activeStep === "summary") downloadText(`${scenario.id}-triage-record.md`, exportRecordText()); break;
+    case "advance":
+      if (!canAdvance(state)) break;
+      if (state.activeStep === "regression") {
+        completeMissionToSummary(state, scenario);
+      } else {
+        setState({ activeStep: nextStepId(state.activeStep), activeModal: "" });
+      }
+      break;
+    case "advance-summary":
+      if (!canAdvance(state)) break;
+      completeMissionToSummary(state, scenario);
+      break;
+    case "back": setState({ activeStep: previousStepId(state.activeStep), activeModal: "" }); break;
+    case "reset-step": resetCurrentStep(state.activeStep); break;
+    case "complete-mission":
+      if (canAdvance(state)) completeMissionToSummary(state, scenario);
+      break;
+    case "toggle-explore": setState({ exploreOpen: !state.exploreOpen }); break;
+    case "clear-notes": setState({ notes: "" }); break;
+    case "replay": previousMetrics = null; replayMission(); break;
+    case "set-ui-mode": setState({ uiMode: value === "professional" ? "professional" : "guided" }); break;
+    case "hard-reset":
+      if (typeof window === "undefined" || !window.confirm || window.confirm("Start over with a clean state and clear saved replay history?")) {
+        previousMetrics = null;
+        hardResetApp();
+      }
+      break;
+    case "open-modal": setState({ activeModal: value || "coach" }); break;
+    case "close-modal": setState({ activeModal: "" }); break;
+    default: break;
+  }
+}
+
+document.addEventListener("click", event => {
+  const summaryButton = event.target.closest('#continue-to-summary-btn');
+  if (summaryButton) {
+    event.preventDefault();
+    event.stopPropagation();
+    handleAction('advance-summary', '');
+    return;
+  }
+}, true);
+document.addEventListener("click", event => {
+  const closeTarget = event.target.closest("[data-modal-close]");
+  if (closeTarget) {
+    setState({ activeModal: "" });
+    return;
+  }
+  const overlay = event.target.closest("[data-modal-overlay]");
+  if (overlay && !event.target.closest("[data-modal-shell]")) {
+    setState({ activeModal: "" });
+    return;
+  }
+  const target = event.target.closest("[data-action]");
+  if (!target) return;
+  handleAction(target.getAttribute("data-action"), target.getAttribute("data-value") || "");
+});
+document.addEventListener("input", event => {
+  const target = event.target; if (!(target instanceof HTMLTextAreaElement || target instanceof HTMLInputElement)) return;
+  const inputKey = target.getAttribute("data-input"); if (!inputKey) return;
+  pendingInputRestore = capturePendingInputRestore();
+  setState({ [inputKey]: target.value });
+});
+document.addEventListener("keydown", event => { if (event.key === "Escape" && getState().activeModal) setState({ activeModal: "" }); });
+applyThemeOnLoad();
+window.addEventListener("resize", () => requestAnimationFrame(syncDockClearance));
+subscribe(render);
+render();
+window.__RTC__ = { version: APP_VERSION, getState, scenarioPack, exportRecordText };

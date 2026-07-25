@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RTC Feedback</title>
+  <link rel="stylesheet" href="assets/css/styles.css?v=0.6.6" />
+</head>
+<body data-page="feedback">
+  <div class="support-shell">
+    <header class="support-header">
+      <div>
+        <p class="eyebrow">Reliability Triage Console</p>
+        <h1>Feedback</h1>
+        <p class="support-copy">This page stores feedback locally so a non-developer can capture observations between iterations without any server-side integration.</p>
+      </div>
+      <div class="support-actions">
+        <span class="pill" id="version-pill">Version loading...</span>
+        <span class="pill" id="environment-pill">Environment loading...</span>
+        <button class="secondary-btn" id="theme-toggle" type="button">Toggle theme</button>
+        <a class="primary-btn" href="index.html">Return to Console</a>
+      </div>
+    </header>
+
+    <main class="support-grid">
+      <section class="panel">
+        <h2>Capture local feedback</h2>
+        <label class="field-label" for="feedback-text">Notes</label>
+        <textarea id="feedback-text" class="large-textarea" placeholder="Example: The mitigation step felt clear, but the evidence panel could show authority labels more prominently."></textarea>
+        <div class="feedback-actions">
+          <button class="primary-btn" id="save-feedback" type="button">Save locally</button>
+          <button class="secondary-btn" id="copy-feedback" type="button">Copy template</button>
+          <button class="ghost-btn" id="clear-feedback" type="button">Clear local notes</button>
+        </div>
+        <p id="feedback-status" class="subtle-text"></p>
+      </section>
+
+      <section class="panel">
+        <h2>Saved notes</h2>
+        <div id="feedback-history" class="history-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module">
+    import { APP_VERSION, STORAGE_KEYS } from './assets/js/config.js';
+    import { applyThemeOnLoad, toggleTheme } from './assets/js/ui/theme.js';
+    import { detectEnvironment } from './assets/js/ui/environment.js';
+
+    applyThemeOnLoad();
+    document.getElementById('version-pill').textContent = APP_VERSION;
+    document.getElementById('environment-pill').textContent = detectEnvironment();
+    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+
+    const textarea = document.getElementById('feedback-text');
+    const status = document.getElementById('feedback-status');
+    const historyEl = document.getElementById('feedback-history');
+
+    function loadHistory() {
+      const items = JSON.parse(localStorage.getItem(STORAGE_KEYS.feedback) || '[]');
+      if (!items.length) {
+        historyEl.innerHTML = '<p class="subtle-text">No local feedback saved yet.</p>';
+        return;
+      }
+      historyEl.innerHTML = items.map(item => `
+        <article class="history-item">
+          <p class="history-time">${item.savedAt}</p>
+          <p>${item.text}</p>
+        </article>
+      `).join('');
+    }
+
+    document.getElementById('save-feedback').addEventListener('click', () => {
+      const text = textarea.value.trim();
+      if (!text) {
+        status.textContent = 'Add a note before saving.';
+        return;
+      }
+      const items = JSON.parse(localStorage.getItem(STORAGE_KEYS.feedback) || '[]');
+      items.unshift({ text, savedAt: new Date().toLocaleString() });
+      localStorage.setItem(STORAGE_KEYS.feedback, JSON.stringify(items.slice(0, 10)));
+      status.textContent = 'Saved locally in this browser.';
+      textarea.value = '';
+      loadHistory();
+    });
+
+    document.getElementById('copy-feedback').addEventListener('click', async () => {
+      const template = `RTC feedback\n- What worked:\n- What felt unclear:\n- Highest-priority improvement:\n- Device / browser:\n`;
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(template);
+      } else {
+        window.prompt('Copy the feedback template below:', template);
+      }
+      status.textContent = 'Feedback template ready to copy.';
+    });
+
+    document.getElementById('clear-feedback').addEventListener('click', () => {
+      localStorage.removeItem(STORAGE_KEYS.feedback);
+      status.textContent = 'Saved feedback cleared from local storage.';
+      loadHistory();
+    });
+
+    loadHistory();
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "R01",
+    "description": "Initial render includes clean start and learning mode toggles",
+    "passed": true
+  },
+  {
+    "id": "R02",
+    "description": "Initial render includes fixed bottom coach dock",
+    "passed": true
+  },
+  {
+    "id": "R03",
+    "description": "Guided render includes teach-back feedback explaining weaker options",
+    "passed": true
+  },
+  {
+    "id": "R04",
+    "description": "Professional mode suppresses guided teach-back card",
+    "passed": true
+  },
+  {
+    "id": "R05",
+    "description": "Summary render includes scenario debrief and replay analytics",
+    "passed": true
+  },
+  {
+    "id": "R06",
+    "description": "Summary render includes export actions",
+    "passed": true
+  },
+  {
+    "id": "R07",
+    "description": "Evidence step includes step framing and live impact bridge",
+    "passed": true
+  },
+  {
+    "id": "R08",
+    "description": "Source-of-truth options are mixed so the strongest answer is not first",
+    "passed": true
+  },
+  {
+    "id": "R09",
+    "description": "Failure-mode options are mixed so the strongest answer is not first",
+    "passed": true
+  },
+  {
+    "id": "R10",
+    "description": "CSS includes teach-back, linked evidence, and small-phone tuning",
+    "passed": true
+  },
+  {
+    "id": "R11",
+    "description": "Coach and impact modals retain close hooks",
+    "passed": true
+  },
+  {
+    "id": "R12",
+    "description": "Touch-first action buttons are present in the workspace",
+    "passed": true
+  },
+  {
+    "id": "R13",
+    "description": "Workspace steps expose transition anchors for auto-scroll and focus placement",
+    "passed": true
+  }
+]
