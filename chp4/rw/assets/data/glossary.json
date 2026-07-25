@@ -1,0 +1,28 @@
+{
+  "glossary": [
+    {
+      "term": "Baseline",
+      "definition": "The accepted reference behavior or output that the candidate change must be compared against."
+    },
+    {
+      "term": "Standing Check",
+      "definition": "A small fixed check that protects an important behavior across baseline and candidate results."
+    },
+    {
+      "term": "Regression Risk",
+      "definition": "The chance that a change quietly weakens something the baseline already protected."
+    },
+    {
+      "term": "Release Judgment",
+      "definition": "The final evidence-based choice to Release, Hold, or Iterate."
+    },
+    {
+      "term": "Monitoring Follow-Up",
+      "definition": "The small set of items worth watching after a change moves forward."
+    },
+    {
+      "term": "Trade-off",
+      "definition": "A change that improves one thing while weakening or obscuring another protected behavior."
+    }
+  ]
+}

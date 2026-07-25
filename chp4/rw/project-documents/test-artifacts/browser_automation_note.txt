@@ -1,0 +1,1 @@
+Browser automation remains blocked/untrusted in this container environment. Real browser validation should be done on Windows and GitHub Pages.

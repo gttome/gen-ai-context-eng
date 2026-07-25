@@ -1,0 +1,11 @@
+index.html: present
+help.html: present
+feedback.html: present
+assets/css/styles.css: present
+assets/js/app.js: present
+assets/js/ui/workspaceView.js: present
+project-documents/handoff.md: present
+project-documents/testing.md: present
+start-server.bat: present
+qa.html: absent
+assets/js/platform/verificationEvidence.js: absent

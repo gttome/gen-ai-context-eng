@@ -1,0 +1,530 @@
+{
+  "packId": "core-watchtower-pack",
+  "packTitle": "Core Watchtower Pack",
+  "scenarios": [
+    {
+      "id": "hr-policy-citations",
+      "title": "Travel Policy Q&A Prompt Change",
+      "domain": "HR / Policy",
+      "difficulty": "Moderate",
+      "manualExternalComparison": true,
+      "objective": "Judge whether a friendlier HR answer style preserved the baseline\u2019s policy grounding and escalation discipline.",
+      "incidentSummary": "A workflow owner shortened the HR policy answer prompt so responses sound more conversational. Early samples looked better to reviewers, but one answer drifted beyond the handbook and dropped the required citation pattern.",
+      "proposedChange": "Replace a formal answer template with a shorter conversational template optimized for readability and lower token usage.",
+      "baselineResult": "Employees may request reimbursement for business travel booked within the approved travel policy. Standard airfare is economy by default unless a manager approves an exception. See Travel Handbook \u00a74.2 and \u00a74.4. If itinerary details fall outside policy, route the question to HR Operations.",
+      "candidateResult": "Most business travel is reimbursed, including upgraded seats when the trip is important. Just submit your receipts and your manager can sort it out. Reimbursement is usually available as long as the trip was work related.",
+      "signals": {
+        "evidenceAdherence": {
+          "label": "Low",
+          "score": 35,
+          "summary": "Citation pattern is missing and one claim exceeds the handbook."
+        },
+        "formatStability": {
+          "label": "Low",
+          "score": 40,
+          "summary": "Required source-section reference and escalation cue were removed."
+        },
+        "refusalCorrectness": {
+          "label": "Held",
+          "score": 65,
+          "summary": "No unsafe answer was given, but ambiguity handling weakened."
+        },
+        "regressionRisk": {
+          "label": "High",
+          "score": 82,
+          "summary": "The change looks cleaner but reduced policy grounding and exception discipline."
+        }
+      },
+      "standingChecks": [
+        {
+          "id": "cite-source",
+          "title": "Keep the handbook citation visible",
+          "whatItProtects": "Users can verify the policy basis instead of trusting tone.",
+          "baselineProtectedBehavior": "Baseline cites Travel Handbook \u00a74.2 and \u00a74.4.",
+          "candidateObservation": "Candidate answer gives no source section.",
+          "expectedStatus": "weakened",
+          "riskLevel": "high"
+        },
+        {
+          "id": "preserve-exception-language",
+          "title": "Preserve exception language",
+          "whatItProtects": "Approved exceptions stay bounded rather than becoming blanket permission.",
+          "baselineProtectedBehavior": "Baseline says economy is default unless a manager approves an exception.",
+          "candidateObservation": "Candidate implies upgraded seats are broadly reimbursable for important trips.",
+          "expectedStatus": "weakened",
+          "riskLevel": "high"
+        },
+        {
+          "id": "maintain-escalation",
+          "title": "Maintain escalation for ambiguous cases",
+          "whatItProtects": "Policy-edge cases get routed instead of improvised.",
+          "baselineProtectedBehavior": "Baseline routes out-of-policy questions to HR Operations.",
+          "candidateObservation": "Candidate tells the user to submit receipts and let a manager sort it out.",
+          "expectedStatus": "weakened",
+          "riskLevel": "medium"
+        },
+        {
+          "id": "improve-readability",
+          "title": "Improve readability without changing meaning",
+          "whatItProtects": "A clearer answer can still count as a genuine improvement.",
+          "baselineProtectedBehavior": "Baseline is accurate but a bit formal.",
+          "candidateObservation": "Candidate is easier to read, but the wording changes the policy meaning.",
+          "expectedStatus": "tradeoff",
+          "riskLevel": "medium"
+        }
+      ],
+      "strongestPracticeDecision": {
+        "decision": "Iterate",
+        "why": "The change improved readability, but it weakened three preserved checks that protect policy accuracy and escalation discipline. This is a classic improvement-by-impression trap, so the safer path is to revise and compare again."
+      },
+      "monitoringFollowUps": [
+        "Watch citation presence on future policy answers.",
+        "Spot-check exception language for overgeneralization.",
+        "Review escalation behavior on ambiguous travel cases.",
+        "Sample answer structure for missing policy references."
+      ],
+      "bonus": {
+        "title": "Explore More \u2014 Safer revision path",
+        "summary": "A stronger revision would keep the conversational tone while restoring the handbook citation and exception language, then rerun the same standing checks before release."
+      },
+      "externalHeuristics": {
+        "requiredKeywords": [
+          "travel handbook",
+          "\u00a74.2",
+          "\u00a74.4",
+          "economy",
+          "manager",
+          "hr operations"
+        ],
+        "discouragedKeywords": [
+          "upgraded seats",
+          "usually available",
+          "important trips",
+          "sort it out"
+        ],
+        "strongSummary": "The external answer kept the policy anchors and exception boundaries visible.",
+        "weakSummary": "The external answer still sounds plausible, but it weakens the citation and exception boundaries that protect the baseline."
+      },
+      "strongestPracticeWalkthrough": [
+        {
+          "title": "Anchor on the handbook citations first",
+          "summary": "Before rewarding the warmer tone, confirm that the candidate still cites the same travel handbook sections and keeps the exception language visible."
+        },
+        {
+          "title": "Treat weakened exception language as a regression signal",
+          "summary": "A friendlier sentence is not enough if it dilutes economy-class defaults or escalation to HR Operations for true exceptions."
+        },
+        {
+          "title": "Choose Iterate, then monitor exception handling",
+          "summary": "The safest path is to revise the wording while restoring the source anchors, then sample future exceptions for the same drift."
+        }
+      ],
+      "pack": "Core Watchtower Pack",
+      "decisionNarrative": {
+        "chooseWhy": "Iterate is the proportionate path because the candidate made the answer feel friendlier while quietly weakening the policy protections the baseline was carrying.",
+        "anchors": [
+          "The handbook citation disappeared, so the answer lost visible grounding.",
+          "Exception language was softened, which raises the risk of overgeneralizing the rule.",
+          "Ambiguous cases no longer route clearly to escalation."
+        ],
+        "alternativePaths": [
+          {
+            "decision": "Release",
+            "why": "Release would reward readability while accepting a measurable policy regression."
+          },
+          {
+            "decision": "Hold",
+            "why": "Hold would be defensible if the workflow were compliance-critical, but this case still contains enough usable structure to revise rather than fully stop."
+          }
+        ],
+        "monitoringWhy": "After revision, monitor citation presence and escalation wording in sampled HR answers so the next comparison proves the repair held."
+      }
+    },
+    {
+      "id": "support-triage-summary",
+      "title": "Support Summary Compression Update",
+      "domain": "Operations / Support",
+      "difficulty": "Foundational",
+      "manualExternalComparison": false,
+      "objective": "Decide whether a shorter support summary format preserved the baseline\u2019s actionability while reducing noise.",
+      "incidentSummary": "A support workflow owner shortened customer-escalation summaries because the original output was too dense for shift handoffs. The revised version appears tighter and easier to scan.",
+      "proposedChange": "Move from a paragraph-heavy handoff summary to a compact action-first summary with labeled fields.",
+      "baselineResult": "Issue: intermittent invoice export failure for enterprise accounts after nightly sync. Evidence: error code EX-441 observed in logs and in three customer tickets. Next action: reopen sync job and confirm export retry. Escalate to Platform Billing if failures continue beyond one retry window. SLA note: high-priority response within 4 hours.",
+      "candidateResult": "Issue: invoice export fails for some enterprise accounts after nightly sync. Evidence: EX-441 appears in logs and related tickets. Next step: rerun the sync and verify export recovery. Escalate to Platform Billing if the issue persists after the retry window. SLA: respond within 4 hours.",
+      "signals": {
+        "evidenceAdherence": {
+          "label": "Strong",
+          "score": 91,
+          "summary": "Evidence references are preserved cleanly."
+        },
+        "formatStability": {
+          "label": "Strong",
+          "score": 94,
+          "summary": "The new fielded structure remained intact."
+        },
+        "refusalCorrectness": {
+          "label": "Held",
+          "score": 85,
+          "summary": "No risky leap or unsupported advice appeared."
+        },
+        "regressionRisk": {
+          "label": "Low",
+          "score": 18,
+          "summary": "The compact version preserved the key protected behaviors."
+        }
+      },
+      "standingChecks": [
+        {
+          "id": "preserve-core-issue",
+          "title": "Preserve the core issue statement",
+          "whatItProtects": "Shift teams need the same operational problem definition.",
+          "baselineProtectedBehavior": "Baseline names intermittent invoice export failure after nightly sync.",
+          "candidateObservation": "Candidate preserves the issue with only minor phrasing changes.",
+          "expectedStatus": "held",
+          "riskLevel": "low"
+        },
+        {
+          "id": "keep-evidence",
+          "title": "Keep the evidence anchor",
+          "whatItProtects": "The summary remains verifiable rather than impressionistic.",
+          "baselineProtectedBehavior": "Baseline references EX-441 logs and three tickets.",
+          "candidateObservation": "Candidate keeps EX-441 plus ticket evidence.",
+          "expectedStatus": "held",
+          "riskLevel": "low"
+        },
+        {
+          "id": "retain-escalation",
+          "title": "Retain the escalation path",
+          "whatItProtects": "Next owners know when to involve Platform Billing.",
+          "baselineProtectedBehavior": "Escalate if failure continues beyond one retry window.",
+          "candidateObservation": "Candidate preserves the same escalation threshold and destination.",
+          "expectedStatus": "held",
+          "riskLevel": "low"
+        },
+        {
+          "id": "improve-scanability",
+          "title": "Improve scanability",
+          "whatItProtects": "The workflow should actually solve the verbosity complaint.",
+          "baselineProtectedBehavior": "Baseline is accurate but dense.",
+          "candidateObservation": "Candidate is shorter and easier to hand off without changing the operational meaning.",
+          "expectedStatus": "improved",
+          "riskLevel": "low"
+        }
+      ],
+      "strongestPracticeDecision": {
+        "decision": "Release",
+        "why": "The change reduced noise while preserving the protected issue, evidence, escalation, and SLA behaviors. This is the kind of bounded improvement that earns trust against the baseline."
+      },
+      "monitoringFollowUps": [
+        "Watch whether EX-441 evidence keeps appearing in summaries.",
+        "Sample escalation wording on edge cases.",
+        "Review whether the SLA field remains present after future edits.",
+        "Confirm handoff teams still find the compressed format actionable."
+      ],
+      "bonus": {
+        "title": "Explore More \u2014 Harder check pack",
+        "summary": "A harder version of this mission would test whether the compact format still preserves customer impact notes and unresolved dependency flags under time pressure."
+      },
+      "externalHeuristics": null,
+      "strongestPracticeWalkthrough": [
+        {
+          "title": "Verify the compressed format against the protected operational anchors",
+          "summary": "Check issue statement, evidence, escalation path, and SLA before giving credit for brevity."
+        },
+        {
+          "title": "Reward bounded simplification, not random shortening",
+          "summary": "This candidate keeps the same operational meaning while improving scanability, so the baseline protections remain intact."
+        },
+        {
+          "title": "Release with proportionate monitoring",
+          "summary": "Ship the change, but still watch that evidence fields and escalation wording survive future formatting edits."
+        }
+      ],
+      "pack": "Core Watchtower Pack",
+      "decisionNarrative": {
+        "chooseWhy": "Release is the strongest path because the shortened format preserved the baseline\u2019s protected behaviors while actually improving scanability.",
+        "anchors": [
+          "The core issue statement still points to the same problem.",
+          "Evidence and escalation remained intact.",
+          "The change removed noise instead of removing safeguards."
+        ],
+        "alternativePaths": [
+          {
+            "decision": "Hold",
+            "why": "Hold would be too conservative because the checks do not show a meaningful protected-behavior loss."
+          },
+          {
+            "decision": "Iterate",
+            "why": "Iterate would add extra churn without a visible regression to fix."
+          }
+        ],
+        "monitoringWhy": "Monitor SLA misses and escalation accuracy after release to confirm the more compact format stays actionable under volume."
+      }
+    },
+    {
+      "id": "compliance-refusal-boundary",
+      "title": "Customer Data Sharing Boundary Refresh",
+      "domain": "Compliance / Security",
+      "difficulty": "Intermediate",
+      "manualExternalComparison": true,
+      "objective": "Decide whether a friendlier answer update preserved the baseline refusal boundary for customer-data handling.",
+      "incidentSummary": "A team revised a compliance workflow because the original refusal sounded abrupt. The new answer appears more helpful, but reviewers are worried it created an unofficial exception path for handling customer data in unapproved tools.",
+      "proposedChange": "Replace a strict refusal-first answer with a warmer explanation that tries to keep the user moving.",
+      "baselineResult": "Do not paste customer data into unapproved external AI tools. Use the approved secure workspace for analysis requests and escalate unusual cases to Security Operations. If you are unsure whether a dataset is approved, stop and ask before sharing.",
+      "candidateResult": "You generally should avoid putting customer data into outside AI tools, but small anonymized excerpts may be fine if names and account numbers are removed. When possible, use the approved workspace first.",
+      "signals": {
+        "evidenceAdherence": {
+          "label": "Mixed",
+          "score": 48,
+          "summary": "The answer gestures toward the approved workspace, but it introduces an unsupported anonymized-excerpt exception."
+        },
+        "formatStability": {
+          "label": "Held",
+          "score": 72,
+          "summary": "The answer still looks structured, but the refusal boundary softened materially."
+        },
+        "refusalCorrectness": {
+          "label": "Low",
+          "score": 30,
+          "summary": "A compliance refusal became conditional advice, which is the exact behavior the baseline was protecting."
+        },
+        "regressionRisk": {
+          "label": "High",
+          "score": 88,
+          "summary": "Tone improved, but the candidate created a risky permission path that could be operationalized by users."
+        }
+      },
+      "standingChecks": [
+        {
+          "id": "protect-hard-boundary",
+          "title": "Protect the hard boundary on unapproved tools",
+          "whatItProtects": "Users need a clear no-share rule when the data-handling boundary is policy-critical.",
+          "baselineProtectedBehavior": "Baseline says not to paste customer data into unapproved external AI tools.",
+          "candidateObservation": "Candidate softens the refusal and creates a conditional path for anonymized excerpts.",
+          "expectedStatus": "weakened",
+          "riskLevel": "high",
+          "riskWhy": "Once a user hears that 'small anonymized excerpts may be fine,' the hard boundary becomes a judgment call instead of a guardrail."
+        },
+        {
+          "id": "preserve-approved-alternative",
+          "title": "Preserve the approved alternative path",
+          "whatItProtects": "The user still needs a safe next move after the refusal.",
+          "baselineProtectedBehavior": "Baseline redirects the user to the approved secure workspace and unusual-case escalation.",
+          "candidateObservation": "Candidate mentions the workspace, but only as a preference instead of the approved path.",
+          "expectedStatus": "tradeoff",
+          "riskLevel": "medium",
+          "riskWhy": "The candidate is more conversational, but it downgrades the approved path from the default operating rule to a suggestion."
+        },
+        {
+          "id": "keep-stop-and-ask-language",
+          "title": "Keep the stop-and-ask safety language",
+          "whatItProtects": "Uncertain users should pause rather than improvise.",
+          "baselineProtectedBehavior": "Baseline says to stop and ask before sharing if approval status is unclear.",
+          "candidateObservation": "Candidate removes the stop-and-ask instruction entirely.",
+          "expectedStatus": "weakened",
+          "riskLevel": "high",
+          "riskWhy": "The missing pause step means uncertainty is now more likely to turn into self-authorized action."
+        },
+        {
+          "id": "improve-tone-safely",
+          "title": "Improve tone without opening a policy exception",
+          "whatItProtects": "A warmer answer can be valuable only if it does not loosen the compliance boundary.",
+          "baselineProtectedBehavior": "Baseline is correct but stiff.",
+          "candidateObservation": "Candidate is friendlier, but the tone gain comes bundled with unsafe permission drift.",
+          "expectedStatus": "tradeoff",
+          "riskLevel": "medium",
+          "riskWhy": "This is a classic false-improvement pattern: the answer feels better while the protected refusal behavior gets weaker."
+        }
+      ],
+      "strongestPracticeDecision": {
+        "decision": "Hold",
+        "why": "The revised answer created an unsupported exception path around a compliance-sensitive boundary. In Chapter 4 terms, that is not a small style regression; it is a release blocker until the refusal boundary and escalation language are restored."
+      },
+      "monitoringFollowUps": [
+        "Sample future refusals for conditional exception language.",
+        "Check whether approved-tool routing remains the default path.",
+        "Watch for missing stop-and-ask instructions on ambiguous data cases.",
+        "Review security escalation wording after the next prompt revision."
+      ],
+      "bonus": {
+        "title": "Explore More \u2014 Safer tone repair",
+        "summary": "Try rewriting the answer so it sounds more respectful while still keeping a clear no-share boundary, the approved workspace path, and the stop-and-ask instruction."
+      },
+      "externalHeuristics": {
+        "requiredKeywords": [
+          "approved secure workspace",
+          "security operations",
+          "do not",
+          "customer data"
+        ],
+        "discouragedKeywords": [
+          "anonymized excerpts",
+          "may be fine",
+          "personal tool",
+          "outside ai tools may be okay"
+        ],
+        "strongSummary": "The external answer preserved the refusal boundary and still gave the user a safe approved path.",
+        "weakSummary": "The external answer still opens or hints at a self-authorized exception, which is exactly the regression this mission is teaching you to catch."
+      },
+      "strongestPracticeWalkthrough": [
+        {
+          "title": "Start with the hard policy boundary",
+          "summary": "The baseline exists to stop users from improvising with customer data in unapproved tools, so that boundary must stay crisp."
+        },
+        {
+          "title": "Treat unofficial exceptions as the main regression",
+          "summary": "The anonymized-excerpt suggestion is the pivotal failure because it turns a firm guardrail into user judgment."
+        },
+        {
+          "title": "Hold the change and restore the stop-and-ask path",
+          "summary": "The strongest path is to reject this revision until it restores the approved workspace default and the stop-and-ask instruction."
+        }
+      ],
+      "pack": "Core Watchtower Pack",
+      "decisionNarrative": {
+        "chooseWhy": "Hold is the strongest path because the change opened a customer-data exception path inside a compliance-sensitive refusal boundary.",
+        "anchors": [
+          "The hard boundary around unapproved tools weakened.",
+          "The approved alternative path became less explicit.",
+          "Stop-and-ask language was diluted even though the scenario is safety- and policy-sensitive."
+        ],
+        "alternativePaths": [
+          {
+            "decision": "Release",
+            "why": "Release would normalize a compliance regression that could create real downstream handling risk."
+          },
+          {
+            "decision": "Iterate",
+            "why": "Iterate understates the seriousness here; the safer stance is to stop the release path until the boundary is restored."
+          }
+        ],
+        "monitoringWhy": "After repair, monitor refusal-boundary adherence and escalation correctness in weekly compliance samples before reconsidering release."
+      }
+    },
+    {
+      "id": "exec-digest-optimism-drift",
+      "title": "Executive Digest Simplification Drift",
+      "domain": "Operations / Leadership Reporting",
+      "difficulty": "Intermediate",
+      "manualExternalComparison": false,
+      "objective": "Decide whether a shorter executive digest preserved the baseline\u2019s warning signals instead of hiding them behind a more positive headline.",
+      "incidentSummary": "A reporting workflow owner shortened the weekly executive digest because leaders said the prior version was too dense. The new draft feels cleaner and more polished, but some reviewers worry it is now too optimistic to support real oversight.",
+      "proposedChange": "Replace a metrics-plus-watchlist digest with a short narrative headline and one supporting sentence.",
+      "baselineResult": "Weekly operations digest: service uptime held at 99.2%, but repeat tickets rose 18% week over week and backlog remains above the alert threshold in onboarding support. Watch item: onboarding automation retries are still unstable and should be reviewed before next release.",
+      "candidateResult": "Weekly operations remained stable overall, with service quality staying strong. Teams should continue the current plan while monitoring normal support fluctuations.",
+      "signals": {
+        "evidenceAdherence": {
+          "label": "Low",
+          "score": 42,
+          "summary": "The digest now sounds polished, but it removed the specific signals that justified concern."
+        },
+        "formatStability": {
+          "label": "Mixed",
+          "score": 55,
+          "summary": "The new narrative is shorter, but the watch item and alert-threshold language fell away."
+        },
+        "refusalCorrectness": {
+          "label": "Held",
+          "score": 74,
+          "summary": "No unsafe instruction was added, but the reporting discipline weakened."
+        },
+        "regressionRisk": {
+          "label": "High",
+          "score": 79,
+          "summary": "The change improved scanability while reducing the warning specificity leaders needed for release governance."
+        }
+      },
+      "standingChecks": [
+        {
+          "id": "keep-repeat-ticket-signal",
+          "title": "Keep the repeat-ticket rise visible",
+          "whatItProtects": "Leaders need to know that service pressure is increasing even when uptime looks strong.",
+          "baselineProtectedBehavior": "Baseline explicitly says repeat tickets rose 18% week over week.",
+          "candidateObservation": "Candidate removes the repeat-ticket signal and replaces it with a stable-overall headline.",
+          "expectedStatus": "weakened",
+          "riskLevel": "high",
+          "riskWhy": "The missing variance signal makes the report look healthier than the operational evidence supports."
+        },
+        {
+          "id": "keep-backlog-threshold-warning",
+          "title": "Keep the backlog threshold warning",
+          "whatItProtects": "The digest should still surface when a monitored threshold is being exceeded.",
+          "baselineProtectedBehavior": "Baseline says onboarding backlog remains above the alert threshold.",
+          "candidateObservation": "Candidate removes the threshold language and only mentions normal support fluctuations.",
+          "expectedStatus": "weakened",
+          "riskLevel": "high",
+          "riskWhy": "Once the threshold language disappears, readers lose the signal that this is an exception pattern rather than ordinary noise."
+        },
+        {
+          "id": "preserve-watch-item",
+          "title": "Preserve the concrete watch item",
+          "whatItProtects": "Leaders need to know what should still be checked before the next release.",
+          "baselineProtectedBehavior": "Baseline names unstable onboarding automation retries as the watch item.",
+          "candidateObservation": "Candidate drops the concrete watch item and substitutes generic monitoring language.",
+          "expectedStatus": "tradeoff",
+          "riskLevel": "medium",
+          "riskWhy": "The shorter phrasing reads more smoothly, but it removes the exact follow-up leaders were supposed to carry forward."
+        },
+        {
+          "id": "improve-executive-scanability",
+          "title": "Improve executive scanability",
+          "whatItProtects": "The revision should solve the real complaint about digest density.",
+          "baselineProtectedBehavior": "Baseline is evidence-rich but dense.",
+          "candidateObservation": "Candidate is easier to scan in a quick executive read.",
+          "expectedStatus": "improved",
+          "riskLevel": "low",
+          "riskWhy": "This is a real gain, but it is not enough to offset the loss of exception signals and watch items."
+        }
+      ],
+      "strongestPracticeDecision": {
+        "decision": "Iterate",
+        "why": "The candidate solves the readability complaint, but it strips out the very warning signals that make the digest useful for oversight. The right move is to revise toward a shorter format that still preserves the alert-threshold and watch-item language."
+      },
+      "monitoringFollowUps": [
+        "Watch whether repeat-ticket variance remains explicit in future digests.",
+        "Sample threshold wording after template changes.",
+        "Check whether watch items stay concrete instead of generic.",
+        "Review leader feedback on scanability after the next revision."
+      ],
+      "bonus": {
+        "title": "Explore More \u2014 Better compression pattern",
+        "summary": "A stronger revision would keep the headline short, but add one compact warning strip that preserves the repeat-ticket rise, backlog threshold, and current watch item."
+      },
+      "externalHeuristics": null,
+      "strongestPracticeWalkthrough": [
+        {
+          "title": "Separate scanability gains from signal loss",
+          "summary": "The shorter digest looks cleaner, but the watchtower must confirm whether it still warns about repeat-ticket movement and backlog thresholds."
+        },
+        {
+          "title": "Flag missing watch items as a governance problem",
+          "summary": "When watch items disappear, leaders lose the exact cues that tell them whether a change should be released or revisited."
+        },
+        {
+          "title": "Iterate toward a tighter but still guarded digest",
+          "summary": "Keep the improved executive readability, but restore the backlog and repeat-ticket warning signals before treating the revision as release-ready."
+        }
+      ],
+      "pack": "Core Watchtower Pack",
+      "decisionNarrative": {
+        "chooseWhy": "Iterate is strongest because the candidate solved a readability complaint by stripping out the warning signals leaders actually need.",
+        "anchors": [
+          "The repeat-ticket rise is no longer clearly visible.",
+          "The backlog threshold warning was softened.",
+          "The watch item became less concrete even though scanability improved."
+        ],
+        "alternativePaths": [
+          {
+            "decision": "Release",
+            "why": "Release would trade oversight quality for a smoother headline and would teach the wrong lesson about executive communication."
+          },
+          {
+            "decision": "Hold",
+            "why": "Hold is stricter than necessary because the draft is still salvageable through a targeted revision."
+          }
+        ],
+        "monitoringWhy": "Monitor whether future digest drafts keep threshold language and watch items visible after executive-format simplification."
+      }
+    }
+  ]
+}

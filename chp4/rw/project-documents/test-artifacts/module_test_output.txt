@@ -1,0 +1,9 @@
+module_tests_passed
+{
+  "version": "v15.0.0",
+  "scenarioCount": 6,
+  "strongAverage": 94,
+  "riskyAverage": 29,
+  "safetyAverage": 87,
+  "vendorExternalFit": 100
+}

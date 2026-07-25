@@ -1,0 +1,2 @@
+Regression Watchtower v15.0.0
+Added learner-first small-screen readability tuning, sticky mission-jump navigation on phones, clearer recommended flow guidance, and mobile baseline-before-candidate packet ordering.

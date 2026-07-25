@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Regression Watchtower Feedback</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header simple-header">
+    <div class="brand-block">
+      <div>
+        <p class="eyebrow">Regression Watchtower</p>
+        <h1>Feedback</h1>
+        <p class="subtitle">Capture learner feedback or maintainer notes for the next iteration.</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="pill-group" aria-label="Application status">
+        <span class="pill" id="version-pill">Version</span>
+        <span class="pill" id="environment-pill">Environment</span>
+      </div>
+      <nav class="header-nav" aria-label="Support navigation">
+        <button id="theme-toggle" class="ghost-button" type="button" aria-pressed="false">Toggle theme</button>
+        <a class="ghost-button" href="index.html">Back to app</a>
+        <a class="ghost-button" href="help.html">Help</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="support-shell">
+    <article class="card">
+      <h2>What should improve next?</h2>
+      <form id="feedback-form" class="feedback-form">
+        <label>
+          <span>Your role</span>
+          <input type="text" name="name" placeholder="Knowledge worker, trainer, reviewer, maintainer...">
+        </label>
+        <label>
+          <span>Overall clarity</span>
+          <select name="rating">
+            <option>Very clear</option>
+            <option>Mostly clear</option>
+            <option>Needs improvement</option>
+          </select>
+        </label>
+        <label>
+          <span>Notes</span>
+          <textarea name="message" rows="8" placeholder="What helped learning most? What caused friction? Which scenario or screen should improve next?"></textarea>
+        </label>
+        <div class="button-row">
+          <button class="primary-button" type="submit">Save note</button>
+          <button id="copy-feedback" class="ghost-button" type="button">Copy saved note</button>
+        </div>
+      </form>
+    </article>
+
+    <article class="card">
+      <h2>Saved note</h2>
+      <pre id="feedback-output" class="feedback-output">No feedback saved yet.</pre>
+    </article>
+  </main>
+
+  <script type="module" src="assets/js/support.js"></script>
+</body>
+</html>

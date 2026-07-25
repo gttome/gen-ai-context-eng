@@ -1,0 +1,262 @@
+{
+  "packId": "optional-challenge-pack",
+  "packTitle": "Optional Challenge Pack",
+  "scenarios": [
+    {
+      "id": "vendor-risk-softening",
+      "title": "Vendor Risk Summary Softening",
+      "domain": "Procurement / Risk",
+      "difficulty": "Advanced",
+      "pack": "Optional Challenge Pack",
+      "manualExternalComparison": true,
+      "objective": "Judge whether a cleaner vendor-risk summary preserved the baseline\u2019s risk gating, evidence anchors, and escalation boundary before contract renewal.",
+      "incidentSummary": "A procurement team asked for a shorter renewal summary because leaders found the baseline too dense. The candidate memo is easier to skim, but reviewers worry that important risk gates were softened.",
+      "proposedChange": "Condense the vendor renewal summary into a more executive-friendly note while keeping the original approval and evidence requirements intact.",
+      "baselineResult": "Baseline memo states that renewal is contingent on unresolved control findings being closed, names the missing audit artifact, and routes exceptions to the risk committee rather than local approval.",
+      "candidateResult": "Candidate memo says renewal can likely proceed because the vendor is responsive and most controls look acceptable. It refers broadly to follow-up items but does not restate the unresolved audit artifact or the risk-committee gate.",
+      "signals": [
+        {
+          "label": "Evidence movement",
+          "value": 44,
+          "note": "Specific audit evidence became less visible."
+        },
+        {
+          "label": "Approval discipline",
+          "value": 35,
+          "note": "The renewal gate was softened into a tone-based recommendation."
+        },
+        {
+          "label": "Executive readability",
+          "value": 83,
+          "note": "The memo is clearly easier to scan."
+        },
+        {
+          "label": "Escalation clarity",
+          "value": 41,
+          "note": "Committee escalation language weakened."
+        }
+      ],
+      "standingChecks": [
+        {
+          "id": "keep-renewal-gate",
+          "title": "Keep the unresolved-control renewal gate visible",
+          "expectedStatus": "weakened",
+          "riskLevel": "high",
+          "whyItMatters": "Without the gate, readers may treat a conditional renewal as already approved."
+        },
+        {
+          "id": "keep-audit-artifact",
+          "title": "Name the missing audit artifact explicitly",
+          "expectedStatus": "weakened",
+          "riskLevel": "high",
+          "whyItMatters": "The artifact is the evidence anchor for why the vendor still carries unresolved risk."
+        },
+        {
+          "id": "preserve-risk-committee-path",
+          "title": "Preserve the risk-committee exception path",
+          "expectedStatus": "tradeoff",
+          "riskLevel": "high",
+          "whyItMatters": "Routing exceptions locally makes the summary easier to act on but weakens governance."
+        },
+        {
+          "id": "improve-executive-scan",
+          "title": "Improve executive scanability without changing the decision boundary",
+          "expectedStatus": "improved",
+          "riskLevel": "low",
+          "whyItMatters": "Better scanability is useful only if it does not erase the protected risk boundary."
+        }
+      ],
+      "strongestPracticeDecision": {
+        "decision": "Hold",
+        "why": "The summary became easier to consume, but it weakened the renewal gate and obscured the evidence that justifies caution. This is a release blocker until the risk boundary is made explicit again."
+      },
+      "monitoringFollowUps": [
+        "Sample renewed-vendor summaries for explicit mention of unresolved-control gates.",
+        "Track whether committee-escalation language stays visible after summary rewrites.",
+        "Audit whether required evidence artifacts are named in final approval notes."
+      ],
+      "bonus": {
+        "title": "Explore more: rewrite toward bounded brevity",
+        "summary": "Try rewriting the candidate into a two-paragraph executive memo that keeps the conditional renewal gate, the missing artifact, and the committee path fully visible."
+      },
+      "externalHeuristics": {
+        "requiredPhrases": [
+          "risk committee",
+          "unresolved control",
+          "audit artifact",
+          "conditional renewal"
+        ],
+        "discouragedPhrases": [
+          "good to proceed",
+          "probably safe",
+          "looks acceptable"
+        ]
+      },
+      "strongestPracticeWalkthrough": [
+        {
+          "title": "Anchor on the release boundary",
+          "summary": "Start by restating that the baseline does not authorize renewal until the unresolved-control gate is cleared."
+        },
+        {
+          "title": "Protect the evidence anchor",
+          "summary": "Notice that the candidate generalizes the risk instead of naming the missing audit artifact that justifies caution."
+        },
+        {
+          "title": "Separate readability from approval logic",
+          "summary": "Treat executive scanability as a bonus only after the committee path and renewal gate stay intact."
+        },
+        {
+          "title": "Choose the proportionate path",
+          "summary": "Hold is appropriate because governance boundaries weakened in a way that could trigger a bad approval, not just a rough draft."
+        }
+      ],
+      "decisionNarrative": {
+        "chooseWhy": "Hold is strongest because the candidate softened governance language around a live vendor-risk gate instead of merely trimming prose.",
+        "anchors": [
+          "The unresolved-control gate became implicit instead of explicit.",
+          "The missing audit artifact is no longer named, so the evidence basis for caution is weaker.",
+          "The exception path shifted away from the risk committee toward a more casual approval tone."
+        ],
+        "alternativePaths": [
+          {
+            "decision": "Release",
+            "why": "Release would mistake executive polish for actual risk closure."
+          },
+          {
+            "decision": "Iterate",
+            "why": "Iterate understates the seriousness because the current wording could be misread as an approval-ready summary."
+          }
+        ],
+        "monitoringWhy": "If the summary is repaired, monitor whether future renewal notes keep the gate, evidence, and committee path visible under pressure to simplify."
+      }
+    },
+    {
+      "id": "field-safety-escalation-shortcut",
+      "title": "Field Safety Escalation Shortcut",
+      "domain": "Field Service / Safety",
+      "difficulty": "Advanced",
+      "pack": "Optional Challenge Pack",
+      "manualExternalComparison": false,
+      "objective": "Decide whether a faster troubleshooting instruction preserved the baseline\u2019s stop-work and supervisor-escalation safeguards for field technicians.",
+      "incidentSummary": "Technicians complained that the baseline troubleshooting guidance was too verbose on mobile devices. A shorter candidate instruction now fits better on a phone, but a reviewer noticed that its safety language feels less forceful.",
+      "proposedChange": "Shorten the field troubleshooting instruction so technicians can act faster on-site while preserving the stop-work boundary for unsafe conditions.",
+      "baselineResult": "Baseline guidance says to stop work immediately when sensor readings exceed the defined threshold, isolate the unit, and contact the supervising lead before any restart attempt.",
+      "candidateResult": "Candidate guidance tells technicians to inspect the unit, use judgment about whether the reading seems stable, and contact the lead if concerns remain before deciding whether to continue.",
+      "signals": [
+        {
+          "label": "Safety boundary",
+          "value": 28,
+          "note": "The hard stop-work threshold became discretionary."
+        },
+        {
+          "label": "Escalation clarity",
+          "value": 36,
+          "note": "Supervisor-contact language weakened."
+        },
+        {
+          "label": "Mobile usability",
+          "value": 88,
+          "note": "The instruction is easier to read on a small screen."
+        },
+        {
+          "label": "Operational risk confidence",
+          "value": 33,
+          "note": "The change shifts from rule-based safety to local judgment."
+        }
+      ],
+      "standingChecks": [
+        {
+          "id": "preserve-stop-work",
+          "title": "Preserve the stop-work threshold as a hard instruction",
+          "expectedStatus": "weakened",
+          "riskLevel": "high",
+          "whyItMatters": "Turning a hard stop into local judgment can expose technicians to avoidable safety risk."
+        },
+        {
+          "id": "keep-isolate-step",
+          "title": "Keep the isolate-the-unit step visible",
+          "expectedStatus": "tradeoff",
+          "riskLevel": "high",
+          "whyItMatters": "If the isolate step is buried, the technician may continue interacting with unsafe equipment."
+        },
+        {
+          "id": "preserve-supervisor-escalation",
+          "title": "Preserve supervisor escalation before restart",
+          "expectedStatus": "weakened",
+          "riskLevel": "high",
+          "whyItMatters": "Restarting without escalation defeats the control the baseline was designed to enforce."
+        },
+        {
+          "id": "improve-mobile-clarity",
+          "title": "Improve mobile clarity without relaxing the rule",
+          "expectedStatus": "improved",
+          "riskLevel": "low",
+          "whyItMatters": "Usability matters, but not at the expense of the safety boundary."
+        }
+      ],
+      "strongestPracticeDecision": {
+        "decision": "Hold",
+        "why": "The candidate improves mobile readability, but it converts hard safety instructions into discretionary judgment. That is a stop-release condition until the stop-work and escalation rules are restored."
+      },
+      "monitoringFollowUps": [
+        "Audit field instructions for explicit stop-work threshold language.",
+        "Track whether supervisor-escalation wording remains mandatory after mobile optimization.",
+        "Review incident logs for any technician hesitation around isolation steps."
+      ],
+      "bonus": {
+        "title": "Explore more: compress without relaxing the boundary",
+        "summary": "Try turning the baseline into a three-step mobile card that keeps the stop-work threshold, isolate step, and escalation gate completely explicit."
+      },
+      "externalHeuristics": {
+        "requiredPhrases": [
+          "stop work",
+          "isolate",
+          "supervisor",
+          "before restart"
+        ],
+        "discouragedPhrases": [
+          "use judgment",
+          "if concerns remain",
+          "continue if stable"
+        ]
+      },
+      "strongestPracticeWalkthrough": [
+        {
+          "title": "Protect the hard stop first",
+          "summary": "Start with the stop-work threshold because it is the strongest boundary the baseline is protecting."
+        },
+        {
+          "title": "Check the isolation and escalation chain",
+          "summary": "A short mobile instruction still has to make the isolate step and supervisor path unmistakable."
+        },
+        {
+          "title": "Treat usability as secondary evidence",
+          "summary": "Mobile readability is positive, but it cannot override weakened safety controls."
+        },
+        {
+          "title": "Choose the safe release posture",
+          "summary": "Hold is appropriate because the current candidate could plausibly guide unsafe action in the field."
+        }
+      ],
+      "decisionNarrative": {
+        "chooseWhy": "Hold is strongest because the candidate traded a hard stop-work rule for discretionary technician judgment in a safety-sensitive workflow.",
+        "anchors": [
+          "The stop-work threshold stopped looking mandatory.",
+          "The isolate step became less explicit at the exact moment the workflow needs clarity.",
+          "Supervisor escalation before restart weakened even though the app is teaching preservation of baseline controls."
+        ],
+        "alternativePaths": [
+          {
+            "decision": "Release",
+            "why": "Release would treat easier reading as more important than a preserved safety boundary."
+          },
+          {
+            "decision": "Iterate",
+            "why": "Iterate is too soft because the current wording could plausibly guide unsafe action in the field."
+          }
+        ],
+        "monitoringWhy": "After repair, monitor field instructions and incident logs to ensure mobile optimization does not reintroduce discretionary safety wording."
+      }
+    }
+  ]
+}

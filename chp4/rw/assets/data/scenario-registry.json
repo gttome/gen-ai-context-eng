@@ -1,0 +1,16 @@
+{
+  "packs": [
+    {
+      "id": "core-watchtower-pack",
+      "title": "Core Watchtower Pack",
+      "file": "assets/data/scenario-packs/core-watchtower-pack.json",
+      "scenarioCount": 4
+    },
+    {
+      "id": "optional-challenge-pack",
+      "title": "Optional Challenge Pack",
+      "file": "assets/data/scenario-packs/optional-challenge-pack.json",
+      "scenarioCount": 2
+    }
+  ]
+}

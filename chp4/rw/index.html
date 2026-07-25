@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Regression Watchtower</title>
+  <meta name="description" content="Chapter 4 learning app for baseline comparison, standing checks, and release judgment.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="status-live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <header class="site-header">
+    <div class="brand-block">
+      <div>
+        <p class="eyebrow">Chapter 4 • Reliability, Failure Handling, and Measurement</p>
+        <h1>Regression Watchtower</h1>
+        <p class="subtitle">A learning app for knowledge workers practicing baseline protection, regression awareness, and evidence-based release judgment.</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="pill-group" aria-label="Application status">
+        <span class="pill" id="version-pill">Version</span>
+        <span class="pill" id="environment-pill">Environment</span>
+        <span class="pill" id="decision-pill">Decision: Not started</span>
+      </div>
+      <nav class="header-nav" aria-label="Primary">
+        <button id="theme-toggle" class="ghost-button" type="button" aria-pressed="false">Toggle theme</button>
+        <button id="glossary-toggle" class="ghost-button" type="button" aria-expanded="false" aria-controls="glossary-drawer">Glossary</button>
+        <a class="ghost-button" href="help.html">Help</a>
+        <a class="ghost-button" href="feedback.html">Feedback</a>
+      </nav>
+    </div>
+  </header>
+
+  <aside id="glossary-drawer" class="glossary-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <h2>Glossary</h2>
+      <button id="glossary-close" class="ghost-button" type="button">Close</button>
+    </div>
+    <div id="glossary-content" class="drawer-content"></div>
+  </aside>
+
+  <main id="main-content" class="app-shell">
+    <section id="launcher-view" class="screen screen-active" aria-labelledby="launcher-title">
+      <div class="launcher-hero card">
+        <div>
+          <p class="eyebrow">Mission launcher</p>
+          <h2 id="launcher-title" tabindex="-1">Choose a watchtower run</h2>
+          <p>Each mission is built around the same Chapter 4 rhythm: orient to the incident, anchor on the baseline, compare what the baseline protects, choose a release judgment, and decide what still needs to be watched after the change.</p>
+        </div>
+        <div class="hero-actions">
+          <span class="pill subtle-pill">5–10 minute learning runs</span>
+          <span class="pill subtle-pill">6 authored scenarios</span>
+        </div>
+      </div>
+
+      <section class="launcher-grid" aria-label="Available missions">
+        <div class="card">
+          <div class="section-heading">
+            <div>
+              <h3>Available incidents</h3>
+              <p class="subtitle">Use filters to choose a domain, difficulty, pack, or comparison mode. Then work one mission from incident review to debrief.</p>
+            </div>
+          </div>
+          <div id="launcher-filter-controls"></div>
+          <p id="launcher-results-count" class="filter-results-note" aria-live="polite"></p>
+          <div id="scenario-list" class="scenario-list"></div>
+        </div>
+        <div class="launcher-side">
+          <div class="card">
+            <h3>What you are practicing</h3>
+            <ul class="feature-list">
+              <li>Protect a known-good baseline before accepting a candidate change.</li>
+              <li>Use standing checks instead of intuition alone.</li>
+              <li>Spot what improved, what held, and what weakened.</li>
+              <li>Choose Release, Hold, or Iterate for a clear reason.</li>
+              <li>Close with monitoring follow-up, not false certainty.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>How to get the most from a mission</h3>
+            <ul class="feature-list">
+              <li>Read the baseline before you read the candidate result.</li>
+              <li>Judge risky checks first so the important trade-offs stay visible.</li>
+              <li>Use the interpretation help when a check feels ambiguous.</li>
+              <li>Use the debrief to compare your path with the strongest-practice path.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Optional extension</h3>
+            <p>Some missions include a manual external-model comparison step. That step is still part of the learning workflow because it lets you compare outside output against the same standing checks and release discipline.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="workspace-view" class="screen" aria-labelledby="workspace-title">
+      <div class="mission-strip card">
+        <div>
+          <p class="eyebrow">Watchtower run</p>
+          <h2 id="workspace-title" tabindex="-1">Workspace</h2>
+          <p id="mission-objective" class="mission-objective"></p>
+        <p class="mission-flow-note">Recommended flow: incident → proposed change → baseline → candidate → checks → signals → decision → debrief.</p>
+        </div>
+        <div class="stepper" id="progress-stepper" aria-label="Mission progress"></div>
+      </div>
+
+      <nav class="mission-jump card" aria-label="Mission sections">
+        <p class="jump-intro"><strong>Move in order when you are learning:</strong> packet first, then checks, then signals, then decision.</p>
+        <a class="jump-link" href="#packet-section">Packet</a>
+        <a class="jump-link" href="#checks-section">Checks</a>
+        <a class="jump-link" href="#external-section">External step</a>
+        <a class="jump-link" href="#signals-section">Signals</a>
+        <a class="jump-link" href="#decision-section">Decision</a>
+        <a class="jump-link" href="#coaching-section">Coaching</a>
+      </nav>
+
+      <div class="workspace-grid">
+        <section class="left-column" id="packet-section">
+          <article class="card packet-card">
+            <p class="eyebrow">Incident summary</p>
+            <h3 id="incident-title"></h3>
+            <p id="incident-summary"></p>
+          </article>
+          <article class="card packet-card">
+            <p class="eyebrow">Proposed change</p>
+            <p id="proposed-change"></p>
+          </article>
+          <article class="card packet-card candidate-card">
+            <p class="eyebrow">Candidate result under review</p>
+            <p id="candidate-result"></p>
+          </article>
+          <article class="card packet-card baseline-card mobile-priority-card">
+            <p class="eyebrow">Baseline result</p>
+            <p id="baseline-result"></p>
+          </article>
+        </section>
+
+        <section class="center-column">
+          <article class="card" id="checks-section">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Standing checks</p>
+                <h3>Compare what the baseline protects</h3>
+              </div>
+              <span id="check-progress" class="pill subtle-pill">0 of 0 reviewed</span>
+            </div>
+            <div id="checks-container" class="checks-container"></div>
+          </article>
+
+          <article id="external-panel" class="card hidden">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Manual external comparison</p>
+                <h3>Copy, compare, and return to the same checks</h3>
+              </div>
+              <span class="pill subtle-pill">Optional extension step</span>
+            </div>
+            <ol class="compact-list">
+              <li>Copy the comparison packet.</li>
+              <li>Run it in an external LLM outside this app.</li>
+              <li>Paste the result back here.</li>
+              <li>Use the same standing checks before making a decision.</li>
+            </ol>
+            <textarea id="comparison-packet" class="code-box" readonly></textarea>
+            <div class="button-row">
+              <button id="copy-packet" class="secondary-button" type="button">Copy comparison packet</button>
+            </div>
+            <label for="pasteback-output" class="field-label">Paste external result</label>
+            <textarea id="pasteback-output" class="text-box" placeholder="Paste the external model output here."></textarea>
+            <div id="external-analysis" class="external-analysis"></div>
+          </article>
+
+          <article class="card" id="signals-section">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Current signals</p>
+                <h3>See what moved before you judge</h3>
+              </div>
+            </div>
+            <p id="signals-note" class="signals-note">Higher bars usually mean stronger fit. For regression risk, a higher bar means more danger, not more success.</p>
+            <div id="signals-grid" class="signals-grid"></div>
+          </article>
+
+          <article class="card decision-card" id="decision-section">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Release judgment</p>
+                <h3>Choose the proportionate next step</h3>
+              </div>
+              <span id="decision-hint" class="pill subtle-pill" aria-live="polite">Review the checks before locking a decision</span>
+            </div>
+            <div class="release-ladder" id="release-ladder">
+              <button class="ladder-button" data-decision="Release" type="button">Release</button>
+              <button class="ladder-button" data-decision="Hold" type="button">Hold</button>
+              <button class="ladder-button" data-decision="Iterate" type="button">Iterate</button>
+            </div>
+            <fieldset class="monitoring-set">
+              <legend>Monitoring follow-up</legend>
+              <div id="monitoring-options" class="monitoring-options"></div>
+            </fieldset>
+            <div class="button-row">
+              <button id="finish-run" class="primary-button" type="button">Complete mission</button>
+              <button id="reset-run" class="ghost-button" type="button">Start over</button>
+            </div>
+          </article>
+        </section>
+
+        <aside class="right-column">
+          <article class="card" id="coaching-section">
+            <p class="eyebrow">Coaching</p>
+            <h3>What the evidence is saying</h3>
+            <p id="coach-text" aria-live="polite"></p>
+            <ul id="coach-focus-list" class="compact-list coach-focus-list"></ul>
+          </article>
+          <article class="card">
+            <p class="eyebrow">Comparison quality</p>
+            <h3>Score snapshot</h3>
+            <div id="scorecard" class="scorecard"></div>
+          </article>
+          <article class="card">
+            <p class="eyebrow">Debrief preview</p>
+            <h3>Where this run is heading</h3>
+            <p id="debrief-preview"></p>
+          </article>
+        </aside>
+      </div>
+    </section>
+
+    <section id="debrief-view" class="screen" aria-labelledby="debrief-title">
+      <article class="card debrief-hero">
+        <div>
+          <p class="eyebrow">Watchtower debrief</p>
+          <h2 id="debrief-title" tabindex="-1">Decision summary</h2>
+          <p id="debrief-summary"></p>
+        </div>
+        <div class="hero-actions">
+          <button id="replay-run" class="primary-button" type="button">Try mission again</button>
+          <button id="back-to-launcher" class="ghost-button" type="button">Return to launcher</button>
+        </div>
+      </article>
+
+      <div class="debrief-grid">
+        <article class="card">
+          <p class="eyebrow">Delta summary</p>
+          <h3>Where your watchtower read aligned or drifted</h3>
+          <div id="debrief-delta-summary" class="delta-summary-grid"></div>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Baseline vs change matrix</p>
+          <h3>What improved, held, or weakened</h3>
+          <div id="debrief-matrix"></div>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Decision comparison</p>
+          <h3>Your path vs strongest-practice path</h3>
+          <div id="decision-comparison"></div>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Monitoring follow-up</p>
+          <h3>What to keep watching</h3>
+          <ul id="selected-monitoring" class="compact-list"></ul>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Strongest-practice walkthrough</p>
+          <h3>How the strongest path reasons through this case</h3>
+          <div id="walkthrough-list" class="walkthrough-list"></div>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Practice next time</p>
+          <h3>Turn this run into a stronger next pass</h3>
+          <div id="practice-next"></div>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Explore more</p>
+          <h3 id="bonus-title"></h3>
+          <p id="bonus-summary"></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
