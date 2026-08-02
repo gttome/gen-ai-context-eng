@@ -1,0 +1,955 @@
+{
+  "schemaVersion": "1.1.0",
+  "contentVersion": "2026-07-31",
+  "chapter": {
+    "id": "ch3",
+    "number": 3,
+    "title": "Designing High-Quality Contexts",
+    "assessmentHeading": "Assessment: Chapter 3 Questions",
+    "sampleOnly": false,
+    "sourceQuestionPages": [
+      115,
+      118
+    ],
+    "sourceRationalePages": [
+      119,
+      122
+    ],
+    "sourceNumbering": "46–60 and 76–90",
+    "sourceQuestionCount": 30,
+    "availableQuestionCount": 30,
+    "blockedQuestionCount": 0
+  },
+  "questions": [
+    {
+      "id": "ch3-q46",
+      "chapterId": "ch3",
+      "sourceNumber": 46,
+      "prompt": "In the context of large language models, what does the term context window refer to?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The maximum number of tokens the model can consider at one time."
+        },
+        {
+          "id": "B",
+          "text": "The software window where a user types the prompt."
+        },
+        {
+          "id": "C",
+          "text": "The amount of time the model is allowed to think before answering."
+        },
+        {
+          "id": "D",
+          "text": "The total number of words in the model’s training vocabulary."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "The maximum number of tokens the model can consider at one time. The context window is the model’s finite working memory for a single run, measured in tokens rather than words or screen space.",
+      "sourceQuestionPage": 115,
+      "sourceRationalePage": 119,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q47",
+      "chapterId": "ch3",
+      "sourceNumber": 47,
+      "prompt": "What is a likely effect of packing too much information into the prompt as you approach or exceed the context window limit?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The model will automatically ignore excess material with no change in quality."
+        },
+        {
+          "id": "B",
+          "text": "Accuracy will improve steadily because more text is always better."
+        },
+        {
+          "id": "C",
+          "text": "The model may become distracted, inconsistent, or less reliable."
+        },
+        {
+          "id": "D",
+          "text": "The model will always crash instead of responding."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "The model may become distracted, inconsistent, or less reliable. Overloaded prompts spread attention thin and often introduce distraction, missed constraints, or weak evidence use.",
+      "sourceQuestionPage": 115,
+      "sourceRationalePage": 119,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q48",
+      "chapterId": "ch3",
+      "sourceNumber": 48,
+      "prompt": "Why is the order of information in a context package important?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Alphabetical ordering always produces better results."
+        },
+        {
+          "id": "B",
+          "text": "Order never matters because all tokens are treated identically."
+        },
+        {
+          "id": "C",
+          "text": "The model reads only the last sentence of a prompt."
+        },
+        {
+          "id": "D",
+          "text": "Logical ordering helps distinguish rules, evidence, and the task."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Logical ordering helps distinguish rules, evidence, and the task. A clear order makes it easier for the model to identify what to follow, what to trust, and what to answer.",
+      "sourceQuestionPage": 115,
+      "sourceRationalePage": 119,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q49",
+      "chapterId": "ch3",
+      "sourceNumber": 49,
+      "prompt": "If a user request is ambiguous, what is a recommended context-engineering response?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Instruct the model to ask a clarifying question or state a narrow assumption."
+        },
+        {
+          "id": "B",
+          "text": "Make the model choose a random interpretation and proceed."
+        },
+        {
+          "id": "C",
+          "text": "Answer every possible interpretation at once."
+        },
+        {
+          "id": "D",
+          "text": "Ignore the ambiguity and hope the user meant the default option."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Instruct the model to ask a clarifying question or state a narrow assumption. High-quality packages reduce guessing by requiring clarification or explicit assumptions when ambiguity is material.",
+      "sourceQuestionPage": 115,
+      "sourceRationalePage": 119,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q50",
+      "chapterId": "ch3",
+      "sourceNumber": 50,
+      "prompt": "What does the Goldilocks zone of instruction mean in prompt design?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Using story-like language, so the prompt feels more human."
+        },
+        {
+          "id": "B",
+          "text": "Making instructions neither too vague nor too over-specified."
+        },
+        {
+          "id": "C",
+          "text": "Always using exactly three sentences for rules."
+        },
+        {
+          "id": "D",
+          "text": "Setting model temperature to a medium level."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Making instructions neither too vague nor over-specified. Good instructions are specific enough to guide the model but not so rigid that the package becomes cluttered or self-conflicting.",
+      "sourceQuestionPage": 115,
+      "sourceRationalePage": 119,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q51",
+      "chapterId": "ch3",
+      "sourceNumber": 51,
+      "prompt": "How should conflicting information in a prompt package be handled?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Highlight both positions and let the model choose."
+        },
+        {
+          "id": "B",
+          "text": "Keep both versions, so the prompt looks balanced."
+        },
+        {
+          "id": "C",
+          "text": "Resolve or remove the contradiction before finalizing the package."
+        },
+        {
+          "id": "D",
+          "text": "Ask the model to output two conflicting answers."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "Resolve or remove the contradiction before finalizing the package. The designer, not the model, should decide which source or rule is authoritative when conflicts exist.",
+      "sourceQuestionPage": 115,
+      "sourceRationalePage": 119,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q52",
+      "chapterId": "ch3",
+      "sourceNumber": 52,
+      "prompt": "Why does consistent structure improve context quality?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "It helps only human reviewers, not the model."
+        },
+        {
+          "id": "B",
+          "text": "It allows the model to retrain itself during use."
+        },
+        {
+          "id": "C",
+          "text": "It does not matter; variety always helps more."
+        },
+        {
+          "id": "D",
+          "text": "It reduces ambiguity by separating instructions, evidence, and output expectations."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "It reduces ambiguity by separating instructions, evidence, and output expectations. A stable structure makes the operating package easier to interpret and easier to review for defects.",
+      "sourceQuestionPage": 115,
+      "sourceRationalePage": 119,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q53",
+      "chapterId": "ch3",
+      "sourceNumber": 53,
+      "prompt": "Because attention and token budget are limited, what guiding principle should shape context selection?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Include only the most relevant, high-value information needed for the task."
+        },
+        {
+          "id": "B",
+          "text": "Always fill the context window as completely as possible."
+        },
+        {
+          "id": "C",
+          "text": "Repeat important instructions throughout the prompt several times."
+        },
+        {
+          "id": "D",
+          "text": "Use more complicated wording to occupy the model’s attention."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Include only the most relevant, high-value information needed for the task. Selective inclusion usually outperforms prompt bloat because every extra token competes for attention.",
+      "sourceQuestionPage": 116,
+      "sourceRationalePage": 120,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q54",
+      "chapterId": "ch3",
+      "sourceNumber": 54,
+      "prompt": "What is a good strategy when a long conversation no longer fits comfortably in context?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Summarize earlier parts into a shorter current-state record."
+        },
+        {
+          "id": "B",
+          "text": "Restart the conversation every few turns whether needed or not."
+        },
+        {
+          "id": "C",
+          "text": "Keep everything forever because modern models can absorb any length."
+        },
+        {
+          "id": "D",
+          "text": "Require the user to recap the entire history manually."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Summarize earlier parts into a shorter current-state record. Summarization preserves continuity while protecting the token budget from raw-history overload.",
+      "sourceQuestionPage": 116,
+      "sourceRationalePage": 120,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q55",
+      "chapterId": "ch3",
+      "sourceNumber": 55,
+      "prompt": "When retrieved knowledge is added to a package, where should it usually appear?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Only after the model has already produced an answer."
+        },
+        {
+          "id": "B",
+          "text": "Before or alongside the task so it can ground the response."
+        },
+        {
+          "id": "C",
+          "text": "In a random location so the model must search for it."
+        },
+        {
+          "id": "D",
+          "text": "It makes no difference where it appears."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Before or alongside the task so it can ground the response. Evidence is most useful when it is clearly labeled and placed close enough to the task to influence the answer.",
+      "sourceQuestionPage": 116,
+      "sourceRationalePage": 120,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q56",
+      "chapterId": "ch3",
+      "sourceNumber": 56,
+      "prompt": "What does the relevance heuristic mean when deciding what to include in context?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Include only information that is relevant to the task or output requirements."
+        },
+        {
+          "id": "B",
+          "text": "Include all available information in case some of it helps."
+        },
+        {
+          "id": "C",
+          "text": "Prefer loosely related material because variety improves creativity."
+        },
+        {
+          "id": "D",
+          "text": "Treat whatever was mentioned most recently as relevant."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Include only information that is relevant to the task or output requirements. The purpose of filtering relevance is to keep only text that materially improves correctness, compliance, or structure.",
+      "sourceQuestionPage": 116,
+      "sourceRationalePage": 120,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q57",
+      "chapterId": "ch3",
+      "sourceNumber": 57,
+      "prompt": "How can ambiguity in instructions be reduced before the model runs?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Leave key terms undefined so the model can infer them."
+        },
+        {
+          "id": "B",
+          "text": "Use heavy jargon even if the task is simple."
+        },
+        {
+          "id": "C",
+          "text": "Rewrite the instructions, so outcomes, terms, and constraints are explicit."
+        },
+        {
+          "id": "D",
+          "text": "Accept that ambiguity is unavoidable and cannot be reduced."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "Rewrite the instructions, so outcomes, terms, and constraints are explicit. Clear definitions and explicit outcomes reduce guesswork and make failures easier to diagnose.",
+      "sourceQuestionPage": 116,
+      "sourceRationalePage": 120,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q58",
+      "chapterId": "ch3",
+      "sourceNumber": 58,
+      "prompt": "If multiple context blocks must be included, such as user profile and retrieved evidence, what is the best general principle for ordering them?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Arrange them alphabetically."
+        },
+        {
+          "id": "B",
+          "text": "Shuffle them to avoid positional bias."
+        },
+        {
+          "id": "C",
+          "text": "Mix the blocks together sentence by sentence."
+        },
+        {
+          "id": "D",
+          "text": "Present them in a logical order that reflects their purpose."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Present them in a logical order that reflects their purpose. Logical grouping helps the model separate stable instructions, supporting evidence, and the active request.",
+      "sourceQuestionPage": 116,
+      "sourceRationalePage": 120,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q59",
+      "chapterId": "ch3",
+      "sourceNumber": 59,
+      "prompt": "What does prompt hygiene mean in practice?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Removing every special character from a user’s message."
+        },
+        {
+          "id": "B",
+          "text": "Keeping the package clear, concise, and free of unnecessary or conflicting text."
+        },
+        {
+          "id": "C",
+          "text": "Scanning prompts for computer viruses before use."
+        },
+        {
+          "id": "D",
+          "text": "Changing wording constantly, so the model does not adapt to it."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Keeping the package clear, concise, and free of unnecessary or conflicting text. Prompt hygiene is the discipline of reducing clutter, ambiguity, and contradiction in the package.",
+      "sourceQuestionPage": 116,
+      "sourceRationalePage": 120,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q60",
+      "chapterId": "ch3",
+      "sourceNumber": 60,
+      "prompt": "In multi-turn work, what is a common heuristic for managing context over time?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Clear the context at random intervals."
+        },
+        {
+          "id": "B",
+          "text": "Preserve every detail forever whether it is useful or not."
+        },
+        {
+          "id": "C",
+          "text": "Refresh the package by adding new relevant information and dropping outdated material."
+        },
+        {
+          "id": "D",
+          "text": "End the conversation after a fixed number of turns."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "Refresh the package by adding new relevant information and dropping outdated material. Reliable multi-turn work requires active maintenance of current state rather than unlimited accumulation.",
+      "sourceQuestionPage": 117,
+      "sourceRationalePage": 120,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q76",
+      "chapterId": "ch3",
+      "sourceNumber": 76,
+      "prompt": "What does maintaining prompt hygiene involve when crafting a package for an AI system?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Using as much slang as possible, so the model sounds natural."
+        },
+        {
+          "id": "B",
+          "text": "Encrypting the package text before the model sees it."
+        },
+        {
+          "id": "C",
+          "text": "Ensuring the instructions are clear, precise, and free of unnecessary complexity."
+        },
+        {
+          "id": "D",
+          "text": "Changing the wording every time even when the task stays the same."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "Ensuring the instructions are clear, precise, and free of unnecessary complexity. Prompt hygiene improves clarity, reduces accidental contradictions, and makes outputs easier to evaluate.",
+      "sourceQuestionPage": 117,
+      "sourceRationalePage": 120,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q77",
+      "chapterId": "ch3",
+      "sourceNumber": 77,
+      "prompt": "Which option is the best example of good prompt hygiene for a summarization task?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Ask for a summary and an unrelated joke in the same request."
+        },
+        {
+          "id": "B",
+          "text": "Say, 'You know the drill—just do it somehow.'"
+        },
+        {
+          "id": "C",
+          "text": "Combine several unrelated instructions in one long prompt."
+        },
+        {
+          "id": "D",
+          "text": "Say, 'Summarize the report in 3 bullet points highlighting the main findings.'"
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Say, 'Summarize the report in 3 bullet points highlighting the main findings.' A focused and explicit instruction usually produces more reliable results than vague or overloaded requests.",
+      "sourceQuestionPage": 117,
+      "sourceRationalePage": 121,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q78",
+      "chapterId": "ch3",
+      "sourceNumber": 78,
+      "prompt": "What is chunking in the context of large-input handling?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Caching previous answers for later reuse."
+        },
+        {
+          "id": "B",
+          "text": "Breaking a large input or task into smaller, manageable pieces."
+        },
+        {
+          "id": "C",
+          "text": "Training the model in smaller batches during pretraining."
+        },
+        {
+          "id": "D",
+          "text": "Running several models in parallel on the same prompt."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Breaking a large input or task into smaller, manageable pieces. Chunking allows long material to be processed selectively without flooding the context window.",
+      "sourceQuestionPage": 117,
+      "sourceRationalePage": 121,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q79",
+      "chapterId": "ch3",
+      "sourceNumber": 79,
+      "prompt": "If a document is too large to fit into context, what is a strong chunking practice?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Pretend the model has read the full document."
+        },
+        {
+          "id": "B",
+          "text": "Use only the first section and ignore the rest."
+        },
+        {
+          "id": "C",
+          "text": "Split the document into logical sections and process them deliberately."
+        },
+        {
+          "id": "D",
+          "text": "Increase the font size so the model can recognize it more easily."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "Split the document into logical sections and process them deliberately. Logical chunking preserves meaning and makes retrieval or summarization more accurate.",
+      "sourceQuestionPage": 117,
+      "sourceRationalePage": 121,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q80",
+      "chapterId": "ch3",
+      "sourceNumber": 80,
+      "prompt": "How can tools extend an LLM’s capability in a context-engineered workflow?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "They cannot; models are limited to plain text only."
+        },
+        {
+          "id": "B",
+          "text": "Only by retraining the model offline."
+        },
+        {
+          "id": "C",
+          "text": "Only by upgrading the server hardware."
+        },
+        {
+          "id": "D",
+          "text": "By allowing the model to call defined external functions or services when needed."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "By allowing the model to call defined external functions or services when needed. Tool use expands what the system can do at run time, but only when the tool’s role and use conditions are made explicit.",
+      "sourceQuestionPage": 117,
+      "sourceRationalePage": 121,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q81",
+      "chapterId": "ch3",
+      "sourceNumber": 81,
+      "prompt": "What is a best practice when instructing a model about a provided tool?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Assume it will guess correctly from pretraining."
+        },
+        {
+          "id": "B",
+          "text": "Clearly explain what the tool does, when to use it, and how to use the result."
+        },
+        {
+          "id": "C",
+          "text": "Hide the tool details and ask the model whether it wants one."
+        },
+        {
+          "id": "D",
+          "text": "Mention the tool name without describing its purpose."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Clearly explain what the tool does, when to use it, and how to use the result. Explicit tool instruction cards reduce misuse and make tool invocation more reliable.",
+      "sourceQuestionPage": 117,
+      "sourceRationalePage": 121,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q82",
+      "chapterId": "ch3",
+      "sourceNumber": 82,
+      "prompt": "Why is maintaining memory important for a chatbot or assistant workflow?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "It is not important because each turn should be isolated."
+        },
+        {
+          "id": "B",
+          "text": "It allows the model to train on user data during the chat."
+        },
+        {
+          "id": "C",
+          "text": "It helps the model refer back to prior interactions and preserve continuity."
+        },
+        {
+          "id": "D",
+          "text": "It generally lowers answer quality by adding history."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "It helps the model refer back to prior interactions and preserve continuity. Useful memory keeps active decisions, facts, and constraints available across turns without re-explaining everything.",
+      "sourceQuestionPage": 117,
+      "sourceRationalePage": 121,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q83",
+      "chapterId": "ch3",
+      "sourceNumber": 83,
+      "prompt": "What technique helps manage long histories without exceeding context limits?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Artificially split the context window into halves."
+        },
+        {
+          "id": "B",
+          "text": "Ignore all older messages completely."
+        },
+        {
+          "id": "C",
+          "text": "Use multiple models instead of maintaining state."
+        },
+        {
+          "id": "D",
+          "text": "Summarize earlier parts of the conversation into a shorter form."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Summarize earlier parts of the conversation into a shorter form. A well-maintained summary preserves continuity while reducing token load.",
+      "sourceQuestionPage": 118,
+      "sourceRationalePage": 121,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q84",
+      "chapterId": "ch3",
+      "sourceNumber": 84,
+      "prompt": "Which practice helps reduce the risk of harmful or disallowed output?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Rely only on the model’s built-in guardrails and never state boundaries explicitly."
+        },
+        {
+          "id": "B",
+          "text": "State content boundaries in the rules and specify what the model should do instead."
+        },
+        {
+          "id": "C",
+          "text": "Allow unsafe output first and filter it only after generation."
+        },
+        {
+          "id": "D",
+          "text": "Encourage provocative answers and trust later reviewers to catch problems."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "State content boundaries in the rules and specify what the model should do instead. Safe packages define boundaries clearly and give the model an acceptable fallback behavior.",
+      "sourceQuestionPage": 118,
+      "sourceRationalePage": 121,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q85",
+      "chapterId": "ch3",
+      "sourceNumber": 85,
+      "prompt": "How does retrieval-augmented generation (RAG) embody context-engineering practice?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "It removes the need for prompt design entirely."
+        },
+        {
+          "id": "B",
+          "text": "It fine-tunes the model’s internal weights instead of using context."
+        },
+        {
+          "id": "C",
+          "text": "It retrieves relevant external information and places it into the package as evidence."
+        },
+        {
+          "id": "D",
+          "text": "It generates multiple answers and chooses the most creative one."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "It retrieves relevant external information and places it into the package as evidence. RAG is a disciplined way to supply current or external evidence at inference time rather than relying on memory alone.",
+      "sourceQuestionPage": 118,
+      "sourceRationalePage": 121,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q86",
+      "chapterId": "ch3",
+      "sourceNumber": 86,
+      "prompt": "Why might a package ask the model to work step by step on a complex task?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "To consume more tokens intentionally."
+        },
+        {
+          "id": "B",
+          "text": "To slow the model down for cosmetic reasons."
+        },
+        {
+          "id": "C",
+          "text": "Because the model cannot solve any problem without it."
+        },
+        {
+          "id": "D",
+          "text": "To encourage a visible reasoning structure for multi-constraint work."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "To encourage a visible reasoning structure for multi-constraint work. A structured breakdown can improve reliability on tasks that require multiple checks or ordered decisions.",
+      "sourceQuestionPage": 118,
+      "sourceRationalePage": 121,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q87",
+      "chapterId": "ch3",
+      "sourceNumber": 87,
+      "prompt": "What is a safe way to handle user input before adding it to context in a production workflow?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Trust it completely and include it unchanged."
+        },
+        {
+          "id": "B",
+          "text": "Sanitize, filter, or clearly label it before it enters trusted instruction space."
+        },
+        {
+          "id": "C",
+          "text": "Encrypt it so the model cannot read it."
+        },
+        {
+          "id": "D",
+          "text": "Ask the model to decide whether the input is safe after it is already mixed into the rules."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Sanitize, filter, or clearly label it before it enters trusted instruction space. User-provided text is untrusted input and should be separated from trusted instructions to reduce injection and safety risk.",
+      "sourceQuestionPage": 118,
+      "sourceRationalePage": 122,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q88",
+      "chapterId": "ch3",
+      "sourceNumber": 88,
+      "prompt": "Why is a library of reusable prompt or context templates valuable in enterprise work?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Models understand only a fixed number of prompt styles."
+        },
+        {
+          "id": "B",
+          "text": "It is not valuable because every problem should start from zero."
+        },
+        {
+          "id": "C",
+          "text": "It supports consistency, reuse, and faster improvement across recurring tasks."
+        },
+        {
+          "id": "D",
+          "text": "Its main value is making prompts proprietary and hard to share."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "It supports consistency, reuse, and faster improvement across recurring tasks. Reusable templates capture proven structures and reduce the need to rediscover good practice in every new workflow.",
+      "sourceQuestionPage": 118,
+      "sourceRationalePage": 122,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q89",
+      "chapterId": "ch3",
+      "sourceNumber": 89,
+      "prompt": "What role does user or reviewer feedback play in improving prompt and context strategies?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Only negative feedback matters."
+        },
+        {
+          "id": "B",
+          "text": "It should be ignored because users do not understand AI quality."
+        },
+        {
+          "id": "C",
+          "text": "It introduces too much bias to be useful."
+        },
+        {
+          "id": "D",
+          "text": "It reveals how the workflow performs in real use and helps target revisions."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "It reveals how the workflow performs in real use and helps target revisions. Feedback surfaces are failure modes, usability issues, and blind spots that design-time testing often misses.",
+      "sourceQuestionPage": 118,
+      "sourceRationalePage": 122,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch3-q90",
+      "chapterId": "ch3",
+      "sourceNumber": 90,
+      "prompt": "What is an important best practice for instructions intended to produce reliable outputs?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Use figurative language so the prompt feels more creative."
+        },
+        {
+          "id": "B",
+          "text": "Be explicit and unambiguous about what the model should do."
+        },
+        {
+          "id": "C",
+          "text": "Include contradictions to test the model’s intelligence."
+        },
+        {
+          "id": "D",
+          "text": "Leave the key instructions implied rather than stated."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Be explicit and unambiguous about what the model should do. Reliable packages make expectations plain rather than depending on the model to infer unstated norms.",
+      "sourceQuestionPage": 118,
+      "sourceRationalePage": 122,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    }
+  ]
+}

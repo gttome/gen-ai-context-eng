@@ -1,0 +1,92 @@
+{
+  "appVersion": "0.6.1-rc.3",
+  "contentVersion": "2026.08-r2",
+  "files": [
+    {
+      "path": ".nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/apple-touch-icon.png",
+      "bytes": 10498,
+      "sha256": "5dd9f8f31f3964812a486f68e25bd64559a43a281c9468cffa0cb2cc297bf191"
+    },
+    {
+      "path": "assets/favicon.svg",
+      "bytes": 282,
+      "sha256": "732c655fed39efe84f9180b77ba5c537cc9ce7beca129e042a0f71e16951e54e"
+    },
+    {
+      "path": "assets/icon-192.png",
+      "bytes": 11271,
+      "sha256": "30463aa54a184e432100803665652f5c4a1ffe542e84acb87fddf4ce1b55fcee"
+    },
+    {
+      "path": "assets/icon-512.png",
+      "bytes": 32243,
+      "sha256": "238b2cf64bba624cdb0dda2d45e23c2d82ac9b2f30800df8d33ac9ca43c07d4b"
+    },
+    {
+      "path": "assets/mark.svg",
+      "bytes": 1054,
+      "sha256": "93b3c6e52610b2c4d7fde0e06af653b177e88ac55c4202b5ff8044ae15e94520"
+    },
+    {
+      "path": "css/app.css",
+      "bytes": 31153,
+      "sha256": "49de6672305e2e668fe83fca5886c742f0b9ce9b5174e73c03445b4d3d3caff0"
+    },
+    {
+      "path": "data/ch1.json",
+      "bytes": 43132,
+      "sha256": "888e6595f9951e7a823dd386e6480ee02cfd7986c805e2e5e4e119c5481840f4"
+    },
+    {
+      "path": "data/ch2.json",
+      "bytes": 17726,
+      "sha256": "d5023f0dde7a3ac23b7f392da10a0e6900366b8a78857173d258afcc9357239c"
+    },
+    {
+      "path": "data/ch3.json",
+      "bytes": 33689,
+      "sha256": "a416af3e6f24a830bc79019577cf7a96b396d94287b59ca2466d091b476810f6"
+    },
+    {
+      "path": "data/ch4.json",
+      "bytes": 33191,
+      "sha256": "cd33c8341609da92d2cc9fd3eb215436b9d4cf157d929f04fe33e1da3050cc63"
+    },
+    {
+      "path": "data/ch5.json",
+      "bytes": 18329,
+      "sha256": "072da547d8318136a43f5f4ea1d96b178419d8a047a5520ca17b072dc7747184"
+    },
+    {
+      "path": "data/manifest.json",
+      "bytes": 4337,
+      "sha256": "ed7e417ea1e662f90b2bf15a488c5920fd5a50babb639e157564fea454b90687"
+    },
+    {
+      "path": "index.html",
+      "bytes": 4477,
+      "sha256": "4e28903a3c9621e109319f37612be7ffd6be0df4b62f6b4a4e48206cf7fcc1e8"
+    },
+    {
+      "path": "js/app.bundle.js",
+      "bytes": 88802,
+      "sha256": "0dfc3f8aea369737bcbc8325427a3af363749e0253093beaf0f7628f098e5c6a"
+    },
+    {
+      "path": "robots.txt",
+      "bytes": 23,
+      "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95"
+    },
+    {
+      "path": "site.webmanifest",
+      "bytes": 647,
+      "sha256": "a8c707db68d66e8f6de0771989af910f316f7b52833b38b7037e0cc73693f78c"
+    }
+  ],
+  "totalBytes": 330854
+}

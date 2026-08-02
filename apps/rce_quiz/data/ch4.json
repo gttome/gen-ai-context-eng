@@ -1,0 +1,955 @@
+{
+  "schemaVersion": "1.1.0",
+  "contentVersion": "2026-07-31",
+  "chapter": {
+    "id": "ch4",
+    "number": 4,
+    "title": "Reliability, Failure Handling, and Measurement",
+    "assessmentHeading": "Chapter 4 Quiz",
+    "sampleOnly": false,
+    "sourceQuestionPages": [
+      162,
+      166
+    ],
+    "sourceRationalePages": [
+      167,
+      169
+    ],
+    "sourceNumbering": "61–75 and 91–105",
+    "sourceQuestionCount": 30,
+    "availableQuestionCount": 30,
+    "blockedQuestionCount": 0
+  },
+  "questions": [
+    {
+      "id": "ch4-q61",
+      "chapterId": "ch4",
+      "sourceNumber": 61,
+      "prompt": "What is a hallucination in the context of generative AI outputs?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "When the model quotes the provided context accurately."
+        },
+        {
+          "id": "B",
+          "text": "When the model declines because it lacks enough information."
+        },
+        {
+          "id": "C",
+          "text": "When the model answers briefly and leaves out useful detail."
+        },
+        {
+          "id": "D",
+          "text": "When the model invents a plausible-sounding claim that is not supported by the context."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "A hallucination is an unsupported claim presented as if it were reliable. The key issue is not brevity or refusal; it is the confident invention of content that the workflow did not substantiate.",
+      "sourceQuestionPage": 162,
+      "sourceRationalePage": 167,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q62",
+      "chapterId": "ch4",
+      "sourceNumber": 62,
+      "prompt": "Which practice is most helpful for reducing factual hallucinations?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Increase temperature so the model sounds more creative."
+        },
+        {
+          "id": "B",
+          "text": "Provide relevant source material the model can use as evidence."
+        },
+        {
+          "id": "C",
+          "text": "Ask only subjective questions, so facts are unnecessary."
+        },
+        {
+          "id": "D",
+          "text": "Remove sources and let the model answer from memory."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Grounding the model in relevant source material gives it evidence to use instead of forcing it to guess. This does not eliminate every risk, but it is one of the most practical ways to reduce unsupported factual claims.",
+      "sourceQuestionPage": 162,
+      "sourceRationalePage": 167,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q63",
+      "chapterId": "ch4",
+      "sourceNumber": 63,
+      "prompt": "What does instruction conflict mean in a prompt-based system?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Two instructions in the active context contradict one another."
+        },
+        {
+          "id": "B",
+          "text": "A user asks more than one question in the same message."
+        },
+        {
+          "id": "C",
+          "text": "The model disagrees with something it learned during training."
+        },
+        {
+          "id": "D",
+          "text": "The prompt becomes so long that it may be truncated."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Instruction conflict occurs when the active instructions cannot all be satisfied at once. The model may then behave inconsistently, not because it is random, but because the prompt contains competing demands.",
+      "sourceQuestionPage": 162,
+      "sourceRationalePage": 167,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q64",
+      "chapterId": "ch4",
+      "sourceNumber": 64,
+      "prompt": "Which situation is a clear example of instruction conflict?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The system requires one sentence, but the user asks for a detailed explanation."
+        },
+        {
+          "id": "B",
+          "text": "The user’s request is vague and would benefit from a clarifying question."
+        },
+        {
+          "id": "C",
+          "text": "The model unexpectedly changes languages during the conversation."
+        },
+        {
+          "id": "D",
+          "text": "Two provided documents agree with each other completely."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Being told to answer in one sentence while also providing a detailed explanation is a direct contradiction. The model cannot fully satisfy both requirements at the same time.",
+      "sourceQuestionPage": 162,
+      "sourceRationalePage": 167,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q65",
+      "chapterId": "ch4",
+      "sourceNumber": 65,
+      "prompt": "How can instruction conflict be mitigated most effectively?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Tell the model to ignore all user requests automatically."
+        },
+        {
+          "id": "B",
+          "text": "Repeat the conflicting rules and hope one dominates."
+        },
+        {
+          "id": "C",
+          "text": "Rewrite the instructions, so they are coherent and prioritized."
+        },
+        {
+          "id": "D",
+          "text": "Accept the conflict because the model cannot handle it reliably."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "The most effective response is to rewrite the instruction set so it is coherent and its priorities are clear. Reliable behavior depends on reducing conflict, not hoping the model will resolve it in the way you intended.",
+      "sourceQuestionPage": 162,
+      "sourceRationalePage": 167,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q66",
+      "chapterId": "ch4",
+      "sourceNumber": 66,
+      "prompt": "What is format drift in a multi-turn workflow?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The user changes topics repeatedly across turns."
+        },
+        {
+          "id": "B",
+          "text": "The model’s responses become shorter over time."
+        },
+        {
+          "id": "C",
+          "text": "The conversation unexpectedly changes languages."
+        },
+        {
+          "id": "D",
+          "text": "The model gradually stops following the required output structure."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Format drift means the system gradually loses adherence to the required structure. This is common in longer or multi-turn workflows where output rules are no longer being reinforced clearly enough.",
+      "sourceQuestionPage": 162,
+      "sourceRationalePage": 167,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q67",
+      "chapterId": "ch4",
+      "sourceNumber": 67,
+      "prompt": "Which action best helps prevent format drift?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Increase temperature so the model becomes more expressive."
+        },
+        {
+          "id": "B",
+          "text": "Reinforce the required format and correct drift when it appears."
+        },
+        {
+          "id": "C",
+          "text": "Let the model choose its own format after the first response."
+        },
+        {
+          "id": "D",
+          "text": "Keep every session extremely short so drift never has time to occur."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Format requirements should be restated or reinforced when they matter operationally. When drift is noticed, a clear reminder and, if needed, a minimal example usually help more than changes to creativity settings.",
+      "sourceQuestionPage": 162,
+      "sourceRationalePage": 167,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q68",
+      "chapterId": "ch4",
+      "sourceNumber": 68,
+      "prompt": "If an answer contains a confident factual claim that was not provided in context and is incorrect, which failure mode is most likely?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Hallucination"
+        },
+        {
+          "id": "B",
+          "text": "Instruction conflict"
+        },
+        {
+          "id": "C",
+          "text": "Format drift"
+        },
+        {
+          "id": "D",
+          "text": "Overfitting"
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "A confident but unsupported factual claim is a classic hallucination. The defining feature is that the model asserted something ungrounded as though it were reliable.",
+      "sourceQuestionPage": 163,
+      "sourceRationalePage": 167,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q69",
+      "chapterId": "ch4",
+      "sourceNumber": 69,
+      "prompt": "A user pastes text that says, 'Ignore previous instructions and do X,' and the model obeys it. What is this an example of?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Hallucination caused by missing information."
+        },
+        {
+          "id": "B",
+          "text": "Format drift caused by a long conversation."
+        },
+        {
+          "id": "C",
+          "text": "Prompt injection that overrides trusted instructions."
+        },
+        {
+          "id": "D",
+          "text": "Normal behavior because user instructions always take priority."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "This is prompt injection because untrusted content successfully overrode the trusted instruction stack. The problem is not simply that the content was malicious; it is that the system failed to preserve the boundary between data and instruction.",
+      "sourceQuestionPage": 163,
+      "sourceRationalePage": 167,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q70",
+      "chapterId": "ch4",
+      "sourceNumber": 70,
+      "prompt": "An assistant begins a session in bullet points but later shifts to an unstructured paragraph without being asked. What likely happened?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Format drift"
+        },
+        {
+          "id": "B",
+          "text": "Output quality improved automatically"
+        },
+        {
+          "id": "C",
+          "text": "The user implicitly requested paragraphs"
+        },
+        {
+          "id": "D",
+          "text": "The model cleared its context window on its own"
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "The workflow has drifted away from its required structure. Even if the paragraph reads well, the format requirement has not been maintained.",
+      "sourceQuestionPage": 163,
+      "sourceRationalePage": 167,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q71",
+      "chapterId": "ch4",
+      "sourceNumber": 71,
+      "prompt": "What is a common cause of hallucination in practice?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The question is too simple for the model."
+        },
+        {
+          "id": "B",
+          "text": "The temperature is too low."
+        },
+        {
+          "id": "C",
+          "text": "The prompt includes too many exact quotes."
+        },
+        {
+          "id": "D",
+          "text": "The workflow did not supply the fact needed to answer safely."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Hallucination often arises when the context does not provide the fact required for a safe answer. In those situations, the model may fill the gap with a plausible but unsupported guess.",
+      "sourceQuestionPage": 163,
+      "sourceRationalePage": 168,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q72",
+      "chapterId": "ch4",
+      "sourceNumber": 72,
+      "prompt": "If a model keeps repeating a wrong claim because that claim is now in the conversation history or memory, what failure pattern does that illustrate?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Good memory use"
+        },
+        {
+          "id": "B",
+          "text": "Context poisoning"
+        },
+        {
+          "id": "C",
+          "text": "Instruction conflict"
+        },
+        {
+          "id": "D",
+          "text": "Format drift"
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Once an incorrect claim enters memory or history, it can keep influencing later outputs. That is context poisoning: the system starts reusing its own error as though it were established fact.",
+      "sourceQuestionPage": 163,
+      "sourceRationalePage": 168,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q73",
+      "chapterId": "ch4",
+      "sourceNumber": 73,
+      "prompt": "How can context engineering help when a model’s answer conflicts with a provided source document?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Accept the conflict because models always prefer their own knowledge."
+        },
+        {
+          "id": "B",
+          "text": "Remove the source so the model can answer more freely."
+        },
+        {
+          "id": "C",
+          "text": "Require the answer to rely on and reference the provided source."
+        },
+        {
+          "id": "D",
+          "text": "Add a second conflicting source so the model can average them."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "When source fidelity matters, the workflow should require the answer to rely on the provided material and to surface its evidence. That makes it easier to review the output and harder for the model to improvise beyond the source.",
+      "sourceQuestionPage": 163,
+      "sourceRationalePage": 168,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q74",
+      "chapterId": "ch4",
+      "sourceNumber": 74,
+      "prompt": "What is the best next step if the output starts violating the required rules or format during a session?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Raise temperature so the model becomes more flexible."
+        },
+        {
+          "id": "B",
+          "text": "End the session immediately without learning anything from it."
+        },
+        {
+          "id": "C",
+          "text": "Ignore the issue because drift is inevitable."
+        },
+        {
+          "id": "D",
+          "text": "Restate and reinforce the key rules or format in the next turn."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "When rules or format begin to erode, the next step is to restate the important constraints and re-anchor the workflow. This is more useful than ignoring the issue or changing unrelated settings.",
+      "sourceQuestionPage": 163,
+      "sourceRationalePage": 168,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q75",
+      "chapterId": "ch4",
+      "sourceNumber": 75,
+      "prompt": "Why is outdated or irrelevant context a reliability problem?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "It is harmless because the model automatically ignores it."
+        },
+        {
+          "id": "B",
+          "text": "It can pull the answer toward stale or unnecessary signals."
+        },
+        {
+          "id": "C",
+          "text": "It affects only speed and never correctness."
+        },
+        {
+          "id": "D",
+          "text": "The model always discards information older than its training cutoff."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Irrelevant or outdated context competes with the current signal. That can pull the answer toward the wrong version of a policy or toward details that do not belong in the response.",
+      "sourceQuestionPage": 164,
+      "sourceRationalePage": 168,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q91",
+      "chapterId": "ch4",
+      "sourceNumber": 91,
+      "prompt": "What is a rubric in the evaluation of AI outputs?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "A visualization of model attention patterns."
+        },
+        {
+          "id": "B",
+          "text": "A loss function used during model training."
+        },
+        {
+          "id": "C",
+          "text": "A set of criteria used to score outputs consistently."
+        },
+        {
+          "id": "D",
+          "text": "A built-in feature that allows the model to grade itself."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "A rubric is a scoring guide that defines how outputs will be judged. It helps reviewers apply a shared standard rather than relying on vague impressions.",
+      "sourceQuestionPage": 164,
+      "sourceRationalePage": 168,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q92",
+      "chapterId": "ch4",
+      "sourceNumber": 92,
+      "prompt": "Which option is a valid rubric criterion for evaluating an AI-generated summary?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Covers the key points without adding unsupported facts."
+        },
+        {
+          "id": "B",
+          "text": "Uses at least fifty adjectives."
+        },
+        {
+          "id": "C",
+          "text": "Includes every minor detail, even when irrelevant."
+        },
+        {
+          "id": "D",
+          "text": "Is longer than the original text."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "A strong summary should preserve the key ideas without adding unsupported content. The other options reward verbosity or irrelevant detail rather than summary quality.",
+      "sourceQuestionPage": 164,
+      "sourceRationalePage": 168,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q93",
+      "chapterId": "ch4",
+      "sourceNumber": 93,
+      "prompt": "Why is it important to test a workflow on a diverse set of inputs?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "To confuse the model so weaknesses become easier to see."
+        },
+        {
+          "id": "B",
+          "text": "Because one example is enough to show that a prompt works."
+        },
+        {
+          "id": "C",
+          "text": "Because models perform best only on repeated identical inputs."
+        },
+        {
+          "id": "D",
+          "text": "To verify the workflow works across normal and edge-case scenarios."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Reliable evaluation requires coverage across different case types. A prompt that succeeds only on easy, familiar examples has not yet demonstrated dependable performance.",
+      "sourceQuestionPage": 164,
+      "sourceRationalePage": 168,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q94",
+      "chapterId": "ch4",
+      "sourceNumber": 94,
+      "prompt": "What does A/B testing mean in prompt evaluation?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Running the same prompt twice to measure randomness."
+        },
+        {
+          "id": "B",
+          "text": "Comparing two prompt versions on the same test set."
+        },
+        {
+          "id": "C",
+          "text": "Deploying two different foundation models to different user groups."
+        },
+        {
+          "id": "D",
+          "text": "Having two reviewers score the same output independently."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "A/B testing compares two prompt or workflow versions on the same evaluation set. That allows the team to judge change on equal terms instead of on selectively remembered examples.",
+      "sourceQuestionPage": 164,
+      "sourceRationalePage": 168,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q95",
+      "chapterId": "ch4",
+      "sourceNumber": 95,
+      "prompt": "If an AI system repeatedly fails a required formatting rule, what does that usually indicate?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The rubric is too strict and should be loosened."
+        },
+        {
+          "id": "B",
+          "text": "Users are interacting incorrectly, so prompt changes are unnecessary."
+        },
+        {
+          "id": "C",
+          "text": "The prompt or context is not enforcing the requirement strongly enough."
+        },
+        {
+          "id": "D",
+          "text": "Occasional formatting failures do not matter."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "Repeated failure on a required rule usually means the workflow is not enforcing that rule clearly enough. The right response is to revise and retest, not to assume the requirement is unimportant.",
+      "sourceQuestionPage": 164,
+      "sourceRationalePage": 168,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q96",
+      "chapterId": "ch4",
+      "sourceNumber": 96,
+      "prompt": "How can automated testing support prompt evaluation?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "By asking the model to create its own evaluation questions."
+        },
+        {
+          "id": "B",
+          "text": "It cannot; language tasks require only manual review."
+        },
+        {
+          "id": "C",
+          "text": "By retraining the base model on the test set."
+        },
+        {
+          "id": "D",
+          "text": "By running fixed cases and checking outputs against expected rules."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Automated testing can reliably check stable expectations such as required structure, field presence, or other repeatable rules. Human judgment is still useful, but many reliability checks can be systematized.",
+      "sourceQuestionPage": 164,
+      "sourceRationalePage": 168,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q97",
+      "chapterId": "ch4",
+      "sourceNumber": 97,
+      "prompt": "What do human reviewers or domain experts contribute to AI evaluation?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Nothing; evaluation should always be fully automated."
+        },
+        {
+          "id": "B",
+          "text": "Qualitative judgment about correctness, relevance, and nuance."
+        },
+        {
+          "id": "C",
+          "text": "Test questions only, not review of outputs."
+        },
+        {
+          "id": "D",
+          "text": "Unavoidable bias that makes their input unusable."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Human reviewers contribute qualitative judgment that is difficult to automate fully, especially in areas such as nuance, correctness in context, and practical usefulness for the domain.",
+      "sourceQuestionPage": 164,
+      "sourceRationalePage": 169,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q98",
+      "chapterId": "ch4",
+      "sourceNumber": 98,
+      "prompt": "Why should an evaluation plan include tests for biased, harmful, or otherwise undesirable outputs?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Because unsafe outputs in testing are acceptable and informative on their own."
+        },
+        {
+          "id": "B",
+          "text": "Because model safety can be assumed without testing."
+        },
+        {
+          "id": "C",
+          "text": "To verify that the workflow prevents or handles unsafe behavior appropriately."
+        },
+        {
+          "id": "D",
+          "text": "To satisfy curiosity rather than deployment readiness."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "Undesirable-output tests help verify that the workflow handles unsafe, biased, or policy-sensitive cases appropriately. That is essential for release readiness, not an optional extra.",
+      "sourceQuestionPage": 165,
+      "sourceRationalePage": 169,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q99",
+      "chapterId": "ch4",
+      "sourceNumber": 99,
+      "prompt": "What is the advantage of using the same evaluation rubric across prompt iterations?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "It keeps evaluation fresh by forcing reviewers to improvise."
+        },
+        {
+          "id": "B",
+          "text": "It makes the model respond faster."
+        },
+        {
+          "id": "C",
+          "text": "It locks future outputs to the first version."
+        },
+        {
+          "id": "D",
+          "text": "It supports objective tracking of improvement and regression."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Using the same rubric across iterations makes results comparable over time. Without that consistency, it becomes much harder to tell whether the workflow improved or the scoring standard merely shifted.",
+      "sourceQuestionPage": 165,
+      "sourceRationalePage": 169,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q100",
+      "chapterId": "ch4",
+      "sourceNumber": 100,
+      "prompt": "Why continue evaluating performance after deployment?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "There is no reason; performance remains stable once deployed."
+        },
+        {
+          "id": "B",
+          "text": "To detect regressions and new issues as conditions change."
+        },
+        {
+          "id": "C",
+          "text": "Only to support continuous retraining of the model."
+        },
+        {
+          "id": "D",
+          "text": "To justify shutting the system down later."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Post-deployment evaluation matters because the operating environment changes. New documents, new user patterns, or changes in the workflow can introduce regressions that were not visible during early testing.",
+      "sourceQuestionPage": 165,
+      "sourceRationalePage": 169,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q101",
+      "chapterId": "ch4",
+      "sourceNumber": 101,
+      "prompt": "If two evaluators assign very different scores to the same output, what is the most likely issue?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Any score is acceptable because the output is inherently ambiguous."
+        },
+        {
+          "id": "B",
+          "text": "One evaluator is necessarily wrong and should be removed."
+        },
+        {
+          "id": "C",
+          "text": "The rubric needs calibration or clearer wording."
+        },
+        {
+          "id": "D",
+          "text": "Reliable evaluation of AI outputs is impossible."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "Large scoring differences usually point to ambiguity in the rubric or in the task definition. Calibration helps reviewers align their interpretation, so evaluation becomes more dependable.",
+      "sourceQuestionPage": 165,
+      "sourceRationalePage": 169,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q102",
+      "chapterId": "ch4",
+      "sourceNumber": 102,
+      "prompt": "What is the main purpose of a sandbox or staging environment for prompt-based systems?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "To prevent the model from generating unsafe responses entirely."
+        },
+        {
+          "id": "B",
+          "text": "To train the base model in a special safe mode."
+        },
+        {
+          "id": "C",
+          "text": "To make the model slower but more accurate."
+        },
+        {
+          "id": "D",
+          "text": "To test the workflow safely before production release."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "A sandbox or staging environment allows the workflow to be exercised safely before it affects live users or production processes. It supports learning and quality control without unnecessary operational exposure.",
+      "sourceQuestionPage": 165,
+      "sourceRationalePage": 169,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q103",
+      "chapterId": "ch4",
+      "sourceNumber": 103,
+      "prompt": "In evaluation, what is a baseline?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The maximum prompt length allowed by the system."
+        },
+        {
+          "id": "B",
+          "text": "A reference version used to judge whether changes improve results."
+        },
+        {
+          "id": "C",
+          "text": "The lowest possible rubric score."
+        },
+        {
+          "id": "D",
+          "text": "The hidden default system prompt."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "A baseline is the reference version against which future changes are compared. It helps the team judge whether a modification produced a real improvement, a trade-off, or a regression.",
+      "sourceQuestionPage": 165,
+      "sourceRationalePage": 169,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q104",
+      "chapterId": "ch4",
+      "sourceNumber": 104,
+      "prompt": "What is one sound way to measure the impact of a prompt change quantitatively?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Ask the model whether the new prompt is better."
+        },
+        {
+          "id": "B",
+          "text": "Rely on intuition after reading a few outputs."
+        },
+        {
+          "id": "C",
+          "text": "Compare metrics on the same test set before and after the change."
+        },
+        {
+          "id": "D",
+          "text": "Count only the tokens in the answer."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "A sound quantitative comparison uses the same test set before and after the change, then compares the relevant metrics. That makes the effect of the change easier to interpret credibly.",
+      "sourceQuestionPage": 165,
+      "sourceRationalePage": 169,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch4-q105",
+      "chapterId": "ch4",
+      "sourceNumber": 105,
+      "prompt": "Why is iterative testing still important after a workflow appears to be working well?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Mainly to keep the team occupied."
+        },
+        {
+          "id": "B",
+          "text": "Because no further evaluation is needed once early tests pass."
+        },
+        {
+          "id": "C",
+          "text": "Because all jurisdictions require continuous prompt testing."
+        },
+        {
+          "id": "D",
+          "text": "Because conditions change, and ongoing testing helps prevent regressions."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Even strong early results do not guarantee stability over time. Iterative testing remains important because conditions change, and continued evaluation helps catch regressions before they spread.",
+      "sourceQuestionPage": 166,
+      "sourceRationalePage": 169,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    }
+  ]
+}

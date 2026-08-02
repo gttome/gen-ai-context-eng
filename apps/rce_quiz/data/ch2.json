@@ -1,0 +1,490 @@
+{
+  "schemaVersion": "1.1.0",
+  "contentVersion": "2026-07-31",
+  "chapter": {
+    "id": "ch2",
+    "number": 2,
+    "title": "The Context Engineering Lifecycle",
+    "assessmentHeading": "Assessment: Chapter 2 Questions",
+    "sampleOnly": false,
+    "sourceQuestionPages": [
+      69,
+      71
+    ],
+    "sourceRationalePages": [
+      72,
+      73
+    ],
+    "sourceNumbering": "31–45",
+    "sourceQuestionCount": 15,
+    "availableQuestionCount": 15,
+    "blockedQuestionCount": 0
+  },
+  "questions": [
+    {
+      "id": "ch2-q31",
+      "chapterId": "ch2",
+      "sourceNumber": 31,
+      "prompt": "During the Selection phase of context engineering, what key constraint must you keep in mind when choosing information to include in the prompt?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The size of the model's original training dataset."
+        },
+        {
+          "id": "B",
+          "text": "The number of developers available to write prompts."
+        },
+        {
+          "id": "C",
+          "text": "The maximum number of tokens the model's context window can hold."
+        },
+        {
+          "id": "D",
+          "text": "The CPU usage of the server running the model."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "Selection is constrained by the context window. Because only a limited number of tokens can fit reliably, the team must decide which information is most important to include and which information should be trimmed, summarized, or excluded.",
+      "sourceQuestionPage": 69,
+      "sourceRationalePage": 72,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q32",
+      "chapterId": "ch2",
+      "sourceNumber": 32,
+      "prompt": "What is the main activity in the Discovery phase of the context engineering process?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Deploying the context in production."
+        },
+        {
+          "id": "B",
+          "text": "Writing the final prompt template immediately."
+        },
+        {
+          "id": "C",
+          "text": "Gathering every possible piece of data without filtering it."
+        },
+        {
+          "id": "D",
+          "text": "Identifying the problem, the user needs, and what success should look like."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Discovery is about understanding the task before prompt refinement begins. The team defines the problem, the intended users, the constraints, and what a successful answer should look like. It is not a deployment activity, and it should not begin by collecting everything blindly.",
+      "sourceQuestionPage": 69,
+      "sourceRationalePage": 72,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q33",
+      "chapterId": "ch2",
+      "sourceNumber": 33,
+      "prompt": "What does the Selection step involve in an end-to-end context engineering workflow?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Selecting random data to stress-test the model."
+        },
+        {
+          "id": "B",
+          "text": "Selecting which LLM architecture to use."
+        },
+        {
+          "id": "C",
+          "text": "Choosing the most relevant pieces of information from the available data."
+        },
+        {
+          "id": "D",
+          "text": "Picking the best output after the model has already answered."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "Selection is the act of choosing the most relevant information from all available material. It is about context content, not about choosing the model architecture or reviewing outputs after the fact.",
+      "sourceQuestionPage": 69,
+      "sourceRationalePage": 72,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q34",
+      "chapterId": "ch2",
+      "sourceNumber": 34,
+      "prompt": "In the context engineering process, what is meant by 'shaping' the context?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Structuring and formatting the chosen information into a coherent prompt template or layout."
+        },
+        {
+          "id": "B",
+          "text": "Changing the physical shape of the server rack for better performance."
+        },
+        {
+          "id": "C",
+          "text": "Fine-tuning the model's weights, so it uses the context more effectively."
+        },
+        {
+          "id": "D",
+          "text": "Deciding whether the output should be a chart, a list, or a table after the answer is generated."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Shaping means organizing the chosen material into a prompt structure the model can follow. It includes section order, labels, constraints, and output expectations. It is not hardware tuning or model training.",
+      "sourceQuestionPage": 69,
+      "sourceRationalePage": 72,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q35",
+      "chapterId": "ch2",
+      "sourceNumber": 35,
+      "prompt": "At which stage do you run the model with the assembled context to see the results?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Execution."
+        },
+        {
+          "id": "B",
+          "text": "Discovery."
+        },
+        {
+          "id": "C",
+          "text": "Shaping."
+        },
+        {
+          "id": "D",
+          "text": "Iteration."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Execution is the phase where the assembled context is run through the model so the team can observe real outputs. Discovery, Shaping, and Iteration support this phase but do not replace it.",
+      "sourceQuestionPage": 69,
+      "sourceRationalePage": 72,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q36",
+      "chapterId": "ch2",
+      "sourceNumber": 36,
+      "prompt": "What is the primary focus during the Evaluation phase of the context engineering lifecycle?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Letting the model evaluate itself with no explicit criteria."
+        },
+        {
+          "id": "B",
+          "text": "Retrieving more data for the prompt."
+        },
+        {
+          "id": "C",
+          "text": "Optimizing the server infrastructure."
+        },
+        {
+          "id": "D",
+          "text": "Assessing the model's outputs against defined success criteria or a rubric."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Evaluation compares outputs against explicit success criteria. The team uses a rubric or similar standard to decide whether the current design is accurate, complete, compliant, and usable enough for the task.",
+      "sourceQuestionPage": 70,
+      "sourceRationalePage": 72,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q37",
+      "chapterId": "ch2",
+      "sourceNumber": 37,
+      "prompt": "Why is Iteration an essential part of context engineering?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Because the model must be retrained from scratch each time."
+        },
+        {
+          "id": "B",
+          "text": "Because outputs improve only after a fixed number of attempts."
+        },
+        {
+          "id": "C",
+          "text": "Because initial prompt and context designs usually need refinement based on evidence."
+        },
+        {
+          "id": "D",
+          "text": "Because the first prompt almost always works perfectly."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "Iteration is essential because first designs are rarely perfect. Strong context engineering improves through evidence-based refinement rather than through the assumption that one prompt will solve every case immediately.",
+      "sourceQuestionPage": 70,
+      "sourceRationalePage": 72,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q38",
+      "chapterId": "ch2",
+      "sourceNumber": 38,
+      "prompt": "What does Deployment involve in the context engineering process?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Removing the context and letting the model answer freely."
+        },
+        {
+          "id": "B",
+          "text": "Brainstorming possible prompt ideas."
+        },
+        {
+          "id": "C",
+          "text": "Running the model only on a personal laptop."
+        },
+        {
+          "id": "D",
+          "text": "Integrating the finalized context method into a real workflow or production system."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Deployment means taking the refined context method and integrating it into a real workflow or production environment. It includes operational use, handoff, and the beginning of monitoring and maintenance responsibilities.",
+      "sourceQuestionPage": 70,
+      "sourceRationalePage": 72,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q39",
+      "chapterId": "ch2",
+      "sourceNumber": 39,
+      "prompt": "Which sequence correctly represents the typical order of stages in context engineering?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Discovery -> Selection -> Shaping -> Execution -> Evaluation -> Iteration -> Deployment."
+        },
+        {
+          "id": "B",
+          "text": "Selection -> Discovery -> Execution -> Shaping -> Deployment -> Evaluation."
+        },
+        {
+          "id": "C",
+          "text": "Execution -> Evaluation -> Discovery -> Iteration -> Shaping -> Deployment."
+        },
+        {
+          "id": "D",
+          "text": "Discovery -> Execution -> Iteration -> Selection -> Evaluation -> Deployment."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "The typical lifecycle starts with Discovery, then moves through Selection, Shaping, Execution, Evaluation, Iteration, and finally Deployment. This order reflects how tasks are defined, tested, improved, and operationalized.",
+      "sourceQuestionPage": 70,
+      "sourceRationalePage": 72,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q40",
+      "chapterId": "ch2",
+      "sourceNumber": 40,
+      "prompt": "What is a typical outcome of the Evaluation phase in context engineering?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The final code used to deploy the model."
+        },
+        {
+          "id": "B",
+          "text": "A recommendation about whether the current design is acceptable or needs more work."
+        },
+        {
+          "id": "C",
+          "text": "The raw transcript of the model's training data."
+        },
+        {
+          "id": "D",
+          "text": "Automatic improvement of accuracy without any design changes."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Evaluation produces judgment and direction. It tells the team whether the current design is good enough, what its major weaknesses are, and whether the best next move is deployment, limited pilot use, or further iteration.",
+      "sourceQuestionPage": 70,
+      "sourceRationalePage": 73,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q41",
+      "chapterId": "ch2",
+      "sourceNumber": 41,
+      "prompt": "After evaluating the results of a context-engineered prompt and finding they are not satisfactory, what is the next recommended step?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Refine the context or prompt to target the identified issues, then test again."
+        },
+        {
+          "id": "B",
+          "text": "Switch to a different model immediately without further analysis."
+        },
+        {
+          "id": "C",
+          "text": "Abandon context engineering and accept the weak results."
+        },
+        {
+          "id": "D",
+          "text": "Deploy the current version and hope users do not notice."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "When results are weak, the recommended response is to refine the design in a targeted way and test again. Switching models or deploying prematurely skips the disciplined learning that makes context engineering effective.",
+      "sourceQuestionPage": 70,
+      "sourceRationalePage": 73,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q42",
+      "chapterId": "ch2",
+      "sourceNumber": 42,
+      "prompt": "What important question is addressed during the Discovery phase before you ever write a prompt?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "What exactly are we trying to achieve?"
+        },
+        {
+          "id": "B",
+          "text": "Which cloud provider will we use for deployment?"
+        },
+        {
+          "id": "C",
+          "text": "How many tokens does the model use per second?"
+        },
+        {
+          "id": "D",
+          "text": "What color should the user interface be?"
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Discovery begins by clarifying the intended outcome. Before anyone writes a prompt, the team should be able to answer the question, 'What exactly are we trying to achieve here?'",
+      "sourceQuestionPage": 71,
+      "sourceRationalePage": 73,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q43",
+      "chapterId": "ch2",
+      "sourceNumber": 43,
+      "prompt": "During Iteration, if you discover that the model's answer is missing a key detail that was expected, what should you adjust in the context?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Remove all other information so only that detail remains."
+        },
+        {
+          "id": "B",
+          "text": "Increase the model's random seed."
+        },
+        {
+          "id": "C",
+          "text": "Add or emphasize the missing relevant information, so the model is more likely to use it."
+        },
+        {
+          "id": "D",
+          "text": "Do nothing and assume the detail will appear next time."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "If a key detail is missing, the context should be adjusted so that the relevant information is present, clearer, or given more importance. Hoping the detail appears on its own is not a reliable strategy.",
+      "sourceQuestionPage": 71,
+      "sourceRationalePage": 73,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q44",
+      "chapterId": "ch2",
+      "sourceNumber": 44,
+      "prompt": "Why is it important to set clear success criteria, or a rubric, during the Discovery phase?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "It is not important because the team can rely on instinct later."
+        },
+        {
+          "id": "B",
+          "text": "It increases the model's token limit."
+        },
+        {
+          "id": "C",
+          "text": "It guarantees that the first attempt will be perfect."
+        },
+        {
+          "id": "D",
+          "text": "It provides a concrete basis for evaluating outputs later."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "A rubric creates a concrete basis for later evaluation. Without clear criteria, teams are forced to judge outputs by impression, which makes improvement inconsistent and difficult to explain.",
+      "sourceQuestionPage": 71,
+      "sourceRationalePage": 73,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch2-q45",
+      "chapterId": "ch2",
+      "sourceNumber": 45,
+      "prompt": "Once you deploy a context-engineered solution, why should you still monitor and occasionally update the prompt or context design?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "There is no need; if it worked at launch it will work forever."
+        },
+        {
+          "id": "B",
+          "text": "Because real-world use may introduce new query types, source changes, or model behavior shifts."
+        },
+        {
+          "id": "C",
+          "text": "Only to make the system sound more entertaining over time."
+        },
+        {
+          "id": "D",
+          "text": "To lower cost by randomly removing context elements without measuring quality."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Deployment is not the end of the lifecycle because real use changes the environment. New questions, updated sources, and model-provider changes can all affect performance, so monitoring and occasional revision remain necessary.",
+      "sourceQuestionPage": 71,
+      "sourceRationalePage": 73,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    }
+  ]
+}

@@ -1,0 +1,955 @@
+{
+  "schemaVersion": "1.1.0",
+  "contentVersion": "2026.08-r2",
+  "chapter": {
+    "id": "ch1",
+    "number": 1,
+    "title": "Foundations of Context Engineering",
+    "assessmentHeading": "Chapter 1 Questions",
+    "sampleOnly": false,
+    "sourceQuestionPages": [
+      33,
+      37
+    ],
+    "sourceRationalePages": [
+      38,
+      42
+    ],
+    "sourceNumbering": "1–30",
+    "sourceQuestionCount": 30,
+    "availableQuestionCount": 30,
+    "blockedQuestionCount": 0
+  },
+  "questions": [
+    {
+      "id": "ch1-q01",
+      "chapterId": "ch1",
+      "sourceNumber": 1,
+      "prompt": "What is context engineering in generative AI?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "A method for fine-tuning a language model by updating its internal weights with new data."
+        },
+        {
+          "id": "B",
+          "text": "The practice of designing systems to assemble the optimal information an AI model sees before it responds."
+        },
+        {
+          "id": "C",
+          "text": "A way to compress a model so it can run on devices with low memory."
+        },
+        {
+          "id": "D",
+          "text": "A training technique that uses reinforcement learning on model outputs, as an approach."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Context engineering is about deciding and providing what information goes into the model’s context window to achieve the desired output. It’s not about changing model weights (fine-tuning) or compressing the model; rather, it focuses on dynamically curating input content.",
+      "sourceQuestionPage": 33,
+      "sourceRationalePage": 38,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q02",
+      "chapterId": "ch1",
+      "sourceNumber": 2,
+      "prompt": "What is the primary goal of context engineering when applied to large language models?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "To reduce the size of the model needed for a task in the given scenario."
+        },
+        {
+          "id": "B",
+          "text": "To maximize output relevance and quality by providing structured, task-specific context to the model."
+        },
+        {
+          "id": "C",
+          "text": "To enable the model to train itself during conversations in the given scenario."
+        },
+        {
+          "id": "D",
+          "text": "To increase the length of responses regardless of content in the given scenario."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "The main goal of context engineering is to improve output quality and reliability by giving the model optimal input context. This means the model gets all the needed info (and no distracting noise), leading to more relevant, accurate responses. It’s not about model size or purely lengthening answers.",
+      "sourceQuestionPage": 33,
+      "sourceRationalePage": 38,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q03",
+      "chapterId": "ch1",
+      "sourceNumber": 3,
+      "prompt": "Which statement best distinguishes context engineering from prompt engineering?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Prompt engineering is done for text models, while context engineering is only for image generation models in this context."
+        },
+        {
+          "id": "B",
+          "text": "Prompt engineering focuses on crafting a single prompt instruction, while context engineering designs the broader input package."
+        },
+        {
+          "id": "C",
+          "text": "They are the same; “context engineering” is just a new term for prompt engineering in this context."
+        },
+        {
+          "id": "D",
+          "text": "Prompt engineering requires programming skills, but context engineering does not in this context."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "Prompt engineering typically means writing effective prompts (often a one-off instruction), while context engineering is broader – it’s the “art and science of curating the optimal set of tokens/information” in the model’s input, including system roles, background info, examples, etc. Context engineering builds on prompt engineering with a more system-level approach. (It’s not limited to images, and both require similar skills.)",
+      "sourceQuestionPage": 33,
+      "sourceRationalePage": 38,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q04",
+      "chapterId": "ch1",
+      "sourceNumber": 4,
+      "prompt": "Why has context engineering become increasingly important in modern LLM applications?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Because newer models have no ability to follow prompts at all in this context."
+        },
+        {
+          "id": "B",
+          "text": "Because many real-world tasks require supplying models with dynamic, context-specific information."
+        },
+        {
+          "id": "C",
+          "text": "Because prompt engineering no longer works after 2022 in this context."
+        },
+        {
+          "id": "D",
+          "text": "Because context engineering is mandated by law for AI systems in this context."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "In complex applications (like chatbots that need memory or tools), simple one-shot prompts were insufficient. Context engineering emerged to fill the gap by providing models with additional context (history, knowledge, tools) needed for high-quality results. It’s driven by practical needs of real-world systems, not because prompt engineering “stopped working” or legal mandates.",
+      "sourceQuestionPage": 33,
+      "sourceRationalePage": 38,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q05",
+      "chapterId": "ch1",
+      "sourceNumber": 5,
+      "prompt": "In context engineering, the model’s context window is treated as:",
+      "choices": [
+        {
+          "id": "A",
+          "text": "An unimportant factor since models have infinite memory, as an approach."
+        },
+        {
+          "id": "B",
+          "text": "A dynamic workspace with finite capacity for this question, in this context."
+        },
+        {
+          "id": "C",
+          "text": "A static cache that automatically stores all conversation history, as an approach."
+        },
+        {
+          "id": "D",
+          "text": "A secondary input that the model usually ignores, as an approach."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "The context window (the token limit for input) is finite and valuable – context engineers treat it as a limited working memory to curate carefully. It’s not infinite, nor automatic; irrelevant info must be excluded so the window contains only useful content.",
+      "sourceQuestionPage": 33,
+      "sourceRationalePage": 38,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q06",
+      "chapterId": "ch1",
+      "sourceNumber": 6,
+      "prompt": "Which scenario below best illustrates the need for context engineering rather than just basic prompt engineering?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Asking a language model to translate a single sentence from English to French in this context."
+        },
+        {
+          "id": "B",
+          "text": "A customer service chatbot that needs to remember past conversation turns, access customer account data, and follow official policies."
+        },
+        {
+          "id": "C",
+          "text": "Using an LLM to generate a creative poem with a one-sentence prompt in this context."
+        },
+        {
+          "id": "D",
+          "text": "Fine-tuning a model on a new dataset of legal contracts in this context."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "The customer service chatbot scenario involves multi-turn memory, external data retrieval, and adherence to policies – a complex setup where context engineering (combining conversation history, user data, and docs in the prompt) is essential. The other cases (translation, a single creative prompt) can be handled with a simple prompt; fine-tuning is a different approach entirely.",
+      "sourceQuestionPage": 33,
+      "sourceRationalePage": 38,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q07",
+      "chapterId": "ch1",
+      "sourceNumber": 7,
+      "prompt": "The phrase “the quality of the output is fundamentally limited by the quality of the input” in the context of LLMs implies:",
+      "choices": [
+        {
+          "id": "A",
+          "text": "If you provide a well-crafted, context-rich prompt, you are more likely to get a high-quality response."
+        },
+        {
+          "id": "B",
+          "text": "Model size and training data are irrelevant as long as the prompt is good in this context."
+        },
+        {
+          "id": "C",
+          "text": "The output will always be a mirror copy of the input text in this context."
+        },
+        {
+          "id": "D",
+          "text": "Typos in the input are the only factor that degrade output quality in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "This statement highlights that better input (clear instructions, relevant context) leads to better output. A poorly designed prompt or missing context yields subpar answers. It doesn’t mean model size or data never matter, but it emphasizes input quality. The model doesn’t just copy input, but it can only work with what it’s given.",
+      "sourceQuestionPage": 34,
+      "sourceRationalePage": 38,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q08",
+      "chapterId": "ch1",
+      "sourceNumber": 8,
+      "prompt": "Context engineering can be described as the “art and science of curating what will go into the limited context window for an LLM.” What does this entail in practice?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Optimizing which pieces of information to include in the prompt, so the model is most likely to produce a relevant, accurate response."
+        },
+        {
+          "id": "B",
+          "text": "Expanding the model’s context window through hardware upgrades in this context."
+        },
+        {
+          "id": "C",
+          "text": "Automatically fine-tuning the model on the context just before inference in this context."
+        },
+        {
+          "id": "D",
+          "text": "Letting the model freely choose any data from its training without guidance in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Context engineering involves carefully selecting and assembling the information fed to the model for each query. It’s about token-level curation under context length constraints. It doesn’t expand the window (that’s fixed by the model) nor fine-tune weights on the fly; and it’s the engineer/system choosing what data to present, not leaving it entirely to the model.",
+      "sourceQuestionPage": 34,
+      "sourceRationalePage": 39,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q09",
+      "chapterId": "ch1",
+      "sourceNumber": 9,
+      "prompt": "What is one direct benefit of effective context engineering for AI outputs?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The AI’s responses become more consistent and accurate for this use case."
+        },
+        {
+          "id": "B",
+          "text": "The AI no longer requires any prompts from the user at all."
+        },
+        {
+          "id": "C",
+          "text": "The model’s internal architecture is simplified in this context."
+        },
+        {
+          "id": "D",
+          "text": "The context window size increases automatically over time in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "When context is engineered well (right info, right format), the model’s answers tend to be more on-point – they use the provided context to be accurate, and they follow instructions for consistency. Good context won’t change the model’s architecture or automatically expand its memory; it just makes the best use of what’s there. Users will notice better, more reliable answers.",
+      "sourceQuestionPage": 34,
+      "sourceRationalePage": 39,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q10",
+      "chapterId": "ch1",
+      "sourceNumber": 10,
+      "prompt": "The term “context size” (or context window) in language models refers to:",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The number of words the model was trained on in this context."
+        },
+        {
+          "id": "B",
+          "text": "The maximum number of tokens the model can take as input."
+        },
+        {
+          "id": "C",
+          "text": "The length of the model’s output in characters in this context."
+        },
+        {
+          "id": "D",
+          "text": "The number of parameters (layers) in the model’s architecture in this context."
+        }
+      ],
+      "correctChoiceId": "B",
+      "officialRationale": "The context window is how many tokens (sub-word units) the model can condition on for a single inference – essentially the limit of input text length (plus any conversation history included). It is not about training corpus size, output length, or model parameters.",
+      "sourceQuestionPage": 34,
+      "sourceRationalePage": 39,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q11",
+      "chapterId": "ch1",
+      "sourceNumber": 11,
+      "prompt": "What can happen if you try to include too much information in an LLM’s prompt context (exceeding or nearing its capacity)?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The model may lose focus or become confused by the large context in this scenario."
+        },
+        {
+          "id": "B",
+          "text": "The model will process everything perfectly with linear improvement in accuracy in this context."
+        },
+        {
+          "id": "C",
+          "text": "The model will refuse to answer if the prompt is too long in this context."
+        },
+        {
+          "id": "D",
+          "text": "The extra information beyond the limit is automatically stored and used later in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Overloading the prompt can lead to context distraction: the model might start focusing on irrelevant or earlier parts of the huge prompt, harming performance. Studies show models often degrade in correctness well before hitting the absolute token limit. They typically won’t refuse unless the limit is exceeded, and anything past the token limit is dropped (not stored for later).",
+      "sourceQuestionPage": 34,
+      "sourceRationalePage": 39,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q12",
+      "chapterId": "ch1",
+      "sourceNumber": 12,
+      "prompt": "The context engineering process is often described as iterative. What does this mean in practice?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "You may need to go through multiple cycles of refining the context and retesting."
+        },
+        {
+          "id": "B",
+          "text": "The first prompt you write will work for all use cases without changes in this context."
+        },
+        {
+          "id": "C",
+          "text": "Contexts are generated randomly each time to see which works in this context."
+        },
+        {
+          "id": "D",
+          "text": "Once a context is set, it never needs to be revisited in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "It means you refine the prompt through repeated trials: design → test → evaluate → adjust, and loop until performance is satisfactory. It’s not “one and done.” In contrast, believing an initial prompt will be universally perfect or never updated is unrealistic – iteration is expected to handle shortcomings.",
+      "sourceQuestionPage": 34,
+      "sourceRationalePage": 39,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q13",
+      "chapterId": "ch1",
+      "sourceNumber": 13,
+      "prompt": "Which of these situations is a clear sign that moving from basic prompt engineering to more sophisticated context engineering is needed for a project?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The language model outputs are very generic or incomplete when given a simple prompt."
+        },
+        {
+          "id": "B",
+          "text": "The model produces correct answers instantly with one sentence prompts in this context."
+        },
+        {
+          "id": "C",
+          "text": "The user only asks extremely simple factual questions answerable from general knowledge in this context."
+        },
+        {
+          "id": "D",
+          "text": "The problem can be solved by a deterministic algorithm instead of AI in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "If simple prompts yield generic or inadequate answers – especially when the info exists but the model wasn’t given it (e.g., internal docs not in training data) – that indicates the need for context engineering (providing those docs, examples, etc.). In cases where simple prompts already work or the questions are trivial, context engineering might be overkill. And if a problem doesn’t even require AI (D), that’s outside prompt engineering scope entirely.",
+      "sourceQuestionPage": 34,
+      "sourceRationalePage": 39,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q14",
+      "chapterId": "ch1",
+      "sourceNumber": 14,
+      "prompt": "In enterprise AI development, context engineering helps ensure that AI outputs:",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Contain as much raw data as possible, regardless of relevance in this context."
+        },
+        {
+          "id": "B",
+          "text": "Never require model updates or maintenance in this context."
+        },
+        {
+          "id": "C",
+          "text": "Are generated using zero tokens in this context."
+        },
+        {
+          "id": "D",
+          "text": "Are tailored to the enterprise’s data and policies."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Context engineering allows integration of enterprise-specific knowledge (data, jargon) and compliance rules into the prompt, so outputs are on-topic and on-policy for the business. This means answers adhere to company guidelines and use internal info appropriately. It doesn’t remove the need for model maintenance or magically eliminate token usage – and including irrelevant raw data (D) is contrary to best practices.",
+      "sourceQuestionPage": 35,
+      "sourceRationalePage": 39,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q15",
+      "chapterId": "ch1",
+      "sourceNumber": 15,
+      "prompt": "What realization often leads a team to invest more effort in context engineering for their LLM application?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "That the quality of the model’s output is limited by the quality and completeness of its input."
+        },
+        {
+          "id": "B",
+          "text": "That bigger models are always worse than smaller ones in this context."
+        },
+        {
+          "id": "C",
+          "text": "That once a prompt is written, it cannot be improved further in this context."
+        },
+        {
+          "id": "D",
+          "text": "That context engineering can replace all other forms of model improvement in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Teams usually turn to advanced context strategies when they see that better input (more context, clearer instructions) yields better output, and that their initial simple prompts aren’t meeting the requirement. They recognize the output issues (missing info, errors) are due to insufficient or poorly-structured input. While context engineering is powerful, it doesn’t replace the need for good models or other improvements when those are the bottleneck.",
+      "sourceQuestionPage": 35,
+      "sourceRationalePage": 40,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q16",
+      "chapterId": "ch1",
+      "sourceNumber": 16,
+      "prompt": "Which of the following is typically included in the system or role prompt of an AI’s context?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "A set of instructions defining the AI’s persona, abilities, tone, and boundaries."
+        },
+        {
+          "id": "B",
+          "text": "The user’s exact query repeated twice for emphasis in this context."
+        },
+        {
+          "id": "C",
+          "text": "The model’s internal weight values in this context."
+        },
+        {
+          "id": "D",
+          "text": "Irrelevant jokes to “lighten the mood.” in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "The system or role prompt contains the high-level instructions for the AI – who it is (“You are a helpful assistant…”), what it can/can’t do, the tone to maintain, etc. It’s essentially the persona and policy. It wouldn’t include the model’s weights (not accessible), nor should it include irrelevant content like random jokes (which could confuse the model’s tone unless humor is intended).",
+      "sourceQuestionPage": 35,
+      "sourceRationalePage": 40,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q17",
+      "chapterId": "ch1",
+      "sourceNumber": 17,
+      "prompt": "What is the role of the user query component in an LLM’s context?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "It stores the conversation history in this setting."
+        },
+        {
+          "id": "B",
+          "text": "It defines the AI’s identity and rules in this setting."
+        },
+        {
+          "id": "C",
+          "text": "It tells the model exactly what task or question to address."
+        },
+        {
+          "id": "D",
+          "text": "It formats the output in this setting."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "The user query (or user message) is the prompt or question from the user that the model must respond to. It’s the immediate task request. (System instructions define identity/rules; conversation history is separate memory; output formatting is guided by other instructions or schema, not by the query itself.)",
+      "sourceQuestionPage": 35,
+      "sourceRationalePage": 40,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q18",
+      "chapterId": "ch1",
+      "sourceNumber": 18,
+      "prompt": "Why might you include background information or a knowledge snippet in the context for a question-answering task?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "To provide the model with domain-specific facts or reference data so it can produce a more accurate answer."
+        },
+        {
+          "id": "B",
+          "text": "To increase the token count as much as possible in the given scenario."
+        },
+        {
+          "id": "C",
+          "text": "To confuse the model intentionally so it doesn’t rely on training data in the given scenario."
+        },
+        {
+          "id": "D",
+          "text": "There is no reason to include background info; the model’s training data is always enough in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Adding relevant background (like a snippet from documentation or an article) grounds the model’s answer in real data. It’s especially important if the question is about something the model might not know from training (e.g., internal or up-to-date info). The goal is to improve accuracy, not to pad token count or confuse. Often, providing such context prevents hallucinations and yields precise answers.",
+      "sourceQuestionPage": 35,
+      "sourceRationalePage": 40,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q19",
+      "chapterId": "ch1",
+      "sourceNumber": 19,
+      "prompt": "In a chatbot, what is the purpose of including conversation history (memory) in the prompt context?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "To maintain continuity so the AI remembers what has been said previously and can respond coherently."
+        },
+        {
+          "id": "B",
+          "text": "To reduce the model’s response time by giving it more text to process in the given scenario."
+        },
+        {
+          "id": "C",
+          "text": "To reset the model’s knowledge every turn in the given scenario."
+        },
+        {
+          "id": "D",
+          "text": "It’s not needed; chatbots don’t require previous messages in this setting."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Conversation history ensures the model has memory of the prior dialogue, so it can understand references (“as I mentioned earlier…”) and keep the conversation coherent. Without it, the AI would treat every user message in isolation. It does the opposite of resetting knowledge – it preserves relevant context across turns. (It does add processing, but the reason is continuity, not speed.)",
+      "sourceQuestionPage": 35,
+      "sourceRationalePage": 40,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q20",
+      "chapterId": "ch1",
+      "sourceNumber": 20,
+      "prompt": "How are user profile or preference data used as part of an AI’s context?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "They are usually ignored by the model if included in this context."
+        },
+        {
+          "id": "B",
+          "text": "To train the model’s weights on the fly for each user in the given scenario."
+        },
+        {
+          "id": "C",
+          "text": "To override the system instructions entirely in the given scenario."
+        },
+        {
+          "id": "D",
+          "text": "To personalize responses by providing information about the user in this setting."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "User profile data (like “User is a premium subscriber” or “User’s preferred language is Spanish”) lets the AI tailor its response. For example, it may give more detailed answers to a premium user or respond in Spanish if that’s the preference. It’s static info included in context; it doesn’t change model weights. The model will use it if it’s relevant and properly referenced (not ignored if presented clearly).",
+      "sourceQuestionPage": 35,
+      "sourceRationalePage": 40,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q21",
+      "chapterId": "ch1",
+      "sourceNumber": 21,
+      "prompt": "What does a tool definition in an LLM prompt refer to?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "A description within the prompt of an external function or API the model can use."
+        },
+        {
+          "id": "B",
+          "text": "A special token that automatically expands the context window, as an approach."
+        },
+        {
+          "id": "C",
+          "text": "A piece of hardware attached to the server, as an approach."
+        },
+        {
+          "id": "D",
+          "text": "The definition of a programming tool used to train the model in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "In advanced prompts (like with AI agents), you can include definitions of tools (e.g., “Search(query): searches the database for query…”) so the model knows it has that capability. This allows the model to output an action like using the tool when needed. It’s not hardware or a training artifact; it’s part of prompt engineering to extend model functionality.",
+      "sourceQuestionPage": 36,
+      "sourceRationalePage": 40,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q22",
+      "chapterId": "ch1",
+      "sourceNumber": 22,
+      "prompt": "Why include instructions about output format or schema in the context?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "To ensure the model’s response follows a specific format, making it easier to use the output."
+        },
+        {
+          "id": "B",
+          "text": "To make the model’s answer longer than necessary in the given scenario."
+        },
+        {
+          "id": "C",
+          "text": "To give the model another thing to potentially ignore in the given scenario."
+        },
+        {
+          "id": "D",
+          "text": "Models always output in perfect format without any guidance, so it’s not needed in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "Specifying an output format (or providing a schema) guides the model to present its answer in a structured way. For example, telling the model “Respond in JSON with fields X, Y, Z” helps if a downstream system will parse the output. It improves consistency and utility of results. Models do not inherently know the desired format unless told, so it is needed for reliability.",
+      "sourceQuestionPage": 36,
+      "sourceRationalePage": 41,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q23",
+      "chapterId": "ch1",
+      "sourceNumber": 23,
+      "prompt": "What is the purpose of including example Q&A pairs (few-shot examples) in a prompt context?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "To confuse the model by giving it more text in the given scenario."
+        },
+        {
+          "id": "B",
+          "text": "To train the model during inference in the given scenario."
+        },
+        {
+          "id": "C",
+          "text": "To demonstrate the desired style or pattern of responses by providing the model with examples."
+        },
+        {
+          "id": "D",
+          "text": "To fill up space if the prompt is too short in the given scenario."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "Few-shot examples show the model how it should respond by example. For instance, giving a couple of worked examples can significantly improve performance on similar queries by letting the model infer the pattern. It’s not exactly “training” (no weight updates), but it steers the model’s next output. The intent is guidance, not confusion or token padding – it provides concrete reference behavior.",
+      "sourceQuestionPage": 36,
+      "sourceRationalePage": 41,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q24",
+      "chapterId": "ch1",
+      "sourceNumber": 24,
+      "prompt": "What are constraints or rules in an LLM prompt, and why include them?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "There’s no way to enforce rules in a prompt in this context."
+        },
+        {
+          "id": "B",
+          "text": "They double the context window size in this context."
+        },
+        {
+          "id": "C",
+          "text": "They are hidden model settings unrelated to prompts in this context."
+        },
+        {
+          "id": "D",
+          "text": "They are explicit rules the model must follow to help ensure the output meets specified requirements or policies."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Constraints in the prompt are like guardrails: they tell the model about limitations (e.g., “Don’t use profanity”, “Answer in at most 3 sentences”). Including them helps ensure outputs adhere to certain requirements or policies. Well-crafted constraints can significantly reduce undesirable outputs. They don’t affect context window size per se – they just consume some tokens – and they are indeed a viable way to enforce rules (though not 100% foolproof, they guide the model).",
+      "sourceQuestionPage": 36,
+      "sourceRationalePage": 41,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q25",
+      "chapterId": "ch1",
+      "sourceNumber": 25,
+      "prompt": "Which of the following is NOT a typical component of a context-engineered prompt for a chatbot?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The conversation’s recent history in this context."
+        },
+        {
+          "id": "B",
+          "text": "The AI system’s role or persona description."
+        },
+        {
+          "id": "C",
+          "text": "The large language model’s underlying parameter values."
+        },
+        {
+          "id": "D",
+          "text": "Relevant documents or data retrieved to help answer a query."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "The model’s internal parameter values (weights, biases) are not part of the prompt context – they’re internal to the model and not provided as input. All other options (history, system persona, retrieved knowledge) are common context components used to help the model generate a correct and context-aware response.",
+      "sourceQuestionPage": 36,
+      "sourceRationalePage": 41,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q26",
+      "chapterId": "ch1",
+      "sourceNumber": 26,
+      "prompt": "In a retrieval-augmented generation (RAG) setup, which context component is dynamically fetched for each query?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Relevant textual data related to the user’s query."
+        },
+        {
+          "id": "B",
+          "text": "The entire training dataset of the model in this context."
+        },
+        {
+          "id": "C",
+          "text": "A random user’s personal information, as an approach."
+        },
+        {
+          "id": "D",
+          "text": "The model’s next token prediction probability in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "RAG systems will search a knowledge source (like a vector database or search index) using the query and retrieve the most relevant pieces of text. These retrieved snippets are then included in the prompt as context. The training set isn’t fetched (it’s static); personal info isn’t fetched unless specifically part of the query and allowed; and token probabilities are an output of the model, not a fetched context.",
+      "sourceQuestionPage": 36,
+      "sourceRationalePage": 41,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q27",
+      "chapterId": "ch1",
+      "sourceNumber": 27,
+      "prompt": "How do memory mechanisms enhance context for extended conversations with an AI?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "By finetuning the model after each user turn in this context."
+        },
+        {
+          "id": "B",
+          "text": "By expanding the model’s architecture to include more neurons in this context."
+        },
+        {
+          "id": "C",
+          "text": "By summarizing or storing important information from earlier in the conversation so the AI can maintain continuity."
+        },
+        {
+          "id": "D",
+          "text": "By preventing the model from referencing any previous conversation at all in this context."
+        }
+      ],
+      "correctChoiceId": "C",
+      "officialRationale": "Memory systems (like summarization of chat history or vector-store memory) help carry forward essential context from earlier in the dialogue without resending everything verbatim. This lets the conversation continue coherently even if it’s too long for full history. It doesn’t involve changing the model’s architecture or weights each turn; it’s about how context is managed and re-supplied. (And definitely not about ignoring previous conversation – quite the opposite.)",
+      "sourceQuestionPage": 36,
+      "sourceRationalePage": 41,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q28",
+      "chapterId": "ch1",
+      "sourceNumber": 28,
+      "prompt": "What context component would you use to give an LLM awareness of the current date/time or other real-time data, if needed for its task?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Explicitly include a snippet of text stating the current date, time, or relevant real-time data."
+        },
+        {
+          "id": "B",
+          "text": "The model’s training data (it won’t know current time from training) in this context."
+        },
+        {
+          "id": "C",
+          "text": "The system role (which doesn’t typically cover dynamic data) in this context."
+        },
+        {
+          "id": "D",
+          "text": "You cannot provide any real-time data to the model in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "The only way an LLM knows the current date or other real-time info (like stock prices, weather) is if you tell it as part of the context, since its training data is static. For example, you might add to the prompt: “Today’s date is 2026-02-06” or feed an API result (“Current temperature: 5°C”). The system role is more for behavior, not meant for dynamic values, and by default models have no built-in sense of current time.",
+      "sourceQuestionPage": 37,
+      "sourceRationalePage": 42,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q29",
+      "chapterId": "ch1",
+      "sourceNumber": 29,
+      "prompt": "Why is it beneficial to explicitly define the AI’s role/persona in the system prompt (e.g., “You are a financial advisor bot…”) rather than leaving it unspecified?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "It’s only beneficial for rule-based (non-ML) systems in this setting."
+        },
+        {
+          "id": "B",
+          "text": "It increases the likelihood of the model refusing to answer in this setting."
+        },
+        {
+          "id": "C",
+          "text": "Models ignore persona instructions, so it’s not beneficial in this context."
+        },
+        {
+          "id": "D",
+          "text": "It sets clear expectations for style and tone in this context."
+        }
+      ],
+      "correctChoiceId": "D",
+      "officialRationale": "Defining a role (like financial advisor, customer support agent, medical expert etc.) gives the model context on how to behave – what kind of language to use, what knowledge to apply, what not to do (maybe a doctor bot doesn’t give legal advice, etc.). This often makes outputs more relevant and credible to that domain. It doesn’t inherently cause refusals (unless persona conflicts with query), and modern LLMs do pay attention to persona instructions. It’s beneficial for ML models to steer their behavior appropriately.",
+      "sourceQuestionPage": 37,
+      "sourceRationalePage": 42,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    },
+    {
+      "id": "ch1-q30",
+      "chapterId": "ch1",
+      "sourceNumber": 30,
+      "prompt": "How do knowledge base content and the user’s query typically interact in a well-engineered context?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The system retrieves relevant knowledge base snippets based on the user’s query and inserts them into the prompt for this use case."
+        },
+        {
+          "id": "B",
+          "text": "The knowledge base content is used to train the model, not during inference with the query in this context."
+        },
+        {
+          "id": "C",
+          "text": "The user’s query is answered first by the model, then checked against the knowledge base after in this context."
+        },
+        {
+          "id": "D",
+          "text": "The presence of a knowledge base means you don’t need the user’s query explicitly in the prompt in this context."
+        }
+      ],
+      "correctChoiceId": "A",
+      "officialRationale": "In context engineering with retrieval, when a user asks something, the pipeline searches the knowledge base for relevant info and adds those snippets into the prompt (often before or after the user’s question) to inform the model’s answer. This way, the model sees both the question and context that can help answer it. The model uses them together to produce a grounded answer. Training the model on that data (fine-tuning) is a different approach; here we’re using retrieval dynamically at inference. And we still include the user’s query in the prompt – the model needs to know what to answer!",
+      "sourceQuestionPage": 37,
+      "sourceRationalePage": 42,
+      "verificationStatus": "verified",
+      "availableForExam": true,
+      "issueNote": null
+    }
+  ]
+}
