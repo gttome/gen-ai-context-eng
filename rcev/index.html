@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#092a4a">
+  <meta name="description" content="Video learning companion for Reliable Generative AI Context Engineering.">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; media-src 'self'; connect-src 'self'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; child-src 'none'; worker-src 'none'; manifest-src 'self'">
+  <title>RCE Video Learning</title>
+  <link rel="stylesheet" href="./css/app.css">
+  <script type="module" src="./js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand app-link" href="./" data-route="home" aria-label="RCE Video Learning home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="brand-copy"><strong>RCE Video</strong><small>Context engineering learning</small></span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a class="nav-link app-link" href="./" data-route="home">Learning dashboard</a>
+        <a class="nav-link app-link" href="./?lab=home" data-route="lab" data-scenario="">Applied lab</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="shell main" tabindex="-1" aria-busy="true">
+    <div class="loading-card" role="status">
+      <span class="loading-dot" aria-hidden="true"></span>
+      <p>Loading the video library…</p>
+    </div>
+  </main>
+  <p id="app-status" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+  <dialog id="reset-dialog" class="confirm-dialog" aria-labelledby="reset-title" aria-describedby="reset-description">
+    <form method="dialog">
+      <p class="eyebrow">Learning progress</p>
+      <h2 id="reset-title">Reset all learning progress?</h2>
+      <p id="reset-description">This removes completion status, watched ranges, and saved playback positions for all 40 videos from this browser. Bookmarks, notes, retrieval-check history, and context-lab work are kept. This cannot be undone.</p>
+      <div class="dialog-actions">
+        <button class="button" type="button" data-dialog-cancel>Cancel</button>
+        <button class="button danger-solid" type="button" data-dialog-confirm>Reset all progress</button>
+      </div>
+    </form>
+  </dialog>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <span>RCE Video v2.0.2</span>
+      <span>40 videos · 80 checks · 6 applied scenarios · local-only learning data</span>
+    </div>
+  </footer>
+  <noscript><p class="noscript">JavaScript is required. Start the included local server and enable JavaScript to use this application.</p></noscript>
+</body>
+</html>
